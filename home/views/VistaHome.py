@@ -2,7 +2,10 @@ from PyQt5.QtWidgets import (QLineEdit, QApplication, QWidget, QPushButton,
                              QVBoxLayout, QHBoxLayout, QMessageBox)
 
 
-#nice
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
-class VistaHome(object):
+
+class MainWindow(object):
     pass
