@@ -8,7 +8,7 @@ from PySide2.QtWidgets import *
 from home.views.VistaHome import MainWindow
 
 if __name__ == '__main__':
-    #print("ok")
+    print("ok")
     app = QtWidgets.QApplication(sys.argv)
     home = QtWidgets.QMainWindow()
     ui=MainWindow()
