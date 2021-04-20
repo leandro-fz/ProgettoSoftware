@@ -9,6 +9,7 @@ from home.views.VistaHome import MainWindow
 
 if __name__ == '__main__':
     print("ok")
+    print("okok")
     app = QtWidgets.QApplication(sys.argv)
     home = QtWidgets.QMainWindow()
     ui=MainWindow()
