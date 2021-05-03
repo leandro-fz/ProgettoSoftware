@@ -1,17 +1,15 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
 
-from home.views.VistaHome import MainWindow
+from home.views.VistaHome import Ui_Login
 
 if __name__ == '__main__':
-    print("ok")
+    import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    home = QtWidgets.QMainWindow()
-    ui=MainWindow()
-    ui.setupUi(MainWindow)
-    home.show()
+    Login = QtWidgets.QMainWindow()
+    ui = Ui_Login()
+    ui.setupUi(Login)
+    Login.show()
     sys.exit(app.exec_())
