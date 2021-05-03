@@ -182,6 +182,7 @@ class Ui_Login(object):
         font.setBold(True)
         font.setWeight(75)
         self.entra.setFont(font)
+        self.entra.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.entra.setObjectName("entra")
         self.verticalLayout.addWidget(self.entra)
         Login.setCentralWidget(self.centralwidget)
@@ -202,4 +203,3 @@ class Ui_Login(object):
         self.Benvenuto.setText(_translate("Login", "Benvenuto"))
         self.entra.setText(_translate("Login", "Entra"))
         self.entra.setShortcut(_translate("Login", "Enter"))
-
