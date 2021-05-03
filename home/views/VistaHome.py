@@ -198,17 +198,8 @@ class Ui_Login(object):
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
-        Login.setWindowTitle(_translate("Login", "MainWindow"))
+        Login.setWindowTitle(_translate("Login", "Schermata Principale"))
         self.Benvenuto.setText(_translate("Login", "Benvenuto"))
         self.entra.setText(_translate("Login", "Entra"))
         self.entra.setShortcut(_translate("Login", "Enter"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Login = QtWidgets.QMainWindow()
-    ui = Ui_Login()
-    ui.setupUi(Login)
-    Login.show()
-    sys.exit(app.exec_())

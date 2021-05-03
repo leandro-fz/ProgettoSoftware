@@ -202,7 +202,7 @@ class Ui_Menu(object):
 
     def retranslateUi(self, Menu):
         _translate = QtCore.QCoreApplication.translate
-        Menu.setWindowTitle(_translate("Menu", "MainWindow"))
+        Menu.setWindowTitle(_translate("Menu", "Menù"))
         self.amministrazione.setText(_translate("Menu", "Gestione amministrazione"))
         self.finanziaria.setText(_translate("Menu", "Gestione finanziaria"))
         self.clienti.setText(_translate("Menu", "Gestione clienti"))
