@@ -3,13 +3,13 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-from home.views.VistaHome import MainWindow
+from home.views.VistaHome import Ui_Login
 
 if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
     home = QtWidgets.QMainWindow()
-    ui=MainWindow()
-    ui.setupUi(MainWindow)
+    ui=Ui_Login()
+    ui.setupUi(Ui_Login)
     home.show()
     sys.exit(app.exec_())
