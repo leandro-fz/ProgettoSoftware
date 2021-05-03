@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from home.views.menu import Ui_Menu
+
 
 class Ui_Login(object):
     def setupUi(self, Login):
@@ -186,6 +188,13 @@ class Ui_Login(object):
 
         self.retranslateUi(Login)
         QtCore.QMetaObject.connectSlotsByName(Login)
+        self.entra.clicked.connect(self.mostramenu)
+
+    def mostramenu(self):
+        self.Menu = QtWidgets.QMainWindow()
+        self.ui = Ui_Menu()
+        self.ui.setupUi(self.Menu)
+        self.Menu.show()
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate

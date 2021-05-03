@@ -196,13 +196,10 @@ class Ui_Menu(object):
         self.emergenza.setObjectName("emergenza")
         self.gridLayout.addWidget(self.emergenza, 3, 1, 1, 1)
         Menu.setCentralWidget(self.centralwidget)
-        def ao():
-            pass
-
 
         self.retranslateUi(Menu)
         QtCore.QMetaObject.connectSlotsByName(Menu)
-#ao
+
     def retranslateUi(self, Menu):
         _translate = QtCore.QCoreApplication.translate
         Menu.setWindowTitle(_translate("Menu", "MainWindow"))
@@ -217,4 +214,3 @@ class Ui_Menu(object):
         self.relax.setText(_translate("Menu", "Gestione zona relax"))
         self.emergenza.setText(_translate("Menu", "Gestione emergenza"))
 
-#popo
