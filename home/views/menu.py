@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'login.ui'
+# Form implementation generated from reading ui file 'menu.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -11,10 +11,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Login(object):
-    def setupUi(self, Login):
-        Login.setObjectName("Login")
-        Login.resize(777, 573)
+class Ui_Menu(object):
+    def setupUi(self, Menu):
+        Menu.setObjectName("Menu")
+        Menu.resize(859, 612)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -160,46 +160,61 @@ class Ui_Login(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
-        Login.setPalette(palette)
-        self.centralwidget = QtWidgets.QWidget(Login)
+        Menu.setPalette(palette)
+        self.centralwidget = QtWidgets.QWidget(Menu)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.Benvenuto = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        font.setBold(True)
-        font.setWeight(75)
-        self.Benvenuto.setFont(font)
-        self.Benvenuto.setAlignment(QtCore.Qt.AlignCenter)
-        self.Benvenuto.setObjectName("Benvenuto")
-        self.verticalLayout.addWidget(self.Benvenuto)
-        self.entra = QtWidgets.QPushButton(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.entra.setFont(font)
-        self.entra.setObjectName("entra")
-        self.verticalLayout.addWidget(self.entra)
-        Login.setCentralWidget(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.amministrazione = QtWidgets.QPushButton(self.centralwidget)
+        self.amministrazione.setObjectName("amministrazione")
+        self.gridLayout.addWidget(self.amministrazione, 0, 0, 1, 1)
+        self.finanziaria = QtWidgets.QPushButton(self.centralwidget)
+        self.finanziaria.setObjectName("finanziaria")
+        self.gridLayout.addWidget(self.finanziaria, 0, 1, 1, 1)
+        self.clienti = QtWidgets.QPushButton(self.centralwidget)
+        self.clienti.setObjectName("clienti")
+        self.gridLayout.addWidget(self.clienti, 0, 2, 1, 1)
+        self.inventario = QtWidgets.QPushButton(self.centralwidget)
+        self.inventario.setObjectName("inventario")
+        self.gridLayout.addWidget(self.inventario, 1, 0, 1, 1)
+        self.piscina = QtWidgets.QPushButton(self.centralwidget)
+        self.piscina.setObjectName("piscina")
+        self.gridLayout.addWidget(self.piscina, 1, 1, 1, 1)
+        self.palestra = QtWidgets.QPushButton(self.centralwidget)
+        self.palestra.setObjectName("palestra")
+        self.gridLayout.addWidget(self.palestra, 1, 2, 1, 1)
+        self.calcio = QtWidgets.QPushButton(self.centralwidget)
+        self.calcio.setObjectName("calcio")
+        self.gridLayout.addWidget(self.calcio, 2, 0, 1, 1)
+        self.tennis = QtWidgets.QPushButton(self.centralwidget)
+        self.tennis.setObjectName("tennis")
+        self.gridLayout.addWidget(self.tennis, 2, 1, 1, 1)
+        self.relax = QtWidgets.QPushButton(self.centralwidget)
+        self.relax.setObjectName("relax")
+        self.gridLayout.addWidget(self.relax, 2, 2, 1, 1)
+        self.emergenza = QtWidgets.QPushButton(self.centralwidget)
+        self.emergenza.setObjectName("emergenza")
+        self.gridLayout.addWidget(self.emergenza, 3, 1, 1, 1)
+        Menu.setCentralWidget(self.centralwidget)
+        def ao():
+            pass
 
-        self.retranslateUi(Login)
-        QtCore.QMetaObject.connectSlotsByName(Login)
 
-    def retranslateUi(self, Login):
+        self.retranslateUi(Menu)
+        QtCore.QMetaObject.connectSlotsByName(Menu)
+#ao
+    def retranslateUi(self, Menu):
         _translate = QtCore.QCoreApplication.translate
-        Login.setWindowTitle(_translate("Login", "MainWindow"))
-        self.Benvenuto.setText(_translate("Login", "Benvenuto"))
-        self.entra.setText(_translate("Login", "Entra"))
-        self.entra.setShortcut(_translate("Login", "Enter"))
+        Menu.setWindowTitle(_translate("Menu", "MainWindow"))
+        self.amministrazione.setText(_translate("Menu", "Gestione amministrazione"))
+        self.finanziaria.setText(_translate("Menu", "Gestione finanziaria"))
+        self.clienti.setText(_translate("Menu", "Gestione clienti"))
+        self.inventario.setText(_translate("Menu", "Gestione inventario"))
+        self.piscina.setText(_translate("Menu", "Gestione piscina"))
+        self.palestra.setText(_translate("Menu", "Gestione palestra"))
+        self.calcio.setText(_translate("Menu", "Gestione campo da calcio"))
+        self.tennis.setText(_translate("Menu", "Gestione campo da tennis"))
+        self.relax.setText(_translate("Menu", "Gestione zona relax"))
+        self.emergenza.setText(_translate("Menu", "Gestione emergenza"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Login = QtWidgets.QMainWindow()
-    ui = Ui_Login()
-    ui.setupUi(Login)
-    Login.show()
-    sys.exit(app.exec_())
+#popo
