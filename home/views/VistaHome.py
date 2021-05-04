@@ -65,6 +65,7 @@ class Ui_Schermataprincipale(object):
         self.retranslateUi(Schermataprincipale)
         QtCore.QMetaObject.connectSlotsByName(Schermataprincipale)
         self.entra.clicked.connect(self.mostramenu)
+        self.entra.clicked.connect(Schermataprincipale.close)
 
     def mostramenu(self):
         self.menu = QtWidgets.QMainWindow()

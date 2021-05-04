@@ -23,7 +23,7 @@ class Ui_menu(object):
         menu.setMinimumSize(QtCore.QSize(781, 500))
         menu.setMaximumSize(QtCore.QSize(781, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("images/immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         menu.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(menu)
         self.centralwidget.setObjectName("centralwidget")
