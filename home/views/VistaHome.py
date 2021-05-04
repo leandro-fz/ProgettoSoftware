@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Schermataprincipale.ui'
+# Form implementation generated from reading ui file 'login2.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -11,21 +11,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Schermata_principale(object):
-    def setupUi(self, Schermata_principale):
-        Schermata_principale.setObjectName("Schermata_principale")
-        Schermata_principale.resize(781, 500)
+class Ui_Schermataprincipale(object):
+    def setupUi(self, Schermataprincipale):
+        Schermataprincipale.setObjectName("Schermataprincipale")
+        Schermataprincipale.resize(781, 500)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Schermata_principale.sizePolicy().hasHeightForWidth())
-        Schermata_principale.setSizePolicy(sizePolicy)
-        Schermata_principale.setMinimumSize(QtCore.QSize(781, 500))
-        Schermata_principale.setMaximumSize(QtCore.QSize(781, 500))
+        sizePolicy.setHeightForWidth(Schermataprincipale.sizePolicy().hasHeightForWidth())
+        Schermataprincipale.setSizePolicy(sizePolicy)
+        Schermataprincipale.setMinimumSize(QtCore.QSize(781, 500))
+        Schermataprincipale.setMaximumSize(QtCore.QSize(781, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("images\immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Schermata_principale.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(Schermata_principale)
+        icon.addPixmap(QtGui.QPixmap("images/immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Schermataprincipale.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(Schermataprincipale)
         self.centralwidget.setObjectName("centralwidget")
         self.benvenuto = QtWidgets.QLabel(self.centralwidget)
         self.benvenuto.setGeometry(QtCore.QRect(240, 160, 300, 41))
@@ -37,13 +37,15 @@ class Ui_Schermata_principale(object):
         font.setWeight(50)
         self.benvenuto.setFont(font)
         self.benvenuto.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.benvenuto.setTextFormat(QtCore.Qt.PlainText)
         self.benvenuto.setAlignment(QtCore.Qt.AlignCenter)
         self.benvenuto.setObjectName("benvenuto")
         self.immaginepesi = QtWidgets.QLabel(self.centralwidget)
         self.immaginepesi.setGeometry(QtCore.QRect(0, -9, 791, 511))
         self.immaginepesi.setText("")
-        self.immaginepesi.setPixmap(QtGui.QPixmap("images\immaginepesi.PNG"))
+        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesi.PNG"))
         self.immaginepesi.setScaledContents(True)
+        self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setObjectName("immaginepesi")
         self.entra = QtWidgets.QPushButton(self.centralwidget)
         self.entra.setGeometry(QtCore.QRect(330, 240, 110, 40))
@@ -56,23 +58,22 @@ class Ui_Schermata_principale(object):
         self.immaginepesi.raise_()
         self.benvenuto.raise_()
         self.entra.raise_()
-        Schermata_principale.setCentralWidget(self.centralwidget)
+        Schermataprincipale.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Schermata_principale)
-        QtCore.QMetaObject.connectSlotsByName(Schermata_principale)
+        self.retranslateUi(Schermataprincipale)
+        QtCore.QMetaObject.connectSlotsByName(Schermataprincipale)
+        self.entra.clicked.connect(self.mostramenu)
 
-    def retranslateUi(self, Schermata_principale):
+    def mostramenu(self):
+        self.Schermataprincipale = QtWidgets.QMainWindow()
+        self.ui = Ui_Schermataprincipale()
+        self.ui.setupUi(self.Schermataprincipale)
+        self.Schermataprincipale.show()
+
+    def retranslateUi(self, Schermataprincipale):
         _translate = QtCore.QCoreApplication.translate
-        Schermata_principale.setWindowTitle(_translate("Schermata_principale", "Schermata principale"))
-        self.benvenuto.setText(_translate("Schermata_principale", "BENVENUTO"))
-        self.entra.setText(_translate("Schermata_principale", "ENTRA"))
+        Schermataprincipale.setWindowTitle(_translate("Schermataprincipale", "Schermata principale"))
+        self.benvenuto.setText(_translate("Schermataprincipale", "BENVENUTO"))
+        self.entra.setText(_translate("Schermataprincipale", "ENTRA"))
+        self.entra.setShortcut(_translate("Schermataprincipale", "Enter"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Schermata_principale = QtWidgets.QMainWindow()
-    ui = Ui_Schermata_principale()
-    ui.setupUi(Schermata_principale)
-    Schermata_principale.show()
-    sys.exit(app.exec_())

@@ -162,7 +162,7 @@ class Ui_Menu(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
         Menu.setPalette(palette)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../Downloads/logo/logo_small_icon_only_inverted.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("logo_small_icon_only_inverted.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Menu.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(Menu)
         self.centralwidget.setObjectName("centralwidget")
@@ -277,3 +277,14 @@ class Ui_Menu(object):
         self.tennis.setText(_translate("Menu", "Gestione campo da tennis"))
         self.relax.setText(_translate("Menu", "Gestione zona relax"))
         self.emergenza.setText(_translate("Menu", "Gestione emergenza"))
+
+
+if __name__ == "__main__":
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    Schermata_principale = QtWidgets.QMainWindow()
+    ui = Ui_Menu()
+    ui.setupUi(Schermata_principale)
+    Schermata_principale.show()
+    sys.exit(app.exec_())
