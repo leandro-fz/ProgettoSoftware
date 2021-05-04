@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from home.views.menu import Ui_menu
+
 
 class Ui_Schermataprincipale(object):
     def setupUi(self, Schermataprincipale):
@@ -65,10 +67,10 @@ class Ui_Schermataprincipale(object):
         self.entra.clicked.connect(self.mostramenu)
 
     def mostramenu(self):
-        self.Schermataprincipale = QtWidgets.QMainWindow()
-        self.ui = Ui_Schermataprincipale()
-        self.ui.setupUi(self.Schermataprincipale)
-        self.Schermataprincipale.show()
+        self.menu = QtWidgets.QMainWindow()
+        self.ui = Ui_menu()
+        self.ui.setupUi(self.menu)
+        self.menu.show()
 
     def retranslateUi(self, Schermataprincipale):
         _translate = QtCore.QCoreApplication.translate

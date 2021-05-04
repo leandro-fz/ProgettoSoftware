@@ -11,26 +11,26 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Schermataprincipale(object):
-    def setupUi(self, Schermataprincipale):
-        Schermataprincipale.setObjectName("Schermataprincipale")
-        Schermataprincipale.resize(781, 500)
+class Ui_menu(object):
+    def setupUi(self, menu):
+        menu.setObjectName("menu")
+        menu.resize(781, 500)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Schermataprincipale.sizePolicy().hasHeightForWidth())
-        Schermataprincipale.setSizePolicy(sizePolicy)
-        Schermataprincipale.setMinimumSize(QtCore.QSize(781, 500))
-        Schermataprincipale.setMaximumSize(QtCore.QSize(781, 500))
+        sizePolicy.setHeightForWidth(menu.sizePolicy().hasHeightForWidth())
+        menu.setSizePolicy(sizePolicy)
+        menu.setMinimumSize(QtCore.QSize(781, 500))
+        menu.setMaximumSize(QtCore.QSize(781, 500))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Schermataprincipale.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(Schermataprincipale)
+        menu.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(menu)
         self.centralwidget.setObjectName("centralwidget")
         self.immaginepesi = QtWidgets.QLabel(self.centralwidget)
         self.immaginepesi.setGeometry(QtCore.QRect(0, 0, 791, 501))
         self.immaginepesi.setText("")
-        self.immaginepesi.setPixmap(QtGui.QPixmap("immaginepesi.PNG"))
+        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesi.PNG"))
         self.immaginepesi.setScaledContents(True)
         self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setObjectName("immaginepesi")
@@ -410,31 +410,21 @@ class Ui_Schermataprincipale(object):
         self.pushButton_8.raise_()
         self.pushButton_9.raise_()
         self.pushButton_11.raise_()
-        Schermataprincipale.setCentralWidget(self.centralwidget)
+        menu.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Schermataprincipale)
-        QtCore.QMetaObject.connectSlotsByName(Schermataprincipale)
+        self.retranslateUi(menu)
+        QtCore.QMetaObject.connectSlotsByName(menu)
 
-    def retranslateUi(self, Schermataprincipale):
+    def retranslateUi(self, menu):
         _translate = QtCore.QCoreApplication.translate
-        Schermataprincipale.setWindowTitle(_translate("Schermataprincipale", "Menù"))
-        self.pushButton.setText(_translate("Schermataprincipale", "Gestione amministrazione"))
-        self.pushButton_2.setText(_translate("Schermataprincipale", "Gestione zona relax"))
-        self.pushButton_3.setText(_translate("Schermataprincipale", "Gestione campo da tennis"))
-        self.pushButton_4.setText(_translate("Schermataprincipale", "Gestione clienti"))
-        self.pushButton_5.setText(_translate("Schermataprincipale", "Gestione campo da calcio"))
-        self.pushButton_6.setText(_translate("Schermataprincipale", "Gestione inventario"))
-        self.pushButton_7.setText(_translate("Schermataprincipale", "Gestione palestra"))
-        self.pushButton_8.setText(_translate("Schermataprincipale", "Gestione finanziaria"))
-        self.pushButton_9.setText(_translate("Schermataprincipale", "Gestione piscina"))
-        self.pushButton_11.setText(_translate("Schermataprincipale", "Gestione emergenza "))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Schermataprincipale = QtWidgets.QMainWindow()
-    ui = Ui_Schermataprincipale()
-    ui.setupUi(Schermataprincipale)
-    Schermataprincipale.show()
-    sys.exit(app.exec_())
+        menu.setWindowTitle(_translate("menu", "Menù"))
+        self.pushButton.setText(_translate("menu", "Gestione amministrazione"))
+        self.pushButton_2.setText(_translate("menu", "Gestione zona relax"))
+        self.pushButton_3.setText(_translate("menu", "Gestione campo da tennis"))
+        self.pushButton_4.setText(_translate("menu", "Gestione clienti"))
+        self.pushButton_5.setText(_translate("menu", "Gestione campo da calcio"))
+        self.pushButton_6.setText(_translate("menu", "Gestione inventario"))
+        self.pushButton_7.setText(_translate("menu", "Gestione palestra"))
+        self.pushButton_8.setText(_translate("menu", "Gestione finanziaria"))
+        self.pushButton_9.setText(_translate("menu", "Gestione piscina"))
+        self.pushButton_11.setText(_translate("menu", "Gestione emergenza "))
