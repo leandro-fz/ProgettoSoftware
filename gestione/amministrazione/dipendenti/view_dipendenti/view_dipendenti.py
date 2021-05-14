@@ -1,9 +1,22 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
+from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import ControlloreListaDipendenti
+from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipendente import VistaInserisciDipendente
 
 
 class Ui_dipendenti(object):
+
+    def __int__(self, parent= None):
+        super(Ui_dipendenti, self).__int__(parent)
+        self.controller = ControlloreListaDipendenti()
+        self.setupUi()
+
+
+
     def setupUi(self, dipendenti):
+
         dipendenti.setObjectName("dipendenti")
         dipendenti.resize(781, 500)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -34,8 +47,10 @@ class Ui_dipendenti(object):
         self.verticalSlider.setInvertedAppearance(True)
         self.verticalSlider.setInvertedControls(False)
         self.verticalSlider.setObjectName("verticalSlider")
-        self.aggiungisocio = QtWidgets.QPushButton(self.centralwidget)
-        self.aggiungisocio.setGeometry(QtCore.QRect(630, 50, 140, 30))
+
+        #self.verticalSlider.valueChanged.connect(self.listView)
+        self.aggiungidipendente = QtWidgets.QPushButton(self.centralwidget)
+        self.aggiungidipendente.setGeometry(QtCore.QRect(630, 50, 140, 30))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -46,17 +61,17 @@ class Ui_dipendenti(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.aggiungisocio.setPalette(palette)
+        self.aggiungidipendente.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
-        self.aggiungisocio.setFont(font)
-        self.aggiungisocio.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.aggiungisocio.setObjectName("aggiungisocio")
-        self.eliminasocio = QtWidgets.QPushButton(self.centralwidget)
-        self.eliminasocio.setGeometry(QtCore.QRect(630, 90, 140, 30))
+        self.aggiungidipendente.setFont(font)
+        self.aggiungidipendente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.aggiungidipendente.setObjectName("aggiungidipendente")
+        self.eliminadipendente = QtWidgets.QPushButton(self.centralwidget)
+        self.eliminadipendente.setGeometry(QtCore.QRect(630, 90, 140, 30))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -76,16 +91,16 @@ class Ui_dipendenti(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.eliminasocio.setPalette(palette)
+        self.eliminadipendente.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
-        self.eliminasocio.setFont(font)
-        self.eliminasocio.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.eliminasocio.setObjectName("eliminasocio")
+        self.eliminadipendente.setFont(font)
+        self.eliminadipendente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.eliminadipendente.setObjectName("eliminasocio")
         self.freccia = QtWidgets.QPushButton(self.centralwidget)
         self.freccia.setGeometry(QtCore.QRect(20, 10, 51, 31))
         palette = QtGui.QPalette()
@@ -130,14 +145,40 @@ class Ui_dipendenti(object):
         self.retranslateUi(dipendenti)
         QtCore.QMetaObject.connectSlotsByName(dipendenti)
 
+        self.listView_model = QStandardItemModel(self.listView)
+        for dipendente in self.controller.get_lista_dipendenti():
+            item= QStandardItem()
+            item.setText(dipendente.nome + " " + dipendente.cognome)
+            item.setEditable(False)
+            font = item.font()
+            font.setPointSize(18)
+            item.setFont(font)
+            self.listView_model.appendRow(item)
+        self.listView.setModel(self.listView_model)
+
+
+
+
         self.freccia.clicked.connect(dipendenti.close)
 
+        self.aggiungidipendente.clicked.connect(self.view_nuovodipendente)
+
+
+
+
+
+
+
+
+    def view_nuovodipendente(self):
+        self.vista_inserisci_dipendente = view_inserisci_dipendente(self.controller,self)
+        self.vista_inserisci_dipendente.sow()
 
     def retranslateUi(self, dipendenti):
         _translate = QtCore.QCoreApplication.translate
         dipendenti.setWindowTitle(_translate("dipendenti", "Dipendenti"))
-        self.aggiungisocio.setText(_translate("dipendenti", "Aggiungi dipendente"))
-        self.eliminasocio.setText(_translate("dipendenti", "Elimina dipendente"))
+        self.aggiungidipendente.setText(_translate("dipendenti", "Aggiungi dipendente"))
+        self.eliminadipendente.setText(_translate("dipendenti", "Elimina dipendente"))
         self.freccia.setText(_translate("dipendenti", "⬅️"))
         self.freccia.setShortcut(_translate("dipendenti", "Alt+Left"))
 

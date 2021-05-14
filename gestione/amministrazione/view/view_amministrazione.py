@@ -1,7 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from gestione.amministrazione.view.subview.view_dipendenti import Ui_dipendenti
+from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import Ui_dipendenti
 from gestione.amministrazione.view.subview.view_soci import Ui_Soci
 
 
