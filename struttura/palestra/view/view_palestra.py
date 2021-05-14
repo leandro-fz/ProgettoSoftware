@@ -22,7 +22,7 @@ class Ui_gestionepalestra(object):
         self.immaginepesi.setGeometry(QtCore.QRect(0, 0, 791, 501))
         self.immaginepesi.setText("")
         self.immaginepesi.setTextFormat(QtCore.Qt.AutoText)
-        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesi.PNG"))
+        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesisfocata.jpeg"))
         self.immaginepesi.setScaledContents(True)
         self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setObjectName("immaginepesi")

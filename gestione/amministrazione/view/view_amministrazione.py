@@ -52,7 +52,7 @@ class Ui_Gestioneamministrazione(object):
         self.immaginepesi.setFont(font)
         self.immaginepesi.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.immaginepesi.setText("")
-        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesi.PNG"))
+        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesisfocata.jpeg"))
         self.immaginepesi.setScaledContents(True)
         self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setOpenExternalLinks(False)
