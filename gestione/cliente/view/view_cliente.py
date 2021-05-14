@@ -317,6 +317,9 @@ class Ui_gestioneclienti(object):
         self.retranslateUi(gestioneclienti)
         QtCore.QMetaObject.connectSlotsByName(gestioneclienti)
 
+        self.pushButton_2.clicked.connect(gestioneclienti.close)
+
+
     def retranslateUi(self, gestioneclienti):
         _translate = QtCore.QCoreApplication.translate
         gestioneclienti.setWindowTitle(_translate("gestioneclienti", "Gestione clienti"))

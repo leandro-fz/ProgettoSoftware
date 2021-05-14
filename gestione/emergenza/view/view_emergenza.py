@@ -191,6 +191,9 @@ class Ui_gestioneemergenzasanitaria(object):
         self.retranslateUi(gestioneemergenzasanitaria)
         QtCore.QMetaObject.connectSlotsByName(gestioneemergenzasanitaria)
 
+        self.freccia.clicked.connect(gestioneemergenzasanitaria.close)
+
+
     def retranslateUi(self, gestioneemergenzasanitaria):
         _translate = QtCore.QCoreApplication.translate
         gestioneemergenzasanitaria.setWindowTitle(_translate("gestioneemergenzasanitaria", "Gestione emergenza sanitaria"))

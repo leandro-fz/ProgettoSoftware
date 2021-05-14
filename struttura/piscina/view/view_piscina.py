@@ -191,6 +191,9 @@ class Ui_gestionepiscina(object):
         self.retranslateUi(gestionepiscina)
         QtCore.QMetaObject.connectSlotsByName(gestionepiscina)
 
+        self.pushButton.clicked.connect(gestionepiscina.close)
+
+
     def retranslateUi(self, gestionepiscina):
         _translate = QtCore.QCoreApplication.translate
         gestionepiscina.setWindowTitle(_translate("gestionepiscina", "Gestione piscina"))

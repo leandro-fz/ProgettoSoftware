@@ -170,6 +170,8 @@ class Ui_gestionecampodatennis(object):
 
         self.retranslateUi(gestionecampodatennis)
         QtCore.QMetaObject.connectSlotsByName(gestionecampodatennis)
+        self.freccia.clicked.connect(gestionecampodatennis.close)
+
 
     def retranslateUi(self, gestionecampodatennis):
         _translate = QtCore.QCoreApplication.translate

@@ -190,6 +190,8 @@ class Ui_gestionezonarelax(object):
 
         self.retranslateUi(gestionezonarelax)
         QtCore.QMetaObject.connectSlotsByName(gestionezonarelax)
+        self.freccia.clicked.connect(gestionezonarelax.close)
+
 
     def retranslateUi(self, gestionezonarelax):
         _translate = QtCore.QCoreApplication.translate

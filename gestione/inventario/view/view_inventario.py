@@ -516,6 +516,9 @@ class Ui_gestioneinventario(object):
         self.retranslateUi(gestioneinventario)
         QtCore.QMetaObject.connectSlotsByName(gestioneinventario)
 
+        self.freccia.clicked.connect(gestioneinventario.close)
+
+
     def retranslateUi(self, gestioneinventario):
         _translate = QtCore.QCoreApplication.translate
         gestioneinventario.setWindowTitle(_translate("gestioneinventario", "Gestione inventario"))

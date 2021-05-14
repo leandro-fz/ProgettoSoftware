@@ -191,6 +191,9 @@ class Ui_gestionepalestra(object):
         self.retranslateUi(gestionepalestra)
         QtCore.QMetaObject.connectSlotsByName(gestionepalestra)
 
+        self.pushButton.clicked.connect(gestionepalestra.close)
+
+
     def retranslateUi(self, gestionepalestra):
         _translate = QtCore.QCoreApplication.translate
         gestionepalestra.setWindowTitle(_translate("gestionepalestra", "Gestione palestra"))

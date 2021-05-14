@@ -116,7 +116,7 @@ class Ui_Soci(object):
         self.visualizzasocio.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.visualizzasocio.setObjectName("visualizzasocio")
         self.freccia = QtWidgets.QPushButton(self.centralwidget)
-        self.freccia.setGeometry(QtCore.QRect(20, 450, 51, 31))
+        self.freccia.setGeometry(QtCore.QRect(20, 15, 51, 31))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -158,6 +158,9 @@ class Ui_Soci(object):
 
         self.retranslateUi(Soci)
         QtCore.QMetaObject.connectSlotsByName(Soci)
+
+        self.freccia.clicked.connect(Soci.close)
+
 
     def retranslateUi(self, Soci):
         _translate = QtCore.QCoreApplication.translate

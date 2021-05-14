@@ -715,6 +715,8 @@ class Ui_menu(object):
 
         self.gestionefinanziaria.clicked.connect(self.mostra_finanziaria)
 
+
+
     def mostra_finanziaria(self):
         self.finanziaria = QtWidgets.QMainWindow()
         self.fi = Ui_gestionefinanziaria()

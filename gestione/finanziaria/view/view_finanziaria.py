@@ -317,6 +317,9 @@ class Ui_gestionefinanziaria(object):
         self.retranslateUi(gestionefinanziaria)
         QtCore.QMetaObject.connectSlotsByName(gestionefinanziaria)
 
+        self.pushButton.clicked.connect(gestionefinanziaria.close)
+
+
     def retranslateUi(self, gestionefinanziaria):
         _translate = QtCore.QCoreApplication.translate
         gestionefinanziaria.setWindowTitle(_translate("gestionefinanziaria", "Gestione finanziaria"))
