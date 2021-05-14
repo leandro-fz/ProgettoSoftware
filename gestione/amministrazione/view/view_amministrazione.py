@@ -348,8 +348,8 @@ class Ui_Gestioneamministrazione(object):
 
     def mostra_soci(self):
         self.Soci = QtWidgets.QMainWindow()
-        self.sc = Ui_Soci()
-        self.sc.setupUi(self.Soci)
+        self.ui = Ui_Soci()
+        self.ui.setupUi(self.Soci)
         self.Soci.show()
 
     def mostra_dipendenti(self):
