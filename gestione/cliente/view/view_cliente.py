@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from gestione.cliente.abbonamenti.view.view_gestione_Abbonamenti import Ui_gestioneabbonamenti
+
 
 class Ui_gestioneclienti(object):
     def setupUi(self, gestioneclienti):
@@ -318,6 +320,14 @@ class Ui_gestioneclienti(object):
         QtCore.QMetaObject.connectSlotsByName(gestioneclienti)
 
         self.pushButton_2.clicked.connect(gestioneclienti.close)
+
+        self.gestioneabbonamento.clicked.connect(self.mostra_gestioneabbonamenti)
+
+    def mostra_gestioneabbonamenti(self):
+        self.gestioneabbonamenti = QtWidgets.QMainWindow()
+        self.ui = Ui_gestioneabbonamenti()
+        self.ui.setupUi(self.gestioneabbonamenti)
+        self.gestioneabbonamenti.show()
 
 
     def retranslateUi(self, gestioneclienti):
