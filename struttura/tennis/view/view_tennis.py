@@ -19,7 +19,7 @@ class Ui_gestioneCampoTennis(object):
         self.centralwidget = QtWidgets.QWidget(gestioneCampoTennis)
         self.centralwidget.setObjectName("centralwidget")
         self.immaginepesi = QtWidgets.QLabel(self.centralwidget)
-        self.immaginepesi.setGeometry(QtCore.QRect(130, -30, 791, 501))
+        self.immaginepesi.setGeometry(QtCore.QRect(0, 0, 791, 501))
         self.immaginepesi.setText("")
         self.immaginepesi.setTextFormat(QtCore.Qt.AutoText)
         self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesisfocata.jpeg"))
