@@ -152,6 +152,9 @@ class Ui_gestioneCampoTennis(object):
         self.retranslateUi(gestioneCampoTennis)
         QtCore.QMetaObject.connectSlotsByName(gestioneCampoTennis)
 
+
+        self.indietro.clicked.connect(gestioneCampoTennis.close)
+
     def retranslateUi(self, gestioneCampoTennis):
         _translate = QtCore.QCoreApplication.translate
         gestioneCampoTennis.setWindowTitle(_translate("gestioneCampoTennis", "Gestione campo da tennis"))
