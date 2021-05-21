@@ -3,9 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from gestione.amministrazione.view.view_amministrazione import Ui_Gestioneamministrazione
 from gestione.cliente.view.view_cliente import Ui_gestioneclienti
-from gestione.emergenza.view.view_emergenza import Ui_gestioneemergenzasanitaria
 from gestione.finanziaria.view.view_finanziaria import Ui_gestionefinanziaria
-from gestione.inventario.view.view_inventario import Ui_gestioneinventario
 from struttura.calcio.view.view_calcio import Ui_gestionecampodacalcio
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
 from struttura.piscina.view.view_piscina import Ui_gestionepiscina
@@ -688,15 +686,12 @@ class Ui_menu(object):
         self.gestioneamministrazione.clicked.connect(self.mostra_amministrazione)
         #self.gestioneamministrazione.clicked.connect(menu.close)
 
-        self.gestioneemergenza.clicked.connect(self.mostra_emergenza)
 
         self.gestionezonarelax.clicked.connect(self.mostra_relax)
 
         self.gestionecampodacalcio.clicked.connect(self.mostra_calcio)
 
         self.gestionecampodatennis.clicked.connect(self.mostra_tennis)
-
-        self.gestioneinventario.clicked.connect(self.mostra_inventario)
 
         self.gestionepiscina.clicked.connect(self.mostra_piscina)
 
@@ -732,11 +727,6 @@ class Ui_menu(object):
         self.pi.setupUi(self.piscina)
         self.piscina.show()
 
-    def mostra_inventario(self):
-        self.gestioneinv = QtWidgets.QMainWindow()
-        self.inv = Ui_gestioneinventario()
-        self.inv.setupUi(self.gestioneinv)
-        self.gestioneinv.show()
 
     def mostra_tennis(self):
         self.gestioneCampoTennis = QtWidgets.QMainWindow()
@@ -756,11 +746,6 @@ class Ui_menu(object):
         self.ui.setupUi(self.gestionerelax)
         self.gestionerelax.show()
 
-    def mostra_emergenza(self):
-        self.gestioneemergenzasanitaria = QtWidgets.QMainWindow()
-        self.ui = Ui_gestioneemergenzasanitaria()
-        self.ui.setupUi(self.gestioneemergenzasanitaria)
-        self.gestioneemergenzasanitaria.show()
 
     def mostra_amministrazione(self):
         self.Gestioneamministrazione = QtWidgets.QMainWindow()
