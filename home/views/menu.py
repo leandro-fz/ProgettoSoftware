@@ -12,6 +12,7 @@ from struttura.tennis.view.view_tennis import Ui_gestioneCampoTennis
 
 
 class Ui_menu(object):
+
     def setupUi(self, menu):
         menu.setObjectName("menu")
         menu.resize(781, 500)

@@ -354,9 +354,9 @@ class Ui_Gestioneamministrazione(object):
         self.Soci.show()
 
     def mostra_dipendenti(self):
-        self.gestionedipendente = QtWidgets.QMainWindow()
-        self.ui = Ui_gestionedipendente()
-        self.ui.setupUi(self.gestionedipendente)
+        self.gestionedipendente = Ui_gestionedipendente() #QtWidgets.QMainWindow()
+        #self.ui = Ui_gestionedipendente()
+        #self.ui.setupUi(self.gestionedipendente)
         self.gestionedipendente.show()
 
 
