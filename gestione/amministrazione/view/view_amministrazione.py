@@ -6,6 +6,7 @@ from gestione.amministrazione.view.subview.view_soci import Ui_Soci
 
 
 class Ui_Gestioneamministrazione(object):
+
     def setupUi(self, Gestioneamministrazione):
         Gestioneamministrazione.setObjectName("Gestioneamministrazione")
         Gestioneamministrazione.resize(781, 500)

@@ -1,10 +1,10 @@
-from gestione.amministrazione.dipendenti.model_dipedenti.model_dipendenti import ListaDipendenti
+from gestione.amministrazione.dipendenti.model_dipedenti.model_dipendenti import Insieme_Dipendenti
 
 
-class ControlloreListaDipendenti():
+class Controller_Dipendenti():
+
     def __init__(self):
-        super(ControlloreListaDipendenti, self).__init__()
-        self.model = ListaDipendenti()
+        self.model = Insieme_Dipendenti()
 
     def aggiungi_dipendente(self, dipendente):
         self.model.aggiungi_dipendente(dipendente)
@@ -12,8 +12,8 @@ class ControlloreListaDipendenti():
     def get_lista_dipendenti(self):
         return self.model.get_lista_dipendenti()
 
-    def get_dipendente_by_index(self, index):
-        return self.model.get_dipendente_by_index(index)
+    def get_dipendente_by_id(self, id):
+        return self.model.get_dipendente_by_id(id)
 
     def elimina_dipendente_by_id(self, id):
         self.model.rimuovi_dipendente_by_id(id)

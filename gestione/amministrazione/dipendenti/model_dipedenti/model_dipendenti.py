@@ -1,33 +1,40 @@
 import os
 import pickle
 
-#lista dipendenti
-#luogo dove viene salvato il file
 
-class ListaDipendenti():
+class Insieme_Dipendenti():
+
     def __init__(self):
-        super(ListaDipendenti, self).__init__()
         self.lista_dipendenti = []
-        if os.path.isfile('gestione/amministrazione/data/lista_dipendenti_salvata.pickle'):
-            with open('gestione/amministrazione/data/lista_dipendenti_salvata.pickle', 'rb') as f:
-                self.lista_dipendenti = pickle.load(f)
+        if os.path.isfile("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle"):
+
+            with open("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle", "rb") as file:
+
+                self.lista_dipendenti = pickle.load(file)
 
     def aggiungi_dipendente(self, dipendente):
         self.lista_dipendenti.append(dipendente)
 
     def rimuovi_dipendente_by_id(self, id):
-        def is_selected_dipendente(dipendente):
-            if dipendente.id == id:
-                return True
-            return False
-        self.lista_dipendenti.remove(list(filter(is_selected_dipendente, self.lista_dipendenti))[0])
 
-    def get_dipendente_by_index(self, index):
-        return self.lista_dipendenti[index]
+        for dipendente in self.lista_dipendenti:
+            if dipendente.id == id:
+                self.lista_dipendenti.remove(dipendente)
+                return True
+        return False
 
     def get_lista_dipendenti(self):
+
         return self.lista_dipendenti
 
+    def get_dipendente_by_id(self, id):
+
+        for dipendente in self.lista_dipendenti:
+            if dipendente.id == id:
+                return dipendente
+        return None
+
     def save_data(self):
-        with open('gestione/amministrazione/data/lista_dipendenti_salvata.pickle', 'wb') as handle:
+
+        with open("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle", "wb") as handle:
             pickle.dump(self.lista_dipendenti, handle, pickle.HIGHEST_PROTOCOL)
