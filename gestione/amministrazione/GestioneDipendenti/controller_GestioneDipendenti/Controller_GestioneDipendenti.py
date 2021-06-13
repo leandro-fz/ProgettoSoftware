@@ -2,7 +2,6 @@ class Controller_GestioneDipendenti():
 
 
     def __init__(self, dipendente):
-
         self.model = dipendente
 
     def get_nome_dipendente(self):

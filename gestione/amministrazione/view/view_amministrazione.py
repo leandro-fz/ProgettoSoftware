@@ -1,7 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import  Ui_gestionedipendente
+from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import  view_dipendenti
 from gestione.amministrazione.view.subview.view_soci import Ui_Soci
 
 
@@ -355,7 +355,7 @@ class Ui_Gestioneamministrazione(object):
         self.Soci.show()
 
     def mostra_dipendenti(self):
-        self.gestionedipendente = Ui_gestionedipendente() #QtWidgets.QMainWindow()
+        self.gestionedipendente = view_dipendenti() #QtWidgets.QMainWindow()
         #self.ui = Ui_gestionedipendente()
         #self.ui.setupUi(self.gestionedipendente)
         self.gestionedipendente.show()

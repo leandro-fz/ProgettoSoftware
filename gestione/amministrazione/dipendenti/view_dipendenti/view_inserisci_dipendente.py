@@ -92,12 +92,12 @@ class view_InserisciDipendente(QWidget):
         try:
             id = int(self.campo_id.text())
         except:
-            QMessageBox.critical(self, "Errore", "Solo i numeri sono ammmessi", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "ID non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         if id > 99999 or id <10000:
 
-            QMessageBox.critical(self, "Errore", "Sono ammesse solo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "ID può avere solo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         if not self.controlla_id_libero(id):

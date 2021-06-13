@@ -1,4 +1,4 @@
-from gestione.amministrazione.dipendenti.model_dipedenti.model_dipendenti import Insieme_Dipendenti
+from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import Insieme_Dipendenti
 
 
 class Controller_Dipendenti():

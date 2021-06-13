@@ -81,7 +81,6 @@ class view_ModificaDipendente(QWidget):
         self.resize(300, 400)
 
     def chiudi_finestra(self):
-
         self.close()
 
     def controlla_id_libero(self, id):
@@ -104,6 +103,7 @@ class view_ModificaDipendente(QWidget):
             return
 
         if id > 99999 or id < 10000:
+
             QMessageBox.critical(self, "Errore", "L'ID deve essere composto da 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -121,10 +121,12 @@ class view_ModificaDipendente(QWidget):
             return
 
         if stipendio <= 0:
+
             QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
+
             QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 

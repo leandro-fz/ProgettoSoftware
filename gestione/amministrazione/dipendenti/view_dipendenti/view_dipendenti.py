@@ -10,10 +10,11 @@ from gestione.amministrazione.GestioneDipendenti.view_GestioneDipendenti.view_mo
 from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipendente import view_InserisciDipendente
 
 
-class Ui_gestionedipendente(QWidget):
+class view_dipendenti(QWidget):
 
     def __init__(self, parent=None):
-        super(Ui_gestionedipendente, self).__init__(parent)
+        super(view_dipendenti, self).__init__(parent)
+
 
         self.controller = Controller_Dipendenti()
 
@@ -39,7 +40,7 @@ class Ui_gestionedipendente(QWidget):
         self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         # self.indietro.setGeometry(QtCore.QRect(20, 20, 51, 31))
         self.indietro.setIconSize(QtCore.QSize(40, 40))
-        self.indietro.clicked.connect(Ui_gestionedipendente.close)
+        self.indietro.clicked.connect(self.chiudi_schermata)
 
 
         self.inserisci_dipendente = QPushButton("Inserisci Dipendente")
@@ -65,7 +66,7 @@ class Ui_gestionedipendente(QWidget):
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Lista Dipendenti")
+        self.setWindowTitle("Elenco Dipendenti")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -76,6 +77,9 @@ class Ui_gestionedipendente(QWidget):
         self.setPalette(palette)
 
         self.show()
+
+    def chiudi_schermata(self):
+        self.close()
 
     def aggiorna_dati(self):
 
