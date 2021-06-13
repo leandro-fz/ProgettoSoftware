@@ -123,6 +123,7 @@ class view_InserisciDipendente(QWidget):
 
         self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, ruolo, id, stipendio))
         self.controller.save_data()
+        self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
         QMessageBox.about(self, "Completato", "Inserimento completato")
         self.aggiorna_lista()
         self.close()
