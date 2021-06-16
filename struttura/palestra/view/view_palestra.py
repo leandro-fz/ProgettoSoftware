@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_gestionepalestra(object):
+
     def setupUi(self, gestionepalestra):
         gestionepalestra.setObjectName("gestionepalestra")
         gestionepalestra.resize(781, 500)
@@ -147,8 +148,8 @@ class Ui_gestionepalestra(object):
         self.gestionecorsi.setDefault(False)
         self.gestionecorsi.setFlat(False)
         self.gestionecorsi.setObjectName("gestionecorsi")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(30, 20, 51, 31))
+        self.freccia = QtWidgets.QPushButton(self.centralwidget)
+        self.freccia.setGeometry(QtCore.QRect(30, 20, 51, 31))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -177,30 +178,39 @@ class Ui_gestionepalestra(object):
         brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.pushButton.setPalette(palette)
+        self.freccia.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(12)
-        self.pushButton.setFont(font)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setIconSize(QtCore.QSize(40, 40))
-        self.pushButton.setDefault(False)
-        self.pushButton.setObjectName("pushButton")
+        self.freccia.setFont(font)
+        self.freccia.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.freccia.setIconSize(QtCore.QSize(40, 40))
+        self.freccia.setDefault(False)
+        self.freccia.setObjectName("freccia")
         gestionepalestra.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(gestionepalestra)
         QtCore.QMetaObject.connectSlotsByName(gestionepalestra)
 
-        self.pushButton.clicked.connect(gestionepalestra.close)
+        self.freccia.clicked.connect(gestionepalestra.close)
 
+        self.gestionecorsi.clicked.connect(self.mostra_corsi)
+
+        self.iscritti.clicked.connect(self.mostra_iscritti)
+
+    def mostra_iscritti(self):
+        pass
+
+    def mostra_corsi(self):
+        pass
 
     def retranslateUi(self, gestionepalestra):
         _translate = QtCore.QCoreApplication.translate
         gestionepalestra.setWindowTitle(_translate("gestionepalestra", "Gestione palestra"))
         self.iscritti.setText(_translate("gestionepalestra", "Iscritti"))
         self.gestionecorsi.setText(_translate("gestionepalestra", "Gestione corsi"))
-        self.pushButton.setText(_translate("gestionepalestra", "⬅️"))
-        self.pushButton.setShortcut(_translate("gestionepalestra", "Alt+Left"))
+        self.freccia.setText(_translate("gestionepalestra", "⬅️"))
+        self.freccia.setShortcut(_translate("gestionepalestra", "Alt+Left"))
 
 
 # if __name__ == "__main__":

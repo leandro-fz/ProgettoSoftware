@@ -1,9 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import  view_dipendenti
-from gestione.amministrazione.view.subview.view_soci import Ui_Soci
-
+from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import view_dipendenti
 
 class Ui_Gestioneamministrazione(object):
 
@@ -58,13 +56,13 @@ class Ui_Gestioneamministrazione(object):
         self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setOpenExternalLinks(False)
         self.immaginepesi.setObjectName("immaginepesi")
-        self.fonitoriesponsor = QtWidgets.QPushButton(self.centralwidget)
-        self.fonitoriesponsor.setGeometry(QtCore.QRect(430, 160, 200, 50))
+        self.fonitori = QtWidgets.QPushButton(self.centralwidget)
+        self.fonitori.setGeometry(QtCore.QRect(50, 210, 200, 50))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.fonitoriesponsor.sizePolicy().hasHeightForWidth())
-        self.fonitoriesponsor.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.fonitori.sizePolicy().hasHeightForWidth())
+        self.fonitori.setSizePolicy(sizePolicy)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -102,7 +100,7 @@ class Ui_Gestioneamministrazione(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.fonitoriesponsor.setPalette(palette)
+        self.fonitori.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(12)
@@ -112,71 +110,13 @@ class Ui_Gestioneamministrazione(object):
         font.setWeight(50)
         font.setStrikeOut(False)
         font.setKerning(True)
-        self.fonitoriesponsor.setFont(font)
-        self.fonitoriesponsor.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.fonitoriesponsor.setDefault(False)
-        self.fonitoriesponsor.setFlat(False)
-        self.fonitoriesponsor.setObjectName("fonitoriesponsor")
-        self.eventi = QtWidgets.QPushButton(self.centralwidget)
-        self.eventi.setGeometry(QtCore.QRect(120, 250, 200, 50))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.eventi.sizePolicy().hasHeightForWidth())
-        self.eventi.setSizePolicy(sizePolicy)
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(4, 157, 217))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.eventi.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setUnderline(False)
-        font.setWeight(50)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        self.eventi.setFont(font)
-        self.eventi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.eventi.setDefault(False)
-        self.eventi.setObjectName("eventi")
+        self.fonitori.setFont(font)
+        self.fonitori.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.fonitori.setDefault(False)
+        self.fonitori.setFlat(False)
+        self.fonitori.setObjectName("fonitori")
         self.gestionedipendenti = QtWidgets.QPushButton(self.centralwidget)
-        self.gestionedipendenti.setGeometry(QtCore.QRect(430, 250, 200, 50))
+        self.gestionedipendenti.setGeometry(QtCore.QRect(290, 210, 200, 50))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -234,13 +174,13 @@ class Ui_Gestioneamministrazione(object):
         self.gestionedipendenti.setAutoDefault(False)
         self.gestionedipendenti.setDefault(False)
         self.gestionedipendenti.setObjectName("gestionedipendenti")
-        self.soci = QtWidgets.QPushButton(self.centralwidget)
-        self.soci.setGeometry(QtCore.QRect(120, 160, 200, 50))
+        self.gestioneinventario = QtWidgets.QPushButton(self.centralwidget)
+        self.gestioneinventario.setGeometry(QtCore.QRect(530, 210, 200, 50))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.soci.sizePolicy().hasHeightForWidth())
-        self.soci.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.gestioneinventario.sizePolicy().hasHeightForWidth())
+        self.gestioneinventario.setSizePolicy(sizePolicy)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -278,7 +218,7 @@ class Ui_Gestioneamministrazione(object):
         brush = QtGui.QBrush(QtGui.QColor(4, 157, 217))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.soci.setPalette(palette)
+        self.gestioneinventario.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(12)
@@ -288,14 +228,14 @@ class Ui_Gestioneamministrazione(object):
         font.setWeight(50)
         font.setStrikeOut(False)
         font.setKerning(True)
-        self.soci.setFont(font)
-        self.soci.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.soci.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.soci.setAutoExclusive(False)
-        self.soci.setAutoDefault(False)
-        self.soci.setDefault(False)
-        self.soci.setFlat(False)
-        self.soci.setObjectName("soci")
+        self.gestioneinventario.setFont(font)
+        self.gestioneinventario.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.gestioneinventario.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.gestioneinventario.setAutoExclusive(False)
+        self.gestioneinventario.setAutoDefault(False)
+        self.gestioneinventario.setDefault(False)
+        self.gestioneinventario.setFlat(False)
+        self.gestioneinventario.setObjectName("gestioneinventario")
         self.freccia = QtWidgets.QPushButton(self.centralwidget)
         self.freccia.setGeometry(QtCore.QRect(20, 20, 51, 31))
         palette = QtGui.QPalette()
@@ -340,27 +280,24 @@ class Ui_Gestioneamministrazione(object):
         self.retranslateUi(Gestioneamministrazione)
         QtCore.QMetaObject.connectSlotsByName(Gestioneamministrazione)
 
-        self.soci.clicked.connect(self.mostra_soci)
-
         self.gestionedipendenti.clicked.connect(self.mostra_dipendenti)
 
+        self.gestioneinventario.clicked.connect(self.mostra_inventario)
+
+        self.fonitori.clicked.connect(self.mostra_fornitori)
+
+
         self.freccia.clicked.connect(Gestioneamministrazione.close)
-        #self.freccia.clicked.connect(self.mostra_menu)
 
+    def mostra_inventario(self):
+        pass
 
-    def mostra_soci(self):
-        self.Soci = QtWidgets.QMainWindow()
-        self.ui = Ui_Soci()
-        self.ui.setupUi(self.Soci)
-        self.Soci.show()
+    def mostra_fornitori(self):
+        pass
 
     def mostra_dipendenti(self):
-        self.gestionedipendente = view_dipendenti() #QtWidgets.QMainWindow()
-        #self.ui = Ui_gestionedipendente()
-        #self.ui.setupUi(self.gestionedipendente)
+        self.gestionedipendente = view_dipendenti()
         self.gestionedipendente.show()
-
-
 
     #
     # def mostra_menu(self):
@@ -372,9 +309,18 @@ class Ui_Gestioneamministrazione(object):
     def retranslateUi(self, Gestioneamministrazione):
         _translate = QtCore.QCoreApplication.translate
         Gestioneamministrazione.setWindowTitle(_translate("Gestioneamministrazione", "Gestione amministrazione"))
-        self.fonitoriesponsor.setText(_translate("Gestioneamministrazione", "Fornitori e sponsor"))
-        self.eventi.setText(_translate("Gestioneamministrazione", "Eventi"))
+        self.fonitori.setText(_translate("Gestioneamministrazione", "Fornitori"))
         self.gestionedipendenti.setText(_translate("Gestioneamministrazione", "Gestione dipendenti"))
-        self.soci.setText(_translate("Gestioneamministrazione", "Soci"))
+        self.gestioneinventario.setText(_translate("Gestioneamministrazione", "Gestione inventario"))
         self.freccia.setText(_translate("Gestioneamministrazione", "⬅️"))
         self.freccia.setShortcut(_translate("Gestioneamministrazione", "Alt+Left"))
+
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Gestioneamministrazione = QtWidgets.QMainWindow()
+#     ui = Ui_Gestioneamministrazione()
+#     ui.setupUi(Gestioneamministrazione)
+#     Gestioneamministrazione.show()
+#     sys.exit(app.exec_())

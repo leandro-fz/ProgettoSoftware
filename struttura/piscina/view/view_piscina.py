@@ -3,6 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_gestionepiscina(object):
+
+
     def setupUi(self, gestionepiscina):
         gestionepiscina.setObjectName("gestionepiscina")
         gestionepiscina.resize(781, 500)
@@ -27,7 +29,7 @@ class Ui_gestionepiscina(object):
         self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
         self.immaginepesi.setObjectName("immaginepesi")
         self.iscritti = QtWidgets.QPushButton(self.centralwidget)
-        self.iscritti.setGeometry(QtCore.QRect(100, 200, 220, 60))
+        self.iscritti.setGeometry(QtCore.QRect(100, 210, 250, 60))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -88,8 +90,9 @@ class Ui_gestionepiscina(object):
         self.iscritti.setDefault(False)
         self.iscritti.setFlat(False)
         self.iscritti.setObjectName("iscritti")
+
         self.gestionecorsi = QtWidgets.QPushButton(self.centralwidget)
-        self.gestionecorsi.setGeometry(QtCore.QRect(430, 200, 220, 60))
+        self.gestionecorsi.setGeometry(QtCore.QRect(410, 210, 250, 60))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -147,8 +150,9 @@ class Ui_gestionepiscina(object):
         self.gestionecorsi.setDefault(False)
         self.gestionecorsi.setFlat(False)
         self.gestionecorsi.setObjectName("gestionecorsi")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(30, 20, 51, 31))
+
+        self.indietro = QtWidgets.QPushButton(self.centralwidget)
+        self.indietro.setGeometry(QtCore.QRect(30, 20, 51, 31))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -177,30 +181,40 @@ class Ui_gestionepiscina(object):
         brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.pushButton.setPalette(palette)
+        self.indietro.setPalette(palette)
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(12)
-        self.pushButton.setFont(font)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setIconSize(QtCore.QSize(40, 40))
-        self.pushButton.setDefault(False)
-        self.pushButton.setObjectName("pushButton")
+        self.indietro.setFont(font)
+        self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.indietro.setIconSize(QtCore.QSize(40, 40))
+        self.indietro.setDefault(False)
+        self.indietro.setObjectName("indietro")
         gestionepiscina.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(gestionepiscina)
         QtCore.QMetaObject.connectSlotsByName(gestionepiscina)
 
-        self.pushButton.clicked.connect(gestionepiscina.close)
+        self.indietro.clicked.connect(gestionepiscina.close)
 
+        self.iscritti.clicked.connect(self.mostra_iscritti)
+
+        self.gestionecorsi.clicked.connect(self.mostra_corsi)
+
+
+    def mostra_corsi(self):
+        pass
+
+    def mostra_iscritti(self):
+        pass
 
     def retranslateUi(self, gestionepiscina):
         _translate = QtCore.QCoreApplication.translate
         gestionepiscina.setWindowTitle(_translate("gestionepiscina", "Gestione piscina"))
         self.iscritti.setText(_translate("gestionepiscina", "Iscritti"))
         self.gestionecorsi.setText(_translate("gestionepiscina", "Gestione corsi"))
-        self.pushButton.setText(_translate("gestionepiscina", "⬅️"))
-        self.pushButton.setShortcut(_translate("gestionepiscina", "Alt+Left"))
+        self.indietro.setText(_translate("gestionepiscina", "⬅️"))
+        self.indietro.setShortcut(_translate("gestionepiscina", "Alt+Left"))
 
 
 # if __name__ == "__main__":
