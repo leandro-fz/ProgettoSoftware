@@ -35,6 +35,8 @@ class view_dipendenti(QWidget):
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.setDefault(False)
         self.indietro.setFont(self.font_bottoni)
+        self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
+        self.shortcut_indietro.activated.connect(self.chiudi_schermata)
 
         self.h_layout.addWidget(self.indietro)
         self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))

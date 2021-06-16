@@ -82,6 +82,8 @@ class view_InserisciDipendente(QWidget):
         self.bottone_conferma.clicked.connect(self.conferma_inserimento)
         self.bottone_conferma.setFont(self.font_label)
         self.bottone_conferma.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.shortcut_conferma = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_conferma.activated.connect(self.conferma_inserimento)
 
 
 

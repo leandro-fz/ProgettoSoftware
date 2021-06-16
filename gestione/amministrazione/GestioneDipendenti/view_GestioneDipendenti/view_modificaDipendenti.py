@@ -80,6 +80,8 @@ class view_ModificaDipendente(QWidget):
         self.bottone_modifica.clicked.connect(self.modifica_dipendente)
         self.bottone_modifica.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_modifica)
+        self.shortcut_modifica = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_modifica.activated.connect(self.modifica_dipendente)
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
