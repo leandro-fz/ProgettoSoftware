@@ -1,6 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5 import QtGui, QtCore, QtWidgets
 
+from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 
 class view_ModificaDipendente(QWidget):
 
@@ -68,17 +72,31 @@ class view_ModificaDipendente(QWidget):
         self.bottone_chiudi = QPushButton("Chiudi")
         self.bottone_chiudi.setFont(self.font_campi)
         self.bottone_chiudi.clicked.connect(self.chiudi_finestra)
+        self.bottone_chiudi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_chiudi)
 
         self.bottone_modifica = QPushButton("Modifica")
         self.bottone_modifica.setFont(self.font_campi)
         self.bottone_modifica.clicked.connect(self.modifica_dipendente)
+        self.bottone_modifica.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_modifica)
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
         self.setWindowTitle("Dipendente")
         self.resize(300, 400)
+
+        self.setLayout(self.v_layout)
+        self.setMinimumSize(781, 500)
+        self.setMaximumSize(781, 500)
+        self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
+
+        oImage = QImage("images/immaginepesisfocata.jpeg")
+        sImage = oImage.scaled(QSize(791, 501))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
+
 
     def chiudi_finestra(self):
         self.close()
@@ -95,6 +113,13 @@ class view_ModificaDipendente(QWidget):
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
         ruolo = self.campo_ruolo.text()
+        id = self.campo_id.text()
+        stipendio = self.campo_stipendio.text()
+
+        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+
+            QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
+            return
 
         try:
             id = int(self.campo_id.text())
@@ -102,22 +127,27 @@ class view_ModificaDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice ID", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999 or id < 10000:
+        if id <10000:
 
-            QMessageBox.critical(self, "Errore", "L'ID deve essere composto da 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        if id > 99999:
+
+            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         if self.controller.get_id_dipendente() == id:
             pass
+
         elif not self.controlla_id_libero(id):
-            QMessageBox.critical(self, "Errore", "L'ID che hai immesso è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "L'ID inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         try:
             stipendio = float(self.campo_stipendio.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,
-                                 QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         if stipendio <= 0:
@@ -125,10 +155,10 @@ class view_ModificaDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
-
-            QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-            return
+        # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
+        #
+        #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
+        #     return
 
         self.controller.set_nome_dipendente(nome)
         self.controller.set_cognome_dipendente(cognome)
