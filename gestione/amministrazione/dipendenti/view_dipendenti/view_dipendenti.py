@@ -22,7 +22,6 @@ class view_dipendenti(QWidget):
 
         self.list_view = QListView()
         self.list_view.setGeometry(40, 60, 500, 401)
-        # self.listView.setObjectName("listView")
 
         self.aggiorna_dati()
         self.v_layout.addWidget(self.list_view)
@@ -40,7 +39,6 @@ class view_dipendenti(QWidget):
 
         self.h_layout.addWidget(self.indietro)
         self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        # self.indietro.setGeometry(QtCore.QRect(20, 20, 51, 31))
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
 

@@ -144,7 +144,7 @@ class view_InserisciDipendente(QWidget):
 
         if not self.controlla_id_libero(id):
 
-            QMessageBox.critical(self, "Errore", "L'ID già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "ID già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
@@ -173,7 +173,6 @@ class view_InserisciDipendente(QWidget):
     def controlla_id_libero(self, id):
 
         for dipendente in self.controller.get_lista_dipendenti():
-
             if dipendente.id == id:
                 return False
         return True

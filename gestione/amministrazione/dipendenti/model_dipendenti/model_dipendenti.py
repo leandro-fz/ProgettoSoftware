@@ -6,7 +6,7 @@ class Insieme_Dipendenti():
 
 
     def __init__(self):
-        super(Insieme_Dipendenti, self).__init__()
+        # super(Insieme_Dipendenti, self).__init__()
         self.lista_dipendenti = []
         if os.path.isfile("amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle"):
             with open("amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle", "rb") as file:

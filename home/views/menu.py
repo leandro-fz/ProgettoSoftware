@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from gestione.amministrazione.view.view_amministrazione import Ui_Gestioneamministrazione
 from gestione.cliente.view.view_cliente import Ui_gestioneclienti
-from gestione.finanziaria.view.view_finanziaria import Ui_gestionefinanziaria
+from gestione.finanziaria.view.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
 from struttura.piscina.view.view_piscina import Ui_gestionepiscina
 from struttura.tennis.view.view_tennis import Ui_gestioneCampoTennis
@@ -446,9 +446,7 @@ class Ui_menu(object):
         self.gestionefinanziaria.clicked.connect(self.mostra_finanziaria)
 
     def mostra_finanziaria(self):
-        self.finanziaria = QtWidgets.QMainWindow()
-        self.fi = Ui_gestionefinanziaria()
-        self.fi.setupUi(self.finanziaria)
+        self.finanziaria = view_finanziaria()
         self.finanziaria.show()
 
     def mostra_clienti(self):
