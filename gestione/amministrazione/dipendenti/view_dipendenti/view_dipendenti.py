@@ -4,9 +4,11 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.amministrazione.GestioneDipendenti.controller_GestioneDipendenti.Controller_GestioneDipendenti import Controller_GestioneDipendenti
+from gestione.amministrazione.GestioneDipendenti.controller_GestioneDipendenti.Controller_GestioneDipendenti import \
+    Controller_GestioneDipendenti
 from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
-from gestione.amministrazione.GestioneDipendenti.view_GestioneDipendenti.view_modificaDipendenti import view_ModificaDipendente
+from gestione.amministrazione.GestioneDipendenti.view_GestioneDipendenti.view_modificaDipendenti import \
+    view_ModificaDipendente
 from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipendente import view_InserisciDipendente
 
 
@@ -14,7 +16,6 @@ class view_dipendenti(QWidget):
 
     def __init__(self, parent=None):
         super(view_dipendenti, self).__init__(parent)
-
 
         self.controller = Controller_Dipendenti()
 
@@ -41,7 +42,6 @@ class view_dipendenti(QWidget):
         self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
-
 
         self.inserisci_dipendente = QPushButton("Inserisci Dipendente")
         self.inserisci_dipendente.clicked.connect(self.mostra_inserisci_dipendente)
@@ -95,19 +95,13 @@ class view_dipendenti(QWidget):
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
-
-
     def mostra_inserisci_dipendente(self):
 
         self.inserisci_dipendente = view_InserisciDipendente(self.controller, self.aggiorna_dati)
         self.inserisci_dipendente.show()
 
-
-
     def closeEvent(self, event):
         self.controller.save_data()
-
-
 
     def mostra_elimina_dipendente(self):
 
@@ -118,7 +112,8 @@ class view_dipendenti(QWidget):
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un dipendente da eliminare", QMessageBox.Ok, QMessageBox.Ok)
             return
-        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il dipendente?",QMessageBox.Yes, QMessageBox.No)
+        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il dipendente?", QMessageBox.Yes,
+                                        QMessageBox.No)
 
         if risposta == QMessageBox.Yes:
 
@@ -128,9 +123,6 @@ class view_dipendenti(QWidget):
         else:
             return
 
-
-
-
     def mostra_modifica_dipendente(self):
 
         try:
@@ -138,8 +130,10 @@ class view_dipendenti(QWidget):
             da_visualizzare = self.controller.get_lista_dipendenti()[index]
 
         except:
-            QMessageBox.critical(self, "Errore", "Seleziona un dipendente da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Seleziona un dipendente da visualizzare", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
-        self.modifica_dipendente = view_ModificaDipendente(Controller_GestioneDipendenti(da_visualizzare),self.aggiorna_dati,self.controller.get_lista_dipendenti())
+        self.modifica_dipendente = view_ModificaDipendente(Controller_GestioneDipendenti(da_visualizzare),
+                                                           self.aggiorna_dati, self.controller.get_lista_dipendenti())
         self.modifica_dipendente.show()
