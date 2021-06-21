@@ -4,6 +4,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+from gestione.finanziaria.view.view_inserisci_movimento import view_inserisci_movimento
 
 
 class view_finanziaria(QWidget):
@@ -45,17 +46,17 @@ class view_finanziaria(QWidget):
         self.h_layout.addWidget(self.mostra_inserisci_movimento)
         self.inserisci_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-        # self.elimina_dipendente = QPushButton("Elimina movimento")
-        # self.elimina_dipendente.setFont(self.font_bottoni)
-        # self.elimina_dipendente.clicked.connect(self.mostra_elimina_dipendente)
-        # self.h_layout.addWidget(self.elimina_dipendente)
-        # self.elimina_dipendente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        #
-        # self.modifica_dipendente = QPushButton("Modifica movimento")
-        # self.modifica_dipendente.setFont(self.font_bottoni)
-        # self.modifica_dipendente.clicked.connect(self.mostra_modifica_dipendente)
-        # self.h_layout.addWidget(self.modifica_dipendente)
-        # self.modifica_dipendente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.elimina_movimento = QPushButton("Elimina movimento")
+        self.elimina_movimento.setFont(self.font_bottoni)
+        self.elimina_movimento.clicked.connect(self.elimina_movimento)
+        self.h_layout.addWidget(self.elimina_movimento)
+        self.elimina_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        self.modifica_movimento = QPushButton("Modifica movimento")
+        self.modifica_movimento.setFont(self.font_bottoni)
+        self.modifica_movimento.clicked.connect(self.modifica_movimento)
+        self.h_layout.addWidget(self.modifica_movimento)
+        self.modifica_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
@@ -85,7 +86,7 @@ class view_finanziaria(QWidget):
 
     def mostra_inserisci_movimento(self):
 
-        self.inserisci_movimento = view_InserisciDipendente(self.controller, self.aggiorna_dati)
+        self.inserisci_movimento = view_inserisci_movimento(self.controller, self.aggiorna_dati)
         self.inserisci_movimento.show()
 
 
@@ -95,10 +96,10 @@ class view_finanziaria(QWidget):
 
 
 
-    def mostra_elimina_dipendente(self):
+    def mostra_elimina_movimento(self):
         pass
 
 
 
-    def mostra_modifica_dipendente(self):
+    def mostra_modifica_movimento(self):
         pass

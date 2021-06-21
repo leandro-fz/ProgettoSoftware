@@ -4,6 +4,7 @@ from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti impor
 class Controller_Dipendenti():
 
     def __init__(self):
+        super(Controller_Dipendenti, self).__init__()
         self.model = Insieme_Dipendenti()
 
     def aggiungi_dipendente(self, dipendente):
