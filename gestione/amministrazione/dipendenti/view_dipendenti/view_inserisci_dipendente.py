@@ -156,7 +156,7 @@ class view_InserisciDipendente(QWidget):
 
         if stipendio <= 0:
 
-            QMessageBox.critical(self, "Errore", "Solo numeri maggiori di zero", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
 
