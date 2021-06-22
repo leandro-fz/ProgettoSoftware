@@ -1,10 +1,10 @@
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.finanziaria.view.view_inserisci_movimento import view_inserisci_movimento
+from gestione.finanziaria.movimenti.view_movimenti.view_inserisci_movimento import view_inserisci_movimento
 
 
 class view_finanziaria(QWidget):
