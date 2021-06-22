@@ -5,15 +5,16 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
-from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import GestioniDipendente
+
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
+from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_GestioneAbbonamenti import GestioniAbbonamento
 
 
-class view_InserisciDipendente(QWidget):
+class view_InserisciAbbonamento(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciDipendente, self).__init__(parent)
+        super(view_InserisciAbbonamento, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -23,7 +24,7 @@ class view_InserisciDipendente(QWidget):
 
 
         self.font_label2 = QFont("Yu Gothic UI Light", 20)
-        self.label_alto = QLabel("Compila il form di inserimento del dipendente")
+        self.label_alto = QLabel("Compila il form di inserimento del Abbonamento")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
@@ -88,7 +89,7 @@ class view_InserisciDipendente(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Inserimento Dipendente")
+        self.setWindowTitle("Inserimento Abbonamento")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
@@ -160,7 +161,7 @@ class view_InserisciDipendente(QWidget):
 
 
 
-        self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, ruolo, id, stipendio))
+        self.controller.aggiungi_abbonamento(GestioniAbbonamento(nome, cognome, ruolo, id, stipendio))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -171,7 +172,7 @@ class view_InserisciDipendente(QWidget):
 
     def controlla_id_libero(self, id):
 
-        for dipendente in self.controller.get_lista_dipendenti():
-            if dipendente.id == id:
+        for abbonamento in self.controller.get_lista_abbonamenti():
+            if abbonamento.id == id:
                 return False
         return True

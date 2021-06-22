@@ -5,15 +5,16 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
-from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import GestioniDipendente
+
+from gestione.cliente.certificati.controller_certificati.controller_certficati import Controller_Certificati
+from gestione.cliente.GestioneCertificati.model_GestioneCertificati.model_GestioneCertificati import GestioniCertificato
 
 
-class view_InserisciDipendente(QWidget):
+class view_InserisciCertificato(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciDipendente, self).__init__(parent)
+        super(view_InserisciCertificato, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -160,7 +161,7 @@ class view_InserisciDipendente(QWidget):
 
 
 
-        self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, ruolo, id, stipendio))
+        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, ruolo, id, stipendio))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -171,7 +172,7 @@ class view_InserisciDipendente(QWidget):
 
     def controlla_id_libero(self, id):
 
-        for dipendente in self.controller.get_lista_dipendenti():
-            if dipendente.id == id:
+        for certificato in self.controller.get_lista_certificati():
+            if certificato.id == id:
                 return False
         return True

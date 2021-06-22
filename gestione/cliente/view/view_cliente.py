@@ -1,6 +1,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from gestione.cliente.abbonamenti.view_abbonamenti.view_abbonamenti import view_abbonamenti
+from gestione.cliente.certificati.view_certificati.view_certificati import view_certificati
+
 
 class Ui_gestioneclienti(object):
 
@@ -201,10 +204,12 @@ class Ui_gestioneclienti(object):
         self.gestionecertificato.clicked.connect(self.mostra_certificato)
 
     def mostra_abbonamento(self):
-        pass
+        self.gestioneabbonamenti = view_abbonamenti()
+        self.gestioneabbonamenti.show()
 
     def mostra_certificato(self):
-        pass
+        self.gestionecertificati = view_certificati()
+        self.gestionecertificati.show()
 
     def retranslateUi(self, gestioneclienti):
         _translate = QtCore.QCoreApplication.translate
