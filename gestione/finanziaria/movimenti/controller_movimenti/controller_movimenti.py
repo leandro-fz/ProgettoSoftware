@@ -1,10 +1,10 @@
 from gestione.finanziaria.movimenti.model_movimenti.model_movimenti import model_movimenti
 
 
-class Controller_movimenti():
+class controller_movimenti():
 
     def __init__(self):
-        super(Controller_movimenti, self).__init__()
+        super(controller_movimenti, self).__init__()
         self.model = model_movimenti()
 
     def aggiungi_movimenti(self, movimenti):
