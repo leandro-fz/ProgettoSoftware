@@ -107,7 +107,7 @@ class view_abbonamenti(QWidget):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_eliminare = self.controller.get_lista_Abbonamenti()[index]
+            da_eliminare = self.controller.get_lista_abbonamenti()[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un abbonamento da eliminare", QMessageBox.Ok, QMessageBox.Ok)
@@ -127,7 +127,7 @@ class view_abbonamenti(QWidget):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_visualizzare = self.controller.get_lista_Abbonamenti()[index]
+            da_visualizzare = self.controller.get_lista_abbonamenti()[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un abbonamento da visualizzare", QMessageBox.Ok,

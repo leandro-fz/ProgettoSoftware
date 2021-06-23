@@ -110,7 +110,7 @@ class view_certificati(QWidget):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_eliminare = self.controller.get_lista_Certificati()[index]
+            da_eliminare = self.controller.get_lista_certificati()[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un certificato da eliminare", QMessageBox.Ok, QMessageBox.Ok)
@@ -130,8 +130,8 @@ class view_certificati(QWidget):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_visualizzare = self.controller.get_lista_Certificati()[index]
-
+            da_visualizzare = self.controller.get_lista_certificati()[index]
+            print("ok")
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un certificato da visualizzare", QMessageBox.Ok,
                                  QMessageBox.Ok)
