@@ -1,6 +1,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from gestione.amministrazione.Fornitori.view_fornitori.view_fornitori import view_fornitori
+from gestione.amministrazione.Inventario.view_inventario.view_inventario import view_inventario
 from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import view_dipendenti
 
 class Ui_Gestioneamministrazione(object):
@@ -290,10 +292,12 @@ class Ui_Gestioneamministrazione(object):
         self.freccia.clicked.connect(Gestioneamministrazione.close)
 
     def mostra_inventario(self):
-        pass
+        self.gestioneinventario = view_inventario()
+        self.gestioneinventario.show()
 
     def mostra_fornitori(self):
-        pass
+        self.gestionefornitore = view_fornitori()
+        self.gestionefornitore.show()
 
     def mostra_dipendenti(self):
         self.gestionedipendente = view_dipendenti()
