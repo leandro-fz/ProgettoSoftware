@@ -15,6 +15,8 @@ from gestione.cliente.view.view_cliente import Ui_gestioneclienti
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
 from struttura.piscina.view.view_piscina import Ui_gestionepiscina
+from struttura.tennis.view.view_tennis import view_tennis
+
 
 class Ui_menu(object):
     def setupUi(self, menu):
