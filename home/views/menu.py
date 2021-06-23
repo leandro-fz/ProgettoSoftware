@@ -15,8 +15,6 @@ from gestione.cliente.view.view_cliente import Ui_gestioneclienti
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
 from struttura.piscina.view.view_piscina import Ui_gestionepiscina
-from struttura.tennis.view.view_tennis import Ui_gestioneCampoTennis
-
 
 class Ui_menu(object):
     def setupUi(self, menu):
@@ -468,9 +466,7 @@ class Ui_menu(object):
         self.piscina.show()
 
     def mostra_tennis(self):
-        self.gestioneCampoTennis = QtWidgets.QMainWindow()
-        self.ui = Ui_gestioneCampoTennis()
-        self.ui.setupUi(self.gestioneCampoTennis)
+        self.gestioneCampoTennis = view_tennis()
         self.gestioneCampoTennis.show()
 
     def mostra_amministrazione(self):
