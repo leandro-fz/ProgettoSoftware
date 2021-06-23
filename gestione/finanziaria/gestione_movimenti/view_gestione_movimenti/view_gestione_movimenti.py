@@ -1,0 +1,124 @@
+from  PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5 import QtGui, QtCore, QtWidgets
+
+from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+
+class view_ModificaMovimento(QWidget):
+
+    def __init__(self, controllore_movimenti, aggiorna_lista, lista_movimenti, parent=None):
+
+        super(view_ModificaMovimento, self).__init__(parent)
+        self.controller = controllore_movimenti
+        self.aggiorna_lista = aggiorna_lista
+        self.lista_movimenti = lista_movimenti
+
+        self.v_layout = QVBoxLayout()
+
+        self.font_label = QFont("Yu Gothic UI Light", 16)
+        self.font_label.setBold(True)
+
+        self.font_campi = QFont("Yu Gothic UI Light", 16)
+
+        self.label_importo = QLabel("Importo:")
+        self.label_importo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_importo)
+
+        self.campo_importo = QLineEdit()
+        self.campo_importo.setFont(self.font_campi)
+        self.campo_importo.setText(self.controller.get_importo_movimenti())
+        self.v_layout.addWidget(self.campo_importo)
+
+        self.label_data = QLabel("Data:")
+        self.label_data.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_data)
+
+        self.campo_data = QLineEdit()
+        self.campo_data.setFont(self.font_campi)
+        self.campo_data.setText(self.controller.get_data_movimenti())
+        self.v_layout.addWidget(self.campo_data)
+
+        self.label_causale = QLabel("Causale:")
+        self.label_causale.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_causale)
+
+        self.campo_causale = QLineEdit()
+        self.campo_causale.setFont(self.font_campi)
+        self.campo_causale.setText(self.controller.get_causale_movimenti())
+        self.v_layout.addWidget(self.campo_causale)
+
+        self.h_layout = QHBoxLayout()
+
+        self.bottone_chiudi = QPushButton("Chiudi")
+        self.bottone_chiudi.setFont(self.font_campi)
+        self.bottone_chiudi.clicked.connect(self.chiudi_finestra)
+        self.bottone_chiudi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.h_layout.addWidget(self.bottone_chiudi)
+
+        self.bottone_modifica = QPushButton("Modifica")
+        self.bottone_modifica.setFont(self.font_campi)
+        self.bottone_modifica.clicked.connect(self.modifica_movimenti)
+        self.bottone_modifica.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.h_layout.addWidget(self.bottone_modifica)
+        self.shortcut_modifica = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_modifica.activated.connect(self.modifica_movimenti)
+
+        self.v_layout.addLayout(self.h_layout)
+        self.setLayout(self.v_layout)
+        self.setWindowTitle("movimenti")
+        self.resize(300, 400)
+
+        self.setLayout(self.v_layout)
+        self.setMinimumSize(781, 500)
+        self.setMaximumSize(781, 500)
+        self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
+
+        oImage = QImage("images/immaginepesisfocata.jpeg")
+        sImage = oImage.scaled(QSize(791, 501))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
+
+
+    def chiudi_finestra(self):
+        self.close()
+
+    def controlla_id_libero(self, id):
+
+        for movimenti in self.lista_certificati:
+            if movimenti.id == id:
+                return False
+        return True
+
+    def modifica_movimenti(self):
+
+        importo = self.campo_importo.text()
+        data = self.campo_data.text()
+        causale = self.campo_causale.text()
+
+        if importo == "" or data == "" or causale == "" :
+
+            QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        try:
+            importo = int(self.campo_importo.text())
+        except:
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per l'importo", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        if importo <= 0:
+
+            QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo. Riprovare.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+
+
+        self.controller.set_importo_movimenti(importo)
+        self.controller.set_data_movimenti(data)
+        self.controller.set_causale_movimenti(causale)
+        QMessageBox.about(self, "Completata", "Modifica completata")
+        self.aggiorna_lista()
+        self.close()
