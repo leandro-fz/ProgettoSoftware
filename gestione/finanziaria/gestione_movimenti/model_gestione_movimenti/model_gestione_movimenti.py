@@ -1,4 +1,4 @@
-class model_gestione_movimenti():
+class GestioneMovimenti():
 
     def __init__(self, importo, data, causale):
 
