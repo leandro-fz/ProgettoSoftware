@@ -1,6 +1,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from struttura.piscina.Iscritti.view_iscritti.view_iscritti import view_iscritti
+
 
 class Ui_gestionepiscina(object):
 
@@ -206,7 +208,8 @@ class Ui_gestionepiscina(object):
         pass
 
     def mostra_iscritti(self):
-        pass
+        self.gestioneiscritti = view_iscritti()
+        self.gestioneiscritti.show()
 
     def retranslateUi(self, gestionepiscina):
         _translate = QtCore.QCoreApplication.translate
