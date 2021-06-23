@@ -13,8 +13,6 @@ class view_finanziaria(QWidget):
         super(view_finanziaria, self).__init__(parent)
 
 
-        # self.controller = Controller_Dipendenti()
-
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
@@ -40,11 +38,11 @@ class view_finanziaria(QWidget):
         self.indietro.clicked.connect(self.chiudi_schermata)
 
 
-        self.inserisci_movimento = QPushButton("Inserisci movimento")
-        self.inserisci_movimento.clicked.connect(self.mostra_inserisci_movimento)
-        self.inserisci_movimento.setFont(self.font_bottoni)
-        self.h_layout.addWidget(self.mostra_inserisci_movimento)
-        self.inserisci_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.inserisci_movimenti = QPushButton("Inserisci movimento")
+        self.inserisci_movimenti.clicked.connect(self.mostra_inserisci_movimenti)
+        self.inserisci_movimenti.setFont(self.font_bottoni)
+        self.h_layout.addWidget(self.mostra_inserisci_movimenti)
+        self.inserisci_movimenti.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.elimina_movimento = QPushButton("Elimina movimento")
         self.elimina_movimento.setFont(self.font_bottoni)
@@ -58,12 +56,18 @@ class view_finanziaria(QWidget):
         self.h_layout.addWidget(self.modifica_movimento)
         self.modifica_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        self.visualizza_movimento = QPushButton("Visualizza movimento")
+        self.visualizza_movimento.setFont(self.font_bottoni)
+        self.visualizza_movimento.clicked.connect(self.visualizza_movimento)
+        self.h_layout.addWidget(self.modifica_movimento)
+        self.visualizza_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco Dipendenti")
+        self.setWindowTitle("Elenco movimenti")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -80,7 +84,17 @@ class view_finanziaria(QWidget):
 
     def aggiorna_dati(self):
 
-        pass
+        self.list_view_model = QStandardItemModel(self.list_view)
+
+        self.font_item = QFont("Yu Gothic UI Light", 12)
+
+        for movimenti in self.controller.get_lista_certificati():
+            item = QStandardItem()
+            item.setText(movimenti.importo + " " + movimenti.data + " " + movimenti.causale)
+            item.setEditable(False)
+            item.setFont(self.font_item)
+            self.list_view_model.appendRow(item)
+        self.list_view.setModel(self.list_view_model)
 
 
 
@@ -97,9 +111,38 @@ class view_finanziaria(QWidget):
 
 
     def mostra_elimina_movimento(self):
-        pass
+
+        try:
+            index = self.list_view.selectedIndexes()[0].row()
+            da_eliminare = self.controller.get_lista_movimenti()[index]
+
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona un movimento da eliminare", QMessageBox.Ok, QMessageBox.Ok)
+            return
+        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il movimento?", QMessageBox.Yes,
+                                        QMessageBox.No)
+
+        if risposta == QMessageBox.Yes:
+
+            self.controller.elimina_movimento_by_id(da_eliminare.id)
+            QMessageBox.about(self, "Eliminato", "Il movimento è stato eliminato")
+            self.aggiorna_dati()
+        else:
+            return
 
 
 
     def mostra_modifica_movimento(self):
-        pass
+
+        try:
+            index = self.list_view.selectedIndexes()[0].row()
+            da_visualizzare = self.controller.get_lista_movimenti()[index]
+
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona un movimento da visualizzare", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
+
+        self.modifica_movimenti = view_ModificaMovimento(Controller_GestioneMovimenti(da_visualizzare),
+                                                           self.aggiorna_dati, self.controller.get_lista_movimenti())
+        self.modifica_movimento.show()

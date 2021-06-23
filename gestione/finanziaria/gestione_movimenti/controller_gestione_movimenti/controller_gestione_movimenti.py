@@ -1,17 +1,17 @@
-class controller_gestione_movimenti():
+class Controller_GestioneMovimenti():
 
 
     def __init__(self, movimenti):
         self.model = movimenti
 
     def get_importo_movimenti(self):
-        return self.model.importo
+        return self.model.nome
 
     def get_data_movimenti(self):
         return self.model.data
 
     def get_causale_movimenti(self):
-        return self.model.causale
+        return self.model.movimenti
 
     def set_importo_movimenti(self, importo):
         self.model.importo = importo
