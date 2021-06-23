@@ -1,181 +1,109 @@
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
+from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
+from datetime import datetime
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtGui, QtCore, QtWidgets
 
-
-class Ui_gestioneCampoTennis(object):
-    def setupUi(self, gestioneCampoTennis):
-        gestioneCampoTennis.setObjectName("gestioneCampoTennis")
-        gestioneCampoTennis.resize(781, 500)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(gestioneCampoTennis.sizePolicy().hasHeightForWidth())
-        gestioneCampoTennis.setSizePolicy(sizePolicy)
-        gestioneCampoTennis.setMinimumSize(QtCore.QSize(781, 500))
-        gestioneCampoTennis.setMaximumSize(QtCore.QSize(781, 500))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("images/immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        gestioneCampoTennis.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(gestioneCampoTennis)
-        self.centralwidget.setObjectName("centralwidget")
-        self.immaginepesi = QtWidgets.QLabel(self.centralwidget)
-        self.immaginepesi.setGeometry(QtCore.QRect(0, 0, 791, 501))
-        self.immaginepesi.setText("")
-        self.immaginepesi.setTextFormat(QtCore.Qt.AutoText)
-        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesisfocata.jpeg"))
-        self.immaginepesi.setScaledContents(True)
-        self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
-        self.immaginepesi.setObjectName("immaginepesi")
-        self.indietro = QtWidgets.QPushButton(self.centralwidget)
-        self.indietro.setGeometry(QtCore.QRect(30, 20, 51, 31))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(240, 240, 240))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.indietro.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(12)
-        self.indietro.setFont(font)
-        self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.indietro.setIconSize(QtCore.QSize(40, 40))
-        self.indietro.setDefault(False)
-        self.indietro.setObjectName("indietro")
-        self.listView = QtWidgets.QListView(self.centralwidget)
-        self.listView.setGeometry(QtCore.QRect(40, 60, 521, 401))
-        self.listView.setObjectName("listView")
-        self.verticalScrollBar = QtWidgets.QScrollBar(self.centralwidget)
-        self.verticalScrollBar.setGeometry(QtCore.QRect(560, 60, 20, 401))
-        self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
-        self.verticalScrollBar.setInvertedAppearance(False)
-        self.verticalScrollBar.setInvertedControls(True)
-        self.verticalScrollBar.setObjectName("verticalScrollBar")
-        self.visualizzaaprenotazione = QtWidgets.QPushButton(self.centralwidget)
-        self.visualizzaaprenotazione.setGeometry(QtCore.QRect(600, 130, 161, 51))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.visualizzaaprenotazione.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setWeight(50)
-        self.visualizzaaprenotazione.setFont(font)
-        self.visualizzaaprenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.visualizzaaprenotazione.setObjectName("visualizzaaprenotazione")
-        self.eliminaaprenotazione = QtWidgets.QPushButton(self.centralwidget)
-        self.eliminaaprenotazione.setGeometry(QtCore.QRect(600, 190, 161, 51))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.eliminaaprenotazione.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        self.eliminaaprenotazione.setFont(font)
-        self.eliminaaprenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.eliminaaprenotazione.setObjectName("eliminaaprenotazione")
-        self.aggiungiprenotazione = QtWidgets.QPushButton(self.centralwidget)
-        self.aggiungiprenotazione.setGeometry(QtCore.QRect(600, 70, 161, 51))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.aggiungiprenotazione.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setWeight(50)
-        self.aggiungiprenotazione.setFont(font)
-        self.aggiungiprenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.aggiungiprenotazione.setObjectName("aggiungiprenotazione")
-        gestioneCampoTennis.setCentralWidget(self.centralwidget)
-
-        self.retranslateUi(gestioneCampoTennis)
-        QtCore.QMetaObject.connectSlotsByName(gestioneCampoTennis)
+from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 
 
-        self.indietro.clicked.connect(gestioneCampoTennis.close)
 
-    def retranslateUi(self, gestioneCampoTennis):
-        _translate = QtCore.QCoreApplication.translate
-        gestioneCampoTennis.setWindowTitle(_translate("gestioneCampoTennis", "Gestione campo da tennis"))
-        self.indietro.setText(_translate("gestioneCampoTennis", "⬅️"))
-        self.indietro.setShortcut(_translate("gestioneCampoTennis", "Alt+Left"))
-        self.visualizzaaprenotazione.setText(_translate("gestioneCampoTennis", "Visualizza\n"
-        " prenotazione"))
-        self.visualizzaaprenotazione.setShortcut(_translate("gestioneCampoTennis", "Alt+Return"))
-        self.eliminaaprenotazione.setText(_translate("gestioneCampoTennis", "Elimina\n"
-        " prenotazione"))
-        self.eliminaaprenotazione.setShortcut(_translate("gestioneCampoTennis", "Ctrl+D"))
-        self.aggiungiprenotazione.setText(_translate("gestioneCampoTennis", "Aggiungi \n"
-        " prenotazione"))
-        self.aggiungiprenotazione.setShortcut(_translate("gestioneCampoTennis", "Ctrl+A"))
+from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
+    ControlloreListaPrenotazioniTennis
+from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenotazioneTennis
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     gestioneCampoTennis = QtWidgets.QMainWindow()
-#     ui = Ui_gestioneCampoTennis()
-#     ui.setupUi(gestioneCampoTennis)
-#     gestioneCampoTennis.show()
-#     sys.exit(app.exec_())
+class view_tennis(QWidget):
+
+    def __init__(self, parent=None):
+        super(view_tennis, self).__init__(parent)
+        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+
+        self.v_layout = QVBoxLayout()
+
+        self.label_prenotazioni = QLabel("Prenotazioni Tennis: ")
+        self.label_prenotazioni.setFont(QFont("Yu Gothic UI Light", 12))
+        self.v_layout.addWidget(self.label_prenotazioni)
+
+        self.lista_prenotazioni = QListView()
+        self.aggiorna_dati_prenotazioni()
+        self.v_layout.addWidget(self.lista_prenotazioni)
+
+        self.h_layout = QHBoxLayout()
+
+        self.crea_pulsante("⬅️", self.mostra_indietro_tennis)
+        self.crea_pulsante("Nuova prenotazione", self.mostra_nuova_prenotazione_tennis)
+        self.crea_pulsante("Apri prenotazione", self.mostra_apri_prenotazione_tennis)
+        self.crea_pulsante("Elimina prenotazione", self.mostra_elimina_prenotazione_tennis)
+
+        self.v_layout.addLayout(self.h_layout)
+        self.setLayout(self.v_layout)
+        self.setMinimumSize(781, 500)
+        self.setMaximumSize(781, 500)
+        self.setWindowTitle("Elenco Prenotazioni Tennis")
+        self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
+
+        # per lo sfondo
+        oImage = QImage("images/immaginepesisfocata.jpeg")
+        sImage = oImage.scaled(QSize(791, 501))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
+
+    def crea_pulsante(self, titolo, funzione):
+        pulsante = QPushButton(titolo)
+        pulsante.setFont(QFont("Yu Gothic UI Light", 12))
+        pulsante.clicked.connect(funzione)
+        self.h_layout.addWidget(pulsante)
+
+    def mostra_indietro_tennis(self):
+        self.close()
+
+    def aggiorna_dati_prenotazioni(self):
+        self.modello_lista_prenotazioni = QStandardItemModel()
+        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente():
+            item = QStandardItem()
+            item.setText("Prenotazione del " + prenotazione.data_inizio.strftime("%d/%m/%Y"))
+            item.setEditable(False)
+            item.setFont(QFont("Yu Gothic UI Light", 12))
+            self.modello_lista_prenotazioni.appendRow(item)
+        self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
+
+    def mostra_nuova_prenotazione_tennis(self):
+        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.aggiorna_dati_prenotazioni)
+        self.vista_nuova_prenotazione.show()
+
+    def mostra_apri_prenotazione_tennis(self):
+        try:
+            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+            da_visualizzare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        self.vista_prenotazione = VistaPrenotazione(ControllorePrenotazione(da_visualizzare))
+        self.vista_prenotazione.show()
+
+    def mostra_elimina_prenotazione_tennis(self):
+        try:
+            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+            da_eliminare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
+            return
+
+        if da_eliminare.data_inizio < datetime.now():
+            QMessageBox.critical(self, "Errore", "Non puoi eliminare prenotazioni passate", QMessageBox.Ok, QMessageBox.Ok)
+            return
+        risposta = QMessageBox.question(self, "Elimina prenotazione",
+                               "Sei sicuro di voler elimare la prenotazione selezionata? \nPerderai la caparra versata", QMessageBox.Yes,
+                               QMessageBox.No)
+        if risposta == QMessageBox.Yes:
+            self.controllore_lista_prenotazioni.elimina_prenotazione_singola( da_eliminare.data_inizio)
+            self.controllore_lista_prenotazioni.save_data()
+            self.aggiorna_dati_prenotazioni()
+        else:
+            return
