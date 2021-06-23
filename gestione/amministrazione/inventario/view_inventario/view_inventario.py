@@ -8,8 +8,8 @@ from gestione.amministrazione.GestioneInventario.controller_GestioneInventario.c
     Controller_GestioneInventario
 from gestione.amministrazione.GestioneInventario.view_GestioneInventario.view_GestioneInventario import \
     view_ModificaInventario
-from gestione.amministrazione.Inventario.controller_inventario.controller_inventario import Controller_Inventario
-from gestione.amministrazione.Inventario.view_inventario.view_inserisci_articolo import view_InserisciInventario
+from gestione.amministrazione.inventario.controller_inventario.controller_inventario import Controller_Inventario
+from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo import view_InserisciInventario
 
 
 class view_inventario(QWidget):

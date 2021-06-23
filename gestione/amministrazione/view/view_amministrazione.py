@@ -1,7 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from gestione.amministrazione.fornitori.view_fornitori.view_fornitori import view_fornitori
+from gestione.amministrazione.Fornitori.view_fornitori.view_fornitori import view_fornitori
 from gestione.amministrazione.inventario.view_inventario.view_inventario import view_inventario
 from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import view_dipendenti
 

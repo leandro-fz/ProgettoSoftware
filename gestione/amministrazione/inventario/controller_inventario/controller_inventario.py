@@ -1,4 +1,4 @@
-from gestione.amministrazione.Inventario.model_inventario.model_inventario import Insieme_Inventario
+from gestione.amministrazione.inventario.model_inventario.model_inventario import Insieme_Inventario
 
 
 class Controller_Inventario():

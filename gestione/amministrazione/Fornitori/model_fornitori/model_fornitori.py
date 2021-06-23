@@ -8,7 +8,7 @@ class Insieme_Fornitori():
         self.lista_fornitori = []
         # print("ok")
         # k = os.path.isfile("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle")
-        # print(k)
+        # pri\nt(k)
         if os.path.isfile("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle"):
             # print("ok2")
             with open("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle", "rb") as file:
