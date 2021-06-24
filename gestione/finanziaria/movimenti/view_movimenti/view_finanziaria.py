@@ -1,8 +1,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QImage, QPalette, QBrush, QStandardItemModel, QFont, QStandardItem
+from PyQt5.QtWidgets import QPushButton, QMessageBox
 
-from gestione.cliente.abbonamenti.view_abbonamenti.view_abbonamenti import view_abbonamenti
-from gestione.cliente.certificati.view_certificati.view_certificati import view_certificati
+from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
+    Controller_GestioneMovimenti
+from gestione.finanziaria.gestione_movimenti.view_gestione_movimenti.view_gestione_movimenti import \
+    view_ModificaMovimento
+from gestione.finanziaria.movimenti.view_movimenti.view_inserisci_movimento import view_InserisciMovimenti
 
 
 class Ui_gestionefinanziaria(object):
@@ -73,30 +79,30 @@ class Ui_gestionefinanziaria(object):
         self.indietro.setObjectName("indietro")
         gestionefinanziaria.setCentralWidget(self.centralwidget)
 
-        self.inserisci_certificato = QPushButton("Inserisci certificato")
-        self.inserisci_certificato.clicked.connect(self.mostra_inserisci_certificato)
-        self.inserisci_certificato.setFont(self.font_bottoni)
-        self.h_layout.addWidget(self.inserisci_certificato)
-        self.inserisci_certificato.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.inserisci_movimento = QPushButton("Inserisci movimento")
+        self.inserisci_movimento.clicked.connect(self.mostra_inserisci_movimento)
+        self.inserisci_movimento.setFont(self.font_bottoni)
+        self.h_layout.addWidget(self.inserisci_movimento)
+        self.inserisci_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-        self.elimina_certificato = QPushButton("Elimina certificato")
-        self.elimina_certificato.setFont(self.font_bottoni)
-        self.elimina_certificato.clicked.connect(self.mostra_elimina_certificato)
-        self.h_layout.addWidget(self.elimina_certificato)
-        self.elimina_certificato.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.elimina_movimento = QPushButton("Elimina movimento")
+        self.elimina_movimento.setFont(self.font_bottoni)
+        self.elimina_movimento.clicked.connect(self.mostra_elimina_movimento)
+        self.h_layout.addWidget(self.elimina_movimento)
+        self.elimina_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-        self.modifica_certificato = QPushButton("Modifica certificato")
-        self.modifica_certificato.setFont(self.font_bottoni)
-        self.modifica_certificato.clicked.connect(self.mostra_modifica_certificato)
-        self.h_layout.addWidget(self.modifica_certificato)
-        self.modifica_certificato.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.modifica_movimento = QPushButton("Modifica movimento")
+        self.modifica_movimento.setFont(self.font_bottoni)
+        self.modifica_movimento.clicked.connect(self.mostra_modifica_movimento)
+        self.h_layout.addWidget(self.modifica_movimento)
+        self.modifica_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco Certificati")
+        self.setWindowTitle("Elenco movimenti")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -117,83 +123,65 @@ class Ui_gestionefinanziaria(object):
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
 
-        for certificato in self.controller.get_lista_certificati():
+        for movimento in self.controller.get_lista_movimenti():
             item = QStandardItem()
-            item.setText(certificato.nome + " " + certificato.cognome)
+            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale + " ")
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
-    def mostra_inserisci_certificato(self):
+    def mostra_inserisci_movimento(self):
 
-        self.inserisci_certificato = view_InserisciCertificato(self.controller, self.aggiorna_dati)
-        self.inserisci_certificato.show()
+        self.inserisci_movimento = view_InserisciMovimenti(self.controller, self.aggiorna_dati)
+        self.inserisci_movimento.show()
 
     def closeEvent(self, event):
         self.controller.save_data()
 
-    def mostra_elimina_certificato(self):
+    def mostra_elimina_movimento(self):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_eliminare = self.controller.get_lista_certificati()[index]
+            da_eliminare = self.controller.get_lista_movimenti()[index]
 
         except:
-            QMessageBox.critical(self, "Errore", "Seleziona un certificato da eliminare", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Seleziona un movimento da eliminare", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
-        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il certificato?", QMessageBox.Yes,
+        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il movimento?", QMessageBox.Yes,
                                         QMessageBox.No)
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_certificato_by_id(da_eliminare.id)
-            QMessageBox.about(self, "Eliminato", "Il certificato è stato eliminato")
+            self.controller.elimina_movimento_by_id(da_eliminare.id)
+            QMessageBox.about(self, "Eliminato", "Il movimento è stato eliminato")
             self.aggiorna_dati()
         else:
             return
 
-    def mostra_modifica_certificato(self):
+    def mostra_modifica_movimento(self):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
             da_visualizzare = self.controller.get_lista_certificati()[index]
             print("ok")
         except:
-            QMessageBox.critical(self, "Errore", "Seleziona un certificato da visualizzare", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Seleziona un movimento da visualizzare", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
-        self.modifica_certificato = view_ModificaCertificato(Controller_GestioneCertificati(da_visualizzare),
+        self.modifica_movimento = view_ModificaMovimento(Controller_GestioneMovimenti(da_visualizzare),
                                                              self.aggiorna_dati,
-                                                             self.controller.get_lista_certificati())
-        self.modifica_certificato.show()
+                                                             self.controller.get_lista_movimenti())
+        self.modifica_movimento.show()
 
-        self.retranslateUi(gestionefinanziaria)
-        QtCore.QMetaObject.connectSlotsByName(gestionefinanziaria)
+        self.retranslateUi(Ui_gestionefinanziaria)
+        QtCore.QMetaObject.connectSlotsByName(Ui_gestionefinanziaria)
 
-        self.indietro.clicked.connect(gestionefinanziaria.close)
+        self.indietro.clicked.connect(Ui_gestionefinanziaria.close)
 
-        self.gestioneabbonamento.clicked.connect(self.mostra_abbonamento)
-
-        self.gestionecertificato.clicked.connect(self.mostra_certificato)
-
-    def mostra_abbonamento(self):
-        self.gestioneabbonamenti = view_abbonamenti()
-        self.gestioneabbonamenti.show()
-
-    def mostra_certificato(self):
-        self.gestionecertificati = view_certificati()
-        self.gestionecertificati.show()
-
-    def retranslateUi(self, gestionefinanziaria):
-        _translate = QtCore.QCoreApplication.translate
-        gestionefinanziaria.setWindowTitle(_translate("gestionefinanziaria", "Gestione clienti"))
-        self.gestioneabbonamento.setText(_translate("gestionefinanziaria", "Gestione abbonamento"))
-        self.gestionecertificato.setText(_translate("gestionefinanziaria", "Gestione certificato"))
-        self.indietro.setText(_translate("gestionefinanziaria", "⬅️"))
-        self.indietro.setShortcut(_translate("gestionefinanziaria", "Alt+Left"))
+        self.gestionemovimento.clicked.connect(self.mostra_movimento)
 
 
 # if __name__ == "__main__":
