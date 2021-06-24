@@ -5,6 +5,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from datetime import datetime
 
 class view_ModificaMovimento(QWidget):
 
@@ -31,7 +32,7 @@ class view_ModificaMovimento(QWidget):
         self.campo_importo.setText(self.controller.get_importo_movimenti())
         self.v_layout.addWidget(self.campo_importo)
 
-        self.label_data = QLabel("Data:")
+        self.label_data = QLabel("Data (gg/mm/aaaa):")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
@@ -48,6 +49,15 @@ class view_ModificaMovimento(QWidget):
         self.campo_causale.setFont(self.font_campi)
         self.campo_causale.setText(self.controller.get_causale_movimenti())
         self.v_layout.addWidget(self.campo_causale)
+
+        self.label_fattura = QLabel("Numero fattura:")
+        self.label_fattura.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_fattura)
+
+        self.campo_fattura = QLineEdit()
+        self.campo_fattura.setFont(self.font_campi)
+        self.campo_fattura.setText(self.controller.get_fattura_movimenti())
+        self.v_layout.addWidget(self.campo_fattura)
 
         self.h_layout = QHBoxLayout()
 
@@ -85,10 +95,10 @@ class view_ModificaMovimento(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_id_libero(self, id):
+    def controlla_fattura_libero(self, fattura):
 
-        for movimenti in self.lista_certificati:
-            if movimenti.id == id:
+        for movimenti in self.lista_movimenti:
+            if movimenti.fattura == fattura:
                 return False
         return True
 
@@ -97,15 +107,18 @@ class view_ModificaMovimento(QWidget):
         importo = self.campo_importo.text()
         data = self.campo_data.text()
         causale = self.campo_causale.text()
+        fattura = self.campo_fattura.text()
 
-        if importo == "" or data == "" or causale == "" :
+        if importo == "" or data == "" or causale == "" or fattura == " ":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
             importo = int(self.campo_importo.text())
+
         except:
+
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per l'importo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -114,11 +127,18 @@ class view_ModificaMovimento(QWidget):
             QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo. Riprovare.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            data = datetime.strptime(data,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
 
 
         self.controller.set_importo_movimenti(importo)
         self.controller.set_data_movimenti(data)
         self.controller.set_causale_movimenti(causale)
+        self.controller.set_fattura_movimenti(fattura)
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()

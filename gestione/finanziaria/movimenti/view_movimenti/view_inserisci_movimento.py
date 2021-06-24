@@ -3,6 +3,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from datetime import datetime
 
 from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gestione_movimenti import GestioneMovimenti
 
@@ -34,7 +35,7 @@ class view_InserisciMovimenti(QWidget):
         self.campo_importo = QLineEdit()
         self.v_layout.addWidget(self.campo_importo)
 
-        self.label_data = QLabel("Data")
+        self.label_data = QLabel("Data (gg/mm/aaaa)")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
@@ -48,9 +49,15 @@ class view_InserisciMovimenti(QWidget):
         self.campo_causale = QLineEdit()
         self.v_layout.addWidget(self.campo_causale)
 
+        self.label_fattura = QLabel("Numero fattura")
+        self.label_fattura.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_fattura)
+
+        self.campo_fattura = QLineEdit()
+        self.v_layout.addWidget(self.campo_fattura)
+
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
-
 
         self.h_layout = QHBoxLayout()
 
@@ -101,24 +108,47 @@ class view_InserisciMovimenti(QWidget):
         importo = self.campo_importo.text()
         data = self.campo_data.text()
         causale = self.campo_causale.text()
+        fattura = self.campo_fattura.text()
 
 
-        if importo == "" or data == "" or causale == "" :
+        if importo == "" or data == "" or causale == "" or fattura == " ":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+
+            importo= int(self.campo_importo.text())
+        except:
+
+            QMessageBox.critical(self, "Errore", "Importo non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+            return
 
         if importo <= 0:
 
-            QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            data = datetime.strptime(data,"%d/%m/%Y")
 
-        self.controller_movimenti.aggiungi_movimenti(GestioneMovimenti(importo,data, causale))
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok, QMessageBox.Ok)
+
+
+
+        self.controller_movimenti.aggiungi_movimenti(GestioneMovimenti(importo,data, causale,fattura))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
         QMessageBox.about(self, "Completato", "Inserimento completato")
         self.aggiorna_lista()
         self.close()
+
+    def controlla_fattura_libero(self, fattura):
+
+            for movimento in self.controller.get_lista_movimenti():
+                if movimento.fattura == fattura:
+                    return False
+            return True
