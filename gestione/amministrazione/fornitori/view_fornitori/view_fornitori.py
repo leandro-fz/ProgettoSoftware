@@ -5,8 +5,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
-from gestione.amministrazione.Fornitori.controller_fornitori.controller_fornitori import Controller_Fornitori
-from gestione.amministrazione.Fornitori.view_fornitori.view_inserisci_fornitore import view_InserisciFornitore
+from gestione.amministrazione.fornitori.controller_fornitori.controller_fornitori import Controller_Fornitori
+from gestione.amministrazione.fornitori.view_fornitori.view_inserisci_fornitore import view_InserisciFornitore
 
 from gestione.amministrazione.GestioneFornitori.controller_GestioneFornitori.controller_GestioneFornitori import \
     Controller_GestioneFornitori

@@ -1,4 +1,4 @@
-from gestione.amministrazione.Fornitori.model_fornitori.model_fornitori import Insieme_Fornitori
+from gestione.amministrazione.fornitori.model_fornitori.model_fornitori import Insieme_Fornitori
 
 
 class Controller_Fornitori():
