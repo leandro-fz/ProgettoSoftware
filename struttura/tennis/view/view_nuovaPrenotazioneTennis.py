@@ -15,9 +15,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
-from ListaPrenotazioni.controller.ControlloreListaPrenotazioni import ControlloreListaPrenotazioni
-from ListeServizi.model.ListeServizi import ListeServizi
-from Prenotazione.model.Prenotazione import Prenotazione
+# from ListaPrenotazioni.controller.ControlloreListaPrenotazioni import ControlloreListaPrenotazioni
+# from ListeServizi.model.ListeServizi import ListeServizi
+# from Prenotazione.model.Prenotazione import Prenotazione
 
 from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
     ControlloreListaPrenotazioniTennis
