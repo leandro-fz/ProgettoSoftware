@@ -35,13 +35,13 @@ class view_InserisciMovimenti(QWidget):
         self.v_layout.addWidget(self.campo_importo)
 
         self.label_data = QLabel("Data")
-        self.label_cognome.setFont(self.font_label)
+        self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
         self.campo_data = QLineEdit()
         self.v_layout.addWidget(self.campo_data)
 
-        self.label_causale = QLabel("causale")
+        self.label_causale = QLabel("Causale")
         self.label_causale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_causale)
 

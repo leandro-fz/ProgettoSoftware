@@ -1,83 +1,47 @@
+from PyQt5 import QtGui, QtCore, QtWidgets
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QImage, QPalette, QBrush, QStandardItemModel, QFont, QStandardItem
-from PyQt5.QtWidgets import QPushButton, QMessageBox
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 
 from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
     Controller_GestioneMovimenti
 from gestione.finanziaria.gestione_movimenti.view_gestione_movimenti.view_gestione_movimenti import \
     view_ModificaMovimento
+from gestione.finanziaria.movimenti.controller_movimenti.controller_movimenti import controller_movimenti
 from gestione.finanziaria.movimenti.view_movimenti.view_inserisci_movimento import view_InserisciMovimenti
 
 
-class Ui_gestionefinanziaria(object):
+class view_finanziaria(QWidget):
 
-    def setupUi(self, gestionefinanziaria):
-        gestionefinanziaria.setObjectName("gestionefinanziaria")
-        gestionefinanziaria.resize(781, 500)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(gestionefinanziaria.sizePolicy().hasHeightForWidth())
-        gestionefinanziaria.setSizePolicy(sizePolicy)
-        gestionefinanziaria.setMinimumSize(QtCore.QSize(781, 500))
-        gestionefinanziaria.setMaximumSize(QtCore.QSize(781, 500))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("images/immaginelogo1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        gestionefinanziaria.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(gestionefinanziaria)
-        self.centralwidget.setObjectName("centralwidget")
-        self.immaginepesi = QtWidgets.QLabel(self.centralwidget)
-        self.immaginepesi.setGeometry(QtCore.QRect(0, 0, 791, 501))
-        self.immaginepesi.setText("")
-        self.immaginepesi.setTextFormat(QtCore.Qt.AutoText)
-        self.immaginepesi.setPixmap(QtGui.QPixmap("images/immaginepesisfocata.jpeg"))
-        self.immaginepesi.setScaledContents(True)
-        self.immaginepesi.setAlignment(QtCore.Qt.AlignCenter)
-        self.immaginepesi.setObjectName("immaginepesi")
+    def __init__(self, parent=None):
+        super(view_finanziaria, self).__init__(parent)
 
+        self.controller = controller_movimenti()
 
-        self.indietro = QtWidgets.QPushButton(self.centralwidget)
-        self.indietro.setGeometry(QtCore.QRect(30, 20, 51, 31))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 1, 13))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(240, 240, 240))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Highlight, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(242, 242, 242))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Highlight, brush)
-        self.indietro.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Light")
-        font.setPointSize(12)
-        self.indietro.setFont(font)
-        self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.v_layout = QVBoxLayout()
+
+        self.list_view = QListView()
+        self.list_view.setGeometry(40, 60, 500, 401)
+
+        self.aggiorna_dati()
+        self.v_layout.addWidget(self.list_view)
+
+        self.h_layout = QHBoxLayout()
+
+        self.font_bottoni = QFont("Yu Gothic UI Light", 12)
+
+        self.indietro = QPushButton("⬅️")
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.setDefault(False)
-        self.indietro.setObjectName("indietro")
-        gestionefinanziaria.setCentralWidget(self.centralwidget)
+        self.indietro.setFont(self.font_bottoni)
+        self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
+        self.shortcut_indietro.activated.connect(self.chiudi_schermata)
+
+        self.h_layout.addWidget(self.indietro)
+        self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.indietro.setIconSize(QtCore.QSize(40, 40))
+        self.indietro.clicked.connect(self.chiudi_schermata)
 
         self.inserisci_movimento = QPushButton("Inserisci movimento")
         self.inserisci_movimento.clicked.connect(self.mostra_inserisci_movimento)
@@ -125,7 +89,7 @@ class Ui_gestionefinanziaria(object):
 
         for movimento in self.controller.get_lista_movimenti():
             item = QStandardItem()
-            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale + " ")
+            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale)
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)
@@ -146,8 +110,7 @@ class Ui_gestionefinanziaria(object):
             da_eliminare = self.controller.get_lista_movimenti()[index]
 
         except:
-            QMessageBox.critical(self, "Errore", "Seleziona un movimento da eliminare", QMessageBox.Ok,
-                                 QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Seleziona un movimento da eliminare", QMessageBox.Ok, QMessageBox.Ok)
             return
         risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il movimento?", QMessageBox.Yes,
                                         QMessageBox.No)
@@ -164,31 +127,13 @@ class Ui_gestionefinanziaria(object):
 
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            da_visualizzare = self.controller.get_lista_certificati()[index]
-            print("ok")
+            da_visualizzare = self.controller.get_lista_movimenti()[index]
+
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un movimento da visualizzare", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
         self.modifica_movimento = view_ModificaMovimento(Controller_GestioneMovimenti(da_visualizzare),
-                                                             self.aggiorna_dati,
-                                                             self.controller.get_lista_movimenti())
+                                                           self.aggiorna_dati, self.controller.get_lista_movimenti())
         self.modifica_movimento.show()
-
-        self.retranslateUi(Ui_gestionefinanziaria)
-        QtCore.QMetaObject.connectSlotsByName(Ui_gestionefinanziaria)
-
-        self.indietro.clicked.connect(Ui_gestionefinanziaria.close)
-
-        self.gestionemovimento.clicked.connect(self.mostra_movimento)
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     gestionefinanziaria = QtWidgets.QMainWindow()
-#     ui = Ui_gestionefinanziaria()
-#     ui.setupUi(gestionefinanziaria)
-#     gestionefinanziaria.show()
-#     sys.exit(app.exec_())

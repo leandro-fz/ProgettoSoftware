@@ -7,11 +7,11 @@ class model_movimenti():
         super(model_movimenti, self).__init__()
         self.lista_movimenti = []
         # print("ok")
-        # k = os.path.isfile("gestione/amministrazione/movimenti/data_movimenti/lista_movimenti_salvata.pickle")
+        # k = os.path.isfile("finanziaria/movimenti/data_movimenti/lista_movimenti_salvata.pickle")
         # print(k)
-        if os.path.isfile("gestione/amministrazione/movimenti/data_movimenti/lista_movimenti_salvata.pickle"):
+        if os.path.isfile("finanziaria/movimenti/data_movimenti/lista_movimenti_salvata.pickle"):
             # print("ok2")
-            with open("gestione/amministrazione/movimenti/data_movimenti/lista_movimenti_salvata.pickle", "rb") as file:
+            with open("finanziaria/movimenti/data_movimenti/lista_movimenti_salvata.pickle", "rb") as file:
                 # print("file recuperato")
                 self.lista_movimenti = pickle.load(file)
                 print("file recuperato2")
@@ -36,6 +36,6 @@ class model_movimenti():
         return None
 
     def save_data(self):
-        if os.path.isfile("gestione/amministrazione/movimenti/data_movimenti/lista_movimenti_salvata.pickle"):
-            with open("gestione/amministrazione/movimenti/data_movimenti/lista_movimenti_salvata.pickle", "wb") as handle:
+        if os.path.isfile("finanziaria/movimenti/data_movimenti/lista_movimenti_salvata.pickle"):
+            with open("finanziaria/movimenti/data_movimenti/lista_movimenti_salvata.pickle", "wb") as handle:
                 pickle.dump(self.lista_movimenti, handle, pickle.HIGHEST_PROTOCOL)
