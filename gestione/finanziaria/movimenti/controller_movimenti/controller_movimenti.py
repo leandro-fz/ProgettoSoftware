@@ -13,11 +13,11 @@ class controller_movimenti():
     def get_lista_movimenti(self):
         return self.model.get_lista_movimenti()
 
-    def get_movimenti_by_id(self, id):
-        return self.model.get_movimenti_by_id(id)
+    def get_movimenti_by_fattura(self, fattura):
+        return self.model.get_movimenti_by_fattura(fattura)
 
-    def elimina_movimenti_by_id(self, id):
-        self.model.rimuovi_movimenti_by_id(id)
+    def elimina_movimenti_by_fattura(self, fattura):
+        self.model.rimuovi_movimenti_by_fattura(fattura)
 
     def save_data(self):
         self.model.save_data()

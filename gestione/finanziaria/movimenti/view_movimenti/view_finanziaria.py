@@ -89,7 +89,7 @@ class view_finanziaria(QWidget):
 
         for movimento in self.controller.get_lista_movimenti():
             item = QStandardItem()
-            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale)
+            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale + " " + movimento.fattura)
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)
@@ -117,7 +117,7 @@ class view_finanziaria(QWidget):
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_movimento_by_id(da_eliminare.id)
+            self.controller.elimina_movimento_by_fattura(da_eliminare.fattura)
             QMessageBox.about(self, "Eliminato", "Il movimento è stato eliminato")
             self.aggiorna_dati()
         else:
