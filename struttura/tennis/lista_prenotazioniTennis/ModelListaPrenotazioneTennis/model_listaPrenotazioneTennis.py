@@ -6,9 +6,12 @@ class ListaPrenotazioniTennis():
 
     def __init__(self):
         self.lista_prenotazioni = []
-        if os.path.isfile("ListaPrenotazioni/data/lista_prenotazioni_salvata.pickle"):
-            with open("ListaPrenotazioni/data/lista_prenotazioni_salvata.pickle", "rb") as file:
-                self.lista_prenotazioni = pickle.load(file)
+        if os.path.isfile("struttura/tennis/lista_prenotazioniTennis/data_listaPrenotazioniTennis/lista_prenotazionitennis_salvata.pickle"):
+            with open("struttura/tennis/lista_prenotazioniTennis/data_listaPrenotazioniTennis/lista_prenotazionitennis_salvata.pickle", "rb") as file:
+                try:
+                    self.lista_prenotazioni = pickle.load(file)
+                except EOFError:
+                    return
 
     #Aggiungo una prenotazione e riordino la lista in base alle date
     def aggiungi_prenotazione(self, prenotazione):
@@ -19,11 +22,12 @@ class ListaPrenotazioniTennis():
         return self.lista_prenotazioni
 
     def get_lista_prenotazioni_cliente(self):
-        lista_ritorno = []
-        for prenotazione in self.lista_prenotazioni:
-            if prenotazione.email_cliente == email:
-                lista_ritorno.append(prenotazione)
-        return lista_ritorno
+        # lista_ritorno = []
+        # for prenotazione in self.lista_prenotazioni:
+        #     if prenotazione.email_cliente == email:
+        #         lista_ritorno.append(prenotazione)
+        # return lista_ritorno
+        return self.lista_prenotazioni
 
 
     def elimina_prenotazione_singola(self, data):
@@ -33,5 +37,5 @@ class ListaPrenotazioniTennis():
                 return
 
     def save_data(self):
-        with open("ListaPrenotazioni/data/lista_prenotazioni_salvata.pickle", "wb") as handle:
+        with open("struttura/tennis/lista_prenotazioniTennis/data_listaPrenotazioniTennis/lista_prenotazionitennis_salvata.pickle", "wb") as handle:
             pickle.dump(self.lista_prenotazioni, handle, pickle.HIGHEST_PROTOCOL)

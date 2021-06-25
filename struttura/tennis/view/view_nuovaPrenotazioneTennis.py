@@ -111,7 +111,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.close()
 
     def aggiungi_prenotazione(self):
-        data1 = self.calendario_inizio.selectedDate()
+        data1 = self.calendario.selectedDate()
         data = datetime(data1.year(), data1.month(), data1.day())
 
         prenotazione = model_PrenotazioniTennis(data)

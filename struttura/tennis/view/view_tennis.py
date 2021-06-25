@@ -68,7 +68,8 @@ class view_tennis(QWidget):
         self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
             item = QStandardItem()
-            item.setText("Prenotazione del " + prenotazione.data_inizio.strftime("%d/%m/%Y"))
+            item.setText("Prenotazione del " )
+            # + prenotazione.strftime("%d/%m/%Y")
             item.setEditable(False)
             item.setFont(QFont("Yu Gothic UI Light", 12))
             self.modello_lista_prenotazioni.appendRow(item)
