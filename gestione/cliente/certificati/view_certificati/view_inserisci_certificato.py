@@ -24,7 +24,7 @@ class view_InserisciCertificato(QWidget):
 
 
         self.font_label2 = QFont("Yu Gothic UI Light", 20)
-        self.label_alto = QLabel("Compila il form di inserimento del dipendente")
+        self.label_alto = QLabel("Compila il form di inserimento del certificato")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
@@ -89,7 +89,7 @@ class view_InserisciCertificato(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Inserimento Dipendente")
+        self.setWindowTitle("Inserimento certificato")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)

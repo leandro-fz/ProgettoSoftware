@@ -87,7 +87,7 @@ class view_abbonamenti(QWidget):
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
 
-        for abbonamento in self.controller.get_lista_Abbonamenti():
+        for abbonamento in self.controller.get_lista_abbonamenti():
             item = QStandardItem()
             item.setText(abbonamento.nome + " " + abbonamento.cognome)
             item.setEditable(False)

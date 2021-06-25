@@ -6,8 +6,8 @@ class Insieme_Certificati():
     def __init__(self):
         super(Insieme_Certificati, self).__init__()
         self.lista_certificati = []
-        if os.path.isfile("gestione/clienti/certificati/data_certificati/lista_certificati_salvata.pickle"):
-            with open("gestione/clienti/certificati/data_certificati/lista_certificati_salvata.pickle", "rb") as file:
+        if os.path.isfile("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle"):
+            with open("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle", "rb") as file:
                 try:
                     self.lista_certificati = pickle.load(file)
                 except EOFError:

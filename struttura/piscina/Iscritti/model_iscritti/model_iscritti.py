@@ -5,16 +5,14 @@ import pickle
 class Insieme_Iscritti():
     def __init__(self):
         super(Insieme_Iscritti, self).__init__()
-        self.lista_iscritti = []
-        # print("ok")
-        # k = os.path.isfile("gestione/amministrazione/iscritti/data_iscritti/lista_iscritti_salvata.pickle")
-        # print(k)
+        self.lista_iscritti= []
         if os.path.isfile("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
-            # print("ok2")
-            with open("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle", "rb") as file:
-                # print("file recuperato")
-                self.lista_iscritti = pickle.load(file)
-                print("file recuperato2")
+            with open("atruttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle",
+                      "rb") as file:
+                try:
+                    self.lista_iscritti = pickle.load(file)
+                except EOFError:
+                    return
 
     def aggiungi_utente(self, utente):
         self.lista_iscritti.append(utente)

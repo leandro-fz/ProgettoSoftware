@@ -160,7 +160,7 @@ class view_InserisciFornitore(QWidget):
 
 
 
-        self.controller.aggiungi_dipendente(GestioniFornitore(nome, cognome, ruolo, id, stipendio))
+        self.controller.aggiungi_fornitore(GestioniFornitore(nome, cognome, ruolo, id, stipendio))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
