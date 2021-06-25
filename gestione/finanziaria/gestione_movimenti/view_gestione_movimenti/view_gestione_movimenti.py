@@ -29,7 +29,7 @@ class view_ModificaMovimento(QWidget):
 
         self.campo_importo = QLineEdit()
         self.campo_importo.setFont(self.font_campi)
-        self.campo_importo.setText(self.controller.get_importo_movimenti())
+        self.campo_importo.setText(str(self.controller.get_importo_movimenti()))
         self.v_layout.addWidget(self.campo_importo)
 
         self.label_data = QLabel("Data (gg/mm/aaaa):")
@@ -38,7 +38,7 @@ class view_ModificaMovimento(QWidget):
 
         self.campo_data = QLineEdit()
         self.campo_data.setFont(self.font_campi)
-        self.campo_data.setText(self.controller.get_data_movimenti())
+        self.campo_data.setText(str(self.controller.get_data_movimenti()))
         self.v_layout.addWidget(self.campo_data)
 
         self.label_causale = QLabel("Causale:")
@@ -56,7 +56,7 @@ class view_ModificaMovimento(QWidget):
 
         self.campo_fattura = QLineEdit()
         self.campo_fattura.setFont(self.font_campi)
-        self.campo_fattura.setText(self.controller.get_fattura_movimenti())
+        self.campo_fattura.setText(str(self.controller.get_fattura_movimenti()))
         self.v_layout.addWidget(self.campo_fattura)
 
         self.h_layout = QHBoxLayout()
