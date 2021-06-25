@@ -89,7 +89,7 @@ class view_finanziaria(QWidget):
 
         for movimento in self.controller.get_lista_movimenti():
             item = QStandardItem()
-            item.setText(movimento.importo + " " + movimento.data + " " + movimento.causale + " " + movimento.fattura)
+            item.setText(movimento.causale)
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)
@@ -134,6 +134,6 @@ class view_finanziaria(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_movimento = view_ModificaMovimento(Controller_GestioneMovimenti(da_visualizzare),
+        self.modifica_movimenti = view_ModificaMovimento(Controller_GestioneMovimenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_movimenti())
-        self.modifica_movimento.show()
+        self.modifica_movimenti.show()
