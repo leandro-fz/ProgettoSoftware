@@ -6,15 +6,12 @@ class Insieme_Fornitori():
     def __init__(self):
         super(Insieme_Fornitori, self).__init__()
         self.lista_fornitori = []
-        # print("ok")
-        # k = os.path.isfile("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle")
-        # pri\nt(k)
         if os.path.isfile("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle"):
-            # print("ok2")
             with open("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle", "rb") as file:
-                # print("file recuperato")
-                self.lista_fornitori = pickle.load(file)
-                print("file recuperato2")
+                try:
+                    self.lista_fornitori = pickle.load(file)
+                except EOFError:
+                    return
 
     def aggiungi_dipendente(self, dipendente):
         self.lista_fornitori.append(dipendente)

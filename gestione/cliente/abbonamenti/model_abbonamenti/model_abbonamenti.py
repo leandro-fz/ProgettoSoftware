@@ -6,15 +6,13 @@ class Insieme_Abbonamenti():
     def __init__(self):
         super(Insieme_Abbonamenti, self).__init__()
         self.lista_abbonamenti = []
-        # print("ok")
-        # k = os.path.isfile("gestione/cliente/abbonamenti/data_abbonamenti/lista_abbonamenti_salvata.pickle")
-        # print(k)
         if os.path.isfile("gestione/cliente/abbonamenti/data_abbonamenti/lista_abbonamenti_salvata.pickle"):
-            # print("ok2")
             with open("gestione/cliente/abbonamenti/data_abbonamenti/lista_abbonamenti_salvata.pickle", "rb") as file:
-                # print("file recuperato")
-                self.lista_abbonamenti = pickle.load(file)
-                print("file recuperato2")
+                try:
+                    self.lista_abbonamenti = pickle.load(file)
+                except EOFError:
+                    return
+
 
     def aggiungi_abbonamento(self, abbonamento):
         self.lista_abbonamenti.append(abbonamento)

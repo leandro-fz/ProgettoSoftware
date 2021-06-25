@@ -6,15 +6,13 @@ class Insieme_Certificati():
     def __init__(self):
         super(Insieme_Certificati, self).__init__()
         self.lista_certificati = []
-        # print("ok")
-        # k = os.path.isfile("gestione/clienti/certificati/data_certificati/lista_certificati_salvata.pickle")
-        # print(k)
         if os.path.isfile("gestione/clienti/certificati/data_certificati/lista_certificati_salvata.pickle"):
-            # print("ok2")
             with open("gestione/clienti/certificati/data_certificati/lista_certificati_salvata.pickle", "rb") as file:
-                # print("file recuperato")
-                self.lista_certificati = pickle.load(file)
-                print("file recuperato2")
+                try:
+                    self.lista_certificati = pickle.load(file)
+                except EOFError:
+                    return
+
 
     def aggiungi_certificato(self, certificato):
         self.lista_certificati.append(certificato)
