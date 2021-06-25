@@ -12,6 +12,8 @@ from PyQt5.QtGui import *
 
 from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
     ControlloreListaPrenotazioniTennis
+from struttura.tennis.prenotazioniTennis.controller_prenotazioniTennis.controller_prenotazioniTennis import \
+    ControllorePrenotazioneTennis
 from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenotazioneTennis
 
 
@@ -35,7 +37,7 @@ class view_tennis(QWidget):
 
         self.crea_pulsante("⬅️", self.mostra_indietro_tennis)
         self.crea_pulsante("Nuova prenotazione", self.mostra_nuova_prenotazione_tennis)
-        self.crea_pulsante("Apri prenotazione", self.mostra_apri_prenotazione_tennis)
+        # self.crea_pulsante("Apri prenotazione", self.mostra_apri_prenotazione_tennis)
         self.crea_pulsante("Elimina prenotazione", self.mostra_elimina_prenotazione_tennis)
 
         self.v_layout.addLayout(self.h_layout)
@@ -64,7 +66,7 @@ class view_tennis(QWidget):
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_prenotazioni = QStandardItemModel()
         self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente():
+        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
             item = QStandardItem()
             item.setText("Prenotazione del " + prenotazione.data_inizio.strftime("%d/%m/%Y"))
             item.setEditable(False)
@@ -76,16 +78,16 @@ class view_tennis(QWidget):
         self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.aggiorna_dati_prenotazioni)
         self.vista_nuova_prenotazione.show()
 
-    def mostra_apri_prenotazione_tennis(self):
-        try:
-            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-            da_visualizzare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        self.vista_prenotazione = VistaPrenotazione(ControllorePrenotazione(da_visualizzare))
-        self.vista_prenotazione.show()
+    # def mostra_apri_prenotazione_tennis(self):
+    #     try:
+    #         indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+    #         da_visualizzare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
+    #     except:
+    #         QMessageBox.critical(self, "Errore", "Seleziona una prenotazione", QMessageBox.Ok, QMessageBox.Ok)
+    #         return
+    #
+    #     self.vista_prenotazione = view_nuovaPrenotazioneTennis(ControllorePrenotazioneTennis(da_visualizzare))
+    #     self.vista_prenotazione.show()
 
     def mostra_elimina_prenotazione_tennis(self):
         try:
@@ -95,12 +97,8 @@ class view_tennis(QWidget):
             QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        if da_eliminare.data_inizio < datetime.now():
-            QMessageBox.critical(self, "Errore", "Non puoi eliminare prenotazioni passate", QMessageBox.Ok, QMessageBox.Ok)
-            return
         risposta = QMessageBox.question(self, "Elimina prenotazione",
-                               "Sei sicuro di voler elimare la prenotazione selezionata? \nPerderai la caparra versata", QMessageBox.Yes,
-                               QMessageBox.No)
+                               "Elimare la prenotazione selezionata?", QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
             self.controllore_lista_prenotazioni.elimina_prenotazione_singola( da_eliminare.data_inizio)
             self.controllore_lista_prenotazioni.save_data()
