@@ -13,10 +13,10 @@ class Controller_Certificati():
     def get_lista_certificati(self):
         return self.model.get_lista_certificati()
 
-    def get_certificato_by_id(self, id):
+    def get_certificato_by_codicefiscale(self, id):
         return self.model.get_certificato_by_id(id)
 
-    def elimina_certificato_by_id(self, id):
+    def elimina_certificato_by_codicefiscale(self, id):
         self.model.rimuovi_certificato_by_id(id)
 
     def save_data(self):

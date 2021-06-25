@@ -5,6 +5,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from datetime import datetime
 
 class view_ModificaCertificato(QWidget):
 
@@ -40,32 +41,59 @@ class view_ModificaCertificato(QWidget):
         self.campo_cognome.setText(self.controller.get_cognome_certificato())
         self.v_layout.addWidget(self.campo_cognome)
 
-        self.label_ruolo = QLabel("Ruolo:")
-        self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
+        self.label_nato = QLabel("Nato a:")
+        self.label_nato.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_nato)
 
-        self.campo_ruolo = QLineEdit()
-        self.campo_ruolo.setFont(self.font_campi)
-        self.campo_ruolo.setText(self.controller.get_ruolo_certificato())
-        self.v_layout.addWidget(self.campo_ruolo)
+        self.campo_nato = QLineEdit()
+        self.campo_nato.setFont(self.font_campi)
+        self.campo_nato.setText(self.controller.get_nato_certificato())
+        self.v_layout.addWidget(self.campo_nato)
 
-        self.label_id = QLabel("ID:")
-        self.label_id.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_id)
+        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codicefiscale)
 
-        self.campo_id = QLineEdit()
-        self.campo_id.setFont(self.font_campi)
-        self.campo_id.setText(str(self.controller.get_id_certificato()))
-        self.v_layout.addWidget(self.campo_id)
+        self.campo_codicefiscale = QLineEdit()
+        self.campo_codicefiscale.setFont(self.font_campi)
+        self.campo_codicefiscale.setText(str(self.controller.get_codicefiscale_certificato()))
+        self.v_layout.addWidget(self.campo_codicefiscale)
 
-        self.label_stipendio = QLabel("Stipendio:")
-        self.label_stipendio.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_stipendio)
+        self.label_residenza = QLabel("Residenza (Via e città di residenza) :")
+        self.label_residenza.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_residenza)
 
-        self.campo_stipendio = QLineEdit()
-        self.campo_stipendio.setFont(self.font_campi)
-        self.campo_stipendio.setText(str(self.controller.get_stipendio_certificato()))
-        self.v_layout.addWidget(self.campo_stipendio)
+        self.campo_residenza = QLineEdit()
+        self.campo_residenza.setFont(self.font_campi)
+        self.campo_residenza.setText((self.controller.get_residenza_certificato()))
+        self.v_layout.addWidget(self.campo_residenza)
+
+        self.label_sportcertificato = QLabel("Sport del certificato:")
+        self.label_sportcertificato.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_sportcertificato)
+
+        self.campo_sportcertificato = QLineEdit()
+        self.campo_sportcertificato.setFont(self.font_campi)
+        self.campo_sportcertificato.setText((self.controller.get_sportcertificato_certificato()))
+        self.v_layout.addWidget(self.campo_sportcertificato)
+
+        self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa) :")
+        self.label_datainizio.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_datainizio)
+
+        self.campo_datainizio = QLineEdit()
+        self.campo_datainizio.setFont(self.font_campi)
+        self.campo_datainizio.setText(str(self.controller.get_datainizio_certificato()))
+        self.v_layout.addWidget(self.campo_datainizio)
+
+        self.label_datafine = QLabel("Data scadenza validità certificato (gg/mm/aaaa) :")
+        self.label_datafine.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_datafine)
+
+        self.campo_datafine = QLineEdit()
+        self.campo_datafine.setFont(self.font_campi)
+        self.campo_datafine.setText(str(self.controller.get_datafine_certificato()))
+        self.v_layout.addWidget(self.campo_datafine)
 
         self.h_layout = QHBoxLayout()
 
@@ -114,47 +142,58 @@ class view_ModificaCertificato(QWidget):
 
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
-        ruolo = self.campo_ruolo.text()
-        id = self.campo_id.text()
-        stipendio = self.campo_stipendio.text()
+        nato = self.campo_nato.text()
+        codicefiscale = self.campo_codicefiscale.text()
+        residenza = self.campo_residenza.text()
+        sportcertificato = self.campo_sportcertificato.text()
+        datainizio = self.campo_datainzio.text()
+        datafine = self.campo_datafine.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+
+
+        if nome == "" or cognome == "" or nato == "" or codicefiscale == "" or residenza == "" or sportcertificato == "" or datainizio == "" or datafine == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            id = int(self.campo_id.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice ID", QMessageBox.Ok, QMessageBox.Ok)
+        if codicefiscale <10000:
+
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id <10000:
+        if codicefiscale > 99999:
 
-            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999:
-
-            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        if self.controller.get_id_certificato() == id:
+        if self.controller.get_codicefiscale_certificato() == codicefiscale:
             pass
 
-        elif not self.controlla_id_libero(id):
-            QMessageBox.critical(self, "Errore", "L'ID inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
+        elif not self.controlla_codicefiscale_libero(codicefiscale):
+            QMessageBox.critical(self, "Errore", "Il codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            stipendio = float(self.campo_stipendio.text())
+            datainizio = datetime.strptime(datainizio,"%d/%m/%Y")
+
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+        try:
+            datafine = datetime.strptime(datafine,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if stipendio <= 0:
+        try:
+            nato = str(self.campo_nato.text())
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
@@ -164,9 +203,13 @@ class view_ModificaCertificato(QWidget):
 
         self.controller.set_nome_certificato(nome)
         self.controller.set_cognome_certificato(cognome)
-        self.controller.set_ruolo_certificato(ruolo)
-        self.controller.set_id_certificato(id)
-        self.controller.set_stipendio_certificato(stipendio)
+        self.controller.set_nato_certificato(nato)
+        self.controller.set_codicefiscale_certificato(codicefiscale)
+        self.controller.set_residenza_certificato(residenza)
+        self.controller.set_sportcertificato_certificato(sportcertificato)
+        self.controller.set_datainizio_certificato(datainizio)
+        self.controller.set_datafine_certificato(datafine)
+
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()
