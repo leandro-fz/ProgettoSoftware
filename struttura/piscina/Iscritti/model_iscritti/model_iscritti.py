@@ -7,7 +7,7 @@ class Insieme_Iscritti():
         super(Insieme_Iscritti, self).__init__()
         self.lista_iscritti= []
         if os.path.isfile("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
-            with open("atruttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle",
+            with open("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle",
                       "rb") as file:
                 try:
                     self.lista_iscritti = pickle.load(file)
