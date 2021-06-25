@@ -137,7 +137,7 @@ class view_InserisciMovimenti(QWidget):
         except:
 
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok, QMessageBox.Ok)
-
+            return
 
         self.controller.aggiungi_movimenti(GestioneMovimenti(importo, data, causale, fattura))
         self.controller.save_data()
