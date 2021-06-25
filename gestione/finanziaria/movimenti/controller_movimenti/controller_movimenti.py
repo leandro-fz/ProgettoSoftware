@@ -16,7 +16,7 @@ class controller_movimenti():
     def get_movimenti_by_fattura(self, fattura):
         return self.model.get_movimenti_by_fattura(fattura)
 
-    def elimina_movimenti_by_fattura(self, fattura):
+    def rimuovi_movimenti_by_fattura(self, fattura):
         self.model.rimuovi_movimenti_by_fattura(fattura)
 
     def save_data(self):
