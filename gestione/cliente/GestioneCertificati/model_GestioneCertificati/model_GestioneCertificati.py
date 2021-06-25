@@ -1,9 +1,12 @@
 class GestioniCertificato():
 
-    def __init__(self, nome, cognome, ruolo, id, stipendio):
+    def __init__(self, nome, cognome, nato, codicefiscale, residenza, sportcertificato, datainizio, datafine):
 
         self.nome = nome
         self.cognome = cognome
-        self.ruolo = ruolo
-        self.id = id
-        self.stipendio = stipendio
+        self.nato = nato
+        self.codicefiscale = codicefiscale
+        self.residenza = residenza
+        self.sportcertificato = sportcertificato
+        self.datainizio = datainizio
+        self.datafine = datafine

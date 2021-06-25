@@ -10,14 +10,23 @@ class Controller_GestioneCertificati():
     def get_cognome_certificato(self):
         return self.model.cognome
 
-    def get_ruolo_certificato(self):
-        return self.model.ruolo
+    def get_nato_certificato(self):
+        return self.model.nato
 
-    def get_id_certificato(self):
-        return self.model.id
+    def get_codicefiscale_certificato(self):
+        return self.model.codicefiscale
 
-    def get_stipendio_certificato(self):
-        return self.model.stipendio
+    def get_residenza_certificato(self):
+        return self.model.residenza
+
+    def get_sportcertificato_certificato(self):
+        return self.model.sportcertificato
+
+    def get_datainizio_certificato(self):
+        return self.model.datainizio
+
+    def get_datafine_certificato(self):
+        return self.model.datafine
 
     def set_nome_certificato(self, nome):
         self.model.nome = nome
@@ -25,11 +34,20 @@ class Controller_GestioneCertificati():
     def set_cognome_certificato(self, cognome):
         self.model.cognome = cognome
 
-    def set_ruolo_certificato(self, ruolo):
-        self.model.ruolo = ruolo
+    def set_nato_certificato(self, nato):
+        self.model.nato = nato
 
-    def set_id_certificato(self, id):
-        self.model.id = id
+    def set_codicefiscale_certificato(self, codicefiscale):
+        self.model.id = codicefiscale
 
-    def set_stipendio_certificato(self, stipendio):
-        self.model.stipendio = stipendio
+    def set_residenza_certificato(self, residenza):
+        self.model.residenza = residenza
+
+    def set_residenza_certificato(self, sportcertificato):
+        self.model.sportcertificato = sportcertificato
+
+    def set_datainizio_certificato(self, datainizio):
+        self.model.datainizio = datainizio
+
+    def set_datafine_certificato(self, datafine):
+        self.model.datafine = datafine
