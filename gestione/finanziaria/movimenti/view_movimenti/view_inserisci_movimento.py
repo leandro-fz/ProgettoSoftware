@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
+from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
+    Controller_GestioneMovimenti
 from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gestione_movimenti import GestioneMovimenti
 
 
@@ -137,8 +139,7 @@ class view_InserisciMovimenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok, QMessageBox.Ok)
 
 
-
-        self.controller_movimenti.aggiungi_movimenti(GestioneMovimenti(importo,data, causale,fattura))
+        self.controller.aggiungi_movimenti(GestioneMovimenti(importo, data, causale, fattura))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
