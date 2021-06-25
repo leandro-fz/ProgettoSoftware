@@ -1,3 +1,13 @@
+from PyQt5.QtCore import QDate
+from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QHBoxLayout, QPushButton
+from PyQt5.QtGui import QFont
+from datetime import datetime
+from PyQt5.QtCore import QDate
+from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem, QTextCharFormat, QColor
+from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QComboBox, QCheckBox, QMessageBox, \
+    QPushButton
+from datetime import datetime
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
 from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
 from datetime import datetime
@@ -8,12 +18,8 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-
-
-from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
-    ControlloreListaPrenotazioniTennis
-from struttura.tennis.prenotazioniTennis.controller_prenotazioniTennis.controller_prenotazioniTennis import \
-    ControllorePrenotazioneTennis
+from struttura.tennis.prenotazioniTennis.view_prenotazioniTennis.VistalistaprenotazioniTutte_tennis import \
+    VistaListaPrenotazioniTutte
 from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenotazioneTennis
 
 
@@ -21,27 +27,42 @@ class view_tennis(QWidget):
 
     def __init__(self, parent=None):
         super(view_tennis, self).__init__(parent)
-        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
 
-        self.v_layout = QVBoxLayout()
+        self.g_layout = QGridLayout()
 
-        self.label_prenotazioni = QLabel("Prenotazioni Tennis: ")
-        self.label_prenotazioni.setFont(QFont("Yu Gothic UI Light", 12))
-        self.v_layout.addWidget(self.label_prenotazioni)
 
-        self.lista_prenotazioni = QListView()
-        self.aggiorna_dati_prenotazioni()
-        self.v_layout.addWidget(self.lista_prenotazioni)
+        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data, poi clicca i pulsanti desiderati: \n")
+        self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 12))
+        self.g_layout.addWidget(self.label_prenotazioni_by_data, 0, 0)
+
+        self.calendario = QCalendarWidget()
+        self.calendario.setGridVisible(True)
+        self.calendario.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
+        self.calendario.setMinimumDate(QDate(2021, 5, 1))
+
+        self.g_layout.addWidget(self.calendario, 1, 0)
 
         self.h_layout = QHBoxLayout()
 
         self.crea_pulsante("⬅️", self.mostra_indietro_tennis)
+        self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
+        self.shortcut_indietro.activated.connect(self.mostra_indietro_tennis)
+
+        self.crea_pulsante("Vedi", self.mostra_vedi)
+
         self.crea_pulsante("Nuova prenotazione", self.mostra_nuova_prenotazione_tennis)
+
         # self.crea_pulsante("Apri prenotazione", self.mostra_apri_prenotazione_tennis)
         self.crea_pulsante("Elimina prenotazione", self.mostra_elimina_prenotazione_tennis)
 
-        self.v_layout.addLayout(self.h_layout)
-        self.setLayout(self.v_layout)
+
+        self.crea_pulsante("Mostra tutte", self.mostra_tutte_prenotazioni_tennis)
+
+        self.g_layout.addLayout(self.h_layout, 2, 0)
+
+        self.setLayout(self.g_layout)
+        self.setWindowTitle("Lista Prenotazioni")
+
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
         self.setWindowTitle("Elenco Prenotazioni Tennis")
@@ -59,21 +80,17 @@ class view_tennis(QWidget):
         pulsante.setFont(QFont("Yu Gothic UI Light", 12))
         pulsante.clicked.connect(funzione)
         self.h_layout.addWidget(pulsante)
+        pulsante.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
     def mostra_indietro_tennis(self):
         self.close()
 
-    def aggiorna_dati_prenotazioni(self):
-        self.modello_lista_prenotazioni = QStandardItemModel()
-        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
-            item = QStandardItem()
-            item.setText("Prenotazione del " )
-            # + prenotazione.strftime("%d/%m/%Y")
-            item.setEditable(False)
-            item.setFont(QFont("Yu Gothic UI Light", 12))
-            self.modello_lista_prenotazioni.appendRow(item)
-        self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
+    def mostra_vedi(self):
+        pass
+        # data_selezionata = self.calendario.selectedDate()
+        # self.data_selezionata = datetime(data_selezionata.year(), data_selezionata.month(), data_selezionata.day())
+        # self.lista_prenotazioni_by_data_Selezionata = VistaListaPrenotazioniAdmin(self.data_inizio)
+        # self.lista_prenotazioni_by_data_Selezionata.show()
 
     def mostra_nuova_prenotazione_tennis(self):
         self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.aggiorna_dati_prenotazioni)
@@ -106,3 +123,8 @@ class view_tennis(QWidget):
             self.aggiorna_dati_prenotazioni()
         else:
             return
+
+    def mostra_tutte_prenotazioni_tennis(self):
+        return
+        # self.lista_prenotazioni = VistaListaPrenotazioniTutte()
+        # self.lista_prenotazioni.show()

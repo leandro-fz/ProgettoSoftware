@@ -9,17 +9,5 @@ class ControllorePrenotazioneTennis:
     def get_data_inizio_prenotazione(self):
         return self.model.data_inizio
 
-    def get_data_fine_prenotazione(self):
-        return self.model.data_fine
-
-    def get_servizio_ristorazione(self):
-        return self.model.servizio_ristorazione
-
-    def get_servizio_alloggio(self):
-        return self.model.servizio_alloggio
-
-    def get_servizi_aggiuntivi(self):
-        return self.model.servizi_aggiuntivi
-
     def get_prezzo_totale(self):
         return self.model.get_prezzo_totale()

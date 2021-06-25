@@ -38,18 +38,18 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.calendario = QCalendarWidget()
         self.calendario.setGridVisible(True)
         self.calendario.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
-        if datetime.now() > datetime(2021, 6, 1):
-            self.calendario.setMinimumDate(QDate(datetime.now().year, datetime.now().month, datetime.now().day))
-        else:
-            self.calendario.setMinimumDate(QDate(2021, 6, 1))
-        self.calendario.setMaximumDate(QDate(2022, 12, 12))
-
-        cell_inizio_start = QTextCharFormat()
-        cell_inizio_start.setBackground(QColor("yellow"))
-        cell_inizio_stop = QTextCharFormat()
-        cell_inizio_stop.setBackground(QColor("red"))
-        self.calendario.setDateTextFormat(self.calendario.selectedDate(), cell_inizio_start)
-        self.calendario.setDateTextFormat(QDate(2021,9,23), cell_inizio_stop)
+        # if datetime.now() > datetime(2021, 6, 1):
+        #     self.calendario.setMinimumDate(QDate(datetime.now().year, datetime.now().month, datetime.now().day))
+        # else:
+        self.calendario.setMinimumDate(QDate(2021, 5, 1))
+        # self.calendario.setMaximumDate(QDate(2022, 12, 30))
+        #
+        # cell_inizio_start = QTextCharFormat()
+        # cell_inizio_start.setBackground(QColor("white"))
+        # cell_inizio_stop = QTextCharFormat()
+        # cell_inizio_stop.setBackground(QColor("red"))
+        # self.calendario.setDateTextFormat(self.calendario.selectedDate(), cell_inizio_start)
+        # self.calendario.setDateTextFormat(QDate(2021,9,23), cell_inizio_stop)
 
         self.layout.addWidget(self.calendario)
 
