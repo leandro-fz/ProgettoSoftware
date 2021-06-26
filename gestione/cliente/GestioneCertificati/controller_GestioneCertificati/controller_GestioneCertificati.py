@@ -43,7 +43,7 @@ class Controller_GestioneCertificati():
     def set_residenza_certificato(self, residenza):
         self.model.residenza = residenza
 
-    def set_residenza_certificato(self, sportcertificato):
+    def set_sportcertificato_certificato(self, sportcertificato):
         self.model.sportcertificato = sportcertificato
 
     def set_datainizio_certificato(self, datainizio):

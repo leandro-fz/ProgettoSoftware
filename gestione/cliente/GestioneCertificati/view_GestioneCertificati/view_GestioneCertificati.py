@@ -77,7 +77,7 @@ class view_ModificaCertificato(QWidget):
         self.campo_sportcertificato.setText((self.controller.get_sportcertificato_certificato()))
         self.v_layout.addWidget(self.campo_sportcertificato)
 
-        self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa) :")
+        self.label_datainizio = QLabel("Data inizio validità certificato (aaaa/mm/gg) :")
         self.label_datainizio.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datainizio)
 
@@ -86,7 +86,7 @@ class view_ModificaCertificato(QWidget):
         self.campo_datainizio.setText(str(self.controller.get_datainizio_certificato()))
         self.v_layout.addWidget(self.campo_datainizio)
 
-        self.label_datafine = QLabel("Data scadenza validità certificato (gg/mm/aaaa) :")
+        self.label_datafine = QLabel("Data scadenza validità certificato (aaaa/mm/gg) :")
         self.label_datafine.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datafine)
 
@@ -178,20 +178,6 @@ class view_ModificaCertificato(QWidget):
             QMessageBox.critical(self, "Errore", "Il codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            datainizio = datetime.strptime(datainizio,"%d/%m/%Y")
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
-            return
-        try:
-            datafine = datetime.strptime(datafine,"%d/%m/%Y")
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
-            return
 
         try:
             nato = str(self.campo_nato.text())
