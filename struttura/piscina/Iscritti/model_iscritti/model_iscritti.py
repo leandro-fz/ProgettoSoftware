@@ -17,9 +17,9 @@ class Insieme_Iscritti():
     def aggiungi_utente(self, utente):
         self.lista_iscritti.append(utente)
 
-    def rimuovi_utente_by_id(self, id):
+    def elimina_utente_by_codicefiscale(self, codicefiscale):
         for utente in self.lista_iscritti:
-            if utente.id == id:
+            if utente.codicefiscale == codicefiscale:
                 self.lista_iscritti.remove(utente)
                 return True
         return False
@@ -27,9 +27,9 @@ class Insieme_Iscritti():
     def get_lista_iscritti(self):
         return self.lista_iscritti
 
-    def get_utente_by_id(self, id):
+    def get_utente_by_codicefiscale(self, codicefiscale):
         for utente in self.lista_iscritti:
-            if utente.id == id:
+            if utente.codicefiscale == codicefiscale:
                 return utente
         return None
 

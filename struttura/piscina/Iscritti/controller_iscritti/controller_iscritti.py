@@ -13,11 +13,11 @@ class Controller_iscritti():
     def get_lista_iscritti(self):
         return self.model.get_lista_iscritti()
 
-    def get_utente_by_id(self, id):
-        return self.model.get_utente_by_id(id)
+    def get_utente_by_codicefiscale(self, codicefiscale):
+        return self.model.get_utente_by_codicefiscale(codicefiscale)
 
-    def elimina_utente_by_id(self, id):
-        self.model.rimuovi_utente_by_id(id)
+    def elimina_utente_by_codicefiscale(self, codicefiscale):
+        self.model.elimina_utente_by_codicefiscale(codicefiscale)
 
     def save_data(self):
         self.model.save_data()

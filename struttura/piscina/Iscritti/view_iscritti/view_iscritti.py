@@ -111,13 +111,13 @@ class view_iscritti(QWidget):
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un utente da eliminare", QMessageBox.Ok, QMessageBox.Ok)
             return
-        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare il utente?", QMessageBox.Yes,
+        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare l' utente?", QMessageBox.Yes,
                                         QMessageBox.No)
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_utente_by_id(da_eliminare.id)
-            QMessageBox.about(self, "Eliminato", "Il utente è stato eliminato")
+            self.controller.elimina_utente_by_codicefiscale(da_eliminare.codicefiscale)
+            QMessageBox.about(self, "Eliminato", "L' utente è stato eliminato")
             self.aggiorna_dati()
         else:
             return
