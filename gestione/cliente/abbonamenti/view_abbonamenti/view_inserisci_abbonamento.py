@@ -6,6 +6,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+
 from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
 from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_GestioneAbbonamenti import GestioniAbbonamento
 
@@ -121,14 +122,14 @@ class view_InserisciAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 570)
-        self.setMaximumSize(781, 570)
+        self.setMinimumSize(781, 620)
+        self.setMaximumSize(781, 620)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 571))
+        sImage = oImage.scaled(QSize(791, 621))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -155,6 +156,15 @@ class view_InserisciAbbonamento(QWidget):
 
         if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        try:
+            data = datetime.strptime(data, "%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
         try:

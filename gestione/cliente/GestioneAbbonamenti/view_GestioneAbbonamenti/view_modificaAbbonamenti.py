@@ -55,7 +55,7 @@ class view_ModificaAbbonamento(QWidget):
 
         self.campo_data = QLineEdit()
         self.campo_data.setFont(self.font_campi)
-        self.campo_data.setText(self.controller.get_data_abbonamento())
+        self.campo_data.setText(str(self.controller.get_data_abbonamento()))
         self.v_layout.addWidget(self.campo_data)
 
         self.label_residenza = QLabel("Residenza (Via e città di residenza) :")
@@ -128,12 +128,12 @@ class view_ModificaAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 570)
-        self.setMaximumSize(781, 570)
+        self.setMinimumSize(781, 600)
+        self.setMaximumSize(781, 600)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 571))
+        sImage = oImage.scaled(QSize(791, 600))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -218,7 +218,7 @@ class view_ModificaAbbonamento(QWidget):
         self.controller.set_residenza_abbonamento(residenza)
         self.controller.set_email_abbonamento(email)
         self.controller.set_cellulare_abbonamento(cellulare)
-        self.controller.set_tipoabbonemnto_abbonamento(tipoabbonamento)
+        self.controller.set_tipoabbonamento_abbonamento(tipoabbonamento)
 
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
