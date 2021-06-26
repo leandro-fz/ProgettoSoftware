@@ -17,9 +17,9 @@ class Insieme_Abbonamenti():
     def aggiungi_abbonamento(self, abbonamento):
         self.lista_abbonamenti.append(abbonamento)
 
-    def rimuovi_abbonamento_by_id(self, id):
+    def elimina_abbonamento_by_codicefiscale(self, codicefiscale):
         for abbonamento in self.lista_abbonamenti:
-            if abbonamento.id == id:
+            if abbonamento.codicefiscale == codicefiscale:
                 self.lista_abbonamenti.remove(abbonamento)
                 return True
         return False
@@ -27,9 +27,9 @@ class Insieme_Abbonamenti():
     def get_lista_abbonamenti(self):
         return self.lista_abbonamenti
 
-    def get_abbonamento_by_id(self, id):
+    def get_abbonamento_by_codicefiscale(self, codicefiscale):
         for abbonamento in self.lista_abbonamenti:
-            if abbonamento.id == id:
+            if abbonamento.codicefiscale == codicefiscale:
                 return abbonamento
         return None
 

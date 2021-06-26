@@ -17,7 +17,7 @@ class Insieme_Certificati():
     def aggiungi_certificato(self, certificato):
         self.lista_certificati.append(certificato)
 
-    def rimuovi_certificato_by_id(self, codicefiscale):
+    def elimina_certificato_by_codicefiscale(self, codicefiscale):
         for certificato in self.lista_certificati:
             if certificato.codicefiscale == codicefiscale:
                 self.lista_certificati.remove(certificato)

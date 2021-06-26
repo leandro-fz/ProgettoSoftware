@@ -13,11 +13,11 @@ class Controller_Abbonamenti():
     def get_lista_abbonamenti(self):
         return self.model.get_lista_abbonamenti()
 
-    def get_abbonamento_by_id(self, id):
-        return self.model.get_abbonamento_by_id(id)
+    def get_abbonamento_by_codicefiscale(self, codicefiscale):
+        return self.model.get_abbonamento_by_codicefiscale(codicefiscale)
 
-    def elimina_abbonamento_by_id(self, id):
-        self.model.rimuovi_abbonamento_by_id(id)
+    def elimina_abbonamento_by_codicefiscale(self, codicefiscale):
+        self.model.elimina_abbonamento_by_codicefiscale(codicefiscale)
 
     def save_data(self):
         self.model.save_data()

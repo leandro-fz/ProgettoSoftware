@@ -117,12 +117,12 @@ class view_ModificaCertificato(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 560)
+        self.setMaximumSize(781, 560)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 561))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -131,10 +131,10 @@ class view_ModificaCertificato(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_id_libero(self, id):
+    def controlla_codicefiscale_libero(self, codicefiscale):
 
         for certificato in self.lista_certificati:
-            if certificato.id == id:
+            if certificato.codicefiscale == codicefiscale:
                 return False
         return True
 

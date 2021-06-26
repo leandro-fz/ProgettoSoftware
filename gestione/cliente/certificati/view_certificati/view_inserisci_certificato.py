@@ -116,14 +116,14 @@ class view_InserisciCertificato(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 560)
+        self.setMaximumSize(781, 560)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 561))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -176,7 +176,7 @@ class view_InserisciCertificato(QWidget):
             return
 
         if not self.controlla_codicefiscale_libero(codicefiscale):
-            QMessageBox.critical(self, "Errore", "Codice fiscale già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:

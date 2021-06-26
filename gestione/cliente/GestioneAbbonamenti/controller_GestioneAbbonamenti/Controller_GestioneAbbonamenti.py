@@ -10,14 +10,26 @@ class Controller_GestioneAbbonamenti():
     def get_cognome_abbonamento(self):
         return self.model.cognome
 
-    def get_ruolo_abbonamento(self):
-        return self.model.ruolo
+    def get_nato_abbonamento(self):
+        return self.model.nato
 
-    def get_id_abbonamento(self):
-        return self.model.id
+    def get_data_abbonamento(self):
+        return self.model.data
 
-    def get_stipendio_abbonamento(self):
-        return self.model.stipendio
+    def get_codicefiscale_abbonamento(self):
+        return self.model.codicefiscale
+
+    def get_residenza_abbonamento(self):
+        return self.model.residenza
+
+    def get_email_abbonamento(self):
+        return self.model.email
+
+    def get_cellulare_abbonamento(self):
+        return self.model.cellulare
+
+    def get_tipoabbonamento_abbonamento(self):
+        return self.model.tipoabbonamento
 
     def set_nome_abbonamento(self, nome):
         self.model.nome = nome
@@ -25,11 +37,24 @@ class Controller_GestioneAbbonamenti():
     def set_cognome_abbonamento(self, cognome):
         self.model.cognome = cognome
 
-    def set_ruolo_abbonamento(self, ruolo):
-        self.model.ruolo = ruolo
+    def set_nato_abbonamento(self, nato):
+        self.model.nato = nato
 
-    def set_id_abbonamento(self, id):
-        self.model.id = id
+    def set_data_abbonamento(self, data):
+        self.model.data = data
 
-    def set_stipendio_abbonamento(self, stipendio):
-        self.model.stipendio = stipendio
+    def set_codicefiscale_abbonamento(self, codicefiscale):
+        self.model.id = codicefiscale
+
+    def set_residenza_abbonamento(self, residenza):
+        self.model.residenza = residenza
+
+    def set_email_abbonamento(self, email):
+        self.model.email = email
+
+    def set_cellulare_abbonamento(self, cellulare):
+        self.model.cellulare = cellulare
+
+    def set_tipoabbonamento_abbonamento(self, tipoabbonamento):
+        self.model.tipoabbonamento = tipoabbonamento
+

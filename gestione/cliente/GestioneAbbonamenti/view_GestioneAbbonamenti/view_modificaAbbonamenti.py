@@ -40,34 +40,73 @@ class view_ModificaAbbonamento(QWidget):
         self.campo_cognome.setText(self.controller.get_cognome_abbonamento())
         self.v_layout.addWidget(self.campo_cognome)
 
-        self.label_ruolo = QLabel("Ruolo:")
-        self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
+        self.label_nato = QLabel("Nato a:")
+        self.label_nato.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_nato)
 
-        self.campo_ruolo = QLineEdit()
-        self.campo_ruolo.setFont(self.font_campi)
-        self.campo_ruolo.setText(self.controller.get_ruolo_abbonamento())
-        self.v_layout.addWidget(self.campo_ruolo)
+        self.campo_nato = QLineEdit()
+        self.campo_nato.setFont(self.font_campi)
+        self.campo_nato.setText(self.controller.get_nato_abbonamento())
+        self.v_layout.addWidget(self.campo_nato)
 
-        self.label_id = QLabel("ID:")
-        self.label_id.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_id)
+        self.label_data= QLabel("Data di nascita (aaaa/mm/gg) :")
+        self.label_data.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_data)
 
-        self.campo_id = QLineEdit()
-        self.campo_id.setFont(self.font_campi)
-        self.campo_id.setText(str(self.controller.get_id_abbonamento()))
-        self.v_layout.addWidget(self.campo_id)
+        self.campo_data = QLineEdit()
+        self.campo_data.setFont(self.font_campi)
+        self.campo_data.setText(self.controller.get_data_abbonamento())
+        self.v_layout.addWidget(self.campo_data)
 
-        self.label_stipendio = QLabel("Stipendio:")
-        self.label_stipendio.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_stipendio)
+        self.label_residenza = QLabel("Residenza (Via e città di residenza) :")
+        self.label_residenza.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_residenza)
 
-        self.campo_stipendio = QLineEdit()
-        self.campo_stipendio.setFont(self.font_campi)
-        self.campo_stipendio.setText(str(self.controller.get_stipendio_abbonamento()))
-        self.v_layout.addWidget(self.campo_stipendio)
-
+        self.campo_residenza = QLineEdit()
+        self.campo_residenza.setFont(self.font_campi)
+        self.campo_residenza.setText((self.controller.get_residenza_abbonamento()))
+        self.v_layout.addWidget(self.campo_residenza)
         self.h_layout = QHBoxLayout()
+
+        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codicefiscale)
+
+        self.campo_codicefiscale = QLineEdit()
+        self.campo_codicefiscale.setFont(self.font_campi)
+        self.campo_codicefiscale.setText(str(self.controller.get_codicefiscale_abbonamento()))
+        self.v_layout.addWidget(self.campo_codicefiscale)
+
+        self.label_email = QLabel("Email :")
+        self.label_email.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_email)
+
+        self.campo_email = QLineEdit()
+        self.campo_email.setFont(self.font_campi)
+        self.campo_email.setText((self.controller.get_email_abbonamento()))
+        self.v_layout.addWidget(self.campo_email)
+        self.h_layout = QHBoxLayout()
+
+        self.label_cellulare = QLabel("Cellulare :")
+        self.label_cellulare.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_cellulare)
+
+        self.campo_cellulare = QLineEdit()
+        self.campo_cellulare.setFont(self.font_campi)
+        self.campo_cellulare.setText(str(self.controller.get_cellulare_abbonamento()))
+        self.v_layout.addWidget(self.campo_cellulare)
+        self.h_layout = QHBoxLayout()
+
+        self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
+        self.label_tipoabbonamento.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_tipoabbonamento)
+
+        self.campo_tipoabbonamento = QLineEdit()
+        self.campo_tipoabbonamento.setFont(self.font_campi)
+        self.campo_tipoabbonamento.setText((self.controller.get_tipoabbonamento_abbonamento()))
+        self.v_layout.addWidget(self.campo_tipoabbonamento)
+        self.h_layout = QHBoxLayout()
+
 
         self.bottone_chiudi = QPushButton("Chiudi")
         self.bottone_chiudi.setFont(self.font_campi)
@@ -89,12 +128,12 @@ class view_ModificaAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 570)
+        self.setMaximumSize(781, 570)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 571))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -103,10 +142,10 @@ class view_ModificaAbbonamento(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_id_libero(self, id):
+    def controlla_codicefiscale_libero(self, codicefiscale):
 
         for abbonamento in self.lista_abbonamenti:
-            if abbonamento.id == id:
+            if abbonamento.codicefiscale == codicefiscale:
                 return False
         return True
 
@@ -114,47 +153,56 @@ class view_ModificaAbbonamento(QWidget):
 
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
-        ruolo = self.campo_ruolo.text()
-        id = self.campo_id.text()
-        stipendio = self.campo_stipendio.text()
+        nato = self.campo_nato.text()
+        data = self.campo_data.text()
+        codicefiscale = self.campo_codicefiscale.text()
+        residenza = self.campo_residenza.text()
+        email = self.campo_email.text()
+        cellulare = self.campo_cellulare.text()
+        tipoabbonamento = self.campo_tipoabbonamento.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+
+
+        if nome == "" or cognome == "" or nato == "" or data == ""  or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            id = int(self.campo_id.text())
+            codicefiscale = int(self.campo_codicefiscale.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice ID", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice fiscale", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id <10000:
+        if codicefiscale <10000:
 
-            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999:
+        if codicefiscale > 99999:
 
-            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if self.controller.get_id_abbonamento() == id:
+        if self.controller.get_codicefiscale_abbonamento() == codicefiscale:
             pass
 
-        elif not self.controlla_id_libero(id):
-            QMessageBox.critical(self, "Errore", "L'ID inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
+        elif not self.controlla_codicefiscale_libero(codicefiscale):
+            QMessageBox.critical(self, "Errore", "Il codice fiscale inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         try:
-            stipendio = float(self.campo_stipendio.text())
+            cellulare = float(self.campo_cellulare.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il numero di cellulare", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        if stipendio <= 0:
+        try:
+            nato = str(self.campo_nato.text())
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
@@ -164,9 +212,14 @@ class view_ModificaAbbonamento(QWidget):
 
         self.controller.set_nome_abbonamento(nome)
         self.controller.set_cognome_abbonamento(cognome)
-        self.controller.set_ruolo_abbonamento(ruolo)
-        self.controller.set_id_abbonamento(id)
-        self.controller.set_stipendio_abbonamento(stipendio)
+        self.controller.set_data_abbonamento(nato)
+        self.controller.set_codicefiscale_abbonamento(codicefiscale)
+        self.controller.set_data_abbonamento(data)
+        self.controller.set_residenza_abbonamento(residenza)
+        self.controller.set_email_abbonamento(email)
+        self.controller.set_cellulare_abbonamento(cellulare)
+        self.controller.set_tipoabbonemnto_abbonamento(tipoabbonamento)
+
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()

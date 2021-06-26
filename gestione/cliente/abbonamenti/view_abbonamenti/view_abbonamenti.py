@@ -117,7 +117,7 @@ class view_abbonamenti(QWidget):
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_abbonamento_by_id(da_eliminare.id)
+            self.controller.elimina_abbonamento_by_codicefiscale(da_eliminare.codicefiscale)
             QMessageBox.about(self, "Eliminato", "L' abbonamento è stato eliminato")
             self.aggiorna_dati()
         else:
