@@ -146,7 +146,7 @@ class view_ModificaCertificato(QWidget):
         codicefiscale = self.campo_codicefiscale.text()
         residenza = self.campo_residenza.text()
         sportcertificato = self.campo_sportcertificato.text()
-        datainizio = self.campo_datainzio.text()
+        datainizio = self.campo_datainizio.text()
         datafine = self.campo_datafine.text()
 
 
@@ -156,6 +156,11 @@ class view_ModificaCertificato(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            codicefiscale = int(self.campo_codicefiscale.text())
+        except:
+            QMessageBox.critical(self, "Errore", "Codice Fiscale non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+            return
         if codicefiscale <10000:
 
             QMessageBox.critical(self, "Errore", "Codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)

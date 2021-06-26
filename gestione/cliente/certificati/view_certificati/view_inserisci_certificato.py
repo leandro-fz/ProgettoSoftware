@@ -159,6 +159,12 @@ class view_InserisciCertificato(QWidget):
             QMessageBox.critical(self, "Errore", "Codice Fiscale non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            codicefiscale = int(self.campo_codicefiscale.text())
+        except:
+            QMessageBox.critical(self, "Errore", "Codice Fiscale non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
         if codicefiscale < 10000:
             QMessageBox.critical(self, "Errore", "Codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok,
                                  QMessageBox.Ok)

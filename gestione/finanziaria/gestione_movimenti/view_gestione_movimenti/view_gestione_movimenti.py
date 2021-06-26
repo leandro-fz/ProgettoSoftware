@@ -133,12 +133,13 @@ class view_ModificaMovimento(QWidget):
         except:
 
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
-
+            return
 
         self.controller.set_importo_movimenti(importo)
         self.controller.set_data_movimenti(data)
         self.controller.set_causale_movimenti(causale)
         self.controller.set_fattura_movimenti(fattura)
+
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()
