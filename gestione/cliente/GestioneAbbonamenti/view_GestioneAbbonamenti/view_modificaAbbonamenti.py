@@ -99,7 +99,7 @@ class view_ModificaAbbonamento(QWidget):
         self.v_layout.addWidget(self.campo_cellulare)
         self.h_layout = QHBoxLayout()
 
-        self.label_struttura= QLabel("Struttuea:")
+        self.label_struttura= QLabel("Struttura:")
         self.label_struttura.setFont(self.font_label)
         self.v_layout.addWidget(self.label_struttura)
 
