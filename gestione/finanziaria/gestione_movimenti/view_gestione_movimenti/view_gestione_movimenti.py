@@ -38,7 +38,8 @@ class view_ModificaMovimento(QWidget):
 
         self.campo_data = QLineEdit()
         self.campo_data.setFont(self.font_campi)
-        self.campo_data.setText(str(self.controller.get_data_movimenti()))
+        self.stringa = str(self.controller.get_data_movimenti().strftime("%d/%m/%Y"))
+        self.campo_data.setText(self.stringa)
         self.v_layout.addWidget(self.campo_data)
 
         self.label_causale = QLabel("Causale:")

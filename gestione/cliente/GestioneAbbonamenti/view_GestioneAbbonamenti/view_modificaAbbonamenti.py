@@ -49,13 +49,14 @@ class view_ModificaAbbonamento(QWidget):
         self.campo_nato.setText(self.controller.get_nato_abbonamento())
         self.v_layout.addWidget(self.campo_nato)
 
-        self.label_data= QLabel("Data di nascita (aaaa/mm/gg) :")
+        self.label_data= QLabel("Data di nascita (gg/mm/aaaa) :")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
         self.campo_data = QLineEdit()
         self.campo_data.setFont(self.font_campi)
-        self.campo_data.setText(str(self.controller.get_data_abbonamento()))
+        self.stringa = str(self.controller.get_data_abbonamento().strftime("%d/%m/%Y"))
+        self.campo_data.setText(self.stringa)
         self.v_layout.addWidget(self.campo_data)
 
         self.label_residenza = QLabel("Residenza (Via e città di residenza) :")

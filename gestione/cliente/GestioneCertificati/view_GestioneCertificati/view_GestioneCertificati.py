@@ -18,10 +18,10 @@ class view_ModificaCertificato(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        self.font_label = QFont("Yu Gothic UI Light", 16)
+        self.font_label = QFont("Yu Gothic UI Light", 10)
         self.font_label.setBold(True)
 
-        self.font_campi = QFont("Yu Gothic UI Light", 16)
+        self.font_campi = QFont("Yu Gothic UI Light", 10)
 
         self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
@@ -77,22 +77,24 @@ class view_ModificaCertificato(QWidget):
         self.campo_sportcertificato.setText((self.controller.get_sportcertificato_certificato()))
         self.v_layout.addWidget(self.campo_sportcertificato)
 
-        self.label_datainizio = QLabel("Data inizio validità certificato (aaaa/mm/gg) :")
+        self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa) :")
         self.label_datainizio.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datainizio)
 
         self.campo_datainizio = QLineEdit()
         self.campo_datainizio.setFont(self.font_campi)
-        self.campo_datainizio.setText(str(self.controller.get_datainizio_certificato()))
+        self.stringa = str(self.controller.get_datainizio_certificato().strftime("%d/%m/%Y"))
+        self.campo_datainizio.setText(self.stringa)
         self.v_layout.addWidget(self.campo_datainizio)
 
-        self.label_datafine = QLabel("Data scadenza validità certificato (aaaa/mm/gg) :")
+        self.label_datafine = QLabel("Data scadenza validità certificato (gg/mm/aaaa) :")
         self.label_datafine.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datafine)
 
         self.campo_datafine = QLineEdit()
         self.campo_datafine.setFont(self.font_campi)
-        self.campo_datafine.setText(str(self.controller.get_datafine_certificato()))
+        self.stringa1 = str(self.controller.get_datafine_certificato().strftime("%d/%m/%Y"))
+        self.campo_datafine.setText(self.stringa1)
         self.v_layout.addWidget(self.campo_datafine)
 
         self.h_layout = QHBoxLayout()
@@ -113,16 +115,15 @@ class view_ModificaCertificato(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("certificato")
-        self.resize(300, 400)
+        self.setWindowTitle("Modifica certificato")
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 560)
-        self.setMaximumSize(781, 560)
+        self.setMinimumSize(781, 600)
+        self.setMaximumSize(781, 600)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 561))
+        sImage = oImage.scaled(QSize(791, 601))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
