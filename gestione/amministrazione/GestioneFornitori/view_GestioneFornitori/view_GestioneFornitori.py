@@ -115,7 +115,7 @@ class view_ModificaFornitore(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_id_libero(self, codicearticolo):
+    def controlla_codicearticolo_libero(self, codicearticolo):
 
         for fornitore in self.lista_fornitori:
             if fornitore.codicearticolo == codicearticolo:
