@@ -1,9 +1,10 @@
 class GestioniFornitore():
 
-    def __init__(self, nome, cognome, ruolo, id, stipendio):
+    def __init__(self, ente, data, articolo, codicearticolo, quantita, iva):
 
-        self.nome = nome
-        self.cognome = cognome
-        self.ruolo = ruolo
-        self.id = id
-        self.stipendio = stipendio
+        self.ente = ente
+        self.data = data
+        self.articolo = articolo
+        self.codicearticolo = codicearticolo
+        self.quantita = quantita
+        self.iva = iva

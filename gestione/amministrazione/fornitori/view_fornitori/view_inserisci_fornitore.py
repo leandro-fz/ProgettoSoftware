@@ -5,6 +5,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from datetime import datetime
 
 from gestione.amministrazione.GestioneFornitori.model_GestioneFornitori.model_GestioneFornitori import GestioniFornitore
 
@@ -29,40 +30,47 @@ class view_InserisciFornitore(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome")
-        self.label_nome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nome)
+        self.label_ente = QLabel("Ente fornitore: ")
+        self.label_ente.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_ente)
 
-        self.campo_nome = QLineEdit()
-        self.v_layout.addWidget(self.campo_nome)
+        self.campo_ente = QLineEdit()
+        self.v_layout.addWidget(self.campo_ente)
 
-        self.label_cognome = QLabel("Cognome")
-        self.label_cognome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_cognome)
+        self.label_data = QLabel("Data spedizione (gg/mm/aaaa)")
+        self.label_data.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_data)
 
-        self.campo_cognome = QLineEdit()
-        self.v_layout.addWidget(self.campo_cognome)
+        self.campo_data = QLineEdit()
+        self.v_layout.addWidget(self.campo_data)
 
-        self.label_ruolo = QLabel("Ruolo")
-        self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
+        self.label_articolo = QLabel("Articolo:")
+        self.label_articolo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_articolo)
 
-        self.campo_ruolo = QLineEdit()
-        self.v_layout.addWidget(self.campo_ruolo)
+        self.campo_articolo = QLineEdit()
+        self.v_layout.addWidget(self.campo_articolo)
 
-        self.label_id = QLabel("ID (5 numeri)")
-        self.label_id.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_id)
+        self.label_codicearticolo = QLabel("Codice articolo:")
+        self.label_codicearticolo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codicearticolo)
 
-        self.campo_id = QLineEdit()
-        self.v_layout.addWidget(self.campo_id)
+        self.campo_codicearticolo = QLineEdit()
+        self.v_layout.addWidget(self.campo_codicearticolo)
 
-        self.label_stipendio = QLabel("Stipendio")
-        self.label_stipendio.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_stipendio)
+        self.label_quantita = QLabel("Quantità : ")
+        self.label_quantita.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_quantita)
 
-        self.campo_stipendio = QLineEdit()
-        self.v_layout.addWidget(self.campo_stipendio)
+        self.campo_quantita = QLineEdit()
+        self.v_layout.addWidget(self.campo_quantita)
+
+        self.label_iva = QLabel("Partita IVA (11 caratteri):")
+        self.label_iva.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_iva)
+
+        self.campo_iva= QLineEdit()
+        self.v_layout.addWidget(self.campo_iva)
 
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
@@ -92,14 +100,14 @@ class view_InserisciFornitore(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 590)
+        self.setMaximumSize(781, 590)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 591))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -114,53 +122,69 @@ class view_InserisciFornitore(QWidget):
 
     def conferma_inserimento(self):
 
-        nome = self.campo_nome.text()
-        cognome = self.campo_cognome.text()
-        ruolo = self.campo_ruolo.text()
-        id = self.campo_id.text()
-        stipendio = self.campo_stipendio.text()
+        ente = self.campo_ente.text()
+        data = self.campo_data.text()
+        articolo = self.campo_articolo.text()
+        codicearticolo = self.campo_codicearticolo.text()
+        quantita = self.campo_quantita.text()
+        iva = self.campo_iva.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+
+        if ente == "" or data == "" or articolo == "" or codicearticolo == "" or quantita == "" or iva == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            id = int(self.campo_id.text())
+            codicearticolo = int(self.campo_codicearticolo.text())
         except:
-            QMessageBox.critical(self, "Errore", "ID non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice dell'articolo non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id <10000:
 
-            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+        if codicearticolo <10000:
+
+            QMessageBox.critical(self, "Errore", "Il codice dell'articolo deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999:
+        if codicearticolo > 99999:
 
-            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice dell'articolo può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if not self.controlla_id_libero(id):
+        if not self.controlla_codicearticolo_libero(codicearticolo):
 
-            QMessageBox.critical(self, "Errore", "ID già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Codice dell'articolo già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            stipendio = float(self.campo_stipendio.text())
+            iva = int(self.campo_iva.text())
+        except:
+            QMessageBox.critical(self, "Errore", "La Partita IVA non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        try:
+            quantita = float(self.campo_quantita.text())
         except:
 
-            QMessageBox.critical(self, "Errore", "Solo numeri con punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Solo numeri positivi per la quantita", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        if stipendio <= 0:
+        if quantita <= 0:
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "La quantità deve essere positiva", QMessageBox.Ok,QMessageBox.Ok)
+            return
+
+        try:
+            data = datetime.strptime(data,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok, QMessageBox.Ok)
             return
 
 
-
-        self.controller.aggiungi_fornitore(GestioniFornitore(nome, cognome, ruolo, id, stipendio))
+        self.controller.aggiungi_fornitore(GestioniFornitore(ente, data, articolo, codicearticolo, quantita,iva ))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -169,9 +193,9 @@ class view_InserisciFornitore(QWidget):
         self.close()
 
 
-    def controlla_id_libero(self, id):
+    def controlla_codicearticolo_libero(self, codicearticolo):
 
         for fornitore in self.controller.get_lista_fornitori():
-            if fornitore.id == id:
+            if fornitore.codicearticolo == codicearticolo:
                 return False
         return True

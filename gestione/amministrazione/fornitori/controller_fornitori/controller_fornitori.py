@@ -13,11 +13,11 @@ class Controller_Fornitori():
     def get_lista_fornitori(self):
         return self.model.get_lista_fornitori()
 
-    def get_fornitore_by_id(self, id):
-        return self.model.get_fornitore_by_id(id)
+    def get_fornitore_by_codicearticolo(self, codicearticolo):
+        return self.model.get_fornitore_by_codicearticolo(codicearticolo)
 
-    def elimina_fornitore_by_id(self, id):
-        self.model.rimuovi_fornitore_by_id(id)
+    def elimina_fornitore_by_codicearticolo(self, codicearticolo):
+        self.model.rimuovi_fornitore_by_codicearticolo(codicearticolo)
 
     def save_data(self):
         self.model.save_data()

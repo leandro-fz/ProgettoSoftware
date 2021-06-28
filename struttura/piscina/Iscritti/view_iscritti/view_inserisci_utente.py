@@ -100,14 +100,14 @@ class view_InserisciUtente(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 610)
-        self.setMaximumSize(781, 610)
+        self.setMinimumSize(781, 590)
+        self.setMaximumSize(781, 590)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 611))
+        sImage = oImage.scaled(QSize(791, 591))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
