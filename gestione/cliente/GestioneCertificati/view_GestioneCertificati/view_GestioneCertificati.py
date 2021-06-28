@@ -18,10 +18,10 @@ class view_ModificaCertificato(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        self.font_label = QFont("Yu Gothic UI Light", 10)
+        self.font_label = QFont("Yu Gothic UI Light", 16)
         self.font_label.setBold(True)
 
-        self.font_campi = QFont("Yu Gothic UI Light", 10)
+        self.font_campi = QFont("Yu Gothic UI Light", 16)
 
         self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
@@ -187,6 +187,23 @@ class view_ModificaCertificato(QWidget):
 
             QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok, QMessageBox.Ok)
             return
+
+        try:
+            datainizio = datetime.strptime(datainizio,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        try:
+            datafine = datetime.strptime(datafine,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
 
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
         #

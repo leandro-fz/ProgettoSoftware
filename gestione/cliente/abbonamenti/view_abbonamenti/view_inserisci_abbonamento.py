@@ -27,20 +27,20 @@ class view_InserisciAbbonamento(QWidget):
 
 
         self.font_label2 = QFont("Yu Gothic UI Light", 20)
-        self.label_alto = QLabel("Compila il form di inserimento del Abbonamento")
+        self.label_alto = QLabel("Compila il form di inserimento dell' abbonamento")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome")
+        self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_nome)
 
         self.campo_nome = QLineEdit()
         self.v_layout.addWidget(self.campo_nome)
 
-        self.label_cognome = QLabel("Cognome")
+        self.label_cognome = QLabel("Cognome:")
         self.label_cognome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_cognome)
 
@@ -89,6 +89,13 @@ class view_InserisciAbbonamento(QWidget):
         self.campo_cellulare = QLineEdit()
         self.v_layout.addWidget(self.campo_cellulare)
 
+        self.label_struttura = QLabel("Struttura :")
+        self.label_struttura.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_struttura)
+
+        self.campo_struttura = QLineEdit()
+        self.v_layout.addWidget(self.campo_struttura)
+
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
         self.v_layout.addWidget(self.label_tipoabbonamento)
@@ -124,14 +131,14 @@ class view_InserisciAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 620)
-        self.setMaximumSize(781, 620)
+        self.setMinimumSize(781, 680)
+        self.setMaximumSize(781, 680)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 621))
+        sImage = oImage.scaled(QSize(791, 681))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -154,6 +161,7 @@ class view_InserisciAbbonamento(QWidget):
         residenza = self.campo_residenza.text()
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
+        struttura = self.campo_struttura.text()
         tipoabbonamento = self.campo_tipoabbonamento.text()
 
         if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
@@ -209,7 +217,7 @@ class view_InserisciAbbonamento(QWidget):
 
 
 
-        self.controller.aggiungi_abbonamento(GestioniAbbonamento(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare, tipoabbonamento))
+        self.controller.aggiungi_abbonamento(GestioniAbbonamento(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

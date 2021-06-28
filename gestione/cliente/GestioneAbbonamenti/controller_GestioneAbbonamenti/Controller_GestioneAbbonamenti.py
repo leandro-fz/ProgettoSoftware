@@ -28,6 +28,9 @@ class Controller_GestioneAbbonamenti():
     def get_cellulare_abbonamento(self):
         return self.model.cellulare
 
+    def get_struttura_abbonamento(self):
+        return self.model.struttura
+
     def get_tipoabbonamento_abbonamento(self):
         return self.model.tipoabbonamento
 
@@ -44,7 +47,7 @@ class Controller_GestioneAbbonamenti():
         self.model.data = data
 
     def set_codicefiscale_abbonamento(self, codicefiscale):
-        self.model.id = codicefiscale
+        self.model.codicefiscale = codicefiscale
 
     def set_residenza_abbonamento(self, residenza):
         self.model.residenza = residenza
@@ -54,6 +57,9 @@ class Controller_GestioneAbbonamenti():
 
     def set_cellulare_abbonamento(self, cellulare):
         self.model.cellulare = cellulare
+
+    def set_struttura_abbonamento(self, struttura):
+        self.model.struttura = struttura
 
     def set_tipoabbonamento_abbonamento(self, tipoabbonamento):
         self.model.tipoabbonamento = tipoabbonamento

@@ -1,6 +1,6 @@
 class GestioniAbbonamento():
 
-    def __init__(self, nome, cognome, nato, data, codicefiscale,residenza, email, cellulare, tipoabbonamento):
+    def __init__(self, nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento):
 
         self.nome = nome
         self.cognome = cognome
@@ -10,5 +10,6 @@ class GestioniAbbonamento():
         self.residenza = residenza
         self.email = email
         self.cellulare = cellulare
+        self.struttura = struttura
         self.tipoabbonamento = tipoabbonamento
 

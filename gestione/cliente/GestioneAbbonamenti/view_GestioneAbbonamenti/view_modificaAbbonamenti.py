@@ -5,6 +5,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from datetime import datetime
 
 class view_ModificaAbbonamento(QWidget):
 
@@ -49,7 +50,7 @@ class view_ModificaAbbonamento(QWidget):
         self.campo_nato.setText(self.controller.get_nato_abbonamento())
         self.v_layout.addWidget(self.campo_nato)
 
-        self.label_data= QLabel("Data di nascita (gg/mm/aaaa) :")
+        self.label_data = QLabel("Data di nascita (gg/mm/aaaa) :")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
@@ -98,6 +99,16 @@ class view_ModificaAbbonamento(QWidget):
         self.v_layout.addWidget(self.campo_cellulare)
         self.h_layout = QHBoxLayout()
 
+        self.label_struttura= QLabel("Struttuea:")
+        self.label_struttura.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_struttura)
+
+        self.campo_struttura = QLineEdit()
+        self.campo_struttura.setFont(self.font_campi)
+        self.campo_struttura.setText((self.controller.get_struttura_abbonamento()))
+        self.v_layout.addWidget(self.campo_struttura)
+        self.h_layout = QHBoxLayout()
+
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
         self.v_layout.addWidget(self.label_tipoabbonamento)
@@ -125,16 +136,16 @@ class view_ModificaAbbonamento(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("abbonamento")
+        self.setWindowTitle("Modifica abbonamento")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 600)
-        self.setMaximumSize(781, 600)
+        self.setMinimumSize(781, 660)
+        self.setMaximumSize(781, 660)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 600))
+        sImage = oImage.scaled(QSize(791, 661))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -160,6 +171,7 @@ class view_ModificaAbbonamento(QWidget):
         residenza = self.campo_residenza.text()
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
+        struttura = self.campo_struttura.text()
         tipoabbonamento = self.campo_tipoabbonamento.text()
 
 
@@ -206,6 +218,14 @@ class view_ModificaAbbonamento(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            data = datetime.strptime(data,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
         #
         #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -219,6 +239,7 @@ class view_ModificaAbbonamento(QWidget):
         self.controller.set_residenza_abbonamento(residenza)
         self.controller.set_email_abbonamento(email)
         self.controller.set_cellulare_abbonamento(cellulare)
+        self.controller.set_struttura_abbonamento(struttura)
         self.controller.set_tipoabbonamento_abbonamento(tipoabbonamento)
 
         QMessageBox.about(self, "Completata", "Modifica completata")
