@@ -89,7 +89,7 @@ class view_inventario(QWidget):
 
         for inventario in self.controller.get_lista_inventario():
             item = QStandardItem()
-            item.setText(inventario.articolo + " " + inventario.quantita)
+            item.setText(inventario.articolo + " " + (str(inventario.quantita)))
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)

@@ -150,14 +150,10 @@ class view_ModificaInventario(QWidget):
             QMessageBox.critical(self, "Errore", "Il prezzo non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # if articolo == "" or quantita == "" or id == 0 or prezzo == 0.0:
-        #
-        #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-        #     return
 
         self.controller.set_articolo_inventario(articolo)
         self.controller.set_quantita_inventario(quantita)
-        self.controller.set_id_inventario(id)
+        self.controller.set_id_inventario(codice)
         self.controller.set_prezzo_inventario(prezzo)
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()

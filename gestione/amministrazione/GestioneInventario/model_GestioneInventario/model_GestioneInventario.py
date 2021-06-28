@@ -1,9 +1,8 @@
 class GestioniInventario():
 
-    def __init__(self, nome, cognome, ruolo, id, stipendio):
+    def __init__(self, articolo, quantita, codice, prezzo):
 
-        self.nome = nome
-        self.cognome = cognome
-        self.ruolo = ruolo
-        self.id = id
-        self.stipendio = stipendio
+        self.articolo = articolo
+        self.quantita = quantita
+        self.codice = codice
+        self.prezzo = prezzo
