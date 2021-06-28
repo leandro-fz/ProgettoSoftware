@@ -13,11 +13,11 @@ class Controller_Inventario():
     def get_lista_inventario(self):
         return self.model.get_lista_inventario()
 
-    def get_inventario_by_id(self, id):
-        return self.model.get_inventario_by_id(id)
+    def get_inventario_by_codice(self, codice):
+        return self.model.get_inventario_by_codice(codice)
 
-    def elimina_inventario_by_id(self, id):
-        self.model.rimuovi_inventario_by_id(id)
+    def elimina_inventario_by_codice(self, codice):
+        self.model.rimuovi_inventario_by_codice(codice)
 
     def save_data(self):
         self.model.save_data()

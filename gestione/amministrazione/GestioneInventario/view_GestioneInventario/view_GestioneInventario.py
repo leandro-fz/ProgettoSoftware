@@ -22,50 +22,42 @@ class view_ModificaInventario(QWidget):
 
         self.font_campi = QFont("Yu Gothic UI Light", 16)
 
-        self.label_nome = QLabel("Nome:")
-        self.label_nome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nome)
+        self.label_articolo = QLabel("Articolo:")
+        self.label_articolo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_articolo)
 
-        self.campo_nome = QLineEdit()
-        self.campo_nome.setFont(self.font_campi)
-        self.campo_nome.setText(self.controller.get_nome_inventario())
-        self.v_layout.addWidget(self.campo_nome)
+        self.campo_articolo = QLineEdit()
+        self.campo_articolo.setFont(self.font_campi)
+        self.campo_articolo.setText(self.controller.get_articolo_inventario())
+        self.v_layout.addWidget(self.campo_articolo)
 
-        self.label_cognome = QLabel("Cognome:")
-        self.label_cognome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_cognome)
 
-        self.campo_cognome = QLineEdit()
-        self.campo_cognome.setFont(self.font_campi)
-        self.campo_cognome.setText(self.controller.get_cognome_inventario())
-        self.v_layout.addWidget(self.campo_cognome)
+        self.label_quantita = QLabel("Quantità:")
+        self.label_quantita.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_quantita)
 
-        self.label_ruolo = QLabel("Ruolo:")
-        self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
+        self.campo_quantita = QLineEdit()
+        self.campo_quantita.setFont(self.font_campi)
+        self.campo_quantita.setText(self.controller.get_quantita_inventario())
+        self.v_layout.addWidget(self.campo_quantita)
 
-        self.campo_ruolo = QLineEdit()
-        self.campo_ruolo.setFont(self.font_campi)
-        self.campo_ruolo.setText(self.controller.get_ruolo_inventario())
-        self.v_layout.addWidget(self.campo_ruolo)
+        self.label_codice = QLabel("Codice articolo:")
+        self.label_codice.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codice)
 
-        self.label_id = QLabel("ID:")
-        self.label_id.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_id)
+        self.campo_codice = QLineEdit()
+        self.campo_codice.setFont(self.font_campi)
+        self.campo_codice.setText(str(self.controller.get_codice_inventario()))
+        self.v_layout.addWidget(self.campo_codice)
 
-        self.campo_id = QLineEdit()
-        self.campo_id.setFont(self.font_campi)
-        self.campo_id.setText(str(self.controller.get_id_inventario()))
-        self.v_layout.addWidget(self.campo_id)
+        self.label_prezzo = QLabel("Prezzo:")
+        self.label_prezzo.setFont(self.font_label)
+        self.v_layout.addWcodiceget(self.label_prezzo)
 
-        self.label_stipendio = QLabel("Stipendio:")
-        self.label_stipendio.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_stipendio)
-
-        self.campo_stipendio = QLineEdit()
-        self.campo_stipendio.setFont(self.font_campi)
-        self.campo_stipendio.setText(str(self.controller.get_stipendio_inventario()))
-        self.v_layout.addWidget(self.campo_stipendio)
+        self.campo_prezzo = QLineEdit()
+        self.campo_prezzo.setFont(self.font_campi)
+        self.campo_prezzo.setText(str(self.controller.get_prezzo_inventario()))
+        self.v_layout.addWidget(self.campo_prezzo)
 
         self.h_layout = QHBoxLayout()
 
@@ -103,70 +95,70 @@ class view_ModificaInventario(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_id_libero(self, id):
+    def controlla_codice_libero(self, codice):
 
         for inventario in self.lista_inventario:
-            if inventario.id == id:
+            if inventario.codice == codice:
                 return False
         return True
 
     def modifica_inventario(self):
 
-        nome = self.campo_nome.text()
-        cognome = self.campo_cognome.text()
-        ruolo = self.campo_ruolo.text()
-        id = self.campo_id.text()
-        stipendio = self.campo_stipendio.text()
+        articolo = self.campo_articolo.text()
+        quantita = self.campo_quantita.text()
+        codice = self.campo_codice.text()
+        prezzo = self.campo_prezzo.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+        if articolo == "" or quantita == "" or codice == "" or prezzo == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            id = int(self.campo_id.text())
+            codice = int(self.campo_codice.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice ID", QMessageBox.Ok, QMessageBox.Ok)
+
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice dell'articolo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id <10000:
+        if codice <10000:
 
-            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999:
+        if codice > 99999:
 
-            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if self.controller.get_id_inventario() == id:
+        if self.controller.get_codice_inventario() == codice:
             pass
 
-        elif not self.controlla_id_libero(id):
-            QMessageBox.critical(self, "Errore", "L'ID inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
+        elif not self.controlla_id_libero(codice):
+
+            QMessageBox.critical(self, "Errore", "Articolo già inserito. Modifica la quantità", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         try:
-            stipendio = float(self.campo_stipendio.text())
+            prezzo = float(self.campo_prezzo.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per il prezzo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        if stipendio <= 0:
+        if prezzo <= 0:
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il prezzo non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
+        # if articolo == "" or quantita == "" or id == 0 or prezzo == 0.0:
         #
         #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
         #     return
 
-        self.controller.set_nome_inventario(nome)
-        self.controller.set_cognome_inventario(cognome)
-        self.controller.set_ruolo_inventario(ruolo)
+        self.controller.set_articolo_inventario(articolo)
+        self.controller.set_quantita_inventario(quantita)
         self.controller.set_id_inventario(id)
-        self.controller.set_stipendio_inventario(stipendio)
+        self.controller.set_prezzo_inventario(prezzo)
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()

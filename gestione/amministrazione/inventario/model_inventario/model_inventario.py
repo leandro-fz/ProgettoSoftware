@@ -16,9 +16,9 @@ class Insieme_Inventario():
     def aggiungi_inventario(self, inventario):
         self.lista_inventario.append(inventario)
 
-    def rimuovi_inventario_by_id(self, id):
+    def rimuovi_inventario_by_id(self, codice):
         for inventario in self.lista_inventario:
-            if inventario.id == id:
+            if inventario.codice == codice:
                 self.lista_inventario.remove(inventario)
                 return True
         return False
@@ -26,9 +26,9 @@ class Insieme_Inventario():
     def get_lista_inventario(self):
         return self.lista_inventario
 
-    def get_inventario_by_id(self, id):
+    def get_inventario_by_id(self, codice):
         for inventario in self.lista_inventario:
-            if inventario.id == id:
+            if inventario.codice == codice:
                 return inventario
         return None
 

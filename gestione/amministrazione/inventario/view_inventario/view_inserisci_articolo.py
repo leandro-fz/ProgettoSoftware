@@ -29,40 +29,34 @@ class view_InserisciInventario(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome")
-        self.label_nome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nome)
+        self.label_articolo = QLabel("Articolo: ")
+        self.label_articolo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_articolo)
 
-        self.campo_nome = QLineEdit()
+        self.campo_articolo = QLineEdit()
         self.v_layout.addWidget(self.campo_nome)
 
-        self.label_cognome = QLabel("Cognome")
-        self.label_cognome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_cognome)
 
-        self.campo_cognome = QLineEdit()
-        self.v_layout.addWidget(self.campo_cognome)
-
-        self.label_ruolo = QLabel("Ruolo")
+        self.label_quantita = QLabel("Quantità: ")
         self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
+        self.v_layout.addWidget(self.label_quantita)
 
-        self.campo_ruolo = QLineEdit()
+        self.campo_quantita = QLineEdit()
         self.v_layout.addWidget(self.campo_ruolo)
 
-        self.label_id = QLabel("ID (5 numeri)")
-        self.label_id.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_id)
+        self.label_codice= QLabel("Codice articolo: ")
+        self.label_codice.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codice)
 
-        self.campo_id = QLineEdit()
-        self.v_layout.addWidget(self.campo_id)
+        self.campo_codice = QLineEdit()
+        self.v_layout.addWidget(self.campo_codice)
 
-        self.label_stipendio = QLabel("Stipendio")
-        self.label_stipendio.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_stipendio)
+        self.label_prezzo = QLabel("Prezzo: ")
+        self.label_prezzo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_prezzo)
 
-        self.campo_stipendio = QLineEdit()
-        self.v_layout.addWidget(self.campo_stipendio)
+        self.campo_prezzo = QLineEdit()
+        self.v_layout.addWidget(self.campo_prezzo)
 
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
@@ -114,53 +108,53 @@ class view_InserisciInventario(QWidget):
 
     def conferma_inserimento(self):
 
-        nome = self.campo_nome.text()
-        cognome = self.campo_cognome.text()
-        ruolo = self.campo_ruolo.text()
-        id = self.campo_id.text()
-        stipendio = self.campo_stipendio.text()
+        articolo = self.campo_articolo.text()
+        quantita = self.campo_quantita.text()
+        codice = self.campo_codice.text()
+        prezzo = self.campo_prezzo.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+        if articolo == "" or quantita == "" or codice == "" or prezzo == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            id = int(self.campo_id.text())
+            codice = int(self.campo_codice.text())
         except:
-            QMessageBox.critical(self, "Errore", "ID non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+
+            QMessageBox.critical(self, "Errore", "Il codice non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id <10000:
+        if codice <10000:
 
-            QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if id > 99999:
+        if codice > 99999:
 
-            QMessageBox.critical(self, "Errore", "ID può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il codice può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if not self.controlla_id_libero(id):
+        if not self.controlla_id_libero(codice):
 
-            QMessageBox.critical(self, "Errore", "ID già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Articolo già inserito. Modifica la quantità.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
-            stipendio = float(self.campo_stipendio.text())
+            prezzo = float(self.campo_prezzo.text())
         except:
 
-            QMessageBox.critical(self, "Errore", "Solo numeri con punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Solo numeri con punto per il prezzo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        if stipendio <= 0:
+        if prezzo <= 0:
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Il prezzo dell'articolo deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
 
 
-        self.controller.aggiungi_inventario(GestioniInventario(nome, cognome, ruolo, id, stipendio))
+        self.controller.aggiungi_inventario(GestioniInventario(articolo,quantita, codice, prezzo))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -169,9 +163,9 @@ class view_InserisciInventario(QWidget):
         self.close()
 
 
-    def controlla_id_libero(self, id):
+    def controlla_id_libero(self, codice):
 
         for inventario in self.controller.get_lista_inventario():
-            if inventario.id == id:
+            if inventario.codice == codice:
                 return False
         return True
