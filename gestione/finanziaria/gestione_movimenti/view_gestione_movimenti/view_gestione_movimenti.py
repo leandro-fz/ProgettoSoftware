@@ -110,7 +110,7 @@ class view_ModificaMovimento(QWidget):
         causale = self.campo_causale.text()
         fattura = self.campo_fattura.text()
 
-        if importo == "" or data == "" or causale == "" or fattura == " ":
+        if importo == "" or data == "" or causale == "" or fattura == " " :
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return

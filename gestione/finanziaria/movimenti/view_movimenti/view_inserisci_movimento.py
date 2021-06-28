@@ -113,7 +113,7 @@ class view_InserisciMovimenti(QWidget):
         fattura = self.campo_fattura.text()
 
 
-        if importo == "" or data == "" or causale == "" or fattura == " ":
+        if importo == "" or data == "" or fattura == "" or causale == " " :
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
@@ -129,6 +129,16 @@ class view_InserisciMovimenti(QWidget):
         if importo <= 0:
 
             QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+
+        try:
+
+            fattura = int(self.campo_fattura.text())
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "La fattura non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
