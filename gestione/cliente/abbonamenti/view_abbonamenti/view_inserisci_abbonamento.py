@@ -27,7 +27,7 @@ class view_InserisciAbbonamento(QWidget):
 
 
         self.font_label2 = QFont("Yu Gothic UI Light", 20)
-        self.label_alto = QLabel("Compila il form di inserimento dell' abbonamento")
+        self.label_alto = QLabel("Compila il form di inserimento dell'abbonamento")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 

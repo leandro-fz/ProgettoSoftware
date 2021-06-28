@@ -40,33 +40,6 @@ class view_ModificaUtente(QWidget):
         self.campo_cognome.setText(self.controller.get_cognome_utente())
         self.v_layout.addWidget(self.campo_cognome)
 
-        self.label_nato = QLabel("Nato a:")
-        self.label_nato.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nato)
-
-        self.campo_nato = QLineEdit()
-        self.campo_nato.setFont(self.font_campi)
-        self.campo_nato.setText(self.controller.get_nato_utente())
-        self.v_layout.addWidget(self.campo_nato)
-
-        self.label_data = QLabel("Data di nascita (aaaa/mm/gg) :")
-        self.label_data.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_data)
-
-        self.campo_data = QLineEdit()
-        self.campo_data.setFont(self.font_campi)
-        self.campo_data.setText(str(self.controller.get_data_utente()))
-        self.v_layout.addWidget(self.campo_data)
-
-        self.label_residenza = QLabel("Residenza (Via e città di residenza) :")
-        self.label_residenza.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_residenza)
-
-        self.campo_residenza = QLineEdit()
-        self.campo_residenza.setFont(self.font_campi)
-        self.campo_residenza.setText((self.controller.get_residenza_utente()))
-        self.v_layout.addWidget(self.campo_residenza)
-        self.h_layout = QHBoxLayout()
 
         self.label_codicefiscale = QLabel("Codice Fiscale:")
         self.label_codicefiscale.setFont(self.font_label)
@@ -77,16 +50,6 @@ class view_ModificaUtente(QWidget):
         self.campo_codicefiscale.setText(str(self.controller.get_codicefiscale_utente()))
         self.v_layout.addWidget(self.campo_codicefiscale)
 
-        self.label_email = QLabel("Email :")
-        self.label_email.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_email)
-
-        self.campo_email = QLineEdit()
-        self.campo_email.setFont(self.font_campi)
-        self.campo_email.setText((self.controller.get_email_utente()))
-        self.v_layout.addWidget(self.campo_email)
-        self.h_layout = QHBoxLayout()
-
         self.label_cellulare = QLabel("Cellulare :")
         self.label_cellulare.setFont(self.font_label)
         self.v_layout.addWidget(self.label_cellulare)
@@ -96,6 +59,24 @@ class view_ModificaUtente(QWidget):
         self.campo_cellulare.setText(str(self.controller.get_cellulare_utente()))
         self.v_layout.addWidget(self.campo_cellulare)
         self.h_layout = QHBoxLayout()
+
+        self.label_certificato = QLabel("Certificato:")
+        self.label_certificato.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_certificato)
+
+        self.campo_certificato = QLineEdit()
+        self.campo_certificato.setFont(self.font_campi)
+        self.campo_certificato.setText(self.controller.get_certificato_utente())
+        self.v_layout.addWidget(self.campo_certificato)
+
+        self.label_tipoabbonamento= QLabel("Tipo abbonamento:")
+        self.label_tipoabbonamento.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_tipoabbonamento)
+
+        self.campo_tipoabbonamento = QLineEdit()
+        self.campo_tipoabbonamento.setFont(self.font_campi)
+        self.campo_tipoabbonamento.setText(self.controller.get_tipoabbonamento_utente())
+        self.v_layout.addWidget(self.campo_tipoabbonamento)
 
         self.h_layout = QHBoxLayout()
 
@@ -144,13 +125,12 @@ class view_ModificaUtente(QWidget):
 
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
-        nato = self.campo_nato.text()
-        data = self.campo_data.text()
         codicefiscale = self.campo_codicefiscale.text()
-        residenza = self.campo_residenza.text()
-        email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
-        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "":
+        certificato =self.campo_certificato.text()
+        tipoabbonamento = self.campo_tipoabbonamento.text()
+
+        if nome == "" or cognome == ""  or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -186,15 +166,6 @@ class view_ModificaUtente(QWidget):
                                  QMessageBox.Ok)
             return
 
-        try:
-            nato = str(self.campo_nato.text())
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
-
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
         #
         #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -202,11 +173,9 @@ class view_ModificaUtente(QWidget):
 
         self.controller.set_nome_utente(nome)
         self.controller.set_cognome_utente(cognome)
-        self.controller.set_data_utente(nato)
+        self.controller.set_tipoabbonamento_utente(tipoabbonamento)
         self.controller.set_codicefiscale_utente(codicefiscale)
-        self.controller.set_data_utente(data)
-        self.controller.set_residenza_utente(residenza)
-        self.controller.set_email_utente(email)
+        self.controller.set_certificato_utente(certificato)
         self.controller.set_cellulare_utente(cellulare)
 
         QMessageBox.about(self, "Completata", "Modifica completata")

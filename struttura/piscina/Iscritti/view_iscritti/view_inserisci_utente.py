@@ -30,40 +30,19 @@ class view_InserisciUtente(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome")
+        self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_nome)
 
         self.campo_nome = QLineEdit()
         self.v_layout.addWidget(self.campo_nome)
 
-        self.label_cognome = QLabel("Cognome")
+        self.label_cognome = QLabel("Cognome:")
         self.label_cognome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_cognome)
 
         self.campo_cognome = QLineEdit()
         self.v_layout.addWidget(self.campo_cognome)
-
-        self.label_nato = QLabel("Nato a:")
-        self.label_nato.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nato)
-
-        self.campo_nato = QLineEdit()
-        self.v_layout.addWidget(self.campo_nato)
-
-        self.label_data = QLabel("Data di nascita (gg/mm/aaaa):")
-        self.label_data.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_data)
-
-        self.campo_data = QLineEdit()
-        self.v_layout.addWidget(self.campo_data)
-
-        self.label_residenza = QLabel("Residenza (Via e città di residenza):")
-        self.label_residenza.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_residenza)
-
-        self.campo_residenza = QLineEdit()
-        self.v_layout.addWidget(self.campo_residenza)
 
         self.label_codicefiscale = QLabel("Codice Fiscale:")
         self.label_codicefiscale.setFont(self.font_label)
@@ -72,19 +51,27 @@ class view_InserisciUtente(QWidget):
         self.campo_codicefiscale = QLineEdit()
         self.v_layout.addWidget(self.campo_codicefiscale)
 
-        self.label_email = QLabel("Email :")
-        self.label_email.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_email)
-
-        self.campo_email = QLineEdit()
-        self.v_layout.addWidget(self.campo_email)
-
         self.label_cellulare = QLabel("Cellulare :")
         self.label_cellulare.setFont(self.font_label)
         self.v_layout.addWidget(self.label_cellulare)
 
         self.campo_cellulare = QLineEdit()
         self.v_layout.addWidget(self.campo_cellulare)
+
+        self.label_certificato = QLabel("Certificato :")
+        self.label_certificato.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_certificato)
+
+        self.campo_certificato = QLineEdit()
+        self.v_layout.addWidget(self.campo_certificato)
+
+        self.label_tipoabbonamento = QLabel("Tipo abbonamento :")
+        self.label_tipoabbonamento.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_tipoabbonamento)
+
+        self.campo_tipoabbonamento = QLineEdit()
+        self.v_layout.addWidget(self.campo_tipoabbonamento)
+
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
 
@@ -137,23 +124,13 @@ class view_InserisciUtente(QWidget):
 
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
-        nato = self.campo_nato.text()
-        data = self.campo_data.text()
         codicefiscale = self.campo_codicefiscale.text()
-        residenza = self.campo_residenza.text()
-        email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
-        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" :
+        certificato = self.campo_certificato.text()
+        tipoabbonamento = self.campo_tipoabbonamento.text()
+
+        if nome == "" or cognome == "" or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == ""  :
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        try:
-            data = datetime.strptime(data, "%d/%m/%Y")
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok,
-                                 QMessageBox.Ok)
             return
 
         try:
@@ -185,17 +162,9 @@ class view_InserisciUtente(QWidget):
                                  QMessageBox.Ok)
             return
 
-        try:
-            nato = str(self.campo_nato.text())
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
 
 
-        self.controller.aggiungi_utente(GestioniUtente(nome, cognome,  nato, data, codicefiscale,residenza, email, cellulare))
+        self.controller.aggiungi_utente(GestioniUtente(nome, cognome, codicefiscale,cellulare, certificato, tipoabbonamento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
