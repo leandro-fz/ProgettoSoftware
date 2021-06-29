@@ -1,6 +1,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from struttura.palestra.Iscritti.view_iscritti.view_iscritti import view_iscritti
+
 
 class Ui_gestionepalestra(object):
 
@@ -199,7 +201,8 @@ class Ui_gestionepalestra(object):
         self.iscritti.clicked.connect(self.mostra_iscritti)
 
     def mostra_iscritti(self):
-        pass
+        self.gestioneiscritti = view_iscritti()
+        self.gestioneiscritti.show()
 
     def mostra_corsi(self):
         pass

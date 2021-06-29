@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from struttura.piscina.GestioneIscritti.model_GestioneIscritti.model_Gestioneiscritti import GestioniUtente
+from struttura.palestra.GestioneIscritti.model_GestioneIscritti.model_GestioneIscritti import GestioniUtente
 
 
 class view_InserisciUtente(QWidget):
