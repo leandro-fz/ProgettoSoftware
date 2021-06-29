@@ -24,51 +24,50 @@ class view_ModificaFornitore(QWidget):
 
         self.font_campi = QFont("Yu Gothic UI Light", 16)
 
-        self.label_ente = QLabel("Ente fornitore:")
-        self.label_ente.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ente)
+        self.label_nome = QLabel("Nome azienda:")
+        self.label_nome.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_nome)
 
-        self.campo_ente = QLineEdit()
-        self.campo_ente.setFont(self.font_campi)
-        self.campo_ente.setText(self.controller.get_ente_fornitore())
-        self.v_layout.addWidget(self.campo_ente)
+        self.campo_nome = QLineEdit()
+        self.campo_nome.setFont(self.font_campi)
+        self.campo_nome.setText(self.controller.get_nome_fornitore())
+        self.v_layout.addWidget(self.campo_nome)
 
-        self.label_data = QLabel("Data spedizione ( gg/mm/aaaa) :")
-        self.label_data.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_data)
+        self.label_indirizzo = QLabel("Indirizzo :")
+        self.label_indirizzo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_indirizzo)
 
-        self.campo_data = QLineEdit()
-        self.campo_data.setFont(self.font_campi)
-        self.stringa = str(self.controller.get_data_fornitore().strftime("%d/%m/%Y"))
-        self.campo_data.setText(self.stringa)
-        self.v_layout.addWidget(self.campo_data)
+        self.campo_indirizzo = QLineEdit()
+        self.campo_indirizzo.setFont(self.font_campi)
+        self.campo_indirizzo.setText(self.controller.get_indirizzo_fornitore())
+        self.v_layout.addWidget(self.campo_indirizzo)
 
-        self.label_articolo = QLabel("Articolo:")
-        self.label_articolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_articolo)
+        self.label_citta = QLabel("Città:")
+        self.label_citta.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_citta)
 
-        self.campo_articolo = QLineEdit()
-        self.campo_articolo.setFont(self.font_campi)
-        self.campo_articolo.setText(str(self.controller.get_articolo_fornitore()))
-        self.v_layout.addWidget(self.campo_articolo)
+        self.campo_citta = QLineEdit()
+        self.campo_citta.setFont(self.font_campi)
+        self.campo_citta.setText(self.controller.get_citta_fornitore())
+        self.v_layout.addWidget(self.campo_citta)
 
-        self.label_codicearticolo = QLabel("Codice articolo:")
-        self.label_codicearticolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_codicearticolo)
+        self.label_email = QLabel("Email:")
+        self.label_email.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_email)
 
-        self.campo_codicearticolo = QLineEdit()
-        self.campo_codicearticolo.setFont(self.font_campi)
-        self.campo_codicearticolo.setText(str(self.controller.get_codicearticolo_fornitore()))
-        self.v_layout.addWidget(self.campo_codicearticolo)
+        self.campo_email = QLineEdit()
+        self.campo_email.setFont(self.font_campi)
+        self.campo_email.setText(self.controller.get_email_fornitore())
+        self.v_layout.addWidget(self.campo_email)
 
-        self.label_quantita = QLabel("Quantità:")
-        self.label_quantita.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_quantita)
+        self.label_cellulare = QLabel("Recapito telefonico: ")
+        self.label_cellulare.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_cellulare)
 
-        self.campo_quantita = QLineEdit()
-        self.campo_quantita.setFont(self.font_campi)
-        self.campo_quantita.setText(str(self.controller.get_quantita_fornitore()))
-        self.v_layout.addWidget(self.campo_quantita)
+        self.campo_cellulare = QLineEdit()
+        self.campo_cellulare.setFont(self.font_campi)
+        self.campo_cellulare.setText(str(self.controller.get_cellulare_fornitore()))
+        self.v_layout.addWidget(self.campo_cellulare)
 
         self.label_iva = QLabel("Partita IVA:")
         self.label_iva.setFont(self.font_label)
@@ -92,7 +91,7 @@ class view_ModificaFornitore(QWidget):
         self.bottone_modifica.clicked.connect(self.modifica_fornitore)
         self.bottone_modifica.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_modifica)
-        self.shortcut_modifica = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_modifica = QShortcut(QKeySequence('nomer'), self)
         self.shortcut_modifica.activated.connect(self.modifica_fornitore)
 
         self.v_layout.addLayout(self.h_layout)
@@ -115,60 +114,26 @@ class view_ModificaFornitore(QWidget):
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_codicearticolo_libero(self, codicearticolo):
+    def controlla_email_libero(self, email):
 
         for fornitore in self.lista_fornitori:
-            if fornitore.codicearticolo == codicearticolo:
+            if fornitore.email == email:
                 return False
         return True
 
     def modifica_fornitore(self):
 
-        ente = self.campo_ente.text()
-        data = self.campo_data.text()
-        articolo = self.campo_articolo.text()
-        codicearticolo = self.campo_codicearticolo.text()
-        quantita = self.campo_quantita.text()
+        nome = self.campo_nome.text()
+        indirizzo = self.campo_indirizzo.text()
+        citta = self.campo_citta.text()
+        email = self.campo_email.text()
+        cellulare = self.campo_cellulare.text()
         iva = self.campo_iva.text()
 
 
-        if ente == "" or data == "" or articolo == "" or codicearticolo == "" or quantita == "" or iva == "":
+        if nome == "" or indirizzo == "" or citta == "" or email == "" or cellulare == "" or iva == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        try:
-            codicearticolo = int(self.campo_codicearticolo.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice articolo", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        if codicearticolo <10000:
-
-            QMessageBox.critical(self, "Errore", "Il codice dell'articolo deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        if codicearticolo > 99999:
-
-            QMessageBox.critical(self, "Errore", "Il codice dell'articolo  può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        if self.controller.get_codicearticolo_fornitore() == codicearticolo:
-            pass
-
-        elif not self.controlla_codicearticolo_libero(codicearticolo):
-            QMessageBox.critical(self, "Errore", "Il codice dell'articolo inserito è già stato utilizzato", QMessageBox.Ok,QMessageBox.Ok)
-            return
-
-        try:
-            quantita = float(self.campo_quantita.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri positivi per la quantita", QMessageBox.Ok,QMessageBox.Ok)
-            return
-
-        if quantita <= 0:
-
-            QMessageBox.critical(self, "Errore", "La quantità non può essere negativa", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
@@ -177,24 +142,40 @@ class view_ModificaFornitore(QWidget):
             QMessageBox.critical(self, "Errore", "La Partita IVA non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            data = datetime.strptime(data,"%d/%m/%Y")
+        if iva <10000:
 
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "La Partita IVA deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # if ente == "" or data == "" or articolo == "" or id == 0 or quantita == 0.0:
+        if iva > 99999:
+
+            QMessageBox.critical(self, "Errore", "La Partita IVA può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        if self.controller.get_iva_fornitore() == iva:
+            pass
+
+        elif not self.controlla_iva_libero(iva):
+            QMessageBox.critical(self, "Errore", "La Partita IVA inserita è già stato utilizzata", QMessageBox.Ok,QMessageBox.Ok)
+            return
+
+        try:
+            cellulare = float(self.campo_cellulare.text())
+        except:
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri positivi per la cellulare", QMessageBox.Ok,QMessageBox.Ok)
+            return
+
+
+        # if nome == "" or indirizzo == "" or citta == "" or id == 0 or cellulare == 0.0:
         #
         #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
         #     return
 
-        self.controller.set_ente_fornitore(ente)
-        self.controller.set_data_fornitore(data)
-        self.controller.set_articolo_fornitore(articolo)
-        self.controller.set_codicearticolo_fornitore(codicearticolo)
-        self.controller.set_quantita_fornitore(quantita)
+        self.controller.set_nome_fornitore(nome)
+        self.controller.set_indirizzo_fornitore(indirizzo)
+        self.controller.set_citta_fornitore(citta)
+        self.controller.set_email_fornitore(email)
+        self.controller.set_cellulare_fornitore(cellulare)
         self.controller.set_iva_fornitore(iva)
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()

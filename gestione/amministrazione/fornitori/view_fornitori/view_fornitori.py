@@ -91,7 +91,7 @@ class view_fornitori(QWidget):
 
         for fornitore in self.controller.get_lista_fornitori():
             item = QStandardItem()
-            item.setText(fornitore.ente )
+            item.setText(fornitore.nome )
             item.setEditable(False)
             item.setFont(self.font_item)
             self.list_view_model.appendRow(item)
@@ -119,7 +119,7 @@ class view_fornitori(QWidget):
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_fornitore_by_codicearticolo(da_eliminare.codicearticolo)
+            self.controller.elimina_fornitore_by_iva(da_eliminare.iva)
             QMessageBox.about(self, "Eliminato", "Il fornitore è stato eliminato")
             self.aggiorna_dati()
         else:
