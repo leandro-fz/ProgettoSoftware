@@ -2,10 +2,10 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout
 from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
 
 # Prenotazione/views/VistaPrenotazione/
-class VistaPrenotazione(QWidget):
+class VistaPrenotazioneTennis(QWidget):
 
     def __init__(self, controllore_prenotazione, parent=None):
-        super(VistaPrenotazione, self).__init__(parent)
+        super(VistaPrenotazioneTennis, self).__init__(parent)
         self.controllore_prenotazione = controllore_prenotazione
         self.font_label = QFont("Arial", 14)
 

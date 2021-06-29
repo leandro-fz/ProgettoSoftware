@@ -20,6 +20,7 @@ from PyQt5.QtGui import *
 
 from struttura.tennis.prenotazioniTennis.view_prenotazioniTennis.VistalistaprenotazioniTutte_tennis import \
     VistaListaPrenotazioniTutte
+from struttura.tennis.view.view_day_tennis import view_day_tennis
 from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenotazioneTennis
 
 
@@ -48,13 +49,8 @@ class view_tennis(QWidget):
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
         self.shortcut_indietro.activated.connect(self.mostra_indietro_tennis)
 
-        self.crea_pulsante("Vedi", self.mostra_vedi)
 
-        self.crea_pulsante("Nuova prenotazione", self.mostra_nuova_prenotazione_tennis)
-
-        # self.crea_pulsante("Apri prenotazione", self.mostra_apri_prenotazione_tennis)
-        self.crea_pulsante("Elimina prenotazione", self.mostra_elimina_prenotazione_tennis)
-
+        self.crea_pulsante("Mostra giorno", self.mostra_view_day_tennis)
 
         self.crea_pulsante("Mostra tutte", self.mostra_tutte_prenotazioni_tennis)
 
@@ -85,17 +81,18 @@ class view_tennis(QWidget):
     def mostra_indietro_tennis(self):
         self.close()
 
-    def mostra_vedi(self):
-        pass
+    # def mostra_vedi(self):
+    #     pass
         # data_selezionata = self.calendario.selectedDate()
         # self.data_selezionata = datetime(data_selezionata.year(), data_selezionata.month(), data_selezionata.day())
         # self.lista_prenotazioni_by_data_Selezionata = VistaListaPrenotazioniAdmin(self.data_inizio)
         # self.lista_prenotazioni_by_data_Selezionata.show()
 
-    def mostra_nuova_prenotazione_tennis(self):
-        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.aggiorna_dati_prenotazioni)
-        self.vista_nuova_prenotazione.show()
-
+    def mostra_view_day_tennis(self):
+        dataq = self.calendario.selectedDate()
+        self.datai = datetime(dataq.year(), dataq.month(), dataq.day())
+        self.lista_prenotazioni_day = view_day_tennis(self.datai)
+        self.lista_prenotazioni_day.show()
     # def mostra_apri_prenotazione_tennis(self):
     #     try:
     #         indice = self.lista_prenotazioni.selectedIndexes()[0].row()
@@ -107,22 +104,22 @@ class view_tennis(QWidget):
     #     self.vista_prenotazione = view_nuovaPrenotazioneTennis(ControllorePrenotazioneTennis(da_visualizzare))
     #     self.vista_prenotazione.show()
 
-    def mostra_elimina_prenotazione_tennis(self):
-        try:
-            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-            da_eliminare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
-            return
-
-        risposta = QMessageBox.question(self, "Elimina prenotazione",
-                               "Elimare la prenotazione selezionata?", QMessageBox.Yes, QMessageBox.No)
-        if risposta == QMessageBox.Yes:
-            self.controllore_lista_prenotazioni.elimina_prenotazione_singola( da_eliminare.data_inizio)
-            self.controllore_lista_prenotazioni.save_data()
-            self.aggiorna_dati_prenotazioni()
-        else:
-            return
+    # def mostra_elimina_prenotazione_tennis(self):
+    #     try:
+    #         indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+    #         da_eliminare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_cliente()[indice]
+    #     except:
+    #         QMessageBox.critical(self, "Errore", "Seleziona la prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
+    #         return
+    #
+    #     risposta = QMessageBox.question(self, "Elimina prenotazione",
+    #                            "Elimare la prenotazione selezionata?", QMessageBox.Yes, QMessageBox.No)
+    #     if risposta == QMessageBox.Yes:
+    #         self.controllore_lista_prenotazioni.elimina_prenotazione_singola( da_eliminare.data_inizio)
+    #         self.controllore_lista_prenotazioni.save_data()
+    #         self.aggiorna_dati_prenotazioni()
+    #     else:
+    #         return
 
     def mostra_tutte_prenotazioni_tennis(self):
         return
