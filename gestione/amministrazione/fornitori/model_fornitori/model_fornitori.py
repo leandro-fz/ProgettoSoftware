@@ -16,9 +16,9 @@ class Insieme_Fornitori():
     def aggiungi_fornitore(self, fornitore):
         self.lista_fornitori.append(fornitore)
 
-    def rimuovi_fornitore_by_codicearticolo(self, codicearticolo):
+    def rimuovi_fornitore_by_iva(self, iva):
         for fornitore in self.lista_fornitori:
-            if fornitore.codicearticolo == codicearticolo:
+            if fornitore.iva== iva:
                 self.lista_fornitori.remove(fornitore)
                 return True
         return False
@@ -26,9 +26,9 @@ class Insieme_Fornitori():
     def get_lista_fornitori(self):
         return self.lista_fornitori
 
-    def get_fornitore_by_codicearticolo(self, codicearticolo):
+    def get_fornitore_by_iva(self, iva):
         for fornitore in self.lista_fornitori:
-            if fornitore.codicearticolo == codicearticolo:
+            if fornitore.iva== iva:
                 return fornitore
         return None
 
