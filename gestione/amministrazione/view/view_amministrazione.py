@@ -116,7 +116,7 @@ class Ui_Gestioneamministrazione(object):
         self.fonitori.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.fonitori.setDefault(False)
         self.fonitori.setFlat(False)
-        self.fonitori.setObjectName("fonitori")
+        self.fonitori.setObjectName("Fonitori")
         self.gestionedipendenti = QtWidgets.QPushButton(self.centralwidget)
         self.gestionedipendenti.setGeometry(QtCore.QRect(290, 210, 200, 50))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)

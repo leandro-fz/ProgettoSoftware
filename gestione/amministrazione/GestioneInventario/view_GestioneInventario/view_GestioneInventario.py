@@ -38,7 +38,7 @@ class view_ModificaInventario(QWidget):
 
         self.campo_quantita = QLineEdit()
         self.campo_quantita.setFont(self.font_campi)
-        self.campo_quantita.setText(self.controller.get_quantita_inventario())
+        self.campo_quantita.setText(str(self.controller.get_quantita_inventario()))
         self.v_layout.addWidget(self.campo_quantita)
 
         self.label_codice = QLabel("Codice articolo:")
@@ -77,7 +77,7 @@ class view_ModificaInventario(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("inventario")
+        self.setWindowTitle("Inventario")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
@@ -134,13 +134,14 @@ class view_ModificaInventario(QWidget):
         if self.controller.get_codice_inventario() == codice:
             pass
 
-        elif not self.controlla_id_libero(codice):
+        elif not self.controlla_codice_libero(codice):
 
             QMessageBox.critical(self, "Errore", "Articolo già inserito. Modifica la quantità", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         try:
             prezzo = float(self.campo_prezzo.text())
+
         except:
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per il prezzo", QMessageBox.Ok,QMessageBox.Ok)
             return
@@ -153,8 +154,9 @@ class view_ModificaInventario(QWidget):
 
         self.controller.set_articolo_inventario(articolo)
         self.controller.set_quantita_inventario(quantita)
-        self.controller.set_id_inventario(codice)
+        self.controller.set_codice_inventario(codice)
         self.controller.set_prezzo_inventario(prezzo)
+
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()

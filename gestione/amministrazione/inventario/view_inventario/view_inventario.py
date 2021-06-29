@@ -117,7 +117,7 @@ class view_inventario(QWidget):
 
         if risposta == QMessageBox.Yes:
 
-            self.controller.elimina_inventario_by_id(da_eliminare.id)
+            self.controller.elimina_inventario_by_codice(da_eliminare.codice)
             QMessageBox.about(self, "Eliminato", "L'articolo è stato eliminato")
             self.aggiorna_dati()
         else:

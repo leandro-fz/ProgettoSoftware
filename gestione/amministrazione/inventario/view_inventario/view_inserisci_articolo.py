@@ -34,15 +34,15 @@ class view_InserisciInventario(QWidget):
         self.v_layout.addWidget(self.label_articolo)
 
         self.campo_articolo = QLineEdit()
-        self.v_layout.addWidget(self.campo_nome)
+        self.v_layout.addWidget(self.campo_articolo)
 
 
         self.label_quantita = QLabel("Quantità: ")
-        self.label_ruolo.setFont(self.font_label)
+        self.label_quantita.setFont(self.font_label)
         self.v_layout.addWidget(self.label_quantita)
 
         self.campo_quantita = QLineEdit()
-        self.v_layout.addWidget(self.campo_ruolo)
+        self.v_layout.addWidget(self.campo_quantita)
 
         self.label_codice= QLabel("Codice articolo: ")
         self.label_codice.setFont(self.font_label)
@@ -135,23 +135,24 @@ class view_InserisciInventario(QWidget):
             QMessageBox.critical(self, "Errore", "Il codice può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if not self.controlla_id_libero(codice):
+        if not self.controlla_codice_libero(codice):
 
             QMessageBox.critical(self, "Errore", "Articolo già inserito. Modifica la quantità.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
             prezzo = float(self.campo_prezzo.text())
+
         except:
 
             QMessageBox.critical(self, "Errore", "Solo numeri con punto per il prezzo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
+
         if prezzo <= 0:
 
             QMessageBox.critical(self, "Errore", "Il prezzo dell'articolo deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
             return
-
 
 
         self.controller.aggiungi_inventario(GestioniInventario(articolo,quantita, codice, prezzo))
@@ -163,7 +164,7 @@ class view_InserisciInventario(QWidget):
         self.close()
 
 
-    def controlla_id_libero(self, codice):
+    def controlla_codice_libero(self, codice):
 
         for inventario in self.controller.get_lista_inventario():
             if inventario.codice == codice:
