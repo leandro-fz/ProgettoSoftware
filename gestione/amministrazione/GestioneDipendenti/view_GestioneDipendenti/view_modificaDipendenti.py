@@ -40,6 +40,43 @@ class view_ModificaDipendente(QWidget):
         self.campo_cognome.setText(self.controller.get_cognome_dipendente())
         self.v_layout.addWidget(self.campo_cognome)
 
+        self.label_luogo = QLabel("Luogo di nascita:")
+        self.label_luogo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_luogo)
+
+        self.campo_luogo = QLineEdit()
+        self.campo_luogo.setFont(self.font_campi)
+        self.campo_luogo.setText(self.controller.get_luogo_dipendente())
+        self.v_layout.addWidget(self.campo_luogo)
+
+        self.label_data = QLabel("Data di nascita (gg/mm/aaaa):")
+        self.label_data.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_data)
+
+        self.campo_data = QLineEdit()
+        self.campo_data.setFont(self.font_campi)
+        self.stringa = str(self.controller.get_data_dipendente().strftime("%d/%m/%Y"))
+        self.campo_data.setText(self.stringa)
+        self.v_layout.addWidget(self.campo_data)
+
+        self.label_codice = QLabel("Codice fiscale:")
+        self.label_codice.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_codice)
+
+        self.campo_codice = QLineEdit()
+        self.campo_codice.setFont(self.font_campi)
+        self.campo_codice.setText(self.controller.get_codice_dipendente())
+        self.v_layout.addWidget(self.campo_codice)
+
+        self.label_contratto = QLabel("Tipo di contratto:")
+        self.label_contratto.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_contratto)
+
+        self.campo_contratto = QLineEdit()
+        self.campo_contratto.setFont(self.font_campi)
+        self.campo_contratto.setText(self.controller.get_contratto_dipendente())
+        self.v_layout.addWidget(self.campo_contratto)
+
         self.label_ruolo = QLabel("Ruolo:")
         self.label_ruolo.setFont(self.font_label)
         self.v_layout.addWidget(self.label_ruolo)
