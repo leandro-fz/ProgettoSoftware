@@ -98,8 +98,8 @@ class view_ModificaMovimento(QWidget):
 
     def controlla_fattura_libero(self, fattura):
 
-        for movimenti in self.lista_movimenti:
-            if movimenti.fattura == fattura:
+        for movimento in self.lista_movimenti:
+            if movimento.fattura == fattura:
                 return False
         return True
 
@@ -137,13 +137,13 @@ class view_ModificaMovimento(QWidget):
             return
 
 
-        if self.controller.get_fattura_inventario() == fattura:
-            pass
+        #if self.controller.get_fattura_inventario() == fattura:
+           # pass
 
-        elif not self.controlla_fattura_libero(fattura):
+        #elif not self.controlla_fattura_libero(fattura):
 
-            QMessageBox.critical(self, "Errore", "Numero fattura già inserito.", QMessageBox.Ok,QMessageBox.Ok)
-            return
+           # QMessageBox.critical(self, "Errore", "Numero fattura già inserito.", QMessageBox.Ok,QMessageBox.Ok)
+           #return
 
 
         self.controller.set_importo_movimenti(importo)

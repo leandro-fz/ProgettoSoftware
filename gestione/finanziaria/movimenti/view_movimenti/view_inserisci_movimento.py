@@ -149,6 +149,12 @@ class view_InserisciMovimenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        if not self.controlla_fattura_libero(fattura):
+
+            QMessageBox.critical(self, "Errore", "Numero di fattura già inserito.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+
         self.controller.aggiungi_movimenti(GestioneMovimenti(importo, data, causale, fattura))
         self.controller.save_data()
 
