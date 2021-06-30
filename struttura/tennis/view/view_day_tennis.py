@@ -33,7 +33,7 @@ from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenota
 
 class view_day_tennis(QWidget):
 
-    def __init__(self, data=None, parent=None):
+    def __init__(self, data, parent=None):
         super(view_day_tennis, self).__init__(parent)
         self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
         self.data = data
@@ -109,8 +109,7 @@ class view_day_tennis(QWidget):
         self.close()
 
     def mostra_aggiungi(self):
-        pass
-        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.aggiorna_dati_prenotazioni)
+        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.data, self.aggiorna_dati_prenotazioni)
         self.vista_nuova_prenotazione.show()
 
     def mostra_elimina(self):

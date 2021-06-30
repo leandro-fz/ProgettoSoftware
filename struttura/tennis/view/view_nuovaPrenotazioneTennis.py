@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QComb
     QPushButton
 from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox, QComboBox
 from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
 from datetime import datetime
 
@@ -24,80 +24,107 @@ from struttura.tennis.prenotazioniTennis.model_prenotazioniTennis.model_prenotaz
 
 class view_nuovaPrenotazioneTennis(QWidget):
 
-    def __init__(self, aggiorna_dati_prenotazioni, parent=None):
+    def __init__(self, data, aggiorna_dati_prenotazioni, parent=None):
         super(view_nuovaPrenotazioneTennis, self).__init__(parent)
         self.font = QFont("Yu Gothic UI Light", 15)
         self.aggiorna_dati_prenotazioni = aggiorna_dati_prenotazioni
+        self.data = data
+        self.v_layout = QVBoxLayout()
+        self.font_label = QFont("Yu Gothic UI Light", 15)
+        self.font_label.setBold(True)
 
-        self.layout = QGridLayout()
+        self.font_label2 = QFont("Yu Gothic UI Light", 15)
+        self.label_alto = QLabel("Compila il form di inserimento del movimento")
+        self.label_alto.setFont(self.font_label2)
+        self.v_layout.addWidget(self.label_alto)
 
-        # prenotazione data inizio vacanza
-        self.label_inizio = QLabel("Seleziona il giorno:")
-        self.layout.addWidget(self.label_inizio, 0, 0)
+        # self.v_layout.addSpacing(10)
 
-        self.calendario = QCalendarWidget()
-        self.calendario.setGridVisible(True)
-        self.calendario.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
-        # if datetime.now() > datetime(2021, 6, 1):
-        #     self.calendario.setMinimumDate(QDate(datetime.now().year, datetime.now().month, datetime.now().day))
-        # else:
-        self.calendario.setMinimumDate(QDate(2021, 5, 1))
-        # self.calendario.setMaximumDate(QDate(2022, 12, 30))
+        self.label_importo = QLabel("Prenotatore")
+        self.label_importo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_importo)
+
+        self.campo_importo = QLineEdit()
+        self.v_layout.addWidget(self.campo_importo)
+
+        #orario
+        self.label_data = QLabel("Orario")
+        self.label_data.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_data)
+
+        # self.campo_data = QLineEdit()
+        # self.v_layout.addWidget(self.campo_data)
+
+        self.combo = QComboBox(self)
+        self.combo.addItem("08:00-09:00")
+        self.combo.addItem("09:00-10:00")
+        self.combo.addItem("10:00-11:00")
+        self.combo.addItem("11:00-12:00")
+        self.combo.addItem("12:00-13:00")
+        self.combo.addItem("13:00-14:00")
+        self.combo.addItem("14:00-15:00")
+        self.combo.addItem("15:00-16:00")
+        self.combo.addItem("16:00-17:00")
+        self.combo.addItem("18:00-19:00")
+        self.combo.addItem("19:00-20:00")
+        self.combo.addItem("20:00-21:00")
+        self.combo.addItem("21:00-22:00")
+        self.combo.addItem("22:00-23:00")
+
+        self.v_layout.addWidget(self.combo)
+
+
+        # self.combo = QComboBox("Orario")
+        # self.combo.setFont(self.font_label)
+        # self.combo.setItemText(0, "0")
+        # self.combo.setItemText(1, "2")
+        # self.v_layout.addWidget(self.combo)
         #
-        # cell_inizio_start = QTextCharFormat()
-        # cell_inizio_start.setBackground(QColor("white"))
-        # cell_inizio_stop = QTextCharFormat()
-        # cell_inizio_stop.setBackground(QColor("red"))
-        # self.calendario.setDateTextFormat(self.calendario.selectedDate(), cell_inizio_start)
-        # self.calendario.setDateTextFormat(QDate(2021,9,23), cell_inizio_stop)
+        # self.campo_combo = QLineEdit()
+        # self.v_layout.addWidget(self.campo_combo)
 
-        self.layout.addWidget(self.calendario)
+        self.label_causale = QLabel("Causale")
+        self.label_causale.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_causale)
 
-        #
-        # self.calendario_fine = QCalendarWidget()
-        # self.calendario_fine.setGridVisible(True)
-        # self.calendario_fine.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
-        # if datetime.now() > datetime(2021, 6, 1):
-        #     self.calendario_fine.setMinimumDate(QDate(datetime.now().year, datetime.now().month, datetime.now().day))
-        # else:
-        #     self.calendario_fine.setMinimumDate(QDate(2021, 6, 1))
-        # self.calendario_fine.setMaximumDate(QDate(2021, 9, 15))
-        #
-        # cell_fine_stop = QTextCharFormat()
-        # cell_fine_stop.setBackground(QColor("red"))
-        # self.calendario_fine.setDateTextFormat(QDate(2021, 9, 15), cell_fine_stop)
+        self.campo_causale = QLineEdit()
+        self.v_layout.addWidget(self.campo_causale)
 
-        # self.layout.addWidget(self.calendario_fine, 1, 1)
+        self.label_fattura = QLabel("Numero fattura")
+        self.label_fattura.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_fattura)
 
-        # selezione tipologia di alloggio
-        # self.label_alloggio = QLabel("Seleziona il tipo di alloggio:")
-        # self.layout.addWidget(self.label_alloggio, 3, 0)
+        self.campo_fattura = QLineEdit()
+        self.v_layout.addWidget(self.campo_fattura)
 
-        # self.h_layout = QHBoxLayout()
+        self.v_layout.addSpacing(10)
+        self.font_label.setBold(False)
 
-        self.bottone_indietro = QPushButton("⬅️")
-        self.bottone_indietro.setFont(QFont("Yu Gothic UI Light", 15, 15, True))
-        self.bottone_indietro.clicked.connect(self.indietro_prenotazione)
-        self.layout.addWidget(self.bottone_indietro)
-        self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
-        self.shortcut_indietro.activated.connect(self.indietro_prenotazione)
-        self.bottone_indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.h_layout = QHBoxLayout()
 
+        self.bottone_annulla = QPushButton("Annulla")
+        self.bottone_annulla.setFont(self.font_label)
+        self.bottone_annulla.clicked.connect(self.mostra_annulla_ins)
+        self.h_layout.addWidget(self.bottone_annulla)
+        self.bottone_annulla.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.bottone_conferma = QPushButton("Conferma")
-        self.bottone_conferma.setFont(QFont("Yu Gothic UI Light", 15, 15, True))
-        self.bottone_conferma.clicked.connect(self.aggiungi_prenotazione)
-        self.layout.addWidget(self.bottone_conferma)
-        self.shortcut_conferma = QShortcut(QKeySequence('Enter'), self)
-        self.shortcut_conferma.activated.connect(self.aggiungi_prenotazione)
+        self.h_layout.addWidget(self.bottone_conferma)
+        self.bottone_conferma.clicked.connect(self.conferma_inserimento)
+        self.bottone_conferma.setFont(self.font_label)
         self.bottone_conferma.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.shortcut_conferma = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_conferma.activated.connect(self.conferma_inserimento)
 
-        # self.layout.addLayout(self.h_layout)
+        self.v_layout.addLayout(self.h_layout)
+        self.setLayout(self.v_layout)
+        self.setWindowTitle("Inserimento movimento")
+        self.resize(300, 400)
 
-        self.setLayout(self.layout)
+        self.setLayout(self.v_layout)
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco Prenotazioni Tennis")
+
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -107,24 +134,34 @@ class view_nuovaPrenotazioneTennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    def mostra_annulla_ins(self):
+        reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No,
+                                     QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.close()
+        else:
+            return
+
+
     def indietro_prenotazione(self):
         self.close()
 
-    def aggiungi_prenotazione(self):
-        data1 = self.calendario.selectedDate()
-        data = datetime(data1.year(), data1.month(), data1.day())
-
-        prenotazione = model_PrenotazioniTennis(data)
-
-        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è "
-                                        + str(prenotazione.get_prezzo_totale()) + "\n\nConfermare?",
-                                        QMessageBox.Yes, QMessageBox.No)
-        if risposta == QMessageBox.No:
-            return
-        else:
-            controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-            controllore_lista_prenotazioni.aggiungi_prenotazione_tennis(prenotazione)
-            QMessageBox.about(self, "Confermata", "Prenotazione confermata")
-            controllore_lista_prenotazioni.save_data()
-            self.aggiorna_dati_prenotazioni()
-            self.close()
+    def conferma_inserimento(self):
+        pass
+        # data1 = self.calendario.selectedDate()
+        # data = datetime(data1.year(), data1.month(), data1.day())
+        #
+        # prenotazione = model_PrenotazioniTennis(data)
+        #
+        # risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è "
+        #                                 + str(prenotazione.get_prezzo_totale()) + "\n\nConfermare?",
+        #                                 QMessageBox.Yes, QMessageBox.No)
+        # if risposta == QMessageBox.No:
+        #     return
+        # else:
+        #     controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+        #     controllore_lista_prenotazioni.aggiungi_prenotazione_tennis(prenotazione)
+        #     QMessageBox.about(self, "Confermata", "Prenotazione confermata")
+        #     controllore_lista_prenotazioni.save_data()
+        #     self.aggiorna_dati_prenotazioni()
+        #     self.close()

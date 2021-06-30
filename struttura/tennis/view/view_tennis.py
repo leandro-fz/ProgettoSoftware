@@ -41,6 +41,10 @@ class view_tennis(QWidget):
         self.calendario.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
         self.calendario.setMinimumDate(QDate(2021, 5, 1))
 
+
+        data_di_oggi = QTextCharFormat()
+        data_di_oggi.setBackground(QColor("yellow"))
+        self.calendario.setDateTextFormat(QDate(datetime.now()),data_di_oggi )
         self.g_layout.addWidget(self.calendario, 1, 0)
 
         self.h_layout = QHBoxLayout()
