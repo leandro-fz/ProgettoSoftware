@@ -21,11 +21,11 @@ class view_InserisciDipendente(QWidget):
         self.aggiorna_lista = aggiorna_lista
 
         self.v_layout = QVBoxLayout()
-        self.font_label = QFont("Yu Gothic UI Light", 15)
+        self.font_label = QFont("Yu Gothic UI Light", 14)
         self.font_label.setBold(True)
 
 
-        self.font_label2 = QFont("Yu Gothic UI Light", 20)
+        self.font_label2 = QFont("Yu Gothic UI Light", 18)
         self.label_alto = QLabel("Compila il form di inserimento del dipendente")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
@@ -125,14 +125,14 @@ class view_InserisciDipendente(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 590)
+        self.setMaximumSize(781, 590)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 591))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
