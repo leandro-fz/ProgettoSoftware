@@ -100,8 +100,17 @@ class view_InserisciAbbonamento(QWidget):
         self.label_tipoabbonamento.setFont(self.font_label)
         self.v_layout.addWidget(self.label_tipoabbonamento)
 
-        self.campo_tipoabbonamento = QLineEdit()
+        self.campo_tipoabbonamento = QComboBox(self)
+        self.campo_tipoabbonamento.addItem("settimanale")
+        self.campo_tipoabbonamento.addItem("mensile")
+        self.campo_tipoabbonamento.addItem("trimestrale")
+        self.campo_tipoabbonamento.addItem("semestrale")
+        self.campo_tipoabbonamento.addItem("annuale")
+
         self.v_layout.addWidget(self.campo_tipoabbonamento)
+
+        self.campo_tipoabbonamento = QLineEdit()
+        #self.v_layout.addWidget(self.campo_struttura)
 
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)

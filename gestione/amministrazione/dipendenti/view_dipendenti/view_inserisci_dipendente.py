@@ -81,6 +81,7 @@ class view_InserisciDipendente(QWidget):
         self.campo_contratto = QLineEdit()
         self.v_layout.addWidget(self.campo_contratto)
 
+
         self.label_id = QLabel("ID (5 numeri): ")
         self.label_id.setFont(self.font_label)
         self.v_layout.addWidget(self.label_id)
