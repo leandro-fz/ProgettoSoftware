@@ -113,9 +113,17 @@ class view_ModificaAbbonamento(QWidget):
         self.label_tipoabbonamento.setFont(self.font_label)
         self.v_layout.addWidget(self.label_tipoabbonamento)
 
-        self.campo_tipoabbonamento = QLineEdit()
-        self.campo_tipoabbonamento.setFont(self.font_campi)
-        self.campo_tipoabbonamento.setText((self.controller.get_tipoabbonamento_abbonamento()))
+        self.campo_tipoabbonamento = QComboBox(self)
+        self.campo_tipoabbonamento.addItem("settimanale")
+        self.campo_tipoabbonamento.addItem("mensile")
+        self.campo_tipoabbonamento.addItem("trimestrale")
+        self.campo_tipoabbonamento.addItem("semestrale")
+        self.campo_tipoabbonamento.addItem("annuale")
+
+        self.v_layout.addWidget(self.campo_tipoabbonamento)
+
+        #self.campo_tipoabbonamento = QLineEdit()
+        self.campo_tipoabbonamento.setCurrentText((self.controller.get_tipoabbonamento_abbonamento()))
         self.v_layout.addWidget(self.campo_tipoabbonamento)
         self.h_layout = QHBoxLayout()
 
@@ -140,12 +148,12 @@ class view_ModificaAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 660)
-        self.setMaximumSize(781, 660)
+        self.setMinimumSize(781, 720)
+        self.setMaximumSize(781, 720)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 661))
+        sImage = oImage.scaled(QSize(791, 721))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -172,11 +180,11 @@ class view_ModificaAbbonamento(QWidget):
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
         struttura = self.campo_struttura.text()
-        tipoabbonamento = self.campo_tipoabbonamento.text()
+        tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
 
 
 
-        if nome == "" or cognome == "" or nato == "" or data == ""  or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
+        if nome == "" or cognome == "" or nato == "" or data == ""  or codicefiscale == "" or residenza == "" or email == "" or cellulare == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return

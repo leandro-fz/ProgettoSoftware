@@ -109,7 +109,7 @@ class view_InserisciAbbonamento(QWidget):
 
         self.v_layout.addWidget(self.campo_tipoabbonamento)
 
-        self.campo_tipoabbonamento = QLineEdit()
+        #self.campo_tipoabbonamento = QLineEdit()
         #self.v_layout.addWidget(self.campo_struttura)
 
         self.v_layout.addSpacing(10)
@@ -140,14 +140,14 @@ class view_InserisciAbbonamento(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 680)
-        self.setMaximumSize(781, 680)
+        self.setMinimumSize(781, 710)
+        self.setMaximumSize(781, 710)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 681))
+        sImage = oImage.scaled(QSize(791, 711))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -171,9 +171,10 @@ class view_InserisciAbbonamento(QWidget):
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
         struttura = self.campo_struttura.text()
-        tipoabbonamento = self.campo_tipoabbonamento.text()
+        tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
 
-        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
+
+        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" :
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
