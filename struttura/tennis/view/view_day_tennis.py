@@ -123,13 +123,13 @@ class view_day_tennis(QWidget):
 
             if self.data == prenotazione.data:
                 item = QStandardItem()
-                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y"))
+                item.setText("Prenotazione del del " + prenotazione.data.strftime("%d/%m/%Y"))
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_prenotazioni.appendRow(item)
             elif self.data is None:
                 item = QStandardItem()
-                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y"))
+                item.setText("Prenotazione del "  + prenotazione.data.strftime("%d/%m/%Y"))
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_prenotazioni.appendRow(item)
@@ -142,7 +142,7 @@ class view_day_tennis(QWidget):
             if self.data is not None:
                 lista_prenotazioni_filtrata = []
                 for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
-                    if prenotazione.data == self.data:
+                    if prenotazione.giorno == self.data:
                         lista_prenotazioni_filtrata.append(prenotazione)
                 da_visualizzare = lista_prenotazioni_filtrata[indice]
             else:

@@ -12,7 +12,6 @@ class ListaPrenotazioniTennis():
                 except EOFError:
                     return
 
-    #Aggiungo una prenotazione e riordino la lista in base alle date
     def aggiungi_prenotazione(self, prenotazione):
         self.lista_prenotazioni.append(prenotazione)
         # self.lista_prenotazioni.sort()
