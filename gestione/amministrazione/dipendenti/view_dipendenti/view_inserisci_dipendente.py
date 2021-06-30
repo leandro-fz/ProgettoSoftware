@@ -60,7 +60,7 @@ class view_InserisciDipendente(QWidget):
         self.campo_luogo = QLineEdit()
         self.v_layout.addWidget(self.campo_luogo)
 
-        self.label_data = QLabel("Data di nascita: ")
+        self.label_data = QLabel("Data di nascita (gg/mm/aaaa): ")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
@@ -125,14 +125,14 @@ class view_InserisciDipendente(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 590)
-        self.setMaximumSize(781, 590)
+        self.setMinimumSize(781, 610)
+        self.setMaximumSize(781, 610)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 591))
+        sImage = oImage.scaled(QSize(791, 611))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
