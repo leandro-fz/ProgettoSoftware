@@ -57,3 +57,4 @@ class Controller_GestioneDipendenti():
 
     def set_stipendio_dipendente(self, stipendio):
         self.model.stipendio = stipendio
+

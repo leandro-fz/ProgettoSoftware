@@ -106,11 +106,7 @@ class view_InserisciAbbonamento(QWidget):
         self.campo_tipoabbonamento.addItem("trimestrale")
         self.campo_tipoabbonamento.addItem("semestrale")
         self.campo_tipoabbonamento.addItem("annuale")
-
         self.v_layout.addWidget(self.campo_tipoabbonamento)
-
-        #self.campo_tipoabbonamento = QLineEdit()
-        #self.v_layout.addWidget(self.campo_struttura)
 
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)

@@ -11,3 +11,10 @@ class GestioniDipendente():
         self.ruolo = ruolo
         self.id = id
         self.stipendio = stipendio
+
+   # def get_stipendio_totale(self):
+    #    prezzo_stipendio = self.contratto
+     #   return prezzo_stipendio
+
+    #def set_stipendiototale_dipendente(self, stipendiototale):
+     #   self.model.stipendiototale = stipendiototale

@@ -36,3 +36,4 @@ class Insieme_Dipendenti():
         if os.path.isfile("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle"):
             with open("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle", "wb") as handle:
                 pickle.dump(self.lista_dipendenti, handle, pickle.HIGHEST_PROTOCOL)
+

@@ -70,23 +70,31 @@ class view_ModificaDipendente(QWidget):
         self.campo_codice.setText(self.controller.get_codice_dipendente())
         self.v_layout.addWidget(self.campo_codice)
 
-        self.label_contratto = QLabel("Tipo di contratto:")
+        self.label_contratto = QLabel("Ore di lavoro:")
         self.label_contratto.setFont(self.font_label)
         self.v_layout.addWidget(self.label_contratto)
 
         self.campo_contratto = QLineEdit()
         self.campo_contratto.setFont(self.font_campi)
-        self.campo_contratto.setText(self.controller.get_contratto_dipendente())
+        self.campo_contratto.setText(str(self.controller.get_contratto_dipendente()))
         self.v_layout.addWidget(self.campo_contratto)
 
         self.label_ruolo = QLabel("Ruolo:")
         self.label_ruolo.setFont(self.font_label)
         self.v_layout.addWidget(self.label_ruolo)
 
-        self.campo_ruolo = QLineEdit()
-        self.campo_ruolo.setFont(self.font_campi)
-        self.campo_ruolo.setText(self.controller.get_ruolo_dipendente())
+        self.campo_ruolo = QComboBox(self)
+        self.campo_ruolo.addItem("settimanale")
+        self.campo_ruolo.addItem("mensile")
+        self.campo_ruolo.addItem("trimestrale")
+        self.campo_ruolo.addItem("semestrale")
+        self.campo_ruolo.addItem("annuale")
+
         self.v_layout.addWidget(self.campo_ruolo)
+
+        self.campo_ruolo.setCurrentText((self.controller.get_ruolo_dipendente()))
+        self.v_layout.addWidget(self.campo_ruolo)
+        self.h_layout = QHBoxLayout()
 
         self.label_id = QLabel("ID:")
         self.label_id.setFont(self.font_label)
@@ -128,12 +136,12 @@ class view_ModificaDipendente(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 590)
-        self.setMaximumSize(781, 590)
+        self.setMinimumSize(781, 610)
+        self.setMaximumSize(781, 610)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 591))
+        sImage = oImage.scaled(QSize(791, 611))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -157,7 +165,7 @@ class view_ModificaDipendente(QWidget):
         data = self.campo_data.text()
         codice = self.campo_codice.text()
         contratto = self.campo_contratto.text()
-        ruolo = self.campo_ruolo.text()
+        ruolo = str(self.campo_ruolo.currentText())
         id = self.campo_id.text()
         stipendio = self.campo_stipendio.text()
 

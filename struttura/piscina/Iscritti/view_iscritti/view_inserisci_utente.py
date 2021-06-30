@@ -1,11 +1,10 @@
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QComboBox
 from PyQt5.QtGui import *
 from PyQt5 import QtGui, QtCore, QtWidgets
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from datetime import datetime
 
 from struttura.piscina.GestioneIscritti.model_GestioneIscritti.model_Gestioneiscritti import GestioniUtente
 
@@ -64,6 +63,9 @@ class view_InserisciUtente(QWidget):
 
         self.campo_certificato = QLineEdit()
         self.v_layout.addWidget(self.campo_certificato)
+
+        self.checkbox_certificato = QCheckBox("Idoneità certificato medico")
+        self.layout.addWidget(self.checkbox_certificato, 4, 1)
 
         self.label_tipoabbonamento = QLabel("Tipo abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)

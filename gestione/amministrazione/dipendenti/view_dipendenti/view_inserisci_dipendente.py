@@ -10,6 +10,7 @@ from PyQt5.QtGui import *
 
 from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
 from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import GestioniDipendente
+from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import Insieme_Dipendenti
 
 
 class view_InserisciDipendente(QWidget):
@@ -50,7 +51,12 @@ class view_InserisciDipendente(QWidget):
         self.label_ruolo.setFont(self.font_label)
         self.v_layout.addWidget(self.label_ruolo)
 
-        self.campo_ruolo = QLineEdit()
+        self.campo_ruolo = QComboBox(self)
+        self.campo_ruolo.addItem("Istruttore palestra")
+        self.campo_ruolo.addItem("Istruttore piscina")
+        self.campo_ruolo.addItem("Segretaria/o")
+        self.campo_ruolo.addItem("Adetto alle pulizie")
+        self.campo_ruolo.addItem("")
         self.v_layout.addWidget(self.campo_ruolo)
 
         self.label_luogo = QLabel("Luogo di nascita: ")
@@ -74,7 +80,7 @@ class view_InserisciDipendente(QWidget):
         self.campo_codice = QLineEdit()
         self.v_layout.addWidget(self.campo_codice)
 
-        self.label_contratto = QLabel("Tipo di contratto:")
+        self.label_contratto = QLabel("Ore di lavoro:")
         self.label_contratto.setFont(self.font_label)
         self.v_layout.addWidget(self.label_contratto)
 
@@ -154,11 +160,11 @@ class view_InserisciDipendente(QWidget):
         data = self.campo_data.text()
         codice = self.campo_codice.text()
         contratto = self.campo_contratto.text()
-        ruolo = self.campo_ruolo.text()
+        ruolo = str(self.campo_ruolo.currentText())
         id = self.campo_id.text()
         stipendio = self.campo_stipendio.text()
 
-        if nome == "" or cognome == "" or luogo == "" or data == " " or codice == " " or contratto == "" or ruolo == "" or id == "" or stipendio == "":
+        if nome == "" or cognome == "" or luogo == "" or data == " " or codice == " " or contratto == "" or ruolo == "" or id == "" or stipendio == "" :
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
@@ -194,28 +200,43 @@ class view_InserisciDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "ID già utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            stipendio = float(self.campo_stipendio.text())
-        except:
+        #try:
+            #stipendio = float(self.campo_stipendio.text())
+        #except:
 
-            QMessageBox.critical(self, "Errore", "Solo numeri con punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
-            return
+            #QMessageBox.critical(self, "Errore", "Solo numeri con punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
+            #return
 
-        if stipendio <= 0:
+        #if stipendio <= 0:
 
-            QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
-            return
+         #   QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
+          #  return
 
 
 
         self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, luogo, data, codice, contratto, ruolo, id, stipendio))
-        self.controller.save_data()
 
+       # stipendio = GestioniDipendente( nome, cognome, luogo, data, codice, contratto, ruolo, id, stipendio)
+
+        #self.controller.save_data()
+
+        #risposta = QMessageBox.question(self, "Conferma", "Lo stipendio mensile del dipendente è "
+                                       # + str(stipendio.get_stipendio_totale()) + " € totali. \n\nConfermare?",
+                                        #QMessageBox.Yes, QMessageBox.No)
+        #if risposta == QMessageBox.No:
+         #   return
+
+        #else:
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
         QMessageBox.about(self, "Completato", "Inserimento completato")
         self.aggiorna_lista()
         self.close()
-
+            #controllore_lista_prenotazioni = Controller_Dipendenti()
+            #controllore_lista_prenotazioni.aggiungi_dipendente(stipendio)
+            #QMessageBox.about(self, "Confermata", "La Prenotazione è stata Confermata")
+            #controllore_lista_prenotazioni.save_data()
+            #self.aggiorna_lista()
+            #self.close()
 
     def controlla_id_libero(self, id):
 

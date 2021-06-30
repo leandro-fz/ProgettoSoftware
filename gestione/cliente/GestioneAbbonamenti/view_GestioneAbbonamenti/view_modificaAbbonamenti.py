@@ -122,7 +122,6 @@ class view_ModificaAbbonamento(QWidget):
 
         self.v_layout.addWidget(self.campo_tipoabbonamento)
 
-        #self.campo_tipoabbonamento = QLineEdit()
         self.campo_tipoabbonamento.setCurrentText((self.controller.get_tipoabbonamento_abbonamento()))
         self.v_layout.addWidget(self.campo_tipoabbonamento)
         self.h_layout = QHBoxLayout()
