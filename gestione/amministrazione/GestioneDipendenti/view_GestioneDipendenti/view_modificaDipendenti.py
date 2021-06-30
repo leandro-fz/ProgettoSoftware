@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtGui, QtCore, QtWidgets
@@ -17,10 +19,10 @@ class view_ModificaDipendente(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        self.font_label = QFont("Yu Gothic UI Light", 16)
+        self.font_label = QFont("Yu Gothic UI Light", 14)
         self.font_label.setBold(True)
 
-        self.font_campi = QFont("Yu Gothic UI Light", 16)
+        self.font_campi = QFont("Yu Gothic UI Light", 14)
 
         self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
@@ -126,12 +128,12 @@ class view_ModificaDipendente(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(781, 590)
+        self.setMaximumSize(781, 590)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(791, 591))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -151,18 +153,24 @@ class view_ModificaDipendente(QWidget):
 
         nome = self.campo_nome.text()
         cognome = self.campo_cognome.text()
+        luogo = self.campo_luogo.text()
+        data = self.campo_data.text()
+        codice = self.campo_codice.text()
+        contratto = self.campo_contratto.text()
         ruolo = self.campo_ruolo.text()
         id = self.campo_id.text()
         stipendio = self.campo_stipendio.text()
 
-        if nome == "" or cognome == "" or ruolo == "" or id == "" or stipendio == "":
+        if nome == "" or cognome == "" or luogo == "" or data == "" or codice == "" or contratto == " " or ruolo == "" or id == "" or stipendio == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
             id = int(self.campo_id.text())
+
         except:
+
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice ID", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -185,6 +193,7 @@ class view_ModificaDipendente(QWidget):
 
         try:
             stipendio = float(self.campo_stipendio.text())
+
         except:
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri con il punto per lo stipendio", QMessageBox.Ok,QMessageBox.Ok)
             return
@@ -194,6 +203,15 @@ class view_ModificaDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "Lo stipendio non può essere negativo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+        try:
+            data = datetime.strptime(data, "%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
+
         # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
         #
         #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -201,6 +219,10 @@ class view_ModificaDipendente(QWidget):
 
         self.controller.set_nome_dipendente(nome)
         self.controller.set_cognome_dipendente(cognome)
+        self.controller.set_luogo_dipendente(luogo)
+        self.controller.set_data_dipendente(data)
+        self.controller.set_codice_dipendente(codice)
+        self.controller.set_contratto_dipendente(contratto)
         self.controller.set_ruolo_dipendente(ruolo)
         self.controller.set_id_dipendente(id)
         self.controller.set_stipendio_dipendente(stipendio)

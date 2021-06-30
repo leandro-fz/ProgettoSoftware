@@ -10,6 +10,18 @@ class Controller_GestioneDipendenti():
     def get_cognome_dipendente(self):
         return self.model.cognome
 
+    def get_luogo_dipendente(self):
+        return self.model.luogo
+
+    def get_data_dipendente(self):
+        return self.model.data
+
+    def get_codice_dipendente(self):
+        return self.model.codice
+
+    def get_contratto_dipendente(self):
+        return self.model.contratto
+
     def get_ruolo_dipendente(self):
         return self.model.ruolo
 
@@ -24,6 +36,18 @@ class Controller_GestioneDipendenti():
 
     def set_cognome_dipendente(self, cognome):
         self.model.cognome = cognome
+
+    def set_luogo_dipendente(self, luogo):
+        self.model.luogo = luogo
+
+    def set_data_dipendente(self, data):
+        self.model.data = data
+
+    def set_codice_dipendente(self, codice):
+        self.model.codice = codice
+
+    def set_contratto_dipendente(self, contratto):
+        self.model.contratto = contratto
 
     def set_ruolo_dipendente(self, ruolo):
         self.model.ruolo = ruolo

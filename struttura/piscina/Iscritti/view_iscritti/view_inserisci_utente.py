@@ -129,7 +129,7 @@ class view_InserisciUtente(QWidget):
         certificato = self.campo_certificato.text()
         tipoabbonamento = self.campo_tipoabbonamento.text()
 
-        if nome == "" or cognome == "" or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == ""  :
+        if nome == "" or cognome == "" or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
