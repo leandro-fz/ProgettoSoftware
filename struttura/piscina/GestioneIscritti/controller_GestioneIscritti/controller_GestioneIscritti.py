@@ -19,8 +19,7 @@ class Controller_GestioneIscritti():
     def get_certificato_utente(self):
         return self.model.certificato
 
-    def get_certificatoagonistico_utente(self):
-        return self.model.certificatoagonistico
+
 
     def get_tipoabbonamento_utente(self):
         return self.model.tipoabbonamento
@@ -43,5 +42,3 @@ class Controller_GestioneIscritti():
     def set_tipoabbonamento_utente(self, tipoabbonamento):
         self.model.tipoabbonamento = tipoabbonamento
 
-    def set_certificatoagonistico_utente(self, certificatoagonistico):
-        self.model.certificatoagonistico = certificatoagonistico
