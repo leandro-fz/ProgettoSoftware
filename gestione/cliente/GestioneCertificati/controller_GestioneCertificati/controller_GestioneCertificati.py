@@ -22,6 +22,9 @@ class Controller_GestioneCertificati():
     def get_sportcertificato_certificato(self):
         return self.model.sportcertificato
 
+    def get_certificatoagonistico_certificato(self):
+        return self.model.certificatoagonistico
+
     def get_datainizio_certificato(self):
         return self.model.datainizio
 
@@ -45,6 +48,9 @@ class Controller_GestioneCertificati():
 
     def set_sportcertificato_certificato(self, sportcertificato):
         self.model.sportcertificato = sportcertificato
+
+    def set_certificatoagonistico_certificato(self, certificatoagonistico):
+        self.model.certificatoagonistico = certificatoagonistico
 
     def set_datainizio_certificato(self, datainizio):
         self.model.datainizio = datainizio

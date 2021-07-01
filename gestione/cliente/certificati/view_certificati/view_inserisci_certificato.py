@@ -74,6 +74,9 @@ class view_InserisciCertificato(QWidget):
         self.campo_sportcertificato= QLineEdit()
         self.v_layout.addWidget(self.campo_sportcertificato)
 
+        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico")
+        self.v_layout.addWidget(self.checkbox_sportcertificato)
+
         self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa)")
         self.label_datainizio.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datainizio)
@@ -147,6 +150,10 @@ class view_InserisciCertificato(QWidget):
         datainizio = self.campo_datainizio.text()
         datafine = self.campo_datafine.text()
 
+        if self.checkbox_sportcertificato.isChecked():
+            booleancertificato = True
+        else:
+            booleancertificato = False
 
         if nome == "" or cognome == "" or nato == "" or codicefiscale == "" or residenza == "" or sportcertificato == "" or datainizio == "" or datafine == "":
 
@@ -206,7 +213,7 @@ class view_InserisciCertificato(QWidget):
             return
 
 
-        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, nato, codicefiscale, residenza, sportcertificato, datainizio, datafine))
+        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

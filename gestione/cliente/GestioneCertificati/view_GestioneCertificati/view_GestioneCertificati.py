@@ -77,6 +77,12 @@ class view_ModificaCertificato(QWidget):
         self.campo_sportcertificato.setText((self.controller.get_sportcertificato_certificato()))
         self.v_layout.addWidget(self.campo_sportcertificato)
 
+        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico")
+        self.a = self.controller.get_certificatoagonistico_certificato()
+        if self.a:
+            self.checkbox_sportcertificato.setChecked(True)
+        self.v_layout.addWidget(self.checkbox_sportcertificato)
+
         self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa) :")
         self.label_datainizio.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datainizio)
@@ -147,9 +153,15 @@ class view_ModificaCertificato(QWidget):
         codicefiscale = self.campo_codicefiscale.text()
         residenza = self.campo_residenza.text()
         sportcertificato = self.campo_sportcertificato.text()
+        booleancertificato = self.a
         datainizio = self.campo_datainizio.text()
         datafine = self.campo_datafine.text()
 
+
+        if self.checkbox_sportcertificato.isChecked():
+            booleancertificato = True
+        else:
+            booleancertificato = False
 
 
         if nome == "" or cognome == "" or nato == "" or codicefiscale == "" or residenza == "" or sportcertificato == "" or datainizio == "" or datafine == "":
@@ -216,6 +228,7 @@ class view_ModificaCertificato(QWidget):
         self.controller.set_codicefiscale_certificato(codicefiscale)
         self.controller.set_residenza_certificato(residenza)
         self.controller.set_sportcertificato_certificato(sportcertificato)
+        self.controller.set_certificatoagonistico_certificato(booleancertificato)
         self.controller.set_datainizio_certificato(datainizio)
         self.controller.set_datafine_certificato(datafine)
 
