@@ -20,7 +20,6 @@ class view_InserisciCertificato(QWidget):
         super(view_InserisciCertificato, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
-        self.label_documento_testo = QLabel(self.documento)
 
 
         self.v_layout = QVBoxLayout()
@@ -94,6 +93,11 @@ class view_InserisciCertificato(QWidget):
         self.campo_datafine = QLineEdit()
         self.v_layout.addWidget(self.campo_datafine)
 
+        self.label_documento = QLabel("Documento:")
+        self.label_documento.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_documento)
+
+
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
 
@@ -161,6 +165,7 @@ class view_InserisciCertificato(QWidget):
         sportcertificato = self.campo_sportcertificato.text()
         datainizio = self.campo_datainizio.text()
         datafine = self.campo_datafine.text()
+        documento = self.label_documento.text()
 
         if self.checkbox_sportcertificato.isChecked():
             booleancertificato = True
@@ -217,8 +222,7 @@ class view_InserisciCertificato(QWidget):
                                  QMessageBox.Ok)
             return
 
-
-        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine))
+        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine,documento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -243,7 +247,7 @@ class view_InserisciCertificato(QWidget):
         if self.controller.get_documento_identita() is None or self.controller.get_documento_identita() == '':
             return
 
-        self.label_documento_testo.setText(self.controller.get_documento_identita().split("/")[-1])
+        self.label_documento.setText(self.controller.get_documento_identita().split("/")[-1])
         self.controller.get_lista_certificati = Controller_Certificati()
-        self.controller.get_lista_certificati.get_certificato_by_codicefiscale(self.controller.get_codicefiscale_certificato()).documento = self.controller.get_documento_identita()
+        self.controller.get_lista_certificati.get_certificato_by_codicefiscale(self.controller.get_documento_identita())
         self.controller.get_lista_certificati.save_data()
