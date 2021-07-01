@@ -105,6 +105,9 @@ class view_day_tennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    # def closeEvent(self, event):
+    #     self.controller.save_data()
+
     def mostra_indietro_view_tennis(self):
         self.close()
 

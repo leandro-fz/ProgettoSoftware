@@ -9,9 +9,6 @@ class ControllorePrenotazioneTennis:
     def get_nome_pre_te(self):
         return self.model.nome
 
-    # def get_numero_pre_te(self):
-    #     return self.model.numero
-
     def get_recapito_pre_te(self):
         return self.model.recapito
 
@@ -23,9 +20,6 @@ class ControllorePrenotazioneTennis:
 
     def set_nome_pre_te(self, nome):
         self.model.nome = nome
-
-    # def set_numero_pre_te(self, numero):
-    #     self.model.numero = numero
 
     def set_recapito_pre_te(self, recapito):
         self.model.recapito = recapito

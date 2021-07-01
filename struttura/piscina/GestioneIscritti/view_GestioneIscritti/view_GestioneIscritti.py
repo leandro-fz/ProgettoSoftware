@@ -70,7 +70,7 @@ class view_ModificaUtente(QWidget):
         self.v_layout.addWidget(self.campo_certificato)
 
         self.checkbox_certificato = QCheckBox("Certificato agonistico")
-        self.a = self.controller.get_certificatoagonistico_utente
+        self.a = self.controller.get_certificatoagonistico_utente()
         if self.a:
             self.checkbox_certificato.setChecked(True)
         self.v_layout.addWidget(self.checkbox_certificato)

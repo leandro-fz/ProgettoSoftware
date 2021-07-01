@@ -137,6 +137,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No,
                                      QMessageBox.No)
