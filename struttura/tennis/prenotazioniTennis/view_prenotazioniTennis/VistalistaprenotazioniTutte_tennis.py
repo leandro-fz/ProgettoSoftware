@@ -128,7 +128,7 @@ class VistaListaPrenotazioniTutte(QWidget):
 
     def mostra_elimina(self):
         pass
-        # try:
+    3    # try:
         #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
         #     da_eliminare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1()[indice]
         # except:
@@ -147,8 +147,10 @@ class VistaListaPrenotazioniTutte(QWidget):
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()
             lista_prenotazioni_filtrata = []
+            # self.aaco = ControllorePrenotazioneTennis()
             for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
                 if prenotazione.data == self.data:
+                    # if self.aaco.get_orario_premuto_pre_te() ==
                     lista_prenotazioni_filtrata.append(prenotazione)
             da_visualizzare = lista_prenotazioni_filtrata[indice]
         except:

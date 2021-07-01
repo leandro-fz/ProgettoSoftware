@@ -4,10 +4,10 @@ class ControllorePrenotazioneTennis:
         self.model = prenotazione
 
     def get_prezzo_totale(self):
-        return self.model.get_prezzo_totale()
+        return self.model.get_prezzo_totale
 
     def get_nome_pre_te(self):
-        return self.model.nome
+        return self.model.utente
 
     def get_recapito_pre_te(self):
         return self.model.recapito
@@ -18,8 +18,8 @@ class ControllorePrenotazioneTennis:
     def get_giorno_pre_te(self):
         return self.model.giorno
 
-    def set_nome_pre_te(self, nome):
-        self.model.nome = nome
+    def set_nome_pre_te(self, utente):
+        self.model.utente = utente
 
     def set_recapito_pre_te(self, recapito):
         self.model.recapito = recapito

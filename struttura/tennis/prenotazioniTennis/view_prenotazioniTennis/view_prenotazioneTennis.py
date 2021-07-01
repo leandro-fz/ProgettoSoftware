@@ -16,7 +16,6 @@ class VistaPrenotazioneTennis(QWidget):
     def __init__(self, controllore_prenotazione, parent=None):
         super(VistaPrenotazioneTennis, self).__init__(parent)
         self.controllore_prenotazione = controllore_prenotazione
-        self.controllore_prenotazione2 = ControllorePrenotazioneTennis()
         self.v_layout = QVBoxLayout()
 
         self.font_label = QFont("Yu Gothic UI Light", 14)
@@ -30,27 +29,27 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.campo_nome = QLineEdit()
         self.campo_nome.setFont(self.font_campi)
-        self.campo_nome.setText(self.controllore_prenotazione2.get_nome_pre_te())
+        self.campo_nome.setText(self.controllore_prenotazione.get_nome_pre_te())
         self.v_layout.addWidget(self.campo_nome)
 
-        self.label_orario = QLabel("Cognome:")
-        self.label_orario.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_orario)
+        # self.label_orario = QLabel("Orario:")
+        # self.label_orario.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_orario)
+        #
+        # self.campo_orario = QLineEdit()
+        # self.campo_orario.setFont(self.font_campi)
+        # self.campo_orario.setText(self.controllore_prenotazione.get_orario_premuto_pre_te())
+        # self.v_layout.addWidget(self.campo_orario)
 
-        self.campo_orario = QLineEdit()
-        self.campo_orario.setFont(self.font_campi)
-        self.campo_orario.setText(self.controllore_prenotazione2.get_orario_premuto_pre_te())
-        self.v_layout.addWidget(self.campo_orario)
+        # self.label_giorno = QLabel("Giorno:")
+        # self.label_giorno.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_giorno)
 
-        self.label_giorno = QLabel("Giorno:")
-        self.label_giorno.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_giorno)
-
-        self.campo_giorno = QLineEdit()
-        self.campo_giorno.setFont(self.font_campi)
-        self.stringa = str(self.controllore_prenotazione2.get_giorno_pre_te().strftime("%d/%m/%Y"))
-        self.campo_giorno.setText(self.stringa)
-        self.v_layout.addWidget(self.campo_giorno)
+        # self.campo_giorno = QLineEdit()
+        # self.campo_giorno.setFont(self.font_campi)
+        # self.stringa = str(self.controllore_prenotazione.get_giorno_pre_te().strftime("%d/%m/%Y"))
+        # self.campo_giorno.setText(self.stringa)
+        # self.v_layout.addWidget(self.campo_giorno)
 
         self.label_recapito = QLabel("Recapito")
         self.label_recapito.setFont(self.font_label)
@@ -58,7 +57,9 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.campo_recapito = QLineEdit()
         self.campo_recapito.setFont(self.font_campi)
-        self.campo_recapito.setText(self.controllore_prenotazione2.get_recapito_pre_te())
+        self.campo_recapito.setText(self.controllore_prenotazione.get_recapito_pre_te())
+        # self.stringa2 = str(self.controllore_prenotazione.get_orario_premuto_pre_te())
+        # self.campo_recapito.setText(self.stringa2)
         self.v_layout.addWidget(self.campo_recapito)
 
 
@@ -72,7 +73,7 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Dipendente")
+        self.setWindowTitle("Prenotazione")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
@@ -86,5 +87,5 @@ class VistaPrenotazioneTennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-    def chiudi_finsetra(self):
+    def chiudi_finestra(self):
         self.close()

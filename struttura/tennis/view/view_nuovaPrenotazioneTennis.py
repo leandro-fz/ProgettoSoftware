@@ -29,6 +29,8 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.font = QFont("Yu Gothic UI Light", 15)
         self.aggiorna_dati_prenotazioni = aggiorna_dati_prenotazioni
         self.data1 = data
+
+
         self.v_layout = QVBoxLayout()
         self.font_label = QFont("Yu Gothic UI Light", 15)
         self.font_label.setBold(True)
@@ -188,7 +190,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
             QMessageBox.about(self, "Confermata", "Prenotazione confermata")
             controllore_lista_prenotazioni.save_data()
             self.aggiorna_dati_prenotazioni()
-            # Prenotazione/views/VistaNuovaPrenotazione
             self.close()
 
     def controlla_disponibilità(self, dataselezionata, orario_premuto):

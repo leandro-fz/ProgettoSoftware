@@ -1,11 +1,10 @@
 class model_PrenotazioniTennis:
 
-    def __init__(self,utente, dataselezionata, orario_premuto, recapito):
-        self.utente=utente
+    def __init__(self,utente, dataselezionata, orario, recapito):
+        self.utente = utente
         self.data = dataselezionata
-        self.ora = orario_premuto
+        self.orario = orario
         self.recapito = recapito
-        # self.numeroUtenti = numero
 
     def get_prezzo_totale(self):
         prezzo = 10

@@ -22,7 +22,5 @@ class ControlloreListaPrenotazioniTennis:
     def elimina_prenotazione_tennis(self, data):
         self.model.elimina_prenotazione_singola(data)
 
-
-
     def save_data(self):
         self.model.save_data()
