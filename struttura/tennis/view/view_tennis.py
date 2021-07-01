@@ -126,6 +126,5 @@ class view_tennis(QWidget):
     #         return
 
     def mostra_tutte_prenotazioni_tennis(self):
-        return
-        # self.lista_prenotazioni = VistaListaPrenotazioniTutte()
-        # self.lista_prenotazioni.show()
+        self.lista_prenotazioni = VistaListaPrenotazioniTutte()
+        self.lista_prenotazioni.show()
