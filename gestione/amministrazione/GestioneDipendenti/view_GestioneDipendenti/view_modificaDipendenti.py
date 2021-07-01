@@ -84,11 +84,11 @@ class view_ModificaDipendente(QWidget):
         self.v_layout.addWidget(self.label_ruolo)
 
         self.campo_ruolo = QComboBox(self)
-        self.campo_ruolo.addItem("settimanale")
-        self.campo_ruolo.addItem("mensile")
-        self.campo_ruolo.addItem("trimestrale")
-        self.campo_ruolo.addItem("semestrale")
-        self.campo_ruolo.addItem("annuale")
+        self.campo_ruolo.addItem("")
+        self.campo_ruolo.addItem("Istruttore palestra")
+        self.campo_ruolo.addItem("Istruttore piscina")
+        self.campo_ruolo.addItem("Segretaria/o")
+        self.campo_ruolo.addItem("Addetto alle pulizie")
 
         self.v_layout.addWidget(self.campo_ruolo)
 

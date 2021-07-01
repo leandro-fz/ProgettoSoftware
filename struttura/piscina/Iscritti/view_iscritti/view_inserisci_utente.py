@@ -64,8 +64,8 @@ class view_InserisciUtente(QWidget):
         self.campo_certificato = QLineEdit()
         self.v_layout.addWidget(self.campo_certificato)
 
-        self.checkbox_certificato = QCheckBox("Idoneità certificato medico")
-        self.layout.addWidget(self.checkbox_certificato, 4, 1)
+        self.checkbox_certificato = QCheckBox("Certificato agonistico")
+        self.v_layout.addWidget(self.checkbox_certificato)
 
         self.label_tipoabbonamento = QLabel("Tipo abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
@@ -131,6 +131,11 @@ class view_InserisciUtente(QWidget):
         certificato = self.campo_certificato.text()
         tipoabbonamento = self.campo_tipoabbonamento.text()
 
+        if self.checkbox_certificato.isChecked():
+            booleancertificato = True
+        else:
+            booleancertificato = False
+
         if nome == "" or cognome == "" or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
@@ -165,8 +170,7 @@ class view_InserisciUtente(QWidget):
             return
 
 
-
-        self.controller.aggiungi_utente(GestioniUtente(nome, cognome, codicefiscale,cellulare, certificato, tipoabbonamento))
+        self.controller.aggiungi_utente(GestioniUtente(nome, cognome, codicefiscale,cellulare, certificato, booleancertificato,tipoabbonamento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

@@ -69,6 +69,12 @@ class view_ModificaUtente(QWidget):
         self.campo_certificato.setText(self.controller.get_certificato_utente())
         self.v_layout.addWidget(self.campo_certificato)
 
+        self.checkbox_certificato = QCheckBox("Certificato agonistico")
+        self.a = self.controller.get_certificatoagonistico_utente
+        if self.a:
+            self.checkbox_certificato.setChecked(True)
+        self.v_layout.addWidget(self.checkbox_certificato)
+
         self.label_tipoabbonamento= QLabel("Tipo abbonamento:")
         self.label_tipoabbonamento.setFont(self.font_label)
         self.v_layout.addWidget(self.label_tipoabbonamento)
@@ -127,8 +133,17 @@ class view_ModificaUtente(QWidget):
         cognome = self.campo_cognome.text()
         codicefiscale = self.campo_codicefiscale.text()
         cellulare = self.campo_cellulare.text()
-        certificato =self.campo_certificato.text()
+        certificato = self.campo_certificato.text()
+        booleancertificato = self.a
         tipoabbonamento = self.campo_tipoabbonamento.text()
+
+        if self.checkbox_certificato.isChecked():
+            booleancertificato = True
+            print("ok")
+        else:
+            booleancertificato = False
+            print("ok")
+            print("ok")
 
         if nome == "" or cognome == ""  or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -176,6 +191,7 @@ class view_ModificaUtente(QWidget):
         self.controller.set_tipoabbonamento_utente(tipoabbonamento)
         self.controller.set_codicefiscale_utente(codicefiscale)
         self.controller.set_certificato_utente(certificato)
+        self.controller.set_certificatoagonistico_utente(booleancertificato)
         self.controller.set_cellulare_utente(cellulare)
 
         QMessageBox.about(self, "Completata", "Modifica completata")

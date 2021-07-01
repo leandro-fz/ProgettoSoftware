@@ -101,6 +101,7 @@ class view_InserisciAbbonamento(QWidget):
         self.v_layout.addWidget(self.label_tipoabbonamento)
 
         self.campo_tipoabbonamento = QComboBox(self)
+        self.campo_tipoabbonamento.addItem("")
         self.campo_tipoabbonamento.addItem("settimanale")
         self.campo_tipoabbonamento.addItem("mensile")
         self.campo_tipoabbonamento.addItem("trimestrale")
@@ -170,7 +171,7 @@ class view_InserisciAbbonamento(QWidget):
         tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
 
 
-        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" :
+        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "" :
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 

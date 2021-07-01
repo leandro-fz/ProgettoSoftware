@@ -22,5 +22,3 @@ class Controller_Dipendenti():
     def save_data(self):
         self.model.save_data()
 
-    def get_stipendio_totale(self):
-        return self.model.get_stipendio_totale()
