@@ -10,6 +10,7 @@ from datetime import datetime
 
 from gestione.cliente.certificati.controller_certificati.controller_certficati import Controller_Certificati
 from gestione.cliente.GestioneCertificati.model_GestioneCertificati.model_GestioneCertificati import GestioniCertificato
+from gestione.cliente.certificati.view_certificati.view_importa_documento import VistaImportaDocumento
 
 
 class view_InserisciCertificato(QWidget):
@@ -19,6 +20,8 @@ class view_InserisciCertificato(QWidget):
         super(view_InserisciCertificato, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
+        self.label_documento_testo = QLabel(self.documento)
+
 
         self.v_layout = QVBoxLayout()
         self.font_label = QFont("Yu Gothic UI Light", 15)
@@ -32,59 +35,59 @@ class view_InserisciCertificato(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome")
+        self.label_nome = QLabel("Nome: ")
         self.label_nome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_nome)
 
         self.campo_nome = QLineEdit()
         self.v_layout.addWidget(self.campo_nome)
 
-        self.label_cognome = QLabel("Cognome")
+        self.label_cognome = QLabel("Cognome: ")
         self.label_cognome.setFont(self.font_label)
         self.v_layout.addWidget(self.label_cognome)
 
         self.campo_cognome = QLineEdit()
         self.v_layout.addWidget(self.campo_cognome)
 
-        self.label_nato = QLabel("Nato a")
+        self.label_nato = QLabel("Nato a: ")
         self.label_nato.setFont(self.font_label)
         self.v_layout.addWidget(self.label_nato)
 
         self.campo_nato = QLineEdit()
         self.v_layout.addWidget(self.campo_nato)
 
-        self.label_codicefiscale = QLabel("Codice Fiscale (16 caratteri)")
+        self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri): ")
         self.label_codicefiscale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codicefiscale)
 
         self.campo_codicefiscale = QLineEdit()
         self.v_layout.addWidget(self.campo_codicefiscale)
 
-        self.label_residenza = QLabel("Residenza (Via e città di residenza) ")
+        self.label_residenza = QLabel("Residenza (Via e città di residenza): ")
         self.label_residenza.setFont(self.font_label)
         self.v_layout.addWidget(self.label_residenza)
 
         self.campo_residenza = QLineEdit()
         self.v_layout.addWidget(self.campo_residenza)
 
-        self.label_sportcertificato = QLabel("Sport del certificato")
+        self.label_sportcertificato = QLabel("Sport del certificato:")
         self.label_sportcertificato.setFont(self.font_label)
         self.v_layout.addWidget(self.label_sportcertificato)
 
         self.campo_sportcertificato= QLineEdit()
         self.v_layout.addWidget(self.campo_sportcertificato)
 
-        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico")
+        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico:")
         self.v_layout.addWidget(self.checkbox_sportcertificato)
 
-        self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa)")
+        self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa):")
         self.label_datainizio.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datainizio)
 
         self.campo_datainizio = QLineEdit()
         self.v_layout.addWidget(self.campo_datainizio)
 
-        self.label_datafine = QLabel("Data scadenza validità certificato (gg/mm/aaaa)")
+        self.label_datafine = QLabel("Data scadenza validità certificato (gg/mm/aaaa):")
         self.label_datafine.setFont(self.font_label)
         self.v_layout.addWidget(self.label_datafine)
 
@@ -103,6 +106,15 @@ class view_InserisciCertificato(QWidget):
         self.h_layout.addWidget(self.bottone_annulla)
         self.bottone_annulla.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        self.bottone_importa_doc = QPushButton("Importa documento di identità")
+        self.h_layout.addWidget(self.bottone_importa_doc)
+        self.bottone_importa_doc.clicked.connect(self.conferma_importa_documento)
+        self.bottone_importa_doc.setFont(self.font_label)
+        self.bottone_importa_doc.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.shortcut_importa_doc = QShortcut(QKeySequence('Enter'), self)
+        self.shortcut_importa_doc.activated.connect(self.conferma_importa_documento)
+
+
         self.bottone_conferma = QPushButton("Conferma")
         self.h_layout.addWidget(self.bottone_conferma)
         self.bottone_conferma.clicked.connect(self.conferma_inserimento)
@@ -119,14 +131,14 @@ class view_InserisciCertificato(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 560)
-        self.setMaximumSize(781, 560)
+        self.setMinimumSize(781, 590)
+        self.setMaximumSize(781, 590)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 561))
+        sImage = oImage.scaled(QSize(791, 591))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -160,29 +172,22 @@ class view_InserisciCertificato(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Codice Fiscale non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
+
+        if len(codicefiscale) < 16:
+
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                     QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Codice Fiscale non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
-            return
+        if len(codicefiscale) > 16:
 
-        if codicefiscale < 10000:
-            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
-        if codicefiscale > 99999:
-            QMessageBox.critical(self, "Errore", "Codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
 
         if not self.controlla_codicefiscale_libero(codicefiscale):
+
             QMessageBox.critical(self, "Errore", "Codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -228,3 +233,17 @@ class view_InserisciCertificato(QWidget):
             if certificato.codicefiscale == codicefiscale:
                 return False
         return True
+
+    def conferma_importa_documento(self):
+        self.vista_importa_documento = VistaImportaDocumento(self.controller)
+        self.aggiorna_documento()
+
+    def aggiorna_documento(self):
+
+        if self.controller.get_documento_identita() is None or self.controller.get_documento_identita() == '':
+            return
+
+        self.label_documento_testo.setText(self.controller.get_documento_identita().split("/")[-1])
+        self.controller.get_lista_certificati = Controller_Certificati()
+        self.controller.get_lista_certificati.get_certificato_by_codicefiscale(self.controller.get_codicefiscale_certificato()).documento = self.controller.get_documento_identita()
+        self.controller.get_lista_certificati.save_data()

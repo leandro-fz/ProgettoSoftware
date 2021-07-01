@@ -75,7 +75,7 @@ class view_InserisciDipendente(QWidget):
         self.campo_data = QLineEdit()
         self.v_layout.addWidget(self.campo_data)
 
-        self.label_codice = QLabel("Codice fiscale:")
+        self.label_codice = QLabel("Codice fiscale (16 caratteri):")
         self.label_codice.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codice)
 
@@ -103,7 +103,6 @@ class view_InserisciDipendente(QWidget):
 
         self.campo_stipendio = QLineEdit()
         self.v_layout.addWidget(self.campo_stipendio)
-
 
 
         self.v_layout.addSpacing(10)
@@ -179,6 +178,7 @@ class view_InserisciDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "ID non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
+
         if id <10000:
 
             QMessageBox.critical(self, "Errore", "ID deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
@@ -214,6 +214,15 @@ class view_InserisciDipendente(QWidget):
             QMessageBox.critical(self, "Errore", "Lo stipendio deve essere positivo", QMessageBox.Ok,QMessageBox.Ok)
             return
 
+        if len(codice) < 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
+
+        if len(codice) > 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
 
 
         self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, luogo, data, codice, contratto, ruolo, id, stipendio))

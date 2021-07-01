@@ -68,7 +68,7 @@ class view_InserisciAbbonamento(QWidget):
         self.campo_residenza = QLineEdit()
         self.v_layout.addWidget(self.campo_residenza)
 
-        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri):")
         self.label_codicefiscale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codicefiscale)
 
@@ -184,20 +184,13 @@ class view_InserisciAbbonamento(QWidget):
                                  QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice fiscale", QMessageBox.Ok,
+        if len(codicefiscale) < 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
-        if codicefiscale < 10000:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
-
-        if codicefiscale > 99999:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok,
+        if len(codicefiscale) > 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
@@ -208,7 +201,9 @@ class view_InserisciAbbonamento(QWidget):
 
         try:
             cellulare = float(self.campo_cellulare.text())
+
         except:
+
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il numero di cellulare", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return

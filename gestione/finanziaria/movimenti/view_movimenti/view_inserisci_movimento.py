@@ -30,28 +30,28 @@ class view_InserisciMovimenti(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_importo = QLabel("Importo")
+        self.label_importo = QLabel("Importo:")
         self.label_importo.setFont(self.font_label)
         self.v_layout.addWidget(self.label_importo)
 
         self.campo_importo = QLineEdit()
         self.v_layout.addWidget(self.campo_importo)
 
-        self.label_data = QLabel("Data (gg/mm/aaaa)")
+        self.label_data = QLabel("Data (gg/mm/aaaa):")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
         self.campo_data = QLineEdit()
         self.v_layout.addWidget(self.campo_data)
 
-        self.label_causale = QLabel("Causale")
+        self.label_causale = QLabel("Causale:")
         self.label_causale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_causale)
 
         self.campo_causale = QLineEdit()
         self.v_layout.addWidget(self.campo_causale)
 
-        self.label_fattura = QLabel("Numero fattura")
+        self.label_fattura = QLabel("Numero fattura:")
         self.label_fattura.setFont(self.font_label)
         self.v_layout.addWidget(self.label_fattura)
 

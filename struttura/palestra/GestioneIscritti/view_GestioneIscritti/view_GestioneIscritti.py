@@ -41,7 +41,7 @@ class view_ModificaUtente(QWidget):
         self.v_layout.addWidget(self.campo_cognome)
 
 
-        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri):")
         self.label_codicefiscale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codicefiscale)
 
@@ -131,23 +131,19 @@ class view_ModificaUtente(QWidget):
         tipoabbonamento = self.campo_tipoabbonamento.text()
 
         if nome == "" or cognome == ""  or codicefiscale == "" or cellulare == "" or certificato == "" or tipoabbonamento == "":
+
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice fiscale", QMessageBox.Ok,
+        if len(codicefiscale) < 16:
+
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
-        if codicefiscale < 10000:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
+        if len(codicefiscale) > 16:
 
-        if codicefiscale > 99999:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
@@ -166,10 +162,7 @@ class view_ModificaUtente(QWidget):
                                  QMessageBox.Ok)
             return
 
-        # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
-        #
-        #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-        #     return
+
 
         self.controller.set_nome_utente(nome)
         self.controller.set_cognome_utente(cognome)

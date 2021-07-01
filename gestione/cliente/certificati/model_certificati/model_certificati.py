@@ -3,6 +3,7 @@ import pickle
 
 # cliente/
 class Insieme_Certificati():
+
     def __init__(self):
         super(Insieme_Certificati, self).__init__()
         self.lista_certificati = []

@@ -70,13 +70,13 @@ class view_ModificaAbbonamento(QWidget):
         self.v_layout.addWidget(self.campo_residenza)
         self.h_layout = QHBoxLayout()
 
-        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri):")
         self.label_codicefiscale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codicefiscale)
 
         self.campo_codicefiscale = QLineEdit()
         self.campo_codicefiscale.setFont(self.font_campi)
-        self.campo_codicefiscale.setText(str(self.controller.get_codicefiscale_abbonamento()))
+        self.campo_codicefiscale.setText(self.controller.get_codicefiscale_abbonamento())
         self.v_layout.addWidget(self.campo_codicefiscale)
 
         self.label_email = QLabel("Email :")
@@ -189,20 +189,14 @@ class view_ModificaAbbonamento(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice fiscale", QMessageBox.Ok, QMessageBox.Ok)
+        if len(codicefiscale) < 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
-        if codicefiscale <10000:
-
-            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
-            return
-
-        if codicefiscale > 99999:
-
-            QMessageBox.critical(self, "Errore", "Il codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+        if len(codicefiscale) > 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
         if self.controller.get_codicefiscale_abbonamento() == codicefiscale:
@@ -234,10 +228,7 @@ class view_ModificaAbbonamento(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
-        #
-        #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-        #     return
+
 
         self.controller.set_nome_abbonamento(nome)
         self.controller.set_cognome_abbonamento(cognome)

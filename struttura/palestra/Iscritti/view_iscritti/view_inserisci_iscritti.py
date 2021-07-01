@@ -44,7 +44,7 @@ class view_InserisciUtente(QWidget):
         self.campo_cognome = QLineEdit()
         self.v_layout.addWidget(self.campo_cognome)
 
-        self.label_codicefiscale = QLabel("Codice Fiscale:")
+        self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri):")
         self.label_codicefiscale.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codicefiscale)
 
@@ -133,20 +133,15 @@ class view_InserisciUtente(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        try:
-            codicefiscale = int(self.campo_codicefiscale.text())
-        except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il codice fiscale", QMessageBox.Ok,
+        if len(codicefiscale) < 16:
+
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
-        if codicefiscale < 10000:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere almeno 5 cifre", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
+        if len(codicefiscale) > 16:
 
-        if codicefiscale > 99999:
-            QMessageBox.critical(self, "Errore", "Il codice fiscale può avere al massimo 5 cifre", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 

@@ -16,8 +16,14 @@ class Controller_Certificati():
     def get_certificato_by_codicefiscale(self, codicefiscale):
         return self.model.get_certificato_by_codicefiscale(codicefiscale)
 
+    def get_documento_identita(self):
+        return self.model.documento
+
     def elimina_certificato_by_codicefiscale(self, codicefiscale):
         self.model.elimina_certificato_by_codicefiscale(codicefiscale)
 
     def save_data(self):
         self.model.save_data()
+
+    def set_documento_identita(self, documento):
+        self.model.documento = documento

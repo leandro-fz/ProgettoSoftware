@@ -1,6 +1,6 @@
 class GestioniCertificato():
 
-    def __init__(self, nome, cognome, nato, codicefiscale, residenza, sportcertificato,certificatoagonistico, datainizio, datafine):
+    def __init__(self, nome, cognome, nato, codicefiscale, residenza, sportcertificato,certificatoagonistico, datainizio, datafine, documento):
 
         self.nome = nome
         self.cognome = cognome
@@ -11,3 +11,4 @@ class GestioniCertificato():
         self.certificatoagonistico = certificatoagonistico
         self.datainizio = datainizio
         self.datafine = datafine
+        self.documento = documento

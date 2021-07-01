@@ -61,7 +61,7 @@ class view_ModificaDipendente(QWidget):
         self.campo_data.setText(self.stringa)
         self.v_layout.addWidget(self.campo_data)
 
-        self.label_codice = QLabel("Codice fiscale:")
+        self.label_codice = QLabel("Codice fiscale (16 caratteri):")
         self.label_codice.setFont(self.font_label)
         self.v_layout.addWidget(self.label_codice)
 
@@ -96,7 +96,7 @@ class view_ModificaDipendente(QWidget):
         self.v_layout.addWidget(self.campo_ruolo)
         self.h_layout = QHBoxLayout()
 
-        self.label_id = QLabel("ID:")
+        self.label_id = QLabel("ID (5 cifre):")
         self.label_id.setFont(self.font_label)
         self.v_layout.addWidget(self.label_id)
 
@@ -220,10 +220,15 @@ class view_ModificaDipendente(QWidget):
                                  QMessageBox.Ok)
             return
 
-        # if nome == "" or cognome == "" or ruolo == "" or id == 0 or stipendio == 0.0:
-        #
-        #     QMessageBox.critical(self, "Errore", "Completa tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
-        #     return
+        if len(codice) < 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
+
+        if len(codice) > 16:
+            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
 
         self.controller.set_nome_dipendente(nome)
         self.controller.set_cognome_dipendente(cognome)
