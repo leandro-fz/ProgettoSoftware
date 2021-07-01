@@ -1,42 +1,90 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
+from datetime import datetime
 
-# Prenotazione/views/VistaPrenotazione/
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5 import QtGui, QtCore, QtWidgets
+
+from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+
+from struttura.tennis.prenotazioniTennis.controller_prenotazioniTennis.controller_prenotazioniTennis import \
+    ControllorePrenotazioneTennis
+
+
 class VistaPrenotazioneTennis(QWidget):
-    pass
+    def __init__(self, controllore_prenotazione, parent=None):
+        super(VistaPrenotazioneTennis, self).__init__(parent)
+        self.controllore_prenotazione = controllore_prenotazione
+        self.controllore_prenotazione2 = ControllorePrenotazioneTennis()
+        self.v_layout = QVBoxLayout()
 
-    # def __init__(self, controllore_prenotazione, parent=None):
-    #     super(VistaPrenotazioneTennis, self).__init__(parent)
-    #     self.controllore_prenotazione = controllore_prenotazione
-    #     self.font_label = QFont("Arial", 14)
-    #
-    #     self.v_layout = QVBoxLayout()
+        self.font_label = QFont("Yu Gothic UI Light", 14)
+        self.font_label.setBold(True)
 
-        # labels
-    #     self.create_label("Email: ", self.controllore_prenotazione.get())
-    #     self.create_label("Periodo: ", self.controllore_prenotazione.get_data_inizio_prenotazione().strftime('%d/%m/%Y')
-    #                             + " - " + self.controllore_prenotazione.get_data_fine_prenotazione().strftime('%d/%m/%Y'))
-    #     self.create_label("Servizio ristorazione: ", self.controllore_prenotazione.get_servizio_ristorazione().nome)
-    #     self.create_label("Servizio alloggio: ", self.controllore_prenotazione.get_servizio_alloggio().nome)
-    #     #self.create_label("Numero di persone: ", self.controllore_prenotazione.get_servizio_alloggio().numero_persone_max)
-    #
-    #     # label servizi aggiuntivi
-    #
-    #     self.v_layout.addSpacing(20)
-    #
-    #     self.setLayout(self.v_layout)
-    #     self.setWindowTitle("Prenotazione")
-    #     self.resize(800, 500)
-    #
-    # def create_label(self, testo, text_label):
-    #     h_layout = QHBoxLayout()
-    #
-    #     label = QLabel(testo)
-    #     h_layout.addWidget(label)
-    #
-    #     label_di_testo = QLabel(text_label)
-    #     label_di_testo.setFont(self.font_label)
-    #     h_layout.addWidget(label_di_testo)
-    #
-    #     self.v_layout.addLayout(h_layout)
-    #     self.v_layout.addSpacing(20)
+        self.font_campi = QFont("Yu Gothic UI Light", 14)
+
+        self.label_nome = QLabel("Prenotatore:")
+        self.label_nome.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_nome)
+
+        self.campo_nome = QLineEdit()
+        self.campo_nome.setFont(self.font_campi)
+        self.campo_nome.setText(self.controllore_prenotazione2.get_nome_pre_te())
+        self.v_layout.addWidget(self.campo_nome)
+
+        self.label_orario = QLabel("Cognome:")
+        self.label_orario.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_orario)
+
+        self.campo_orario = QLineEdit()
+        self.campo_orario.setFont(self.font_campi)
+        self.campo_orario.setText(self.controllore_prenotazione2.get_orario_premuto_pre_te())
+        self.v_layout.addWidget(self.campo_orario)
+
+        self.label_giorno = QLabel("Giorno:")
+        self.label_giorno.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_giorno)
+
+        self.campo_giorno = QLineEdit()
+        self.campo_giorno.setFont(self.font_campi)
+        self.stringa = str(self.controllore_prenotazione2.get_giorno_pre_te().strftime("%d/%m/%Y"))
+        self.campo_giorno.setText(self.stringa)
+        self.v_layout.addWidget(self.campo_giorno)
+
+        self.label_recapito = QLabel("Recapito")
+        self.label_recapito.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_recapito)
+
+        self.campo_recapito = QLineEdit()
+        self.campo_recapito.setFont(self.font_campi)
+        self.campo_recapito.setText(self.controllore_prenotazione2.get_recapito_pre_te())
+        self.v_layout.addWidget(self.campo_recapito)
+
+
+        self.h_layout = QHBoxLayout()
+
+        self.bottone_chiudi = QPushButton("Chiudi")
+        self.bottone_chiudi.setFont(self.font_campi)
+        self.bottone_chiudi.clicked.connect(self.chiudi_finestra)
+        self.bottone_chiudi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.h_layout.addWidget(self.bottone_chiudi)
+
+        self.v_layout.addLayout(self.h_layout)
+        self.setLayout(self.v_layout)
+        self.setWindowTitle("Dipendente")
+        self.resize(300, 400)
+
+        self.setLayout(self.v_layout)
+        self.setMinimumSize(781, 610)
+        self.setMaximumSize(781, 610)
+        self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
+
+        oImage = QImage("images/immaginepesisfocata.jpeg")
+        sImage = oImage.scaled(QSize(791, 611))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
+
+    def chiudi_finsetra(self):
+        self.close()
