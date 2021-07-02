@@ -31,8 +31,11 @@ class Controller_GestioneCertificati():
     def get_datafine_certificato(self):
         return self.model.datafine
 
-    def get_documento_identita(self):
+    def get_certificato_pdf(self):
         return self.model.documento
+
+    def set_certificato_pdf(self, documento):
+        self.model.documento = documento
 
     def set_nome_certificato(self, nome):
         self.model.nome = nome
@@ -60,6 +63,3 @@ class Controller_GestioneCertificati():
 
     def set_datafine_certificato(self, datafine):
         self.model.datafine = datafine
-
-    def set_documento_identita(self,documento):
-        self.model.documento = documento
