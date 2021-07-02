@@ -248,6 +248,6 @@ class view_InserisciCertificato(QWidget):
             return
 
         self.label_documento.setText(self.controller.get_documento_identita().split("/")[-1])
-        self.controller.get_lista_certificati = Controller_Certificati()
-        self.controller.get_lista_certificati.get_certificato_by_codicefiscale(self.controller.get_documento_identita())
-        self.controller.get_lista_certificati.save_data()
+        self.controller = Controller_Certificati()
+        self.controller.get_certificato_by_codicefiscale(self.controller.get_documento_identita()).documento = self.controller.get_documento_identita()
+        self.controller.save_data()
