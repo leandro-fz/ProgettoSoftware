@@ -235,7 +235,6 @@ class view_InserisciDipendente(QWidget):
 
 
     def controlla_id_libero(self, id):
-
         for dipendente in self.controller.get_lista_dipendenti():
             if dipendente.id == id:
                 return False

@@ -36,7 +36,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.font_label.setBold(True)
 
         self.font_label2 = QFont("Yu Gothic UI Light", 15)
-        self.label_alto = QLabel("Compila il form di prenotazione tennis")
+        self.label_alto = QLabel("Form di prenotazione campo tennis del "+ data.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
@@ -158,30 +158,29 @@ class view_nuovaPrenotazioneTennis(QWidget):
         # numero = self.campo_numeroutenti.text()
         orario_premuto = str(self.combo.currentText())
         dataselezionata = self.data1
+        print(orario_premuto)
+        print(dataselezionata)
+        idtennis = str(dataselezionata)+str(orario_premuto)
+
+        print(idtennis)
+
         # datetime(self.data1.year(), self.data1.month(), self.data1.day())
 
         if utente == "" or recapito == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # try:
-        #     numero = int(self.campo_numeroutenti.text())
-        # except:
-        #     QMessageBox.critical(self, "Errore", "Il numero degli utenti non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
-        #     return
-
         if orario_premuto == "Seleziona un orario":
             QMessageBox.critical(self, "Errore", "Seleziona un orario valido ", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if not self.controlla_disponibilità(dataselezionata, orario_premuto):
+        if not self.controlla_disponibilità(idtennis):
             QMessageBox.critical(self, "Conflitto", "Campo già prenotato",QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito)
+        prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito, idtennis)
 
-
-        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è "+ str(prenotazione.get_prezzo_totale()) + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
+        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è "+ str(prenotazione.get_prezzo_totale()) + " euro" + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.No:
             return
         else:
@@ -192,10 +191,11 @@ class view_nuovaPrenotazioneTennis(QWidget):
             self.aggiorna_dati_prenotazioni()
             self.close()
 
-    def controlla_disponibilità(self, dataselezionata, orario_premuto):
-        controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-        for prenotazione in controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-            if prenotazione.get_prezzo_totale == dataselezionata and prenotazione.ora == orario_premuto:
+    def controlla_disponibilità(self, idtennis):
+        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
+            print("detro if")
+            if prenotazione.id == idtennis:
+                print(prenotazione.id)
                 return False
-            else:
-                return True
+        return True

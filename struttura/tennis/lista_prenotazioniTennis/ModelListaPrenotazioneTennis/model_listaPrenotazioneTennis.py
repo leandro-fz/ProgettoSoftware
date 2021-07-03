@@ -37,7 +37,7 @@ class ListaPrenotazioniTennis():
 
     def elimina_prenotazione_singola(self, data):
         for prenotazione in self.lista_prenotazioni:
-            if prenotazione.data_inizio == data:
+            if prenotazione.data == data:
                 self.lista_prenotazioni.remove(prenotazione)
                 return
 

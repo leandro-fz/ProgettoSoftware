@@ -18,6 +18,12 @@ class ControllorePrenotazioneTennis:
     def get_giorno_pre_te(self):
         return self.model.giorno
 
+    def get_id_pre_te(self):
+        return self.model.id
+
+    def set_id_pre_te(self, id_pre_te):
+        self.model.id = id_pre_te
+
     def set_nome_pre_te(self, utente):
         self.model.utente = utente
 

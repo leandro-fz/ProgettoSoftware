@@ -11,4 +11,3 @@ class GestioniDipendente():
         self.ruolo = ruolo
         self.id = id
         self.stipendio = stipendio
-

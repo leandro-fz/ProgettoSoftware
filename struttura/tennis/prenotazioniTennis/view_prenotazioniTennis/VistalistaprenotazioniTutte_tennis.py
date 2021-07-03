@@ -1,21 +1,12 @@
-from PyQt5.QtGui import QFont, QStandardItem, QStandardItemModel, QKeySequence
-from PyQt5.QtWidgets import QListView, QVBoxLayout, QLabel, QWidget, QPushButton, QMessageBox, QShortcut
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import QShortcut
 from PyQt5.QtCore import Qt
-from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QHBoxLayout, QPushButton
-from PyQt5.QtGui import QFont
-from datetime import datetime
-from PyQt5.QtCore import QDate
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem, QTextCharFormat, QColor
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QComboBox, QCheckBox, QMessageBox, \
-    QPushButton
-from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
 from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
 from datetime import datetime, timedelta
 
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
@@ -40,12 +31,9 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.data = data
 
         self.v_layout = QVBoxLayout()
-        self.font = QFont("Yu Gothic UI Light", 13, 13, True)
+        self.font = QFont("Yu Gothic UI Light", 15)
 
-        if data is not None:
-            self.label_prenotazioni_by_data = QLabel("Arrivi del giorno " + data.strftime("%d/%m/%Y") + ":")
-        else:
-            self.label_prenotazioni_by_data = QLabel("Tutte le prenotazioni: ")
+        self.label_prenotazioni_by_data = QLabel("Tutte le prenotazioni: ")
         self.label_prenotazioni_by_data.setAlignment(Qt.AlignCenter)
         self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 17))
         self.v_layout.addWidget(self.label_prenotazioni_by_data)
@@ -108,15 +96,9 @@ class VistaListaPrenotazioniTutte(QWidget):
             today=datetime.now()
             yesterday=today - timedelta(1)
             if prenotazione.data>=yesterday:
-                if self.data == prenotazione.data:
+                if self.data is None:
                     item = QStandardItem()
-                    item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y"))
-                    item.setEditable(False)
-                    item.setFont(self.font)
-                    self.modello_lista_prenotazioni.appendRow(item)
-                elif self.data is None:
-                    item = QStandardItem()
-                    item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y"))
+                    item.setText("Prenotazione giorno " + prenotazione.data.strftime("%d/%m/%Y") + " ore " + prenotazione.orario + " di " + prenotazione.utente)
                     item.setEditable(False)
                     item.setFont(self.font)
                     self.modello_lista_prenotazioni.appendRow(item)
@@ -127,27 +109,25 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.close()
 
     def mostra_elimina(self):
-        pass
-    3    # try:
-        #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-        #     da_eliminare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1()[indice]
-        # except:
-        #     QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
-        #     return
-        #
-        # risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione selezionata?",QMessageBox.Yes,QMessageBox.No)
-        # if risposta == QMessageBox.Yes:
-        #     self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare)
-        #     self.controllore_lista_prenotazioni.save_data()
-        #     self.aggiorna_dati_prenotazioni()
-        # else:
-        #     return
+        try:
+            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+            elimina = self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1()[indice]
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
+            return
+
+        risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
+        if risposta == QMessageBox.Yes:
+            self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(elimina)
+            self.controllore_lista_prenotazioni.save_data()
+            self.aggiorna_dati_prenotazioni()
+        else:
+            return
 
     def dettagli_prenotazione(self):
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()
             lista_prenotazioni_filtrata = []
-            # self.aaco = ControllorePrenotazioneTennis()
             for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
                 if prenotazione.data == self.data:
                     # if self.aaco.get_orario_premuto_pre_te() ==
