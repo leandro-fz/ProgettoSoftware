@@ -1,6 +1,4 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
@@ -9,9 +7,7 @@ from datetime import datetime
 
 from gestione.cliente.GestioneCertificati.controller_GestioneCertificati.controller_GestioneCertificati import \
     Controller_GestioneCertificati
-from gestione.cliente.certificati.controller_certificati.controller_certficati import Controller_Certificati
 from gestione.cliente.GestioneCertificati.model_GestioneCertificati.model_GestioneCertificati import GestioniCertificato
-from gestione.cliente.certificati.view_certificati.view_importa_documento import VistaImportaDocumento
 
 
 class view_InserisciCertificato(QWidget):
@@ -94,11 +90,6 @@ class view_InserisciCertificato(QWidget):
         self.campo_datafine = QLineEdit()
         self.v_layout.addWidget(self.campo_datafine)
 
-        self.label_documento = QLabel("Documento:")
-        self.label_documento.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_documento)
-
-
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
 
@@ -110,15 +101,6 @@ class view_InserisciCertificato(QWidget):
         self.bottone_annulla.clicked.connect(self.mostra_annulla_ins)
         self.h_layout.addWidget(self.bottone_annulla)
         self.bottone_annulla.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-
-        self.bottone_importa_certificato = QPushButton("Importa certificato")
-        self.h_layout.addWidget(self.bottone_importa_certificato)
-        self.bottone_importa_certificato.clicked.connect(self.conferma_importa_certificato)
-        self.bottone_importa_certificato.setFont(self.font_label)
-        self.bottone_importa_certificato.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.shortcut_importa_certificato = QShortcut(QKeySequence('Alt+d'), self)
-        self.shortcut_importa_certificato.activated.connect(self.conferma_importa_certificato)
-
 
         self.bottone_conferma = QPushButton("Conferma")
         self.h_layout.addWidget(self.bottone_conferma)
@@ -237,21 +219,3 @@ class view_InserisciCertificato(QWidget):
             if certificato.codicefiscale == codicefiscale:
                 return False
         return True
-
-    def conferma_importa_certificato(self):
-        self.vista_importa_documento = VistaImportaDocumento(self.controller)
-        self.controller.save_data()
-        # self.aggiorna_documento()
-
-    def aggiorna_certificato(self):
-        pass
-
-        # self.cotroller_gestio = Controller_GestioneCertificati()
-        #
-        # if self.cotroller_gestio.get_certificato_pdf() is None or self.cotroller_gestio.get_certificato_pdf() == '':
-        #     return
-        #
-        # self.label_documento.setText(self.cotroller_gestio.get_certificato_pdf().split("/")[-1])
-        # self.controller = Controller_Certificati()
-        # self.controller.get_certificato_by_codicefiscale(self.cotroller_gestio.get_certificato_pdf()).certificato_pdf = self.cotroller_gestio.get_certificato_pdf()
-        # self.controller.save_data()

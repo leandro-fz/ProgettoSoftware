@@ -226,3 +226,4 @@ class view_ModificaCertificato(QWidget):
         QMessageBox.about(self, "Completata", "Modifica completata")
         self.aggiorna_lista()
         self.close()
+

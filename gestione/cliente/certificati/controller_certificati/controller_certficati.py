@@ -1,3 +1,5 @@
+from gestione.cliente.GestioneCertificati.controller_GestioneCertificati.controller_GestioneCertificati import \
+    Controller_GestioneCertificati
 from gestione.cliente.certificati.model_certificati.model_certificati import Insieme_Certificati
 
 
@@ -21,3 +23,4 @@ class Controller_Certificati():
 
     def save_data(self):
         self.model.save_data()
+

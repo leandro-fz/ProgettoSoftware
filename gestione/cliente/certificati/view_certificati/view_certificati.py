@@ -22,6 +22,7 @@ class view_certificati(QWidget):
 
         self.controller = Controller_Certificati()
 
+
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
