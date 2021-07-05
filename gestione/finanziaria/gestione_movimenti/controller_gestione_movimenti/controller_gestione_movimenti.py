@@ -1,4 +1,4 @@
-class Controller_GestioneMovimenti():
+class controller_gestione_movimenti():
 
 
     def __init__(self, movimenti):

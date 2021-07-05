@@ -7,11 +7,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-class view_ModificaMovimento(QWidget):
+class view_gestione_movimenti(QWidget):
 
     def __init__(self, controllore_movimenti, aggiorna_lista, lista_movimenti, parent=None):
 
-        super(view_ModificaMovimento, self).__init__(parent)
+        super(view_gestione_movimenti, self).__init__(parent)
         self.controller = controllore_movimenti
         self.aggiorna_lista = aggiorna_lista
         self.lista_movimenti = lista_movimenti

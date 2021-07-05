@@ -6,15 +6,15 @@ from PyQt5.QtGui import *
 from datetime import datetime
 
 from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
-    Controller_GestioneMovimenti
-from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gestione_movimenti import GestioneMovimenti
+    controller_gestione_movimenti
+from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gestione_movimenti import model_gestione_movimenti
 
 
-class view_InserisciMovimenti(QWidget):
+class view_inserisci_movimento(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciMovimenti, self).__init__(parent)
+        super(view_inserisci_movimento, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -155,7 +155,7 @@ class view_InserisciMovimenti(QWidget):
             return
 
 
-        self.controller.aggiungi_movimenti(GestioneMovimenti(importo, data, causale, fattura))
+        self.controller.aggiungi_movimenti(model_gestione_movimenti(importo, data, causale, fattura))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
