@@ -1,7 +1,5 @@
 import unittest
 
-from gestione.amministrazione.GestioneDipendenti.controller_GestioneDipendenti.Controller_GestioneDipendenti import \
-    Controller_GestioneDipendenti
 from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import \
     GestioniDipendente
 from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti

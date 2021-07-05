@@ -1,5 +1,4 @@
 import unittest
-from unittest import TestCase
 
 from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_GestioneAbbonamenti import GestioniAbbonamento
 from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
