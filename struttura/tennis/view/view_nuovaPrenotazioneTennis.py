@@ -56,20 +56,10 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.campo_recapito = QLineEdit()
         self.v_layout.addWidget(self.campo_recapito)
 
-        # self.label_numeroutenti = QLabel("Numero Giocatori")
-        # self.label_numeroutenti.setFont(self.font_label)
-        # self.v_layout.addWidget(self.label_numeroutenti)
-        #
-        # self.campo_numeroutenti = QLineEdit()
-        # self.v_layout.addWidget(self.campo_numeroutenti)
-
         #orario
         self.label_data = QLabel("Orario")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
-
-        # self.campo_data = QLineEdit()
-        # self.v_layout.addWidget(self.campo_data)
 
         self.combo = QComboBox(self)
         self.combo.addItem("Seleziona un orario")
@@ -90,17 +80,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.combo.addItem("22:00-23:00")
 
         self.v_layout.addWidget(self.combo)
-
-
-
-        # self.combo = QComboBox("Orario")
-        # self.combo.setFont(self.font_label)
-        # self.combo.setItemText(0, "0")
-        # self.combo.setItemText(1, "2")
-        # self.v_layout.addWidget(self.combo)
-        #
-        # self.campo_combo = QLineEdit()
-        # self.v_layout.addWidget(self.campo_combo)
 
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
@@ -141,8 +120,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
 
 
     def mostra_annulla_ins(self):
-        reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No,
-                                     QMessageBox.No)
+        reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             self.close()
         else:
@@ -155,7 +133,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
     def conferma_inserimento(self):
         utente = self.campo_prenotatore.text()
         recapito = self.campo_recapito.text()
-        # numero = self.campo_numeroutenti.text()
         orario_premuto = str(self.combo.currentText())
         dataselezionata = self.data1
         print(orario_premuto)
@@ -163,8 +140,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
         idtennis = str(dataselezionata)+str(orario_premuto)
 
         print(idtennis)
-
-        # datetime(self.data1.year(), self.data1.month(), self.data1.day())
 
         if utente == "" or recapito == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -180,7 +155,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
 
         prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito, idtennis)
 
-        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è "+ str(prenotazione.get_prezzo_totale()) + " euro" + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
+        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è " + str(prenotazione.get_prezzo_totale()) + " € " + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.No:
             return
         else:
@@ -194,8 +169,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
     def controlla_disponibilità(self, idtennis):
         self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-            print("detro if")
             if prenotazione.id == idtennis:
-                print(prenotazione.id)
                 return False
         return True

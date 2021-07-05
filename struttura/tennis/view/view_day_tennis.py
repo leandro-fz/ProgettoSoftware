@@ -11,8 +11,7 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
-
+from datetime import datetime, timedelta
 
 from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
     ControlloreListaPrenotazioniTennis
@@ -96,29 +95,29 @@ class view_day_tennis(QWidget):
     # def closeEvent(self, event):
     #     self.controller.save_data()
 
+
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_prenotazioni = QStandardItemModel()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
             if self.data == prenotazione.data:
                 item = QStandardItem()
-                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y") + " alle ore " + prenotazione.orario)
+                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y") + " delle ore " + prenotazione.orario + " di " + prenotazione.utente)
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_prenotazioni.appendRow(item)
-            # elif self.data is None:
-            #     item = QStandardItem()
-            #     item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y") + self.abaco.get_orario_premuto_pre_te)
-            #     item.setEditable(False)
-            #     item.setFont(self.font)
-            #     self.modello_lista_prenotazioni.appendRow(item)
-
         self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
-
 
     def mostra_indietro_view_tennis(self):
         self.close()
 
     def mostra_aggiungi(self):
+
+        today = datetime.now()
+        yesterday = today - timedelta(1)
+        if self.data <= yesterday:
+            risposta = QMessageBox.question(self, "Conferma", "Vuoi aggiungere una prenotazione passata?" + "\n\nConfermare?", QMessageBox.Yes, QMessageBox.No)
+            if risposta == QMessageBox.No:
+                return
         self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.data, self.aggiorna_dati_prenotazioni)
         self.vista_nuova_prenotazione.show()
 
@@ -132,25 +131,16 @@ class view_day_tennis(QWidget):
 
         risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
-            self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(elimina)
+            self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(elimina.id)
+            QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
             self.controllore_lista_prenotazioni.save_data()
             self.aggiorna_dati_prenotazioni()
         else:
             return
 
-
-
-
     def dettagli_prenotazione(self):
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-            # if self.data is not None:
-            #     lista_prenotazioni_filtrata = []
-            #     for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis():
-            #         if prenotazione.giorno == self.data:
-            #             lista_prenotazioni_filtrata.append(prenotazione)
-            #     da_visualizzare = lista_prenotazioni_filtrata[indice]
-            # else:
             da_visualizzare = self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1()[indice]
         except:
             QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
