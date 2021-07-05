@@ -19,8 +19,8 @@ class ControlloreListaPrenotazioniTennis:
     # def get_lista_prenotazione_cliente_oraria(self, data, ora):
     #     return self.model.get_lista_prenotazione_cliente_oraria(data, ora)
 
-    def elimina_prenotazione_tennis(self, data):
-        self.model.elimina_prenotazione_singola(data)
+    def elimina_prenotazione_tennis(self, idtennis):
+        self.model.elimina_prenotazione_tennis(idtennis)
 
     def save_data(self):
         self.model.save_data()

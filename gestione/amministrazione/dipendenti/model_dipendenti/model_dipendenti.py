@@ -16,7 +16,7 @@ class Insieme_Dipendenti():
     def aggiungi_dipendente(self, dipendente):
         self.lista_dipendenti.append(dipendente)
 
-    def rimuovi_dipendente_by_id(self, id):
+    def elimina_dipendente_by_id(self, id):
         for dipendente in self.lista_dipendenti:
             if dipendente.id == id:
                 self.lista_dipendenti.remove(dipendente)

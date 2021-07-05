@@ -16,7 +16,7 @@ class ControllorePrenotazioneTennis:
         return self.model.orario
 
     def get_giorno_pre_te(self):
-        return self.model.giorno
+        return self.model.data
 
     def get_id_pre_te(self):
         return self.model.id
@@ -34,4 +34,4 @@ class ControllorePrenotazioneTennis:
         self.model.orario = orario
 
     def set_giorno_pre_te(self, giorno):
-        self.model.giorno = giorno
+        self.model.data = giorno

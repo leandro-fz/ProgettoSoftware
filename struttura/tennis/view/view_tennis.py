@@ -1,18 +1,14 @@
+
 from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QHBoxLayout, QPushButton
+from PyQt5.QtGui import QTextCharFormat, QColor
+from PyQt5.QtWidgets import QGridLayout, QCalendarWidget
+
+
+from PyQt5.QtWidgets import QLabel, QHBoxLayout, QPushButton
 from PyQt5.QtGui import QFont
 from datetime import datetime
-from PyQt5.QtCore import QDate
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem, QTextCharFormat, QColor
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QComboBox, QCheckBox, QMessageBox, \
-    QPushButton
-from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
-from datetime import datetime
-
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
@@ -32,7 +28,7 @@ class view_tennis(QWidget):
         self.g_layout = QGridLayout()
 
 
-        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data, poi clicca i pulsanti desiderati: \n")
+        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutte le prenotazioni di oggi e future: \n")
         self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 12))
         self.g_layout.addWidget(self.label_prenotazioni_by_data, 0, 0)
 

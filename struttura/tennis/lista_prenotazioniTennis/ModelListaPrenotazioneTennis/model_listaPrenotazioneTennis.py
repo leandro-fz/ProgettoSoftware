@@ -16,13 +16,6 @@ class ListaPrenotazioniTennis():
         self.lista_prenotazioni.append(prenotazione)
         # self.lista_prenotazioni.sort()
 
-    # def get_lista_prenotazione_cliente_oraria(self, data, ora):
-    #     for prenotazione in self.lista_prenotazioni:
-    #         if prenotazione.data == data and prenotazione.ora == ora:
-    #             return False
-    #         else:
-    #             return True
-
     def get_lista_prenotazioni1(self):
         return self.lista_prenotazioni
 
@@ -35,11 +28,12 @@ class ListaPrenotazioniTennis():
         return self.lista_prenotazioni
 
 
-    def elimina_prenotazione_singola(self, data):
+    def elimina_prenotazione_tennis(self, idtennis):
         for prenotazione in self.lista_prenotazioni:
-            if prenotazione.data == data:
+            if prenotazione.id == idtennis:
                 self.lista_prenotazioni.remove(prenotazione)
-                return
+                return True
+        return False
 
     def save_data(self):
         with open("struttura/tennis/lista_prenotazioniTennis/data_listaPrenotazioniTennis/lista_prenotazionitennis_salvata.pickle", "wb") as handle:
