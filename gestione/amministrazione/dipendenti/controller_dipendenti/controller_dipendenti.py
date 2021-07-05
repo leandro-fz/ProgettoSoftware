@@ -17,7 +17,7 @@ class Controller_Dipendenti():
         return self.model.get_dipendente_by_id(id)
 
     def elimina_dipendente_by_id(self, id):
-        self.model.rimuovi_dipendente_by_id(id)
+        self.model.elimina_dipendente_by_id(id)
 
     def save_data(self):
         self.model.save_data()
