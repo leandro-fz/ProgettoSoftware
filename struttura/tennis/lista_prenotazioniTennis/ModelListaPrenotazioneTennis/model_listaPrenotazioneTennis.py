@@ -14,7 +14,6 @@ class ListaPrenotazioniTennis():
 
     def aggiungi_prenotazione(self, prenotazione):
         self.lista_prenotazioni.append(prenotazione)
-        # self.lista_prenotazioni.sort()
 
     def get_lista_prenotazioni1(self):
         return self.lista_prenotazioni

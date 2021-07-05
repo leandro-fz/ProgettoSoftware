@@ -88,6 +88,7 @@ class VistaListaPrenotazioniTutte(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_prenotazioni = QStandardItemModel()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
@@ -100,6 +101,7 @@ class VistaListaPrenotazioniTutte(QWidget):
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_prenotazioni.appendRow(item)
+        self.modello_lista_prenotazioni.sort()
 
         self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
 
