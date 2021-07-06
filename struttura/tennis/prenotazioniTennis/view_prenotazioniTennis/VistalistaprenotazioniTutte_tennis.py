@@ -31,7 +31,7 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.data = data
 
         self.v_layout = QVBoxLayout()
-        self.font = QFont("Yu Gothic UI Light", 15)
+        self.font = QFont("Yu Gothic UI Light", 13)
 
         self.label_prenotazioni_by_data = QLabel("Tutte le prenotazioni dalla data di oggi in poi: ")
         self.label_prenotazioni_by_data.setAlignment(Qt.AlignCenter)
@@ -76,14 +76,14 @@ class VistaListaPrenotazioniTutte(QWidget):
 
         self.setLayout(self.v_layout)
 
-        self.setMinimumSize(900, 700)
-        self.setMaximumSize(900, 700)
+        self.setMinimumSize(800, 600)
+        self.setMaximumSize(800, 600)
         self.setWindowTitle("Elenco Prenotazioni Tennis")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(900, 701))
+        sImage = oImage.scaled(QSize(800, 601))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
