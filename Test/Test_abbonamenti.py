@@ -1,13 +1,14 @@
 import unittest
 
-from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_gestione_abbonamenti import GestioniAbbonamento
-from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
+from gestione.cliente.GestioneAbbonamenti.model_gestione_abbonamenti.model_gestione_abbonamenti import \
+    model_gestione_abbonamenti
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
 
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.controller_lista_abbonamenti = Controller_Abbonamenti()
-        self.abbonamento = GestioniAbbonamento("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567", "Appignano","filippo@gmail.com","3348967115", "Piscina", "mensile")
+        self.controller_lista_abbonamenti = controller_abbonamenti()
+        self.abbonamento = model_gestione_abbonamenti("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567", "Appignano","filippo@gmail.com","3348967115", "Piscina", "mensile")
         self.controller_lista_abbonamenti.aggiungi_abbonamento(self.abbonamento)
         self.model_lista_abbonamenti = self.controller_lista_abbonamenti.get_lista_abbonamenti()
 

@@ -1,14 +1,14 @@
 import unittest
 
-from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import \
-    GestioniDipendente
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
+from gestione.amministrazione.GestioneDipendenti.model_gestione_dipendenti.model_gestione_dipendenti import \
+    model_gestione_dipendenti
+from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import controller_dipendenti
 
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.controller_listadipendenti = Controller_Dipendenti()
-        self.dipendente = GestioniDipendente("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567","indeterminato", "addetto alle pulizie","99999", "1500")
+        self.controller_listadipendenti = controller_dipendenti()
+        self.dipendente = model_gestione_dipendenti("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567","indeterminato", "addetto alle pulizie","99999", "1500")
         self.model_lista_dipendenti = self.controller_listadipendenti.get_lista_dipendenti()
         self.controller_listadipendenti.aggiungi_dipendente(self.dipendente)
 
