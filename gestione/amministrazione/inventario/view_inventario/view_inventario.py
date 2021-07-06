@@ -9,7 +9,7 @@ from gestione.amministrazione.GestioneInventario.controller_GestioneInventario.c
 from gestione.amministrazione.GestioneInventario.view_GestioneInventario.view_GestioneInventario import \
     view_ModificaInventario
 from gestione.amministrazione.inventario.controller_inventario.controller_inventario import Controller_Inventario
-from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo import view_InserisciInventario
+from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo import view_InserisciArticolo
 
 
 class view_inventario(QWidget):
@@ -97,7 +97,7 @@ class view_inventario(QWidget):
 
     def mostra_inserisci_inventario(self):
 
-        self.inserisci_inventario = view_InserisciInventario(self.controller, self.aggiorna_dati)
+        self.inserisci_inventario = view_InserisciArticolo(self.controller, self.aggiorna_dati)
         self.inserisci_inventario.show()
 
     def closeEvent(self, event):

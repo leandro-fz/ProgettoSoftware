@@ -6,8 +6,8 @@ from PyQt5.QtGui import *
 
 from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
     controller_gestione_movimenti
-from gestione.finanziaria.gestione_movimenti.view_gestione_movimenti.view_gestione_movimenti import \
-    view_gestione_movimenti
+from gestione.finanziaria.gestione_movimenti.view_modifica_movimenti.view_modifica_movimenti import \
+    view_modifica_movimenti
 from gestione.finanziaria.movimenti.controller_movimenti.controller_movimenti import controller_movimenti
 from gestione.finanziaria.movimenti.view_movimenti.view_inserisci_movimento import view_inserisci_movimento
 
@@ -134,6 +134,6 @@ class view_finanziaria(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_movimenti = view_gestione_movimenti(controller_gestione_movimenti(da_visualizzare),
+        self.modifica_movimenti = view_modifica_movimenti(controller_gestione_movimenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_movimenti())
         self.modifica_movimenti.show()

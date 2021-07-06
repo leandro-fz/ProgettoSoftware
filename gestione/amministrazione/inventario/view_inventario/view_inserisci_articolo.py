@@ -9,11 +9,11 @@ from PyQt5.QtGui import *
 from gestione.amministrazione.GestioneInventario.model_GestioneInventario.model_GestioneInventario import GestioniInventario
 
 
-class view_InserisciInventario(QWidget):
+class view_InserisciArticolo(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciInventario, self).__init__(parent)
+        super(view_InserisciArticolo, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 

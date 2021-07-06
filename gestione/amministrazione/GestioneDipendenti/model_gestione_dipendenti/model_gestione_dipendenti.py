@@ -1,4 +1,4 @@
-class GestioniDipendente():
+class model_gestione_dipendenti():
 
     def __init__(self, nome, cognome, luogo, data, codice, contratto ,ruolo, id, stipendio):
 

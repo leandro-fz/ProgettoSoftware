@@ -2,9 +2,9 @@ import os
 import pickle
 
 # amministrazione/
-class Insieme_Dipendenti():
+class model_dipendenti():
     def __init__(self):
-        super(Insieme_Dipendenti, self).__init__()
+        super(model_dipendenti, self).__init__()
         self.lista_dipendenti = []
         if os.path.isfile("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle"):
             with open("gestione/amministrazione/dipendenti/data_dipendenti/lista_dipendenti_salvata.pickle", "rb") as file:

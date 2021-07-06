@@ -8,11 +8,11 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-class view_ModificaDipendente(QWidget):
+class view_modifica_dipendenti(QWidget):
 
     def __init__(self, controllore_dipendente, aggiorna_lista, lista_dipendenti, parent=None):
 
-        super(view_ModificaDipendente, self).__init__(parent)
+        super(view_modifica_dipendenti, self).__init__(parent)
         self.controller = controllore_dipendente
         self.aggiorna_lista = aggiorna_lista
         self.lista_dipendenti = lista_dipendenti

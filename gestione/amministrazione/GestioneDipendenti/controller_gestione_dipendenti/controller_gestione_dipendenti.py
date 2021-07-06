@@ -1,4 +1,4 @@
-class Controller_GestioneDipendenti():
+class controller_gestione_dipendenti():
 
 
     def __init__(self, dipendente):

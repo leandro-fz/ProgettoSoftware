@@ -4,12 +4,12 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.amministrazione.GestioneDipendenti.controller_GestioneDipendenti.Controller_GestioneDipendenti import \
-    Controller_GestioneDipendenti
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
-from gestione.amministrazione.GestioneDipendenti.view_GestioneDipendenti.view_modificaDipendenti import \
-    view_ModificaDipendente
-from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipendente import view_InserisciDipendente
+from gestione.amministrazione.GestioneDipendenti.controller_gestione_dipendenti.controller_gestione_dipendenti import \
+    controller_gestione_dipendenti
+from gestione.amministrazione.GestioneDipendenti.view_modifica_dipendente.view_modifica_dipendenti import \
+    view_modifica_dipendenti
+from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import controller_dipendenti
+from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipendenti import view_inserisci_dipendenti
 
 
 class view_dipendenti(QWidget):
@@ -17,7 +17,7 @@ class view_dipendenti(QWidget):
     def __init__(self, parent=None):
         super(view_dipendenti, self).__init__(parent)
 
-        self.controller = Controller_Dipendenti()
+        self.controller = controller_dipendenti()
 
         self.v_layout = QVBoxLayout()
 
@@ -97,7 +97,7 @@ class view_dipendenti(QWidget):
 
     def mostra_inserisci_dipendente(self):
 
-        self.inserisci_dipendente = view_InserisciDipendente(self.controller, self.aggiorna_dati)
+        self.inserisci_dipendente = view_inserisci_dipendenti(self.controller, self.aggiorna_dati)
         self.inserisci_dipendente.show()
 
     def closeEvent(self, event):
@@ -134,6 +134,6 @@ class view_dipendenti(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_dipendente = view_ModificaDipendente(Controller_GestioneDipendenti(da_visualizzare),
+        self.modifica_dipendente = view_modifica_dipendenti(controller_gestione_dipendenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_dipendenti())
         self.modifica_dipendente.show()

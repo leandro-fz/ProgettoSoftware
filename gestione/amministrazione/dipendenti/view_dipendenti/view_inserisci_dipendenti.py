@@ -8,16 +8,17 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import Controller_Dipendenti
-from gestione.amministrazione.GestioneDipendenti.model_GestioneDipendenti.model_GestioneDipendenti import GestioniDipendente
-from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import Insieme_Dipendenti
+from gestione.amministrazione.GestioneDipendenti.model_gestione_dipendenti.model_gestione_dipendenti import \
+    model_gestione_dipendenti
+from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import controller_dipendenti
+from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import model_dipendenti
 
 
-class view_InserisciDipendente(QWidget):
+class view_inserisci_dipendenti(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciDipendente, self).__init__(parent)
+        super(view_inserisci_dipendenti, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -225,7 +226,7 @@ class view_InserisciDipendente(QWidget):
             return
 
 
-        self.controller.aggiungi_dipendente(GestioniDipendente(nome, cognome, luogo, data, codice, contratto, ruolo, id, stipendio))
+        self.controller.aggiungi_dipendente(model_gestione_dipendenti(nome, cognome, luogo, data, codice, contratto, ruolo, id, stipendio))
 
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

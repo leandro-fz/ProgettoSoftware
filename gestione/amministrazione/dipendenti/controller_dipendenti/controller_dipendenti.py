@@ -1,11 +1,12 @@
-from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import Insieme_Dipendenti
+from gestione.amministrazione.GestioneDipendenti.model_gestione_dipendenti.model_gestione_dipendenti import \
+    model_gestione_dipendenti
 
 
-class Controller_Dipendenti():
+class controller_dipendenti():
 
     def __init__(self):
-        super(Controller_Dipendenti, self).__init__()
-        self.model = Insieme_Dipendenti()
+        super(controller_dipendenti, self).__init__()
+        self.model = model_gestione_dipendenti()
 
     def aggiungi_dipendente(self, dipendente):
         self.model.aggiungi_dipendente(dipendente)

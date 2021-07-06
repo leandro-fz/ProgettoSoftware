@@ -5,7 +5,6 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from datetime import datetime
 
 
 class view_ModificaFornitore(QWidget):
