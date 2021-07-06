@@ -28,8 +28,8 @@ class VistaPrenotazioneTennis(QWidget):
         self.h_layout = QHBoxLayout()
 
         # bottoni profilo cliente collegati alle relative funzioni
-        self.create_button("⬅️", self.mostra_indietro)
-        self.create_button("Elimina", self.conferma_eliminazione)
+        self.create_button("Chiudi", self.mostra_indietro)
+        # self.create_button("Elimina", self.conferma_eliminazione)
 
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
         self.shortcut_indietro.activated.connect(self.mostra_indietro)
@@ -74,12 +74,13 @@ class VistaPrenotazioneTennis(QWidget):
     def mostra_indietro(self):
         self.close()
 
-    def conferma_eliminazione(self):
-        self.controllore_lista_prenotazioi_tennis = ControlloreListaPrenotazioniTennis()
-        risposta = QMessageBox.warning(self, "Elimina Prenotazione", "Sei sicuro di voler elimare la prenotazione?", QMessageBox.Yes, QMessageBox.No)
-        if risposta == QMessageBox.Yes:
-            self.close()
-            self.controllore_lista_prenotazioi_tennis.elimina_prenotazione_tennis(self.controllore_prenotazione.get_id_pre_te())
-            self.controllore_lista_prenotazioi_tennis.save_data()
-        else:
-            return
+    # def conferma_eliminazione(self):
+    #
+    #     self.controllore_lista_prenotazioi_tennis = ControlloreListaPrenotazioniTennis()
+    #     risposta = QMessageBox.warning(self, "Elimina Prenotazione", "Sei sicuro di voler elimare la prenotazione?", QMessageBox.Yes, QMessageBox.No)
+    #     if risposta == QMessageBox.Yes:
+    #         self.close()
+    #         self.controllore_lista_prenotazioi_tennis.elimina_prenotazione_tennis(self.controllore_prenotazione.get_id_pre_te())
+    #         self.controllore_lista_prenotazioi_tennis.save_data()
+    #     else:
+    #         return

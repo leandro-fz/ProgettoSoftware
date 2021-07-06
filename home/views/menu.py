@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from gestione.amministrazione.view.view_amministrazione import Ui_Gestioneamministrazione
-from gestione.cliente.view.view_cliente import Ui_gestioneclienti
+from gestione.cliente.view.view_cliente import view_cliente
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
 from struttura.piscina.view.view_piscina import Ui_gestionepiscina

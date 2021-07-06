@@ -127,7 +127,9 @@ class view_day_tennis(QWidget):
         except:
             QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
             return
-
+        if da_eliminare.data < datetime.now():
+            QMessageBox.critical(self, "Errore", "Non puoi eliminare una prenotazione passata", QMessageBox.Ok, QMessageBox.Ok)
+            return
         risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
             self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare.id)
@@ -149,6 +151,7 @@ class view_day_tennis(QWidget):
         except:
             QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
+
 
         self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_visualizzare))
         self.vista_prenotazione.show()

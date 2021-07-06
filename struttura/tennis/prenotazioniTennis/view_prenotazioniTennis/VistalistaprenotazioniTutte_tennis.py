@@ -46,7 +46,7 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.h_layout = QHBoxLayout()
 
 
-        self.bottone_indietro = QPushButton("⬅️")
+        self.bottone_indietro = QPushButton("Chiudi")
         self.bottone_indietro.setFont(self.font)
         self.bottone_indietro.clicked.connect(self.mostra_indietro)
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
@@ -54,36 +54,36 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.bottone_indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_indietro)
 
-        self.bottone_elimina = QPushButton("Elimina")
-        self.bottone_elimina.setFont(self.font)
-        self.bottone_elimina.clicked.connect(self.mostra_elimina)
-        self.shortcut_elimina = QShortcut(QKeySequence("Alt+d"), self)
-        self.shortcut_elimina.activated.connect(self.mostra_elimina)
-        self.bottone_elimina.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.h_layout.addWidget(self.bottone_elimina)
-
-
-        self.bottone_dettagli_prenotazione = QPushButton("Dettagli prenotazione")
-        self.bottone_dettagli_prenotazione.setFont(self.font)
-        self.bottone_dettagli_prenotazione.clicked.connect(self.dettagli_prenotazione)
-        self.shortcut_open = QShortcut(QKeySequence('Return'), self)
-        self.shortcut_open.activated.connect(self.dettagli_prenotazione)
-        self.h_layout.addWidget(self.bottone_dettagli_prenotazione)
-        self.bottone_dettagli_prenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.bottone_elimina = QPushButton("Elimina")
+        # self.bottone_elimina.setFont(self.font)
+        # self.bottone_elimina.clicked.connect(self.mostra_elimina)
+        # self.shortcut_elimina = QShortcut(QKeySequence("Alt+d"), self)
+        # self.shortcut_elimina.activated.connect(self.mostra_elimina)
+        # self.bottone_elimina.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.h_layout.addWidget(self.bottone_elimina)
+        #
+        #
+        # self.bottone_dettagli_prenotazione = QPushButton("Dettagli prenotazione")
+        # self.bottone_dettagli_prenotazione.setFont(self.font)
+        # self.bottone_dettagli_prenotazione.clicked.connect(self.dettagli_prenotazione)
+        # self.shortcut_open = QShortcut(QKeySequence('Return'), self)
+        # self.shortcut_open.activated.connect(self.dettagli_prenotazione)
+        # self.h_layout.addWidget(self.bottone_dettagli_prenotazione)
+        # self.bottone_dettagli_prenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.v_layout.addLayout(self.h_layout)
 
 
         self.setLayout(self.v_layout)
 
-        self.setMinimumSize(781, 500)
-        self.setMaximumSize(781, 500)
+        self.setMinimumSize(900, 700)
+        self.setMaximumSize(900, 700)
         self.setWindowTitle("Elenco Prenotazioni Tennis")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 501))
+        sImage = oImage.scaled(QSize(900, 701))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -109,43 +109,45 @@ class VistaListaPrenotazioniTutte(QWidget):
     def mostra_indietro(self):
         self.close()
 
-    def mostra_elimina(self):
-        try:
-            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-            lista = []
-            today = datetime.now()
-            yesterday = today - timedelta(1)
-            for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-                if prenotazione.data >= yesterday:
-                    lista.append(prenotazione)
-            da_eliminare = lista[indice]
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
-            return
-
-        risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
-        if risposta == QMessageBox.Yes:
-            self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare.id)
-            QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
-            self.controllore_lista_prenotazioni.save_data()
-            self.aggiorna_dati_prenotazioni()
-        else:
-            return
-
-    def dettagli_prenotazione(self):
-        try:
-            indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-            lista=[]
-            today = datetime.now()
-            yesterday = today - timedelta(1)
-            for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-                if prenotazione.data >= yesterday:
-                    lista.append(prenotazione)
-            da_vedere = lista[indice]
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
-
-        self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_vedere))
-        self.vista_prenotazione.show()
+    # def mostra_elimina(self):
+    #     pass
+        # try:
+        #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+        #     lista = []
+        #     today = datetime.now()
+        #     yesterday = today - timedelta(1)
+        #     for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
+        #         if prenotazione.data >= yesterday:
+        #             lista.append(prenotazione)
+        #     da_eliminare = lista[indice]
+        # except:
+        #     QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
+        #     return
+        #
+        # risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
+        # if risposta == QMessageBox.Yes:
+        #     self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare.id)
+        #     QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
+        #     self.controllore_lista_prenotazioni.save_data()
+        #     self.aggiorna_dati_prenotazioni()
+        # else:
+        #     return
+    #
+    # def dettagli_prenotazione(self):
+    #     pass
+        # try:
+        #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
+        #     lista=[]
+        #     today = datetime.now()
+        #     yesterday = today - timedelta(1)
+        #     for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
+        #         if prenotazione.data >= yesterday:
+        #             lista.append(prenotazione)
+        #     da_vedere = lista[indice]
+        # except:
+        #     QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok,
+        #                          QMessageBox.Ok)
+        #     return
+        #
+        # self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_vedere))
+        # self.vista_prenotazione.show()
