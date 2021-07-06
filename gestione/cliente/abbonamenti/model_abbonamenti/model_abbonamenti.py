@@ -2,9 +2,9 @@ import os
 import pickle
 
 # cliente/
-class Insieme_Abbonamenti():
+class model_abbonamenti():
     def __init__(self):
-        super(Insieme_Abbonamenti, self).__init__()
+        super(model_abbonamenti, self).__init__()
         self.lista_abbonamenti = []
         if os.path.isfile("gestione/cliente/abbonamenti/data_abbonamenti/lista_abbonamenti_salvata.pickle"):
             with open("gestione/cliente/abbonamenti/data_abbonamenti/lista_abbonamenti_salvata.pickle", "rb") as file:

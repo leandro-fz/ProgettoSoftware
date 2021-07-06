@@ -1,11 +1,11 @@
-from gestione.cliente.abbonamenti.model_abbonamenti.model_abbonamenti import Insieme_Abbonamenti
+from gestione.cliente.abbonamenti.model_abbonamenti.model_abbonamenti import model_abbonamenti
 
 
-class Controller_Abbonamenti():
+class controller_abbonamenti():
 
     def __init__(self):
-        super(Controller_Abbonamenti, self).__init__()
-        self.model = Insieme_Abbonamenti()
+        super(controller_abbonamenti, self).__init__()
+        self.model = model_abbonamenti()
 
     def aggiungi_abbonamento(self, abbonamento):
         self.model.aggiungi_abbonamento(abbonamento)

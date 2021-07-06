@@ -5,7 +5,7 @@ from gestione.cliente.abbonamenti.view_abbonamenti.view_abbonamenti import view_
 from gestione.cliente.certificati.view_certificati.view_certificati import view_certificati
 
 
-class Ui_gestioneclienti(object):
+class view_cliente(object):
 
     def setupUi(self, gestioneclienti):
         gestioneclienti.setObjectName("gestioneclienti")

@@ -1,6 +1,6 @@
 import unittest
 
-from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_GestioneAbbonamenti import GestioniAbbonamento
+from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_gestione_abbonamenti import GestioniAbbonamento
 from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
 
 

@@ -1,4 +1,4 @@
-class GestioniAbbonamento():
+class model_gestione_abbonamenti():
 
     def __init__(self, nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento):
 
