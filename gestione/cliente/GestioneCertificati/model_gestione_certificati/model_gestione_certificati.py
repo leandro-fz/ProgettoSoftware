@@ -1,4 +1,4 @@
-class GestioniCertificato():
+class model_gestione_certificati():
 
     def __init__(self, nome, cognome, nato, codicefiscale, residenza, sportcertificato,certificatoagonistico, datainizio, datafine):
 

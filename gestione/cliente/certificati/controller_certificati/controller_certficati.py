@@ -1,13 +1,11 @@
-from gestione.cliente.GestioneCertificati.controller_GestioneCertificati.controller_GestioneCertificati import \
-    Controller_GestioneCertificati
-from gestione.cliente.certificati.model_certificati.model_certificati import Insieme_Certificati
+from gestione.cliente.certificati.model_certificati.model_certificati import model_certificati
 
 
-class Controller_Certificati():
+class controller_certificati():
 
     def __init__(self):
-        super(Controller_Certificati, self).__init__()
-        self.model = Insieme_Certificati()
+        super(controller_certificati, self).__init__()
+        self.model = model_certificati()
 
     def aggiungi_certificato(self, certificato):
         self.model.aggiungi_certificato(certificato)

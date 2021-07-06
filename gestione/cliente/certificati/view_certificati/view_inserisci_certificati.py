@@ -5,16 +5,16 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from gestione.cliente.GestioneCertificati.controller_GestioneCertificati.controller_GestioneCertificati import \
-    Controller_GestioneCertificati
-from gestione.cliente.GestioneCertificati.model_GestioneCertificati.model_GestioneCertificati import GestioniCertificato
+
+from gestione.cliente.GestioneCertificati.model_gestione_certificati.model_gestione_certificati import \
+    model_gestione_certificati
 
 
-class view_InserisciCertificato(QWidget):
+class view_inserisci_certificati(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciCertificato, self).__init__(parent)
+        super(view_inserisci_certificati, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -204,7 +204,7 @@ class view_InserisciCertificato(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.controller.aggiungi_certificato(GestioniCertificato(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine))
+        self.controller.aggiungi_certificato(model_gestione_certificati(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

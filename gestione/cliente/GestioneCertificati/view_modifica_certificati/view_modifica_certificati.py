@@ -7,11 +7,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-class view_ModificaCertificato(QWidget):
+class view_modifica_certificati(QWidget):
 
     def __init__(self, controllore_certificato, aggiorna_lista, lista_certificati, parent=None):
 
-        super(view_ModificaCertificato, self).__init__(parent)
+        super(view_modifica_certificati, self).__init__(parent)
         self.controller = controllore_certificato
         self.aggiorna_lista = aggiorna_lista
         self.lista_certificati = lista_certificati

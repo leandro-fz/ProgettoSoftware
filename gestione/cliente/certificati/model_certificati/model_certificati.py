@@ -2,10 +2,10 @@ import os
 import pickle
 
 # cliente/
-class Insieme_Certificati():
+class model_certificati():
 
     def __init__(self):
-        super(Insieme_Certificati, self).__init__()
+        super(model_certificati, self).__init__()
         self.lista_certificati = []
         if os.path.isfile("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle"):
             with open("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle", "rb") as file:

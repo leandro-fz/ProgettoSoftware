@@ -4,15 +4,12 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-
-
-
-from gestione.cliente.GestioneCertificati.controller_GestioneCertificati.controller_GestioneCertificati import \
-    Controller_GestioneCertificati
-from gestione.cliente.GestioneCertificati.view_GestioneCertificati.view_GestioneCertificati import \
-    view_ModificaCertificato
-from gestione.cliente.certificati.controller_certificati.controller_certficati import Controller_Certificati
-from gestione.cliente.certificati.view_certificati.view_inserisci_certificato import view_InserisciCertificato
+from gestione.cliente.GestioneCertificati.controller_gestione_certificati.controller_gestione_certificati import \
+    controller_gestione_certificati
+from gestione.cliente.GestioneCertificati.view_modifica_certificati.view_modifica_certificati import \
+    view_modifica_certificati
+from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
+from gestione.cliente.certificati.view_certificati.view_inserisci_certificati import view_inserisci_certificati
 
 
 class view_certificati(QWidget):
@@ -20,7 +17,7 @@ class view_certificati(QWidget):
     def __init__(self, parent=None):
         super(view_certificati, self).__init__(parent)
 
-        self.controller = Controller_Certificati()
+        self.controller = controller_certificati()
 
 
         self.v_layout = QVBoxLayout()
@@ -101,7 +98,7 @@ class view_certificati(QWidget):
 
     def mostra_inserisci_certificato(self):
 
-        self.inserisci_certificato = view_InserisciCertificato(self.controller, self.aggiorna_dati)
+        self.inserisci_certificato = view_inserisci_certificati(self.controller, self.aggiorna_dati)
         self.inserisci_certificato.show()
 
     def closeEvent(self, event):
@@ -138,6 +135,6 @@ class view_certificati(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_certificato = view_ModificaCertificato(Controller_GestioneCertificati(da_visualizzare),
+        self.modifica_certificato = view_modifica_certificati(controller_gestione_certificati(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_certificati())
         self.modifica_certificato.show()

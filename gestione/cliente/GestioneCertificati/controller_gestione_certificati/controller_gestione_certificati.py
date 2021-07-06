@@ -1,4 +1,4 @@
-class Controller_GestioneCertificati():
+class controller_gestione_certificati():
 
 
     def __init__(self, certificato):
