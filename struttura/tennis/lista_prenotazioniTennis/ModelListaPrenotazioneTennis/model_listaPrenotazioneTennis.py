@@ -18,14 +18,19 @@ class ListaPrenotazioniTennis():
     def get_lista_prenotazioni1(self):
         return self.lista_prenotazioni
 
-    def get_lista_prenotazioni_cliente(self):
-        # lista_ritorno = []
-        # for prenotazione in self.lista_prenotazioni:
-        #     if prenotazione.email_cliente == email:
-        #         lista_ritorno.append(prenotazione)
-        # return lista_ritorno
-        return self.lista_prenotazioni
+    def get_lista_prenotazioni_tennis_by_day(self, data):
+        lista_prenotazioni_tennis_by_day = []
+        for prenotazione in self.lista_prenotazioni:
+            if prenotazione.data == data:
+                lista_prenotazioni_tennis_by_day.append(prenotazione)
+        return lista_prenotazioni_tennis_by_day
 
+
+    def get_prenotazione_by_idtennis(self, idtennis):
+        for prenotazione in self.lista_prenotazioni:
+            if prenotazione.id== idtennis:
+                return prenotazione
+        return None
 
     def elimina_prenotazione_tennis(self, idtennis):
         for prenotazione in self.lista_prenotazioni:

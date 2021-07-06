@@ -135,11 +135,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         recapito = self.campo_recapito.text()
         orario_premuto = str(self.combo.currentText())
         dataselezionata = self.data1
-        print(orario_premuto)
-        print(dataselezionata)
         idtennis = str(dataselezionata)+str(orario_premuto)
-
-        print(idtennis)
 
         if utente == "" or recapito == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -150,7 +146,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
             return
 
         if not self.controlla_disponibilità(idtennis):
-            QMessageBox.critical(self, "Conflitto", "Campo già prenotato",QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Conflitto", "Campo già prenotato in questa fascia oraria",QMessageBox.Ok, QMessageBox.Ok)
             return
 
         prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito, idtennis)
@@ -159,10 +155,10 @@ class view_nuovaPrenotazioneTennis(QWidget):
         if risposta == QMessageBox.No:
             return
         else:
-            controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-            controllore_lista_prenotazioni.aggiungi_prenotazione_tennis(prenotazione)
+            self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+            self.controllore_lista_prenotazioni.aggiungi_prenotazione_tennis(prenotazione)
             QMessageBox.about(self, "Confermata", "Prenotazione confermata")
-            controllore_lista_prenotazioni.save_data()
+            self.controllore_lista_prenotazioni.save_data()
             self.aggiorna_dati_prenotazioni()
             self.close()
 

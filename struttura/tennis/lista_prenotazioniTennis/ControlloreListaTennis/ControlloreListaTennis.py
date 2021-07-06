@@ -13,14 +13,14 @@ class ControlloreListaPrenotazioniTennis:
     def aggiungi_prenotazione_tennis(self, prenotazione):
         self.model.aggiungi_prenotazione(prenotazione)
 
-    def get_lista_prenotazioni_tennis(self):
-        return self.model.get_lista_prenotazioni_cliente()
-    #
-    # def get_lista_prenotazione_cliente_oraria(self, data, ora):
-    #     return self.model.get_lista_prenotazione_cliente_oraria(data, ora)
-
     def elimina_prenotazione_tennis(self, idtennis):
         self.model.elimina_prenotazione_tennis(idtennis)
+
+    def get_prenotazione_by_idtennis(self, idtennis):
+        self.model.get_prenotazione_by_idtennis(idtennis)
+
+    def get_lista_prenotazioni_tennis_by_day(self, data):
+        self.model.get_lista_prenotazioni_tennis_by_day(data)
 
     def save_data(self):
         self.model.save_data()
