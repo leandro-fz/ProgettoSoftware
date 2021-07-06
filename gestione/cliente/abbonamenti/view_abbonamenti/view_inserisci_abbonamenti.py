@@ -7,17 +7,17 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
+from gestione.cliente.GestioneAbbonamenti.model_gestione_abbonamenti.model_gestione_abbonamenti import \
+    model_gestione_abbonamenti
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
 
 
-from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
-from gestione.cliente.GestioneAbbonamenti.model_GestioneAbbonamenti.model_GestioneAbbonamenti import GestioniAbbonamento
 
-
-class view_InserisciAbbonamento(QWidget):
+class view_inserisci_abbonamenti(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciAbbonamento, self).__init__(parent)
+        super(view_inserisci_abbonamenti, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -219,7 +219,7 @@ class view_InserisciAbbonamento(QWidget):
 
 
 
-        self.controller.aggiungi_abbonamento(GestioniAbbonamento(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
+        self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

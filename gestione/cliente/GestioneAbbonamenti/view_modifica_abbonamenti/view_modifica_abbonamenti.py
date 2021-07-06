@@ -7,11 +7,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-class view_ModificaAbbonamento(QWidget):
+class view_modifica_abbonamenti(QWidget):
 
     def __init__(self, controllore_abbonamento, aggiorna_lista, lista_abbonamenti, parent=None):
 
-        super(view_ModificaAbbonamento, self).__init__(parent)
+        super(view_modifica_abbonamenti, self).__init__(parent)
         self.controller = controllore_abbonamento
         self.aggiorna_lista = aggiorna_lista
         self.lista_abbonamenti = lista_abbonamenti

@@ -4,12 +4,13 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.cliente.GestioneAbbonamenti.controller_GestioneAbbonamenti.Controller_GestioneAbbonamenti import \
-    Controller_GestioneAbbonamenti
-from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import Controller_Abbonamenti
-from gestione.cliente.GestioneAbbonamenti.view_GestioneAbbonamenti.view_modificaAbbonamenti import \
-    view_ModificaAbbonamento
-from gestione.cliente.abbonamenti.view_abbonamenti.view_inserisci_abbonamento import view_InserisciAbbonamento
+from gestione.cliente.GestioneAbbonamenti.controller_gestione_abbonamenti.controller_gestione_abbonamenti import \
+    controller_gestione_abbonamenti
+from gestione.cliente.GestioneAbbonamenti.view_modifica_abbonamenti.view_modifica_abbonamenti import \
+    view_modifica_abbonamenti
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
+
+from gestione.cliente.abbonamenti.view_abbonamenti.view_inserisci_abbonamenti import view_inserisci_abbonamenti
 
 
 class view_abbonamenti(QWidget):
@@ -17,7 +18,7 @@ class view_abbonamenti(QWidget):
     def __init__(self, parent=None):
         super(view_abbonamenti, self).__init__(parent)
 
-        self.controller = Controller_Abbonamenti()
+        self.controller = controller_abbonamenti()
 
         self.v_layout = QVBoxLayout()
 
@@ -97,7 +98,7 @@ class view_abbonamenti(QWidget):
 
     def mostra_inserisci_abbonamento(self):
 
-        self.inserisci_abbonamento = view_InserisciAbbonamento(self.controller, self.aggiorna_dati)
+        self.inserisci_abbonamento = view_inserisci_abbonamenti(self.controller, self.aggiorna_dati)
         self.inserisci_abbonamento.show()
 
     def closeEvent(self, event):
@@ -134,6 +135,6 @@ class view_abbonamenti(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_abbonamento = view_ModificaAbbonamento(Controller_GestioneAbbonamenti(da_visualizzare),
+        self.modifica_abbonamento = view_modifica_abbonamenti(controller_gestione_abbonamenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_abbonamenti())
         self.modifica_abbonamento.show()

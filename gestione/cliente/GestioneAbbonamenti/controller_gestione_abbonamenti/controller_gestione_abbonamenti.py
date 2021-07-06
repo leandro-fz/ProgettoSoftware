@@ -1,4 +1,4 @@
-class Controller_GestioneAbbonamenti():
+class controller_gestione_abbonamenti():
 
 
     def __init__(self, abbonamento):
