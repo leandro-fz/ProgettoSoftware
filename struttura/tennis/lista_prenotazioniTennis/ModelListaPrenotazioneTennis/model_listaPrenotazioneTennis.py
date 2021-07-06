@@ -9,6 +9,7 @@ class ListaPrenotazioniTennis():
             with open("struttura/tennis/lista_prenotazioniTennis/data_listaPrenotazioniTennis/lista_prenotazionitennis_salvata.pickle", "rb") as file:
                 try:
                     self.lista_prenotazioni = pickle.load(file)
+                    print("ok")
                 except EOFError:
                     return
 

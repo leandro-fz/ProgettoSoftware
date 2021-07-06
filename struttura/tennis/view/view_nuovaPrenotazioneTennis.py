@@ -1,14 +1,9 @@
-from PyQt5.QtCore import QDate
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem, QTextCharFormat, QColor
-from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QCalendarWidget, QComboBox, QCheckBox, QMessageBox, \
-    QPushButton
-from datetime import datetime
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox, QComboBox
-from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
-from datetime import datetime
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QMessageBox, QComboBox
+from PyQt5.QtGui import QFont
+from datetime import datetime, timedelta
 
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
@@ -24,10 +19,11 @@ from struttura.tennis.prenotazioniTennis.model_prenotazioniTennis.model_prenotaz
 
 class view_nuovaPrenotazioneTennis(QWidget):
 
-    def __init__(self, data, aggiorna_dati_prenotazioni, parent=None):
+    def __init__(self, data, controllore_lista_prenotazioni, aggiorna_dati_prenotazioni, parent=None):
         super(view_nuovaPrenotazioneTennis, self).__init__(parent)
         self.font = QFont("Yu Gothic UI Light", 15)
         self.aggiorna_dati_prenotazioni = aggiorna_dati_prenotazioni
+        self.controllore = controllore_lista_prenotazioni
         self.data1 = data
 
 
@@ -36,7 +32,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.font_label.setBold(True)
 
         self.font_label2 = QFont("Yu Gothic UI Light", 15)
-        self.label_alto = QLabel("Form di prenotazione campo tennis del "+ data.strftime("%d/%m/%Y"))
+        self.label_alto = QLabel("Form di prenotazione campo tennis del "+ self.data1.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
@@ -127,8 +123,8 @@ class view_nuovaPrenotazioneTennis(QWidget):
             return
 
 
-    def indietro_prenotazione(self):
-        self.close()
+    # def indietro_prenotazione(self):
+    #     self.close()
 
     def conferma_inserimento(self):
         utente = self.campo_prenotatore.text()
@@ -148,23 +144,25 @@ class view_nuovaPrenotazioneTennis(QWidget):
         if not self.controlla_disponibilità(idtennis):
             QMessageBox.critical(self, "Conflitto", "Campo già prenotato in questa fascia oraria",QMessageBox.Ok, QMessageBox.Ok)
             return
-
         prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito, idtennis)
 
-        risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è " + str(prenotazione.get_prezzo_totale()) + " € " + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
-        if risposta == QMessageBox.No:
-            return
-        else:
-            self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-            self.controllore_lista_prenotazioni.aggiungi_prenotazione_tennis(prenotazione)
-            QMessageBox.about(self, "Confermata", "Prenotazione confermata")
-            self.controllore_lista_prenotazioni.save_data()
-            self.aggiorna_dati_prenotazioni()
-            self.close()
+        today = datetime.now()
+        yesterday = today - timedelta(1)
+        if self.data1> yesterday:
+            risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è " + str(prenotazione.get_prezzo_totale()) + " € " + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
+            if risposta == QMessageBox.No:
+                return
+        # self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+        self.controllore.aggiungi_prenotazione_tennis(prenotazione)
+        self.controllore.save_data()
+        QMessageBox.about(self, "Confermata", "Prenotazione confermata")
+        self.aggiorna_dati_prenotazioni()
+        self.close()
+        return True
 
     def controlla_disponibilità(self, idtennis):
-        self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
-        for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
+        # self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
+        for prenotazione in self.controllore.get_lista_prenotazioni_tennis1():
             if prenotazione.id == idtennis:
                 return False
         return True

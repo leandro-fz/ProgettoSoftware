@@ -113,10 +113,15 @@ class view_day_tennis(QWidget):
             risposta = QMessageBox.question(self, "Conferma", "Vuoi aggiungere una prenotazione passata?" + "\n\nConfermare?", QMessageBox.Yes, QMessageBox.No)
             if risposta == QMessageBox.No:
                 return
-        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.data, self.aggiorna_dati_prenotazioni)
+        self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.data, self.controllore_lista_prenotazioni, self.aggiorna_dati_prenotazioni)
         self.vista_nuova_prenotazione.show()
 
+    # def closeEvent(self, event):
+    #     self.controllore_lista_prenotazioni.save_data()
+
     def mostra_elimina(self):
+        today = datetime.now()
+        yesterday = today - timedelta(1)
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()
             lista = []
@@ -127,14 +132,14 @@ class view_day_tennis(QWidget):
         except:
             QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
             return
-        if da_eliminare.data < datetime.now():
+        if da_eliminare.data < yesterday:
             QMessageBox.critical(self, "Errore", "Non puoi eliminare una prenotazione passata", QMessageBox.Ok, QMessageBox.Ok)
             return
         risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
             self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare.id)
             QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
-            self.controllore_lista_prenotazioni.save_data()
+            # self.controllore_lista_prenotazioni.save_data()
             self.aggiorna_dati_prenotazioni()
         else:
             return
@@ -152,9 +157,8 @@ class view_day_tennis(QWidget):
             QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-
         self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_visualizzare))
         self.vista_prenotazione.show()
 
-    # def closeEvent(self, event):
-    #     self.controllore_lista_prenotazioni.save_data()
+    def closeEvent(self, event):
+        self.controllore_lista_prenotazioni.save_data()

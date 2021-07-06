@@ -51,6 +51,8 @@ class view_tennis(QWidget):
 
 
         self.crea_pulsante("Mostra giorno", self.mostra_view_day_tennis)
+        self.shortcut_mostra_giorno = QShortcut(QKeySequence('Return'), self)
+        self.shortcut_mostra_giorno.activated.connect(self.mostra_view_day_tennis)
 
         self.crea_pulsante("Mostra tutte", self.mostra_tutte_prenotazioni_tennis)
 

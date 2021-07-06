@@ -38,14 +38,14 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.setLayout(self.v_layout)
 
-        self.setMinimumSize(330, 300)
-        self.setMaximumSize(330, 300)
+        self.setMinimumSize(500, 300)
+        self.setMaximumSize(500, 300)
         self.setWindowTitle("Prenotazione Tennis")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(450, 310))
+        sImage = oImage.scaled(QSize(500, 310))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -59,7 +59,7 @@ class VistaPrenotazioneTennis(QWidget):
 
 
         label_di_testo = QLabel(descrizione)
-        label_di_testo.setFont(QFont("Yu Gothic UI Light",15))
+        label_di_testo.setFont(QFont("Arial",15))
         h_layout.addWidget(label_di_testo)
 
         self.v_layout.addLayout(h_layout)

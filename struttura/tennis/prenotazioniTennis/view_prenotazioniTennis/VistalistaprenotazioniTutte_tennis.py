@@ -97,7 +97,7 @@ class VistaListaPrenotazioniTutte(QWidget):
             yesterday=today - timedelta(1)
             if prenotazione.data>=yesterday:
                 item = QStandardItem()
-                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y") + " delle ore " + prenotazione.orario + " di " + prenotazione.utente)
+                item.setText("Prenotazione del " + prenotazione.data.strftime("%d/%m/%Y") + " delle ore " + prenotazione.orario + " di " + prenotazione.utente + ", recapito: " + prenotazione.recapito)
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_prenotazioni.appendRow(item)
@@ -105,49 +105,5 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
 
 
-
     def mostra_indietro(self):
         self.close()
-
-    # def mostra_elimina(self):
-    #     pass
-        # try:
-        #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-        #     lista = []
-        #     today = datetime.now()
-        #     yesterday = today - timedelta(1)
-        #     for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-        #         if prenotazione.data >= yesterday:
-        #             lista.append(prenotazione)
-        #     da_eliminare = lista[indice]
-        # except:
-        #     QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
-        #     return
-        #
-        # risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
-        # if risposta == QMessageBox.Yes:
-        #     self.controllore_lista_prenotazioni.elimina_prenotazione_tennis(da_eliminare.id)
-        #     QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
-        #     self.controllore_lista_prenotazioni.save_data()
-        #     self.aggiorna_dati_prenotazioni()
-        # else:
-        #     return
-    #
-    # def dettagli_prenotazione(self):
-    #     pass
-        # try:
-        #     indice = self.lista_prenotazioni.selectedIndexes()[0].row()
-        #     lista=[]
-        #     today = datetime.now()
-        #     yesterday = today - timedelta(1)
-        #     for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-        #         if prenotazione.data >= yesterday:
-        #             lista.append(prenotazione)
-        #     da_vedere = lista[indice]
-        # except:
-        #     QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da visualizzare", QMessageBox.Ok,
-        #                          QMessageBox.Ok)
-        #     return
-        #
-        # self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_vedere))
-        # self.vista_prenotazione.show()
