@@ -1,11 +1,11 @@
-from gestione.amministrazione.inventario.model_inventario.model_inventario import Insieme_Inventario
+from gestione.amministrazione.inventario.model_inventario.model_inventario import model_inventario
 
 
-class Controller_Inventario():
+class controller_inventario():
 
     def __init__(self):
-        super(Controller_Inventario, self).__init__()
-        self.model = Insieme_Inventario()
+        super(controller_inventario, self).__init__()
+        self.model = model_inventario()
 
     def aggiungi_inventario(self, inventario):
         self.model.aggiungi_inventario(inventario)

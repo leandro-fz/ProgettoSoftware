@@ -1,4 +1,4 @@
-class GestioniInventario():
+class model_gestione_articolo():
 
     def __init__(self, articolo, quantita, codice, prezzo):
 

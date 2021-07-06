@@ -1,4 +1,4 @@
-class Controller_GestioneInventario():
+class controller_gestione_articolo():
 
 
     def __init__(self, inventario):

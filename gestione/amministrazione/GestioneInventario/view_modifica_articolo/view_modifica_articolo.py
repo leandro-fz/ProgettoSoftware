@@ -6,11 +6,11 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-class view_ModificaInventario(QWidget):
+class view_modifica_articolo(QWidget):
 
     def __init__(self, controllore_inventario, aggiorna_lista, lista_inventario, parent=None):
 
-        super(view_ModificaInventario, self).__init__(parent)
+        super(view_modifica_articolo, self).__init__(parent)
         self.controller = controllore_inventario
         self.aggiorna_lista = aggiorna_lista
         self.lista_inventario = lista_inventario

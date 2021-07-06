@@ -6,14 +6,15 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.amministrazione.GestioneInventario.model_GestioneInventario.model_GestioneInventario import GestioniInventario
+from gestione.amministrazione.GestioneInventario.model_gestione_articolo.model_gestione_articolo import \
+    model_gestione_articolo
 
 
-class view_InserisciArticolo(QWidget):
+class view_inserisci_articolo(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciArticolo, self).__init__(parent)
+        super(view_inserisci_articolo, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -155,7 +156,7 @@ class view_InserisciArticolo(QWidget):
             return
 
 
-        self.controller.aggiungi_inventario(GestioniInventario(articolo,quantita, codice, prezzo))
+        self.controller.aggiungi_inventario(model_gestione_articolo(articolo,quantita, codice, prezzo))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

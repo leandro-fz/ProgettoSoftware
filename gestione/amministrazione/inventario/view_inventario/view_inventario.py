@@ -4,12 +4,12 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from gestione.amministrazione.GestioneInventario.controller_GestioneInventario.controller_GestioneInventario import \
-    Controller_GestioneInventario
-from gestione.amministrazione.GestioneInventario.view_GestioneInventario.view_GestioneInventario import \
-    view_ModificaInventario
-from gestione.amministrazione.inventario.controller_inventario.controller_inventario import Controller_Inventario
-from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo import view_InserisciArticolo
+from gestione.amministrazione.GestioneInventario.controller_gestione_articolo.controller_gestione_articolo import \
+    controller_gestione_articolo
+from gestione.amministrazione.GestioneInventario.view_modifica_articolo.view_modifica_articolo import \
+    view_modifica_articolo
+from gestione.amministrazione.inventario.controller_inventario.controller_inventario import controller_inventario
+from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo import view_inserisci_articolo
 
 
 class view_inventario(QWidget):
@@ -17,7 +17,7 @@ class view_inventario(QWidget):
     def __init__(self, parent=None):
         super(view_inventario, self).__init__(parent)
 
-        self.controller = Controller_Inventario()
+        self.controller = controller_inventario()
 
         self.v_layout = QVBoxLayout()
 
@@ -97,7 +97,7 @@ class view_inventario(QWidget):
 
     def mostra_inserisci_inventario(self):
 
-        self.inserisci_inventario = view_InserisciArticolo(self.controller, self.aggiorna_dati)
+        self.inserisci_inventario = view_inserisci_articolo(self.controller, self.aggiorna_dati)
         self.inserisci_inventario.show()
 
     def closeEvent(self, event):
@@ -134,6 +134,6 @@ class view_inventario(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_inventario = view_ModificaInventario(Controller_GestioneInventario(da_visualizzare),
+        self.modifica_inventario = view_modifica_articolo(controller_gestione_articolo(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_inventario())
         self.modifica_inventario.show()

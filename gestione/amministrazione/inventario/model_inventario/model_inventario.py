@@ -2,9 +2,9 @@ import os
 import pickle
 
 # amministrazione/
-class Insieme_Inventario():
+class model_inventario():
     def __init__(self):
-        super(Insieme_Inventario, self).__init__()
+        super(model_inventario, self).__init__()
         self.lista_inventario = []
         if os.path.isfile("gestione/amministrazione/inventario/data_inventario/lista_inventario_salvata.pickle"):
             with open("gestione/amministrazione/inventario/data_inventario/lista_inventario_salvata.pickle", "rb") as file:
