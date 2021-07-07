@@ -37,14 +37,14 @@ class view_nuovaPrenotazioneTennis(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_prenotatore = QLabel("Prenotatore")
+        self.label_prenotatore = QLabel("Prenotante:")
         self.label_prenotatore.setFont(self.font_label)
         self.v_layout.addWidget(self.label_prenotatore)
 
         self.campo_prenotatore = QLineEdit()
         self.v_layout.addWidget(self.campo_prenotatore)
 
-        self.label_recapito = QLabel("Recapito telefonico")
+        self.label_recapito = QLabel("Contatto:")
         self.label_recapito.setFont(self.font_label)
         self.v_layout.addWidget(self.label_recapito)
 
@@ -52,7 +52,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.v_layout.addWidget(self.campo_recapito)
 
         #orario
-        self.label_data = QLabel("Orario")
+        self.label_data = QLabel("Orario:")
         self.label_data.setFont(self.font_label)
         self.v_layout.addWidget(self.label_data)
 
