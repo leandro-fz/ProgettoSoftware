@@ -59,6 +59,9 @@ class view_inserisci_dipendenti(QWidget):
         self.campo_ruolo.addItem("Istruttore piscina")
         self.campo_ruolo.addItem("Segretaria/o")
         self.campo_ruolo.addItem("Addetto alle pulizie")
+        self.campo_ruolo.addItem("Medico sportivo")
+
+
 
         self.v_layout.addWidget(self.campo_ruolo)
 
