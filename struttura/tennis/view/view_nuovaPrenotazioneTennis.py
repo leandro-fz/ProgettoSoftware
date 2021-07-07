@@ -1,4 +1,3 @@
-
 from PyQt5.QtWidgets import QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QMessageBox, QComboBox
 from PyQt5.QtGui import QFont
 from datetime import datetime, timedelta
@@ -122,9 +121,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
         else:
             return
 
-
-    # def indietro_prenotazione(self):
-    #     self.close()
 
     def conferma_inserimento(self):
         utente = self.campo_prenotatore.text()

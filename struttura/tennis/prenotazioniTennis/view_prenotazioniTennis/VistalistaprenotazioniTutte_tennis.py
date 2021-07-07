@@ -54,23 +54,6 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.bottone_indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.h_layout.addWidget(self.bottone_indietro)
 
-        # self.bottone_elimina = QPushButton("Elimina")
-        # self.bottone_elimina.setFont(self.font)
-        # self.bottone_elimina.clicked.connect(self.mostra_elimina)
-        # self.shortcut_elimina = QShortcut(QKeySequence("Alt+d"), self)
-        # self.shortcut_elimina.activated.connect(self.mostra_elimina)
-        # self.bottone_elimina.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        # self.h_layout.addWidget(self.bottone_elimina)
-        #
-        #
-        # self.bottone_dettagli_prenotazione = QPushButton("Dettagli prenotazione")
-        # self.bottone_dettagli_prenotazione.setFont(self.font)
-        # self.bottone_dettagli_prenotazione.clicked.connect(self.dettagli_prenotazione)
-        # self.shortcut_open = QShortcut(QKeySequence('Return'), self)
-        # self.shortcut_open.activated.connect(self.dettagli_prenotazione)
-        # self.h_layout.addWidget(self.bottone_dettagli_prenotazione)
-        # self.bottone_dettagli_prenotazione.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-
         self.v_layout.addLayout(self.h_layout)
 
 
