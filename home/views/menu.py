@@ -451,7 +451,7 @@ class Ui_menu(object):
 
     def mostra_clienti(self):
         self.clienti = QtWidgets.QMainWindow()
-        self.cl = Ui_gestioneclienti()
+        self.cl = view_cliente()
         self.cl.setupUi(self.clienti)
         self.clienti.show()
 
