@@ -10,8 +10,7 @@ from PyQt5.QtGui import *
 
 
 
-from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
-    ControlloreListaPrenotazioniTennis
+
 from struttura.tennis.prenotazioniTennis.model_prenotazioniTennis.model_prenotazioniTennis import \
     model_PrenotazioniTennis
 
