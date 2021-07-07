@@ -11,4 +11,3 @@ class model_gestione_certificati():
         self.certificatoagonistico = certificatoagonistico
         self.datainizio = datainizio
         self.datafine = datafine
-        self.certificato_pdf = None
