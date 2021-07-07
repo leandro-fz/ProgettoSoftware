@@ -5,7 +5,7 @@ from gestione.amministrazione.fornitori.view_fornitori.view_fornitori import vie
 from gestione.amministrazione.inventario.view_inventario.view_inventario import view_inventario
 from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import view_dipendenti
 
-class Ui_Gestioneamministrazione(object):
+class view_amministrazione(object):
 
     def setupUi(self, Gestioneamministrazione):
         Gestioneamministrazione.setObjectName("Gestioneamministrazione")

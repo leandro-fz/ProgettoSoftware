@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from gestione.amministrazione.view.view_amministrazione import Ui_Gestioneamministrazione
+from gestione.amministrazione.view.view_amministrazione import view_amministrazione
 from gestione.cliente.view.view_cliente import view_cliente
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
@@ -473,7 +473,7 @@ class Ui_menu(object):
 
     def mostra_amministrazione(self):
         self.Gestioneamministrazione = QtWidgets.QMainWindow()
-        self.ui = Ui_Gestioneamministrazione()
+        self.ui = view_amministrazione()
         self.ui.setupUi(self.Gestioneamministrazione)
         self.Gestioneamministrazione.show()
 
