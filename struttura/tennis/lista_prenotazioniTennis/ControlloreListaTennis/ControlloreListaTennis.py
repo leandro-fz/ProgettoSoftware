@@ -19,8 +19,5 @@ class ControlloreListaPrenotazioniTennis:
     def get_prenotazione_by_idtennis(self, idtennis):
         self.model.get_prenotazione_by_idtennis(idtennis)
 
-    def get_lista_prenotazioni_tennis_by_day(self, data):
-        self.model.get_lista_prenotazioni_tennis_by_day(data)
-
     def save_data(self):
         self.model.save_data()
