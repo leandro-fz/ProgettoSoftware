@@ -2,6 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from struttura.piscina.Iscritti.view_iscritti.view_iscritti import view_iscritti
+from struttura.piscina.corsi.view_corsi.view_corsi import view_corsi
 
 
 class Ui_gestionepiscina(object):
@@ -205,7 +206,8 @@ class Ui_gestionepiscina(object):
 
 
     def mostra_corsi(self):
-        pass
+        self.gestionecorsi = view_corsi()
+        self.gestionecorsi.show()
 
     def mostra_iscritti(self):
         self.gestioneiscritti = view_iscritti()
