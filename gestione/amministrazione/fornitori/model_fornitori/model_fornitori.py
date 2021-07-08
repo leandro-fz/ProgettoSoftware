@@ -2,9 +2,9 @@ import os
 import pickle
 
 # amministrazione/
-class Insieme_Fornitori():
+class model_fornitori():
     def __init__(self):
-        super(Insieme_Fornitori, self).__init__()
+        super(model_fornitori, self).__init__()
         self.lista_fornitori = []
         if os.path.isfile("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle"):
             with open("gestione/amministrazione/fornitori/data_fornitori/lista_fornitori_salvata.pickle", "rb") as file:

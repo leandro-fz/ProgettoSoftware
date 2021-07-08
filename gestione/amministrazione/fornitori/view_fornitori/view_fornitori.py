@@ -5,13 +5,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
-from gestione.amministrazione.fornitori.controller_fornitori.controller_fornitori import Controller_Fornitori
-from gestione.amministrazione.fornitori.view_fornitori.view_inserisci_fornitore import view_InserisciFornitore
+from gestione.amministrazione.fornitori.controller_fornitori.controller_fornitori import controller_fornitori
+from gestione.amministrazione.fornitori.view_fornitori.view_inserisci_fornitori import view_inserisci_fornitori
 
-from gestione.amministrazione.GestioneFornitori.controller_GestioneFornitori.controller_GestioneFornitori import \
-    Controller_GestioneFornitori
-from gestione.amministrazione.GestioneFornitori.view_GestioneFornitori.view_GestioneFornitori import \
-    view_ModificaFornitore
+from gestione.amministrazione.GestioneFornitori.controller_gestione_fornitori.controller_gestione_fornitori import \
+   controller_gestione_fornitori
+from gestione.amministrazione.GestioneFornitori.view_modifica_fornitori.view_modifica_fornitori import \
+   view_modifica_fornitori
 
 
 class view_fornitori(QWidget):
@@ -19,7 +19,7 @@ class view_fornitori(QWidget):
     def __init__(self, parent=None):
         super(view_fornitori, self).__init__(parent)
 
-        self.controller = Controller_Fornitori()
+        self.controller = controller_fornitori()
 
         self.v_layout = QVBoxLayout()
 
@@ -99,7 +99,7 @@ class view_fornitori(QWidget):
 
     def mostra_inserisci_fornitore(self):
 
-        self.inserisci_fornitore = view_InserisciFornitore(self.controller, self.aggiorna_dati)
+        self.inserisci_fornitore = view_inserisci_fornitori(self.controller, self.aggiorna_dati)
         self.inserisci_fornitore.show()
 
     def closeEvent(self, event):
@@ -136,7 +136,7 @@ class view_fornitori(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_fornitore = view_ModificaFornitore(Controller_GestioneFornitori(da_visualizzare),
+        self.modifica_fornitore = view_modifica_fornitori(controller_gestione_fornitori(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_fornitori())
         self.modifica_fornitore.show()
 

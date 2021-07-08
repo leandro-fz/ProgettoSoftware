@@ -7,11 +7,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
-class view_ModificaFornitore(QWidget):
+class view_modifica_fornitori(QWidget):
 
     def __init__(self, controllore_fornitore, aggiorna_lista, lista_fornitori, parent=None):
 
-        super(view_ModificaFornitore, self).__init__(parent)
+        super(view_modifica_fornitori, self).__init__(parent)
         self.controller = controllore_fornitore
         self.aggiorna_lista = aggiorna_lista
         self.lista_fornitori = lista_fornitori
