@@ -34,6 +34,6 @@ class model_iscritti():
         return None
 
     def save_data(self):
-        if os.path.isfile("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
-            with open("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle", "wb") as handle:
+        if os.path.isfile("struttura/piscina/Iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
+            with open("struttura/piscina/Iscritti/data_iscritti/lista_iscritti_salvata.pickle", "wb") as handle:
                 pickle.dump(self.lista_iscritti, handle, pickle.HIGHEST_PROTOCOL)
