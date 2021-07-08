@@ -42,6 +42,23 @@ class view_modifica_dipendenti(QWidget):
         self.campo_cognome.setText(self.controller.get_cognome_dipendente())
         self.v_layout.addWidget(self.campo_cognome)
 
+        self.label_ruolo = QLabel("Ruolo:")
+        self.label_ruolo.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_ruolo)
+
+        self.campo_ruolo = QComboBox(self)
+        self.campo_ruolo.addItem("")
+        self.campo_ruolo.addItem("Istruttore palestra")
+        self.campo_ruolo.addItem("Istruttore piscina")
+        self.campo_ruolo.addItem("Segretaria/o")
+        self.campo_ruolo.addItem("Addetto alle pulizie")
+
+        self.v_layout.addWidget(self.campo_ruolo)
+
+        self.campo_ruolo.setCurrentText((self.controller.get_ruolo_dipendente()))
+        self.v_layout.addWidget(self.campo_ruolo)
+        self.h_layout = QHBoxLayout()
+
         self.label_luogo = QLabel("Luogo di nascita:")
         self.label_luogo.setFont(self.font_label)
         self.v_layout.addWidget(self.label_luogo)
@@ -70,33 +87,18 @@ class view_modifica_dipendenti(QWidget):
         self.campo_codice.setText(self.controller.get_codice_dipendente())
         self.v_layout.addWidget(self.campo_codice)
 
-        self.label_contratto = QLabel("Ore di lavoro:")
+
+        self.label_contratto = QLabel("Tipo di contratto:")
         self.label_contratto.setFont(self.font_label)
         self.v_layout.addWidget(self.label_contratto)
 
         self.campo_contratto = QLineEdit()
         self.campo_contratto.setFont(self.font_campi)
-        self.campo_contratto.setText(str(self.controller.get_contratto_dipendente()))
+        self.campo_contratto.setText(self.controller.get_contratto_dipendente())
         self.v_layout.addWidget(self.campo_contratto)
 
-        self.label_ruolo = QLabel("Ruolo:")
-        self.label_ruolo.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_ruolo)
 
-        self.campo_ruolo = QComboBox(self)
-        self.campo_ruolo.addItem("")
-        self.campo_ruolo.addItem("Istruttore palestra")
-        self.campo_ruolo.addItem("Istruttore piscina")
-        self.campo_ruolo.addItem("Segretaria/o")
-        self.campo_ruolo.addItem("Addetto alle pulizie")
-
-        self.v_layout.addWidget(self.campo_ruolo)
-
-        self.campo_ruolo.setCurrentText((self.controller.get_ruolo_dipendente()))
-        self.v_layout.addWidget(self.campo_ruolo)
-        self.h_layout = QHBoxLayout()
-
-        self.label_id = QLabel("ID (5 cifre):")
+        self.label_id = QLabel("ID (5 numeri):")
         self.label_id.setFont(self.font_label)
         self.v_layout.addWidget(self.label_id)
 
