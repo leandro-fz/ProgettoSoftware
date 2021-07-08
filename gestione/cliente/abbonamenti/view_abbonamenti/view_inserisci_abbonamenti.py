@@ -89,11 +89,14 @@ class view_inserisci_abbonamenti(QWidget):
         self.campo_cellulare = QLineEdit()
         self.v_layout.addWidget(self.campo_cellulare)
 
-        self.label_struttura = QLabel("Struttura :")
+        self.label_struttura = QLabel("Struttura: ")
         self.label_struttura.setFont(self.font_label)
         self.v_layout.addWidget(self.label_struttura)
 
-        self.campo_struttura = QLineEdit()
+        self.campo_struttura = QComboBox(self)
+        self.campo_struttura.addItem("")
+        self.campo_struttura.addItem("Piscina")
+        self.campo_struttura.addItem("Palestra")
         self.v_layout.addWidget(self.campo_struttura)
 
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
@@ -137,14 +140,14 @@ class view_inserisci_abbonamenti(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 710)
-        self.setMaximumSize(781, 710)
+        self.setMinimumSize(781, 790)
+        self.setMaximumSize(781, 790)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 711))
+        sImage = oImage.scaled(QSize(791, 790))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -167,7 +170,7 @@ class view_inserisci_abbonamenti(QWidget):
         residenza = self.campo_residenza.text()
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
-        struttura = self.campo_struttura.text()
+        struttura =  str(self.campo_struttura.currentText())
         tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
 
 

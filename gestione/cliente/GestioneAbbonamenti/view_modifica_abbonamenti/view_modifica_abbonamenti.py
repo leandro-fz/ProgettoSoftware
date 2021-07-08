@@ -103,11 +103,18 @@ class view_modifica_abbonamenti(QWidget):
         self.label_struttura.setFont(self.font_label)
         self.v_layout.addWidget(self.label_struttura)
 
-        self.campo_struttura = QLineEdit()
-        self.campo_struttura.setFont(self.font_campi)
-        self.campo_struttura.setText((self.controller.get_struttura_abbonamento()))
+        self.campo_struttura = QComboBox(self)
+        self.campo_struttura.addItem("")
+        self.campo_struttura.addItem("Piscina")
+        self.campo_struttura.addItem("Palestra")
+
+        self.v_layout.addWidget(self.campo_struttura)
+
+        self.campo_struttura.setCurrentText((self.controller.get_struttura_abbonamento()))
         self.v_layout.addWidget(self.campo_struttura)
         self.h_layout = QHBoxLayout()
+
+
 
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
@@ -148,12 +155,12 @@ class view_modifica_abbonamenti(QWidget):
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 720)
-        self.setMaximumSize(781, 720)
+        self.setMinimumSize(781, 790)
+        self.setMaximumSize(781, 790)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 721))
+        sImage = oImage.scaled(QSize(791, 790))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)

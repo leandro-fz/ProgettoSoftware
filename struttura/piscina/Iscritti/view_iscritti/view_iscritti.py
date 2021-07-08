@@ -7,6 +7,8 @@ from PyQt5.QtGui import *
 from struttura.piscina.GestioneIscritti.controller_gestione_iscritti.controller_gestione_iscritti import \
     controller_gestione_iscritti
 from struttura.piscina.GestioneIscritti.view_modifica_utente.view_modifica_utente import view_modifica_utente
+from struttura.piscina.GestioneIscritti.view_modifica_utente.view_visualizza_utente_piscina import \
+    view_visualizza_utente_piscina
 from struttura.piscina.Iscritti.controller_iscritti.controller_iscritti import controller_iscritti
 from struttura.piscina.Iscritti.view_iscritti.view_inserisci_utente import view_inserisci_utente
 
@@ -41,6 +43,15 @@ class view_iscritti(QWidget):
         self.indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
+
+        self.visualizza_utente = QPushButton("Visualizza utente")
+        self.visualizza_utente.clicked.connect(self.mostra_visualizza_utente_piscina)
+        self.visualizza_utente.setFont(self.font_bottoni)
+        self.h_layout.addWidget(self.visualizza_utente)
+        self.visualizza_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.shortcut_visualizza = QShortcut(QKeySequence('Return'), self)
+        self.shortcut_visualizza.activated.connect(self.mostra_visualizza_utente_piscina)
+
 
         self.inserisci_utente = QPushButton("Inserisci utente")
         self.inserisci_utente.clicked.connect(self.mostra_inserisci_utente)
@@ -121,6 +132,24 @@ class view_iscritti(QWidget):
             self.aggiorna_dati()
         else:
             return
+
+    def mostra_visualizza_utente_piscina(self):
+        try:
+            index = self.list_view.selectedIndexes()[0].row()
+            # lista = []
+            # for prenotazione in self.controller.get_lista_iscritti():
+            #     if self.data == prenotazione.data:
+            #         lista.append(prenotazione)
+            # da_visualizzare = lista[indice]
+            da_visualizzare = self.controller.get_lista_iscritti()[index]
+
+        except:
+            QMessageBox.critical(self, "Errore", "Seleziona un utente da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        self.vista_prenotazione = view_visualizza_utente_piscina(controller_gestione_iscritti(da_visualizzare))
+        self.vista_prenotazione.show()
+
 
     def mostra_modifica_utente(self):
 

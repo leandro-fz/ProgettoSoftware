@@ -1,26 +1,23 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QMessageBox, QPushButton, QVBoxLayout, QHBoxLayout
-from PyQt5.QtGui import QFont, QPixmap
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtWidgets import QWidget, QLabel,QPushButton, QVBoxLayout, QHBoxLayout
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QSize
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QShortcut
 
 
 
-class VistaPrenotazioneTennis(QWidget):
+class view_visualizza_utente_piscina(QWidget):
 
-    def __init__(self, controllore_prenotazione, parent=None):
-        super(VistaPrenotazioneTennis, self).__init__(parent)
+    def __init__(self, controllore_utente, parent=None):
+        super(view_visualizza_utente_piscina, self).__init__(parent)
 
-        self.controllore_prenotazione = controllore_prenotazione
+        self.controllore_utente = controllore_utente
 
         self.v_layout = QVBoxLayout()
 
         # labels contenenti dati del cliente
-        self.create_label("Giorno:        ", self.controllore_prenotazione.get_giorno_pre_te().strftime('%d/%m/%Y'))
-        self.create_label("Orario:        ", self.controllore_prenotazione.get_orario_premuto_pre_te())
-        self.create_label("Prenotante:         ", self.controllore_prenotazione.get_nome_pre_te())
-        self.create_label("Recapito:            ", self.controllore_prenotazione.get_recapito_pre_te())
+        self.create_label("Prenotante:         ", self.controllore_utente.get_nome_utente())
 
         self.h_layout = QHBoxLayout()
 
