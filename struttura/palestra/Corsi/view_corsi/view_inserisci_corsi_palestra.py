@@ -11,13 +11,13 @@ from PyQt5.QtGui import *
 from struttura.piscina.corsi.corsiPiscina.model_corsi_piscina.model_corsi_piscina import model_corsi_piscina
 
 
-class view_aggiungi_corso(QWidget):
+class view_inserisci_corso_palestra(QWidget):
 
-    def __init__(self, data, controllore_gestionecorsipiscina, aggiorna_dati_corsi_piscina, parent=None):
-        super(view_aggiungi_corso, self).__init__(parent)
+    def __init__(self, data, controllore_gestionecorsipalestra, aggiorna_dati_corsi_palestra, parent=None):
+        super(view_inserisci_corso_palestra, self).__init__(parent)
         self.font = QFont("Yu Gothic UI Light", 15)
-        self.aggiorna_dati_corsi_piscina = aggiorna_dati_corsi_piscina
-        self.controllore = controllore_gestionecorsipiscina
+        self.aggiorna_dati_corsi_palestra = aggiorna_dati_corsi_palestra
+        self.controllore = controllore_gestionecorsipalestra
         self.data1 = data
 
 
@@ -26,7 +26,7 @@ class view_aggiungi_corso(QWidget):
         self.font_label.setBold(True)
 
         self.font_label2 = QFont("Yu Gothic UI Light", 15)
-        self.label_alto = QLabel("Corsi di nuoto del "+ self.data1.strftime("%d/%m/%Y"))
+        self.label_alto = QLabel("Form di prenotazione campo tennis del "+ self.data1.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
