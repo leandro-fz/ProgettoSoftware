@@ -6,8 +6,8 @@ class model_iscritti():
     def __init__(self):
         super(model_iscritti, self).__init__()
         self.lista_iscritti= []
-        if os.path.isfile("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
-            with open("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle",
+        if os.path.isfile("struttura/piscina/Iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
+            with open("struttura/piscina/Iscritti/data_iscritti/lista_iscritti_salvata.pickle",
                       "rb") as file:
                 try:
                     self.lista_iscritti = pickle.load(file)
