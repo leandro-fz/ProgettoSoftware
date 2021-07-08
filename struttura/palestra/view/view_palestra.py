@@ -1,6 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from struttura.palestra.Corsi.view_corsi.view_corsi_palestra import view_corsi_palestra
 from struttura.palestra.Iscritti.view_iscritti.view_iscritti import view_iscritti
 
 
@@ -204,8 +205,10 @@ class Ui_gestionepalestra(object):
         self.gestioneiscritti = view_iscritti()
         self.gestioneiscritti.show()
 
+
     def mostra_corsi(self):
-        pass
+        self.gestionecorsi = view_corsi_palestra()
+        self.gestionecorsi.show()
 
     def retranslateUi(self, gestionepalestra):
         _translate = QtCore.QCoreApplication.translate

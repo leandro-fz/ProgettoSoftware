@@ -15,15 +15,19 @@ from datetime import datetime, timedelta
 
 from struttura.palestra.Corsi.GestioneCorsiPalestra.controller_gestione_corsi_palestra.controller_gestione_corsi_palestra import \
     controller_gestione_corsi_palestra
-from struttura.piscina.corsi.GestioneCorsi.controller_gestione_corsi_piscina.controller_gestione_corsi_piscina import \
-    controller_gestione_corsi_piscina
+from struttura.palestra.Corsi.corsiPalestra.controller_corsi_palestra.controller_corsi_palestra import \
+    controller_corsi_palestra
+from struttura.palestra.Corsi.corsiPalestra.view_corsi_palestra.view_corso_palestra_visualizzazione import \
+    view_corso_palestra_visualizzazione
+from struttura.palestra.Corsi.view_corsi.view_inserisci_corsi_palestra import view_inserisci_corso_palestra
 
 
 
-class view_day_corsi_nuoto(QWidget):
+
+class view_day_corsi_palestra(QWidget):
 
     def __init__(self, data, parent=None):
-        super(view_day_corsi_nuoto, self).__init__(parent)
+        super(view_day_corsi_palestra, self).__init__(parent)
         self.controller_gestione_palestra = controller_gestione_corsi_palestra()
         self.data = data
         self.v_layout = QVBoxLayout()
@@ -37,7 +41,7 @@ class view_day_corsi_nuoto(QWidget):
         self.v_layout.addSpacing(15)
 
         self.lista_corsi = QListView()
-        self.aggiorna_dati_corsi_piscina()
+        self.aggiorna_dati_corsi_palestra()
         self.v_layout.addWidget(self.lista_corsi)
 
         self.h_layout = QHBoxLayout()
@@ -81,7 +85,7 @@ class view_day_corsi_nuoto(QWidget):
         self.setLayout(self.v_layout)
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Corsi Nuoto")
+        self.setWindowTitle("Corsi Palestra")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -91,9 +95,9 @@ class view_day_corsi_nuoto(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-    def aggiorna_dati_corsi_piscina(self):
+    def aggiorna_dati_corsi_palestra(self):
         self.modello_lista_corsi = QStandardItemModel()
-        for corso in self.controllore_gestionecorsipiscina.get_lista_corsi():
+        for corso in self.controller_gestione_palestra.get_lista_corsi_palestra():
             if self.data == corso.data:
                 item = QStandardItem()
                 item.setText("Corso nuoto del " + corso.data.strftime("%d/%m/%Y") + " delle ore " + corso.orario + ", corso: " + corso.corso)
@@ -111,7 +115,7 @@ class view_day_corsi_nuoto(QWidget):
         if self.data <= yesterday:
             QMessageBox.critical(self, "Errore", "Non puoi aggiungere un corso in una data passata", QMessageBox.Ok, QMessageBox.Ok)
             return
-        self.vista_nuovo_corso_piscina = view_aggiungi_corso(self.data, self.controllore_gestionecorsipiscina, self.aggiorna_dati_corsi_piscina)
+        self.vista_nuovo_corso_piscina = view_inserisci_corso_palestra(self.data, self.controller_gestione_palestra, self.aggiorna_dati_corsi_palestra)
         self.vista_nuovo_corso_piscina.show()
 
 
@@ -121,7 +125,7 @@ class view_day_corsi_nuoto(QWidget):
         try:
             indice = self.lista_corsi.selectedIndexes()[0].row()
             lista = []
-            for corso in self.controllore_gestionecorsipiscina.get_lista_corsi():
+            for corso in self.controller_gestione_palestra.get_lista_corsi_palestra():
                 if self.data == corso.data:
                     lista.append(corso)
             da_eliminare = lista[indice]
@@ -133,9 +137,9 @@ class view_day_corsi_nuoto(QWidget):
             return
         risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
-            self.controllore_gestionecorsipiscina.elimina_corso_piscina(da_eliminare.id)
+            self.controller_gestione_palestra.elimina_corso_palestra(da_eliminare.id)
             QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
-            self.aggiorna_dati_corsi_piscina()
+            self.aggiorna_dati_corsi_palestra()
         else:
             return
 
@@ -143,7 +147,7 @@ class view_day_corsi_nuoto(QWidget):
         try:
             indice = self.lista_corsi.selectedIndexes()[0].row()
             lista = []
-            for corso in self.controllore_gestionecorsipiscina.get_lista_corsi():
+            for corso in self.controller_gestione_palestra.get_lista_corsi_palestra():
                 if self.data == corso.data:
                     lista.append(corso)
             da_visualizzare = lista[indice]
@@ -151,8 +155,8 @@ class view_day_corsi_nuoto(QWidget):
             QMessageBox.critical(self, "Errore", "Seleziona un corso da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        self.vista_prenotazione = view_corso_piscina_visualizzazione(controller_corsi_piscina(da_visualizzare))
+        self.vista_prenotazione = view_corso_palestra_visualizzazione(controller_corsi_palestra(da_visualizzare))
         self.vista_prenotazione.show()
 
     def closeEvent(self, event):
-        self.controllore_gestionecorsipiscina.save_data()
+        self.controller_gestione_palestra.save_data()

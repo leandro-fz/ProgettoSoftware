@@ -14,6 +14,10 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+from struttura.palestra.Corsi.corsiPalestra.view_corsi_palestra.view_mostra_tutti_corsi_palestra import \
+    view_mostra_tutti_corsi_palestra
+from struttura.palestra.Corsi.view_corsi.view_day_corsi_palestra import view_day_corsi_palestra
+
 
 class view_corsi_palestra(QWidget):
 
@@ -56,7 +60,7 @@ class view_corsi_palestra(QWidget):
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco Corsi Piscina")
+        self.setWindowTitle("Elenco Corsi Palestra")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -80,10 +84,10 @@ class view_corsi_palestra(QWidget):
     def mostra_view_day_palestra(self):
         dataq = self.calendario.selectedDate()
         self.datai = datetime(dataq.year(), dataq.month(), dataq.day())
-        self.lista_prenotazioni_day = view_day_corsi_nuoto(self.datai)
+        self.lista_prenotazioni_day = view_day_corsi_palestra(self.datai)
         self.lista_prenotazioni_day.show()
 
 
     def mostra_tutte_prenotazioni_palestra(self):
-        self.lista_prenotazioni = view_tutti_corsi_piscina()
+        self.lista_prenotazioni = view_mostra_tutti_corsi_palestra()
         self.lista_prenotazioni.show()

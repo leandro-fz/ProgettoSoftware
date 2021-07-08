@@ -8,6 +8,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+from struttura.palestra.Corsi.corsiPalestra.model_corsi_palestra.model_corsi_palestra import model_corsi_palestra
 
 
 class view_inserisci_corso_palestra(QWidget):
@@ -81,11 +82,11 @@ class view_inserisci_corso_palestra(QWidget):
 
         self.bottone_conferma = QPushButton("Conferma")
         self.h_layout.addWidget(self.bottone_conferma)
-        self.bottone_conferma.clicked.connect(self.conferma_inserimento_corso_piscina)
+        self.bottone_conferma.clicked.connect(self.conferma_inserimento_corso_palestra)
         self.bottone_conferma.setFont(self.font_label)
         self.bottone_conferma.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.shortcut_conferma = QShortcut(QKeySequence('Enter'), self)
-        self.shortcut_conferma.activated.connect(self.conferma_inserimento_corso_piscina)
+        self.shortcut_conferma.activated.connect(self.conferma_inserimento_corso_palestra)
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
@@ -132,17 +133,17 @@ class view_inserisci_corso_palestra(QWidget):
         if not self.controlla_disponibilità(idcorso):
             QMessageBox.critical(self, "Conflitto", "Questa fascia oraria ha già un altro corso",QMessageBox.Ok, QMessageBox.Ok)
             return
-        nuovocorso = model_corsi_piscina(corso, istruttore, dataselezionata, orario_premuto, idcorso)
+        nuovocorso = model_corsi_palestra(corso, istruttore, dataselezionata, orario_premuto, idcorso)
 
-        self.controllore.aggiungi_corso(nuovocorso)
+        self.controllore.aggiungi_corso_palestra(nuovocorso)
         self.controllore.save_data()
         QMessageBox.about(self, "Confermata", "Corso aggiunto")
-        self.aggiorna_dati_corsi_piscina()
+        self.aggiorna_dati_corsi_palestra()
         self.close()
         return True
 
     def controlla_disponibilità(self, idcorso):
-        for corso in self.controllore.get_lista_corsi():
+        for corso in self.controllore.get_lista_corsi_palestra():
             if corso.id == idcorso:
                 return False
         return True
