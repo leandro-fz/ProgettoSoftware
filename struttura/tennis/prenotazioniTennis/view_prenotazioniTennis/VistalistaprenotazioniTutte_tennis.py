@@ -60,7 +60,7 @@ class VistaListaPrenotazioniTutte(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondotennissfocato.jpeg")
         sImage = oImage.scaled(QSize(800, 601))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))

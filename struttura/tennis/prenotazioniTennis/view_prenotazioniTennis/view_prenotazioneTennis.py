@@ -41,7 +41,7 @@ class VistaPrenotazioneTennis(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondotennissfocato.jpeg")
         sImage = oImage.scaled(QSize(500, 310))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -70,14 +70,3 @@ class VistaPrenotazioneTennis(QWidget):
 
     def mostra_indietro(self):
         self.close()
-
-    # def conferma_eliminazione(self):
-    #
-    #     self.controllore_lista_prenotazioi_tennis = ControlloreListaPrenotazioniTennis()
-    #     risposta = QMessageBox.warning(self, "Elimina Prenotazione", "Sei sicuro di voler elimare la prenotazione?", QMessageBox.Yes, QMessageBox.No)
-    #     if risposta == QMessageBox.Yes:
-    #         self.close()
-    #         self.controllore_lista_prenotazioi_tennis.elimina_prenotazione_tennis(self.controllore_prenotazione.get_id_pre_te())
-    #         self.controllore_lista_prenotazioi_tennis.save_data()
-    #     else:
-    #         return

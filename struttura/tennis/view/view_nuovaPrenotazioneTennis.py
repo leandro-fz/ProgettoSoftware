@@ -34,8 +34,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
-        # self.v_layout.addSpacing(10)
-
         self.label_prenotatore = QLabel("Prenotante:")
         self.label_prenotatore.setFont(self.font_label)
         self.v_layout.addWidget(self.label_prenotatore)
@@ -106,7 +104,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondotennissfocato.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -147,7 +145,6 @@ class view_nuovaPrenotazioneTennis(QWidget):
             risposta = QMessageBox.question(self, "Conferma", "Il costo della prenotazione è " + str(prenotazione.get_prezzo_totale()) + " € " + "\n\nConfermare?",QMessageBox.Yes, QMessageBox.No)
             if risposta == QMessageBox.No:
                 return
-        # self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
         self.controllore.aggiungi_prenotazione_tennis(prenotazione)
         self.controllore.save_data()
         QMessageBox.about(self, "Confermata", "Prenotazione confermata")

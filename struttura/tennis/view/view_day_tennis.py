@@ -86,7 +86,7 @@ class view_day_tennis(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/sfondotennis.jpeg")
+        oImage = QImage("images/sfondotennissfocato.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
