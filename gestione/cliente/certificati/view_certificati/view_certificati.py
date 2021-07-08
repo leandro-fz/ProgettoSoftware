@@ -8,6 +8,7 @@ from gestione.cliente.GestioneCertificati.controller_gestione_certificati.contro
     controller_gestione_certificati
 from gestione.cliente.GestioneCertificati.view_modifica_certificati.view_modifica_certificati import \
     view_modifica_certificati
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
 from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
 from gestione.cliente.certificati.view_certificati.view_inserisci_certificati import view_inserisci_certificati
 
@@ -23,7 +24,16 @@ class view_certificati(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
-        self.list_view.setGeometry(40, 60, 500, 401)
+        # self.list_view.setGeometry(40, 60, 500, 401)
+
+        self.font_label = QFont("Yu Gothic UI Light", 13)
+        self.font_label.setBold(True)
+
+        self.font_label2 = QFont("Yu Gothic UI Light", 15)
+        self.label_alto = QLabel("Inserisci il certificato medico solo dopo aver inserito il cliente tra gli abbonamenti")
+        self.label_alto.setFont(self.font_label2)
+        self.v_layout.addWidget(self.label_alto)
+        self.v_layout.addSpacing(10)
 
         self.aggiorna_dati()
         self.v_layout.addWidget(self.list_view)
@@ -81,19 +91,47 @@ class view_certificati(QWidget):
 
     def chiudi_schermata(self):
         self.close()
+    #
+    # def aggiorna_dati(self):
+    #
+    #     self.list_view_model = QStandardItemModel(self.list_view)
+    #
+    #     self.font_item = QFont("Yu Gothic UI Light", 12)
+    #     self.controlloreabbonamento = controller_abbonamenti()
+    #
+    #     # for certificato in self.controller.get_lista_certificati():
+    #     for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
+    #         item = QStandardItem()
+    #         item.setText(abbonamento.nome + " " + abbonamento.cognome)
+    #         item.setEditable(False)
+    #         item.setFont(self.font_item)
+    #         self.list_view_model.appendRow(item)
+    #         # if abbonamento.codicefiscale == abbonamento.codicefiscale:
+    #
+    #     self.list_view.setModel(self.list_view_model)
 
     def aggiorna_dati(self):
+
+        self.controlloreabbonamento = controller_abbonamenti()
+
+        # for certificato in self.controller.get_lista_certificati():
+        #     for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
+        #         if not certificato.codicefiscale == abbonamento.codicefiscale:
+        #             self.controller.elimina_certificato_by_codicefiscale(certificato.codicefiscale)
 
         self.list_view_model = QStandardItemModel(self.list_view)
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
 
+
         for certificato in self.controller.get_lista_certificati():
-            item = QStandardItem()
-            item.setText(certificato.nome + " " + certificato.cognome)
-            item.setEditable(False)
-            item.setFont(self.font_item)
-            self.list_view_model.appendRow(item)
+            for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
+                if certificato.codicefiscale == abbonamento.codicefiscale:
+                    item = QStandardItem()
+                    item.setText(abbonamento.nome + " " + abbonamento.cognome)
+                    item.setEditable(False)
+                    item.setFont(self.font_item)
+                    self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
     def mostra_inserisci_certificato(self):
@@ -107,8 +145,15 @@ class view_certificati(QWidget):
     def mostra_elimina_certificato(self):
 
         try:
+
+
+            listcertificati = []
             index = self.list_view.selectedIndexes()[0].row()
-            da_eliminare = self.controller.get_lista_certificati()[index]
+            for certificato in self.controller.get_lista_certificati():
+                for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
+                    if certificato.codicefiscale == abbonamento.codicefiscale:
+                        listcertificati.append(certificato)
+            da_eliminare = listcertificati[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un certificato da eliminare", QMessageBox.Ok, QMessageBox.Ok)
@@ -127,9 +172,14 @@ class view_certificati(QWidget):
     def mostra_modifica_certificato(self):
 
         try:
+            listacertificati = []
             index = self.list_view.selectedIndexes()[0].row()
-            da_visualizzare = self.controller.get_lista_certificati()[index]
-            print("ok")
+            for certificato in self.controller.get_lista_certificati():
+                for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
+                    if certificato.codicefiscale == abbonamento.codicefiscale:
+                        listacertificati.append(certificato)
+            da_visualizzare = listacertificati[index]
+        #     self.controller.get_lista_certificati()[index]
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un certificato da visualizzare", QMessageBox.Ok,
                                  QMessageBox.Ok)

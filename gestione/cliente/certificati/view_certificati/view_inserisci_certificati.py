@@ -8,6 +8,7 @@ from datetime import datetime
 
 from gestione.cliente.GestioneCertificati.model_gestione_certificati.model_gestione_certificati import \
     model_gestione_certificati
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
 
 
 class view_inserisci_certificati(QWidget):
@@ -31,26 +32,26 @@ class view_inserisci_certificati(QWidget):
 
         # self.v_layout.addSpacing(10)
 
-        self.label_nome = QLabel("Nome: ")
-        self.label_nome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nome)
-
-        self.campo_nome = QLineEdit()
-        self.v_layout.addWidget(self.campo_nome)
-
-        self.label_cognome = QLabel("Cognome: ")
-        self.label_cognome.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_cognome)
-
-        self.campo_cognome = QLineEdit()
-        self.v_layout.addWidget(self.campo_cognome)
-
-        self.label_nato = QLabel("Nato a: ")
-        self.label_nato.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_nato)
-
-        self.campo_nato = QLineEdit()
-        self.v_layout.addWidget(self.campo_nato)
+        # self.label_nome = QLabel("Nome: ")
+        # self.label_nome.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_nome)
+        #
+        # self.campo_nome = QLineEdit()
+        # self.v_layout.addWidget(self.campo_nome)
+        #
+        # self.label_cognome = QLabel("Cognome: ")
+        # self.label_cognome.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_cognome)
+        #
+        # self.campo_cognome = QLineEdit()
+        # self.v_layout.addWidget(self.campo_cognome)
+        #
+        # self.label_nato = QLabel("Nato a: ")
+        # self.label_nato.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_nato)
+        #
+        # self.campo_nato = QLineEdit()
+        # self.v_layout.addWidget(self.campo_nato)
 
         self.label_codicefiscale = QLabel("Codice fiscale (16 caratteri): ")
         self.label_codicefiscale.setFont(self.font_label)
@@ -59,12 +60,12 @@ class view_inserisci_certificati(QWidget):
         self.campo_codicefiscale = QLineEdit()
         self.v_layout.addWidget(self.campo_codicefiscale)
 
-        self.label_residenza = QLabel("Residenza (Via e città di residenza): ")
-        self.label_residenza.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_residenza)
-
-        self.campo_residenza = QLineEdit()
-        self.v_layout.addWidget(self.campo_residenza)
+        # self.label_residenza = QLabel("Residenza (Via e città di residenza): ")
+        # self.label_residenza.setFont(self.font_label)
+        # self.v_layout.addWidget(self.label_residenza)
+        #
+        # self.campo_residenza = QLineEdit()
+        # self.v_layout.addWidget(self.campo_residenza)
 
         self.label_sportcertificato = QLabel("Sport del certificato:")
         self.label_sportcertificato.setFont(self.font_label)
@@ -140,11 +141,11 @@ class view_inserisci_certificati(QWidget):
 
     def conferma_inserimento(self):
 
-        nome = self.campo_nome.text()
-        cognome = self.campo_cognome.text()
-        nato = self.campo_nato.text()
+        # nome = self.campo_nome.text()
+        # cognome = self.campo_cognome.text()
+        # nato = self.campo_nato.text()
         codicefiscale = self.campo_codicefiscale.text()
-        residenza = self.campo_residenza.text()
+        # residenza = self.campo_residenza.text()
         sportcertificato = self.campo_sportcertificato.text()
         datainizio = self.campo_datainizio.text()
         datafine = self.campo_datafine.text()
@@ -153,12 +154,11 @@ class view_inserisci_certificati(QWidget):
             booleancertificato = True
         else:
             booleancertificato = False
-
-        if nome == "" or cognome == "" or nato == "" or codicefiscale == "" or residenza == "" or sportcertificato == "" or datainizio == "" or datafine == "":
+        # nome == "" or cognome == "" or nato == "" or residenza == ""
+        if codicefiscale == "" or sportcertificato == "" or datainizio == "" or datafine == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
-
 
         if len(codicefiscale) < 16:
 
@@ -173,9 +173,14 @@ class view_inserisci_certificati(QWidget):
             return
 
 
-        if not self.controlla_codicefiscale_libero(codicefiscale):
+        # if not self.controlla_codicefiscale_libero(codicefiscale):
+        #
+        #     QMessageBox.critical(self, "Errore", "Codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+        #     return
 
-            QMessageBox.critical(self, "Errore", "Codice fiscale inserito è già stato utilizzato", QMessageBox.Ok, QMessageBox.Ok)
+        if not self.controlla_cf_abbonamento(codicefiscale):
+
+            QMessageBox.critical(self, "Errore", "Codice fiscale non trovato tra gli abbonamenti registrati.\nSe si tratta di un nuovo cliente, registralo prima tra gli abbonamenti", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:
@@ -195,16 +200,12 @@ class view_inserisci_certificati(QWidget):
                                  QMessageBox.Ok)
             return
 
-        try:
-            nato = str(self.campo_nato.text())
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok,
-                                 QMessageBox.Ok)
+        if datafine < datainizio:
+            QMessageBox.critical(self, "Errore", "La data di scadenza non può essere precedente alla data di inizio di valdità.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        self.controller.aggiungi_certificato(model_gestione_certificati(nome, cognome, nato, codicefiscale, residenza, sportcertificato,booleancertificato, datainizio, datafine))
+
+        self.controller.aggiungi_certificato(model_gestione_certificati(codicefiscale, sportcertificato,booleancertificato, datainizio, datafine))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
@@ -212,10 +213,16 @@ class view_inserisci_certificati(QWidget):
         self.aggiorna_lista()
         self.close()
 
+    def controlla_cf_abbonamento(self, codicefiscale):
+        controllerabbonamento = controller_abbonamenti()
+        for abbonamento in controllerabbonamento.get_lista_abbonamenti():
+            if abbonamento.codicefiscale == codicefiscale:
+                return True
+        return False
 
-    def controlla_codicefiscale_libero(self, codicefiscale):
-
-        for certificato in self.controller.get_lista_certificati():
-            if certificato.codicefiscale == codicefiscale:
-                return False
-        return True
+    # def controlla_codicefiscale_libero(self, codicefiscale):
+    #
+    #     for certificato in self.controller.get_lista_certificati():
+    #         if certificato.codicefiscale == codicefiscale:
+    #             return False
+    #     return True

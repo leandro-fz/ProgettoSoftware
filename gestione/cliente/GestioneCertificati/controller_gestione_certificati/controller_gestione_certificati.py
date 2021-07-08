@@ -4,20 +4,20 @@ class controller_gestione_certificati():
     def __init__(self, certificato):
         self.model = certificato
 
-    def get_nome_certificato(self):
-        return self.model.nome
-
-    def get_cognome_certificato(self):
-        return self.model.cognome
-
-    def get_nato_certificato(self):
-        return self.model.nato
+    # def get_nome_certificato(self):
+    #     return self.model.nome
+    #
+    # def get_cognome_certificato(self):
+    #     return self.model.cognome
+    #
+    # def get_nato_certificato(self):
+    #     return self.model.nato
 
     def get_codicefiscale_certificato(self):
         return self.model.codicefiscale
-
-    def get_residenza_certificato(self):
-        return self.model.residenza
+    #
+    # def get_residenza_certificato(self):
+    #     return self.model.residenza
 
     def get_sportcertificato_certificato(self):
         return self.model.sportcertificato
@@ -31,26 +31,20 @@ class controller_gestione_certificati():
     def get_datafine_certificato(self):
         return self.model.datafine
 
-    def get_certificato_pdf(self):
-        return self.model.documento
-
-    def set_certificato_pdf(self, documento):
-        self.model.documento = documento
-
-    def set_nome_certificato(self, nome):
-        self.model.nome = nome
-
-    def set_cognome_certificato(self, cognome):
-        self.model.cognome = cognome
-
-    def set_nato_certificato(self, nato):
-        self.model.nato = nato
+    # def set_nome_certificato(self, nome):
+    #     self.model.nome = nome
+    #
+    # def set_cognome_certificato(self, cognome):
+    #     self.model.cognome = cognome
+    #
+    # def set_nato_certificato(self, nato):
+    #     self.model.nato = nato
 
     def set_codicefiscale_certificato(self, codicefiscale):
         self.model.id = codicefiscale
-
-    def set_residenza_certificato(self, residenza):
-        self.model.residenza = residenza
+    #
+    # def set_residenza_certificato(self, residenza):
+    #     self.model.residenza = residenza
 
     def set_sportcertificato_certificato(self, sportcertificato):
         self.model.sportcertificato = sportcertificato

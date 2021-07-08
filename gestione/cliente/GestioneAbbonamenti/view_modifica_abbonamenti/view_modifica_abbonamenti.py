@@ -7,6 +7,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
+from gestione.cliente.GestioneCertificati.controller_gestione_certificati.controller_gestione_certificati import \
+    controller_gestione_certificati
+from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
+
+
 class view_modifica_abbonamenti(QWidget):
 
     def __init__(self, controllore_abbonamento, aggiorna_lista, lista_abbonamenti, parent=None):
@@ -186,7 +191,7 @@ class view_modifica_abbonamenti(QWidget):
         residenza = self.campo_residenza.text()
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
-        struttura = self.campo_struttura.text()
+        struttura = str(self.campo_struttura.currentText())
         tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
 
 
@@ -202,7 +207,7 @@ class view_modifica_abbonamenti(QWidget):
             return
 
         if len(codicefiscale) > 16:
-            QMessageBox.critical(self, "Errore", "Codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Il codice fiscale deve avere 16 caratteri", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
@@ -235,8 +240,11 @@ class view_modifica_abbonamenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-
-
+        # self.controlloreabbonamento = controller_certificati()
+        # self.controllorecertificato_cf = controller_gestione_certificati()
+        # for certificato in self.controlloreabbonamento.get_lista_certificati():
+        #     if certificato.codicefiscale == codicefiscale:
+        #         self.controllorecertificato_cf.set_codicefiscale_certificato(codicefiscale)
         self.controller.set_nome_abbonamento(nome)
         self.controller.set_cognome_abbonamento(cognome)
         self.controller.set_data_abbonamento(nato)
@@ -248,6 +256,6 @@ class view_modifica_abbonamenti(QWidget):
         self.controller.set_struttura_abbonamento(struttura)
         self.controller.set_tipoabbonamento_abbonamento(tipoabbonamento)
 
-        QMessageBox.about(self, "Completata", "Modifica completata")
+        QMessageBox.about(self, "Completata", "Modifica completata\nVerificare il certificato medico")
         self.aggiorna_lista()
         self.close()

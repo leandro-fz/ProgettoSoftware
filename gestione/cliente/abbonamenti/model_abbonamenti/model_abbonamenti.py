@@ -1,7 +1,6 @@
 import os
 import pickle
 
-# cliente/
 class model_abbonamenti():
     def __init__(self):
         super(model_abbonamenti, self).__init__()

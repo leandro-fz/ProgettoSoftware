@@ -23,7 +23,10 @@ class view_abbonamenti(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
-        self.list_view.setGeometry(40, 60, 500, 401)
+        # self.list_view.setGeometry(40, 60, 500, 401)
+
+
+
 
         self.aggiorna_dati()
         self.v_layout.addWidget(self.list_view)
