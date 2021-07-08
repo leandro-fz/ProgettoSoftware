@@ -5,8 +5,8 @@ import pickle
 class model_gestione_corsi_piscina():
     def __init__(self):
         self.lista_corsipiscina = []
-        if os.path.isfile("struttura/piscina/corsi/GestioneCorsiPiscina/DataGestionePiscina/data_gestioneCorsiPiscina.pickle"):
-            with open("struttura/piscina/corsi/GestioneCorsiPiscina/DataGestionePiscina/data_gestioneCorsiPiscina.pickle", "rb") as file:
+        if os.path.isfile("struttura/piscina/corsi/GestioneCorsi/DataGestionePiscina/data_gestioneCorsiPiscina.pickle"):
+            with open("struttura/piscina/corsi/GestioneCorsi/DataGestionePiscina/data_gestioneCorsiPiscina.pickle", "rb") as file:
                 try:
                     self.lista_corsipiscina = pickle.load(file)
                 except EOFError:
@@ -32,5 +32,5 @@ class model_gestione_corsi_piscina():
         return False
 
     def save_data(self):
-        with open("struttura/piscina/corsi/GestioneCorsiPiscina/DataGestionePiscina/data_gestioneCorsiPiscina.pickle", "wb") as handle:
+        with open("struttura/piscina/corsi/GestioneCorsi/DataGestionePiscina/data_gestioneCorsiPiscina.pickle", "wb") as handle:
             pickle.dump(self.lista_corsipiscina, handle, pickle.HIGHEST_PROTOCOL)

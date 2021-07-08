@@ -34,7 +34,7 @@ class view_day_corsi_nuoto(QWidget):
 
         self.label_prenotazioni_by_data = QLabel("Corsi del " + data.strftime("%d/%m/%Y") + ":")
         self.label_prenotazioni_by_data.setAlignment(Qt.AlignCenter)
-        self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 12))
+        self.label_prenotazioni_by_data.setFont(QFont("Arial", 12))
         self.v_layout.addWidget(self.label_prenotazioni_by_data)
         self.v_layout.addSpacing(15)
 
@@ -87,7 +87,7 @@ class view_day_corsi_nuoto(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondonuoto.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))

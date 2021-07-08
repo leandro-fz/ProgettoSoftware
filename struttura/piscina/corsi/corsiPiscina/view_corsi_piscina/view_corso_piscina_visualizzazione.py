@@ -39,7 +39,7 @@ class view_corso_piscina_visualizzazione(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondonuoto.jpeg")
         sImage = oImage.scaled(QSize(500, 310))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -49,7 +49,7 @@ class view_corso_piscina_visualizzazione(QWidget):
         h_layout = QHBoxLayout()
 
         label = QLabel(testo)
-        label.setFont(QFont("Yu Gothic UI Light",15))
+        label.setFont(QFont("Arial",15))
         h_layout.addWidget(label)
 
 

@@ -28,7 +28,7 @@ class view_tutti_corsi_piscina(QWidget):
 
         self.label_prenotazioni_by_data = QLabel("Tutte i corsi dalla data di oggi in poi: ")
         self.label_prenotazioni_by_data.setAlignment(Qt.AlignCenter)
-        self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 17))
+        self.label_prenotazioni_by_data.setFont(QFont("Arial", 17))
         self.v_layout.addWidget(self.label_prenotazioni_by_data)
 
         self.lista_corsi_piscina = QListView()
@@ -58,7 +58,7 @@ class view_tutti_corsi_piscina(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/immaginepesisfocata.jpeg")
+        oImage = QImage("images/sfondonuoto.jpeg")
         sImage = oImage.scaled(QSize(800, 601))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
