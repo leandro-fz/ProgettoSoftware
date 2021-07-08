@@ -8,7 +8,6 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.corsi.corsiPiscina.model_corsi_piscina.model_corsi_piscina import model_corsi_piscina
 
 
 class view_inserisci_corso_palestra(QWidget):
@@ -29,8 +28,6 @@ class view_inserisci_corso_palestra(QWidget):
         self.label_alto = QLabel("Form di prenotazione campo tennis del "+ self.data1.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
-
-        # self.v_layout.addSpacing(10)
 
         self.label_corso = QLabel("Corso:")
         self.label_corso.setFont(self.font_label)
@@ -117,7 +114,7 @@ class view_inserisci_corso_palestra(QWidget):
             return
 
 
-    def conferma_inserimento_corso_piscina(self):
+    def conferma_inserimento_corso_palestra(self):
         corso = self.campo_corso.text()
         istruttore = self.campo_istruttore.text()
         orario_premuto = str(self.combo.currentText())

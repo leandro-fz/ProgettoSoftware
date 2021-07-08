@@ -3,19 +3,19 @@ class controller_corsi_piscina:
     def __init__(self, corso):
         self.model = corso
 
-    def get_istruttore_corsiPiscina(self):
+    def get_istruttore_corsiPalestra(self):
         return self.model.istruttore
 
-    def get_corso_Piscina(self):
+    def get_corso_Palestra(self):
         return self.model.corso
 
-    def get_orario_premuto_corsiPiscina(self):
+    def get_orario_premuto_corsiPalestra(self):
         return self.model.orario
 
-    def get_giorno__corsiPiscina(self):
+    def get_giorno__corsiPalestra(self):
         return self.model.data
 
-    def get_id__corsiPiscina(self):
+    def get_id__corsiPalestra(self):
         return self.model.id
 
     def set_istruttore_corsiPiscina(self, istruttore):
