@@ -2,7 +2,7 @@ import os
 import pickle
 
 
-class model_GestioneCorsiPiscina():
+class model_gestione_corsi_piscina():
     def __init__(self):
         self.lista_corsipiscina = []
         if os.path.isfile("struttura/piscina/corsi/GestioneCorsiPiscina/DataGestionePiscina/data_gestioneCorsiPiscina.pickle"):

@@ -1,4 +1,4 @@
-class GestioniUtente():
+class model_gestione_iscritti():
 
     def __init__(self, nome, cognome, codicefiscale, cellulare, certificato, tipoabbonamento, ):
         self.nome = nome

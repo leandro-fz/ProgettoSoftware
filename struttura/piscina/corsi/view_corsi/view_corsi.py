@@ -14,7 +14,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.corsi.corsiPiscina.viewPiscina.view_TuttiCorsiPiscina import view_TuttiCorsiPiscina
+from struttura.piscina.corsi.corsiPiscina.viewPiscina.view_tutti_corsi_piscina import view_TuttiCorsiPiscina
 from struttura.piscina.corsi.view_corsi.view_day_corsi_nuoto import view_day_corsi_nuoto
 
 

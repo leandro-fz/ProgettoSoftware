@@ -1,11 +1,11 @@
-from struttura.piscina.Iscritti.model_iscritti.model_iscritti import Insieme_Iscritti
+from struttura.piscina.Iscritti.model_iscritti.model_iscritti import model_iscritti
 
 
-class Controller_iscritti():
+class controller_iscritti():
 
     def __init__(self):
-        super(Controller_iscritti, self).__init__()
-        self.model = Insieme_Iscritti()
+        super(controller_iscritti, self).__init__()
+        self.model = model_iscritti()
 
     def aggiungi_utente(self, utente):
         self.model.aggiungi_utente(utente)

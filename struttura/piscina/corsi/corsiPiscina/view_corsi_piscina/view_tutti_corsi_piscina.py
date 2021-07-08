@@ -12,14 +12,14 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.corsi.GestioneCorsiPiscina.ControllerGestionePiscina.Controller_GestioneCorsiPiscina import \
+from struttura.piscina.corsi.GestioneCorsiPiscina.ControllerGestionePiscina.controller_gestione_corsi_piscina import \
     Controller_GestioneCorsiPiscina
 
 
-class view_TuttiCorsiPiscina(QWidget):
+class view_tutti_corsi_piscina(QWidget):
 
     def __init__(self, data=None, parent=None):
-        super(view_TuttiCorsiPiscina, self).__init__(parent)
+        super(view_tutti_corsi_piscina, self).__init__(parent)
         self.controllore_lista_corsi_piscina = Controller_GestioneCorsiPiscina()
         self.data = data
 

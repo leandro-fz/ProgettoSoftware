@@ -1,4 +1,4 @@
-class model_CorsiPiscina:
+class model_corsi_piscina:
 
     def __init__(self,corso, istruttore, dataselezionata, orario, id):
         self.corso = corso

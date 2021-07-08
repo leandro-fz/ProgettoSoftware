@@ -14,7 +14,7 @@ from gestione.amministrazione.view.view_amministrazione import view_amministrazi
 from gestione.cliente.view.view_cliente import view_cliente
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
 from struttura.palestra.view.view_palestra import Ui_gestionepalestra
-from struttura.piscina.view.view_piscina import Ui_gestionepiscina
+from struttura.piscina.view.view_piscina import view_piscina
 from struttura.tennis.view.view_tennis import view_tennis
 
 
@@ -463,7 +463,7 @@ class Ui_menu(object):
 
     def mostra_piscina(self):
         self.piscina = QtWidgets.QMainWindow()
-        self.pi = Ui_gestionepiscina()
+        self.pi = view_piscina()
         self.pi.setupUi(self.piscina)
         self.piscina.show()
 

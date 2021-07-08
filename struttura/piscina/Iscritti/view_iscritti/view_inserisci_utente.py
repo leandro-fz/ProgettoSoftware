@@ -6,14 +6,14 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.GestioneIscritti.model_GestioneIscritti.model_Gestioneiscritti import GestioniUtente
+from struttura.piscina.GestioneIscritti.model_gestione_iscritti.model_gestione_iscritti import model_gestione_iscritti
 
 
-class view_InserisciUtente(QWidget):
+class view_inserisci_utente(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciUtente, self).__init__(parent)
+        super(view_inserisci_utente, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -159,7 +159,7 @@ class view_InserisciUtente(QWidget):
             return
 
 
-        self.controller.aggiungi_utente(GestioniUtente(nome, cognome, codicefiscale,cellulare, certificato,tipoabbonamento))
+        self.controller.aggiungi_utente(model_gestione_iscritti(nome, cognome, codicefiscale,cellulare, certificato,tipoabbonamento))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

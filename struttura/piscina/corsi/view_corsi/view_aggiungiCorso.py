@@ -8,13 +8,13 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.corsi.corsiPiscina.modelPiscina.model_CorsiPiscina import model_CorsiPiscina
+from struttura.piscina.corsi.corsiPiscina.modelPiscina.model_corsi_piscina import model_CorsiPiscina
 
 
-class view_aggiungiCorso(QWidget):
+class view_aggiungi_corso(QWidget):
 
     def __init__(self, data, controllore_gestionecorsipiscina, aggiorna_dati_corsi_piscina, parent=None):
-        super(view_aggiungiCorso, self).__init__(parent)
+        super(view_aggiungi_corso, self).__init__(parent)
         self.font = QFont("Yu Gothic UI Light", 15)
         self.aggiorna_dati_corsi_piscina = aggiorna_dati_corsi_piscina
         self.controllore = controllore_gestionecorsipiscina

@@ -13,10 +13,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime, timedelta
 
-from struttura.piscina.corsi.GestioneCorsiPiscina.ControllerGestionePiscina.Controller_GestioneCorsiPiscina import \
+from struttura.piscina.corsi.GestioneCorsiPiscina.ControllerGestionePiscina.controller_gestione_corsi_piscina import \
     Controller_GestioneCorsiPiscina
-from struttura.piscina.corsi.corsiPiscina.controllerPiscina.controller_CorsiPiscina import controller_CorsiPiscina
-from struttura.piscina.corsi.corsiPiscina.viewPiscina.view_CorsoPiscinaVisualizzazione import \
+from struttura.piscina.corsi.corsiPiscina.controllerPiscina.controller_corsi_piscina import controller_CorsiPiscina
+from struttura.piscina.corsi.corsiPiscina.viewPiscina.view_corso_piscina_visualizzazione import \
     view_CorsoPiscinaVisualizzazione
 from struttura.piscina.corsi.view_corsi.view_aggiungiCorso import view_aggiungiCorso
 

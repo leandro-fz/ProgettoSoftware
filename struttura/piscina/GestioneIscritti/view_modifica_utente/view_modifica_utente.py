@@ -6,11 +6,11 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-class view_ModificaUtente(QWidget):
+class view_modifica_utente(QWidget):
 
     def __init__(self, controllore_utente, aggiorna_lista, lista_iscritti, parent=None):
 
-        super(view_ModificaUtente, self).__init__(parent)
+        super(view_modifica_utente, self).__init__(parent)
         self.controller = controllore_utente
         self.aggiorna_lista = aggiorna_lista
         self.lista_iscritti = lista_iscritti

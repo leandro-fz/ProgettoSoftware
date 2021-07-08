@@ -1,4 +1,4 @@
-class Controller_GestioneIscritti():
+class controller_gestione_iscritti():
 
 
     def __init__(self, utente):
@@ -18,7 +18,6 @@ class Controller_GestioneIscritti():
 
     def get_certificato_utente(self):
         return self.model.certificato
-
 
 
     def get_tipoabbonamento_utente(self):

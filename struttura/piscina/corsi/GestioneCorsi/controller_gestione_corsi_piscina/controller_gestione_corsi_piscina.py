@@ -1,11 +1,11 @@
-from struttura.piscina.corsi.GestioneCorsiPiscina.ModelGestionePiscina.model_GestioneCorsiPiscina import \
-    model_GestioneCorsiPiscina
+from struttura.piscina.corsi.GestioneCorsiPiscina.model_gestione_corsi_piscina.model_gestione_corsi_piscina import \
+    model_gestione_corsi_piscina
 
 
-class Controller_GestioneCorsiPiscina:
+class controller_gestione_corsi_piscina:
 
     def __init__(self):
-        self.model = model_GestioneCorsiPiscina()
+        self.model = model_gestione_corsi_piscina()
 
     def get_lista_corsi(self):
         return self.model.get_lista_corsi()

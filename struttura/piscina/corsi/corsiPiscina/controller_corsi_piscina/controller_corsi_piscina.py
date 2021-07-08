@@ -1,4 +1,4 @@
-class controller_CorsiPiscina:
+class controller_corsi_piscina:
 
     def __init__(self, corso):
         self.model = corso

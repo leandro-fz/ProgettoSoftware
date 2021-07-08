@@ -4,11 +4,11 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.GestioneIscritti.controller_GestioneIscritti.controller_GestioneIscritti import \
-    Controller_GestioneIscritti
-from struttura.piscina.GestioneIscritti.view_GestioneIscritti.view_GestioneIscritti import view_ModificaUtente
-from struttura.piscina.Iscritti.controller_iscritti.controller_iscritti import Controller_iscritti
-from struttura.piscina.Iscritti.view_iscritti.view_inserisci_utente import view_InserisciUtente
+from struttura.piscina.GestioneIscritti.controller_gestione_iscritti.controller_gestione_iscritti import \
+    controller_gestione_iscritti
+from struttura.piscina.GestioneIscritti.view_modifica_utente.view_modifica_utente import view_modifica_utente
+from struttura.piscina.Iscritti.controller_iscritti.controller_iscritti import controller_iscritti
+from struttura.piscina.Iscritti.view_iscritti.view_inserisci_utente import view_inserisci_utente
 
 
 class view_iscritti(QWidget):
@@ -16,7 +16,7 @@ class view_iscritti(QWidget):
     def __init__(self, parent=None):
         super(view_iscritti, self).__init__(parent)
 
-        self.controller = Controller_iscritti()
+        self.controller = controller_iscritti()
 
         self.v_layout = QVBoxLayout()
 
@@ -96,7 +96,7 @@ class view_iscritti(QWidget):
 
     def mostra_inserisci_utente(self):
 
-        self.inserisci_utente = view_InserisciUtente(self.controller, self.aggiorna_dati)
+        self.inserisci_utente = view_inserisci_utente(self.controller, self.aggiorna_dati)
         self.inserisci_utente.show()
 
     def closeEvent(self, event):
@@ -133,6 +133,6 @@ class view_iscritti(QWidget):
                                  QMessageBox.Ok)
             return
 
-        self.modifica_utente = view_ModificaUtente(Controller_GestioneIscritti(da_visualizzare),
+        self.modifica_utente = view_modifica_utente(controller_gestione_iscritti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_iscritti())
         self.modifica_utente.show()

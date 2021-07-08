@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import QShortcut
 
 
 
-class view_CorsoPiscinaVisualizzazione(QWidget):
+class view_corso_piscina_visualizzazione(QWidget):
 
     def __init__(self, controllore_corso_piscina, parent=None):
-        super(view_CorsoPiscinaVisualizzazione, self).__init__(parent)
+        super(view_corso_piscina_visualizzazione, self).__init__(parent)
 
         self.controllore_corso_piscina = controllore_corso_piscina
 

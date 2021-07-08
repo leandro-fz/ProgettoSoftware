@@ -2,9 +2,9 @@ import os
 import pickle
 
 # iscritti/
-class Insieme_Iscritti():
+class model_iscritti():
     def __init__(self):
-        super(Insieme_Iscritti, self).__init__()
+        super(model_iscritti, self).__init__()
         self.lista_iscritti= []
         if os.path.isfile("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle"):
             with open("struttura/piscina/iscritti/data_iscritti/lista_iscritti_salvata.pickle",

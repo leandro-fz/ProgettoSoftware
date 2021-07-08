@@ -5,7 +5,7 @@ from struttura.piscina.Iscritti.view_iscritti.view_iscritti import view_iscritti
 from struttura.piscina.corsi.view_corsi.view_corsi import view_corsi
 
 
-class Ui_gestionepiscina(object):
+class view_piscina(object):
 
 
     def setupUi(self, gestionepiscina):
