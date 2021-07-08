@@ -19,7 +19,7 @@ class VistaPrenotazioneTennis(QWidget):
         # labels contenenti dati del cliente
         self.create_label("Giorno:        ", self.controllore_prenotazione.get_giorno_pre_te().strftime('%d/%m/%Y'))
         self.create_label("Orario:        ", self.controllore_prenotazione.get_orario_premuto_pre_te())
-        self.create_label("Prenotatore:         ", self.controllore_prenotazione.get_nome_pre_te())
+        self.create_label("Prenotante:         ", self.controllore_prenotazione.get_nome_pre_te())
         self.create_label("Recapito:            ", self.controllore_prenotazione.get_recapito_pre_te())
 
         self.h_layout = QHBoxLayout()
