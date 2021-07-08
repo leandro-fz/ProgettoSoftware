@@ -13,19 +13,20 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime, timedelta
 
-from struttura.piscina.corsi.GestioneCorsiPiscina.ControllerGestionePiscina.controller_gestione_corsi_piscina import \
-    Controller_GestioneCorsiPiscina
-from struttura.piscina.corsi.corsiPiscina.controllerPiscina.controller_corsi_piscina import controller_CorsiPiscina
-from struttura.piscina.corsi.corsiPiscina.viewPiscina.view_corso_piscina_visualizzazione import \
-    view_CorsoPiscinaVisualizzazione
-from struttura.piscina.corsi.view_corsi.view_aggiungiCorso import view_aggiungiCorso
+from struttura.piscina.corsi.GestioneCorsi.controller_gestione_corsi_piscina.controller_gestione_corsi_piscina import \
+    controller_gestione_corsi_piscina
+from struttura.piscina.corsi.corsiPiscina.controller_corsi_piscina.controller_corsi_piscina import \
+    controller_corsi_piscina
+from struttura.piscina.corsi.corsiPiscina.view_corsi_piscina.view_corso_piscina_visualizzazione import \
+    view_corso_piscina_visualizzazione
+from struttura.piscina.corsi.view_corsi.view_aggiungiCorso import view_aggiungi_corso
 
 
 class view_day_corsi_nuoto(QWidget):
 
     def __init__(self, data, parent=None):
         super(view_day_corsi_nuoto, self).__init__(parent)
-        self.controllore_gestionecorsipiscina = Controller_GestioneCorsiPiscina()
+        self.controllore_gestionecorsipiscina = controller_gestione_corsi_piscina()
         self.data = data
         self.v_layout = QVBoxLayout()
         self.font = QFont("Yu Gothic UI Light", 15, 15, False)
@@ -112,7 +113,7 @@ class view_day_corsi_nuoto(QWidget):
         if self.data <= yesterday:
             QMessageBox.critical(self, "Errore", "Non puoi aggiungere un corso in una data passata", QMessageBox.Ok, QMessageBox.Ok)
             return
-        self.vista_nuovo_corso_piscina = view_aggiungiCorso(self.data, self.controllore_gestionecorsipiscina, self.aggiorna_dati_corsi_piscina)
+        self.vista_nuovo_corso_piscina = view_aggiungi_corso(self.data, self.controllore_gestionecorsipiscina, self.aggiorna_dati_corsi_piscina)
         self.vista_nuovo_corso_piscina.show()
 
 
@@ -152,7 +153,7 @@ class view_day_corsi_nuoto(QWidget):
             QMessageBox.critical(self, "Errore", "Seleziona un corso da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        self.vista_prenotazione = view_CorsoPiscinaVisualizzazione(controller_CorsiPiscina(da_visualizzare))
+        self.vista_prenotazione = view_corso_piscina_visualizzazione(controller_corsi_piscina(da_visualizzare))
         self.vista_prenotazione.show()
 
     def closeEvent(self, event):

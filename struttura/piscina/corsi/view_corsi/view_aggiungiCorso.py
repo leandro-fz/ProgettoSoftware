@@ -8,7 +8,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from struttura.piscina.corsi.corsiPiscina.modelPiscina.model_corsi_piscina import model_CorsiPiscina
+from struttura.piscina.corsi.corsiPiscina.model_corsi_piscina.model_corsi_piscina import model_corsi_piscina
 
 
 class view_aggiungi_corso(QWidget):
@@ -135,7 +135,7 @@ class view_aggiungi_corso(QWidget):
         if not self.controlla_disponibilità(idcorso):
             QMessageBox.critical(self, "Conflitto", "Questa fascia oraria ha già un altro corso",QMessageBox.Ok, QMessageBox.Ok)
             return
-        nuovocorso = model_CorsiPiscina(corso, istruttore, dataselezionata, orario_premuto, idcorso)
+        nuovocorso = model_corsi_piscina(corso, istruttore, dataselezionata, orario_premuto, idcorso)
 
         self.controllore.aggiungi_corso(nuovocorso)
         self.controllore.save_data()

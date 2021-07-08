@@ -1,4 +1,4 @@
-from struttura.piscina.corsi.GestioneCorsiPiscina.model_gestione_corsi_piscina.model_gestione_corsi_piscina import \
+from struttura.piscina.corsi.GestioneCorsi.model_gestione_corsi_piscina.model_gestione_corsi_piscina import \
     model_gestione_corsi_piscina
 
 
