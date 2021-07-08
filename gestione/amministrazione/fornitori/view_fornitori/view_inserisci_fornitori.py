@@ -7,14 +7,14 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from gestione.amministrazione.GestioneFornitori.model_GestioneFornitori.model_GestioneFornitori import GestioniFornitore
+from gestione.amministrazione.GestioneFornitori.model_gestione_fornitori.model_gestione_fornitori import model_gestione_fornitori
 
 
-class view_InserisciFornitore(QWidget):
+class view_inserisci_fornitori(QWidget):
 
     def __init__(self, controller, aggiorna_lista, parent=None):
 
-        super(view_InserisciFornitore, self).__init__(parent)
+        super(view_inserisci_fornitori, self).__init__(parent)
         self.controller = controller
         self.aggiorna_lista = aggiorna_lista
 
@@ -166,7 +166,7 @@ class view_InserisciFornitore(QWidget):
 
 
 
-        self.controller.aggiungi_fornitore(GestioniFornitore(nome, indirizzo, citta, email, cellulare,iva ))
+        self.controller.aggiungi_fornitore(model_gestione_fornitori(nome, indirizzo, citta, email, cellulare,iva ))
         self.controller.save_data()
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

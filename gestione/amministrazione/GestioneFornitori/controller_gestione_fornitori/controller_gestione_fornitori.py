@@ -1,4 +1,4 @@
-class Controller_GestioneFornitori():
+class controller_gestione_fornitori():
 
 
     def __init__(self, fornitore):

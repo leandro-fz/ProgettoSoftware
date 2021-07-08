@@ -1,11 +1,11 @@
-from gestione.amministrazione.fornitori.model_fornitori.model_fornitori import Insieme_Fornitori
+from gestione.amministrazione.fornitori.model_fornitori.model_fornitori import model_fornitori
 
 
-class Controller_Fornitori():
+class controller_fornitori():
 
     def __init__(self):
-        super(Controller_Fornitori, self).__init__()
-        self.model = Insieme_Fornitori()
+        super(controller_fornitori, self).__init__()
+        self.model = model_fornitori()
 
     def aggiungi_fornitore(self, fornitore):
         self.model.aggiungi_fornitore(fornitore)

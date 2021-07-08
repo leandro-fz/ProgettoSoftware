@@ -1,4 +1,4 @@
-class GestioniFornitore():
+class model_gestione_fornitori():
 
     def __init__(self,nome,indirizzo,citta,email,cellulare,iva):
 
