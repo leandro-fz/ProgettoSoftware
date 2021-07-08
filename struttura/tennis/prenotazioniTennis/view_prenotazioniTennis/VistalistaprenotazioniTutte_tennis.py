@@ -16,11 +16,6 @@ from PyQt5.QtGui import *
 
 from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
     ControlloreListaPrenotazioniTennis
-from struttura.tennis.prenotazioniTennis.controller_prenotazioniTennis.controller_prenotazioniTennis import \
-    ControllorePrenotazioneTennis
-from struttura.tennis.prenotazioniTennis.model_prenotazioniTennis.model_prenotazioniTennis import \
-    model_PrenotazioniTennis
-from struttura.tennis.prenotazioniTennis.view_prenotazioniTennis.view_prenotazioneTennis import VistaPrenotazioneTennis
 
 
 class VistaListaPrenotazioniTutte(QWidget):
