@@ -10,8 +10,7 @@ from PyQt5.QtGui import *
 
 from gestione.amministrazione.GestioneDipendenti.model_gestione_dipendenti.model_gestione_dipendenti import \
     model_gestione_dipendenti
-from gestione.amministrazione.dipendenti.controller_dipendenti.controller_dipendenti import controller_dipendenti
-from gestione.amministrazione.dipendenti.model_dipendenti.model_dipendenti import model_dipendenti
+
 
 
 class view_inserisci_dipendenti(QWidget):

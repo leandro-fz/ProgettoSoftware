@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from gestione.finanziaria.gestione_movimenti.controller_gestione_movimenti.controller_gestione_movimenti import \
-    controller_gestione_movimenti
+
 from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gestione_movimenti import model_gestione_movimenti
 
 
