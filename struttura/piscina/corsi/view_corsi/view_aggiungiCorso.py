@@ -102,7 +102,7 @@ class view_aggiungi_corso(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/sfondonuoto.jpeg")
+        oImage = QImage("images/sfondonuotosfocato2.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))

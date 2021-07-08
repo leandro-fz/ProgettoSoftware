@@ -26,7 +26,7 @@ class view_corsi(QWidget):
         self.g_layout = QGridLayout()
 
 
-        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutti i corsi di oggi e futuri: \n")
+        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno, cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutti i corsi di oggi e dei giorni futuri: \n")
         self.label_prenotazioni_by_data.setFont(QFont("Arial", 12))
         self.g_layout.addWidget(self.label_prenotazioni_by_data, 0, 0)
 
@@ -64,7 +64,7 @@ class view_corsi(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/sfondonuoto.jpeg")
+        oImage = QImage("images/sfondonuotosfocato2.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))

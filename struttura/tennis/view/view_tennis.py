@@ -28,7 +28,7 @@ class view_tennis(QWidget):
         self.g_layout = QGridLayout()
 
 
-        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutte le prenotazioni di oggi e future: \n")
+        self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno, cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutte le prenotazioni di oggi e future: \n")
         self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 12))
         self.g_layout.addWidget(self.label_prenotazioni_by_data, 0, 0)
 
