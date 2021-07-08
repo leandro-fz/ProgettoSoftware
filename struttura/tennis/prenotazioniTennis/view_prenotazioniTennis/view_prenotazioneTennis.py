@@ -6,9 +6,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QShortcut
 
 
-from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
-    ControlloreListaPrenotazioniTennis
-
 
 class VistaPrenotazioneTennis(QWidget):
 
