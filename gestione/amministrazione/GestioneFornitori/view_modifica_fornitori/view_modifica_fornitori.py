@@ -136,19 +136,19 @@ class view_modifica_fornitori(QWidget):
             return
 
         try:
-            iva = int(self.campo_iva.text())
+            iva = str(int(self.campo_iva.text()))
         except:
             QMessageBox.critical(self, "Errore", "La Partita IVA non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if iva <10000:
-
-            QMessageBox.critical(self, "Errore", "La Partita IVA deve avere almeno 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+        if len(iva) < 11:
+            QMessageBox.critical(self, "Errore", "La Partita IVA deve avere 11 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
-        if iva > 99999:
-
-            QMessageBox.critical(self, "Errore", "La Partita IVA può avere al massimo 5 cifre", QMessageBox.Ok, QMessageBox.Ok)
+        if len(iva) > 11:
+            QMessageBox.critical(self, "Errore", "La Partita IVA deve avere 11 caratteri", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             return
 
         if self.controller.get_iva_fornitore() == iva:
