@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5 import QtGui, QtCore, QtWidgets
+
+from PyQt5 import QtGui, QtCore
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
@@ -214,7 +213,6 @@ class view_inserisci_abbonamenti(QWidget):
 
         self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
         self.controller.save_data()
-
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
         QMessageBox.about(self, "Completato", "Inserimento completato")
         self.aggiorna_lista()
@@ -224,6 +222,6 @@ class view_inserisci_abbonamenti(QWidget):
     def controlla_codicefiscale_libero(self, codicefiscale):
 
         for abbonamento in self.controller.get_lista_abbonamenti():
-            if abbonamento.codicefiscale== codicefiscale:
+            if abbonamento.codicefiscale == codicefiscale:
                 return False
         return True
