@@ -8,21 +8,22 @@ from gestione.cliente.GestioneAbbonamenti.controller_gestione_abbonamenti.contro
     controller_gestione_abbonamenti
 from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
 from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
+from struttura.palestra.Iscritti.view_iscritti.view_visualizza_utente_palestra import view_visualizza_utente_palestra
 
 from struttura.piscina.Iscritti.view_iscritti.view_visualizza_utente_piscina import view_visualizza_utente_piscina
 
 
-class view_iscritti(QWidget):
+class view_iscritti_palestra(QWidget):
 
     def __init__(self, parent=None):
-        super(view_iscritti, self).__init__(parent)
+        super(view_iscritti_palestra, self).__init__(parent)
 
         self.controllerAbbonamento = controller_abbonamenti()
         self.controllerCertificato = controller_certificati()
 
         self.v_layout = QVBoxLayout()
 
-        self.label_iscritti_piscina = QLabel("Qui verranno visualizzati i clienti con abbonamento valido per la piscina e certificato medico inserito")
+        self.label_iscritti_piscina = QLabel("Qui verranno visualizzati i clienti con abbonamento valido per la palestra e certificato medico inserito")
         # self.label_iscritti_piscina.setAlignment(Qt.AlignCenter)
         self.label_iscritti_piscina.setFont(QFont("Arial", 12))
         self.v_layout.addWidget(self.label_iscritti_piscina)
@@ -63,11 +64,11 @@ class view_iscritti(QWidget):
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco iscritti piscina")
+        self.setWindowTitle("Elenco iscritti palestra")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/sfondonuotosfocato2.jpeg")
+        oImage = QImage("images/immaginepesisfocata.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -86,7 +87,7 @@ class view_iscritti(QWidget):
 
         for certificato in self.controllerCertificato.get_lista_certificati():
             for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
-                if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":
+                if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Palestra":
                     item = QStandardItem()
                     item.setText(abbonamento.nome + " " + abbonamento.cognome)
                     item.setEditable(False)
@@ -98,18 +99,18 @@ class view_iscritti(QWidget):
     def mostra_visualizza_utente_piscina(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            lista_iscritti_piscina_abbonamento = []
+            lista_iscritti_palestra_abbonamento = []
             for certificato in self.controllerCertificato.get_lista_certificati():
                 for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
-                    if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":
-                        lista_iscritti_piscina_abbonamento.append(abbonamento)
+                    if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Palestra":
+                        lista_iscritti_palestra_abbonamento.append(abbonamento)
 
-            da_visualizzareabbonamento = lista_iscritti_piscina_abbonamento[index]
+            da_visualizzareabbonamento = lista_iscritti_palestra_abbonamento[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un utente da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        self.vista_prenotazione = view_visualizza_utente_piscina(controller_gestione_abbonamenti(da_visualizzareabbonamento))
+        self.vista_prenotazione = view_visualizza_utente_palestra(controller_gestione_abbonamenti(da_visualizzareabbonamento))
         self.vista_prenotazione.show()
 
