@@ -105,6 +105,16 @@ class view_modifica_abbonamenti(QWidget):
         self.v_layout.addWidget(self.campo_cellulare)
         self.h_layout = QHBoxLayout()
 
+        self.label_attivazione = QLabel("Data di nascita (gg/mm/aaaa) :")
+        self.label_attivazione.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_attivazione)
+
+        self.campo_attivazione = QLineEdit()
+        self.campo_attivazione.setFont(self.font_campi)
+        self.stringa_attivazione = str(self.controller.get_attivazione_abbonamento().strftime("%d/%m/%Y"))
+        self.campo_attivazione.setText(self.stringa_attivazione)
+        self.v_layout.addWidget(self.campo_attivazione)
+
         self.label_struttura= QLabel("Struttura:")
         self.label_struttura.setFont(self.font_label)
         self.v_layout.addWidget(self.label_struttura)
@@ -120,15 +130,7 @@ class view_modifica_abbonamenti(QWidget):
         self.v_layout.addWidget(self.campo_struttura)
         self.h_layout = QHBoxLayout()
 
-        self.label_attivazione = QLabel("Data di nascita (gg/mm/aaaa) :")
-        self.label_attivazione.setFont(self.font_label)
-        self.v_layout.addWidget(self.label_attivazione)
 
-        self.campo_attivazione = QLineEdit()
-        self.campo_attivazione.setFont(self.font_campi)
-        self.stringa_attivazione = str(self.controller.get_attivazione_abbonamento().strftime("%d/%m/%Y"))
-        self.campo_attivazione.setText(self.stringa_attivazione)
-        self.v_layout.addWidget(self.campo_attivazione)
 
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
