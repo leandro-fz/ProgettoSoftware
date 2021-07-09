@@ -20,6 +20,7 @@ class view_modifica_abbonamenti(QWidget):
         self.controller = controllore_abbonamento
         self.aggiorna_lista = aggiorna_lista
         self.lista_abbonamenti = lista_abbonamenti
+        self.controllercertificati = controller_certificati()
 
         self.v_layout = QVBoxLayout()
 
@@ -219,7 +220,7 @@ class view_modifica_abbonamenti(QWidget):
             return
 
         try:
-            cellulare = float(self.campo_cellulare.text())
+            cellulare = int(self.campo_cellulare.text())
         except:
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il numero di cellulare", QMessageBox.Ok,QMessageBox.Ok)
             return
@@ -240,11 +241,6 @@ class view_modifica_abbonamenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        # self.controlloreabbonamento = controller_certificati()
-        # self.controllorecertificato_cf = controller_gestione_certificati()
-        # for certificato in self.controlloreabbonamento.get_lista_certificati():
-        #     if certificato.codicefiscale == codicefiscale:
-        #         self.controllorecertificato_cf.set_codicefiscale_certificato(codicefiscale)
         self.controller.set_nome_abbonamento(nome)
         self.controller.set_cognome_abbonamento(cognome)
         self.controller.set_data_abbonamento(nato)

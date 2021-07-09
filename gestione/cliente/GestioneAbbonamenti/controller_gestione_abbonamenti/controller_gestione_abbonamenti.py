@@ -1,8 +1,10 @@
 class controller_gestione_abbonamenti():
 
-
     def __init__(self, abbonamento):
         self.model = abbonamento
+
+    def get_scadenza_abbonamento(self, durata):
+        return self.model.get_scadenza_abbonamento(durata)
 
     def get_nome_abbonamento(self):
         return self.model.nome

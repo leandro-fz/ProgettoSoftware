@@ -203,7 +203,7 @@ class view_inserisci_abbonamenti(QWidget):
             return
 
         try:
-            cellulare = float(self.campo_cellulare.text())
+            cellulare = int(self.campo_cellulare.text())
 
         except:
 

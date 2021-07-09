@@ -4,13 +4,17 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+from gestione.cliente.GestioneAbbonamenti.controller_gestione_abbonamenti.controller_gestione_abbonamenti import \
+    controller_gestione_abbonamenti
+from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
+from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
 from struttura.piscina.GestioneIscritti.controller_gestione_iscritti.controller_gestione_iscritti import \
     controller_gestione_iscritti
 from struttura.piscina.GestioneIscritti.view_modifica_utente.view_modifica_utente import view_modifica_utente
-from struttura.piscina.GestioneIscritti.view_modifica_utente.view_visualizza_utente_piscina import \
-    view_visualizza_utente_piscina
+
 from struttura.piscina.Iscritti.controller_iscritti.controller_iscritti import controller_iscritti
 from struttura.piscina.Iscritti.view_iscritti.view_inserisci_utente import view_inserisci_utente
+from struttura.piscina.Iscritti.view_iscritti.view_visualizza_utente_piscina import view_visualizza_utente_piscina
 
 
 class view_iscritti(QWidget):
@@ -19,6 +23,8 @@ class view_iscritti(QWidget):
         super(view_iscritti, self).__init__(parent)
 
         self.controller = controller_iscritti()
+        self.controllerAbbonamento = controller_abbonamenti()
+        self.controllerCertificato = controller_certificati()
 
         self.v_layout = QVBoxLayout()
 
@@ -53,30 +59,30 @@ class view_iscritti(QWidget):
         self.shortcut_visualizza.activated.connect(self.mostra_visualizza_utente_piscina)
 
 
-        self.inserisci_utente = QPushButton("Inserisci utente")
-        self.inserisci_utente.clicked.connect(self.mostra_inserisci_utente)
-        self.inserisci_utente.setFont(self.font_bottoni)
-        self.h_layout.addWidget(self.inserisci_utente)
-        self.inserisci_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-
-        self.elimina_utente = QPushButton("Elimina utente")
-        self.elimina_utente.setFont(self.font_bottoni)
-        self.elimina_utente.clicked.connect(self.mostra_elimina_utente)
-        self.h_layout.addWidget(self.elimina_utente)
-        self.elimina_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-
-        self.modifica_utente = QPushButton("Modifica utente")
-        self.modifica_utente.setFont(self.font_bottoni)
-        self.modifica_utente.clicked.connect(self.mostra_modifica_utente)
-        self.h_layout.addWidget(self.modifica_utente)
-        self.modifica_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.inserisci_utente = QPushButton("Inserisci utente")
+        # self.inserisci_utente.clicked.connect(self.mostra_inserisci_utente)
+        # self.inserisci_utente.setFont(self.font_bottoni)
+        # self.h_layout.addWidget(self.inserisci_utente)
+        # self.inserisci_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        #
+        # self.elimina_utente = QPushButton("Elimina utente")
+        # self.elimina_utente.setFont(self.font_bottoni)
+        # self.elimina_utente.clicked.connect(self.mostra_elimina_utente)
+        # self.h_layout.addWidget(self.elimina_utente)
+        # self.elimina_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        #
+        # self.modifica_utente = QPushButton("Modifica utente")
+        # self.modifica_utente.setFont(self.font_bottoni)
+        # self.modifica_utente.clicked.connect(self.mostra_modifica_utente)
+        # self.h_layout.addWidget(self.modifica_utente)
+        # self.modifica_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
 
         self.setMinimumSize(781, 500)
         self.setMaximumSize(781, 500)
-        self.setWindowTitle("Elenco iscritti")
+        self.setWindowTitle("Elenco iscritti piscina")
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
@@ -97,71 +103,84 @@ class view_iscritti(QWidget):
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
 
-        for utente in self.controller.get_lista_iscritti():
-            item = QStandardItem()
-            item.setText(utente.nome + " " + utente.cognome)
-            item.setEditable(False)
-            item.setFont(self.font_item)
-            self.list_view_model.appendRow(item)
+        for certificato in self.controllerCertificato.get_lista_certificati():
+            for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
+                if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":
+                    item = QStandardItem()
+                    item.setText(abbonamento.nome + " " + abbonamento.cognome)
+                    item.setEditable(False)
+                    item.setFont(self.font_item)
+                    self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
-    def mostra_inserisci_utente(self):
+        # for utente in self.controller.get_lista_iscritti():
+        #     item = QStandardItem()
+        #     item.setText(utente.nome + " " + utente.cognome)
+        #     item.setEditable(False)
+        #     item.setFont(self.font_item)
+        #     self.list_view_model.appendRow(item)
+        # self.list_view.setModel(self.list_view_model)
 
-        self.inserisci_utente = view_inserisci_utente(self.controller, self.aggiorna_dati)
-        self.inserisci_utente.show()
+    # def mostra_inserisci_utente(self):
+    #
+    #     self.inserisci_utente = view_inserisci_utente(self.controller, self.aggiorna_dati)
+    #     self.inserisci_utente.show()
 
     def closeEvent(self, event):
         self.controller.save_data()
 
-    def mostra_elimina_utente(self):
-
-        try:
-            index = self.list_view.selectedIndexes()[0].row()
-            da_eliminare = self.controller.get_lista_iscritti()[index]
-
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona un utente da eliminare", QMessageBox.Ok, QMessageBox.Ok)
-            return
-        risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare l' utente?", QMessageBox.Yes,
-                                        QMessageBox.No)
-
-        if risposta == QMessageBox.Yes:
-
-            self.controller.elimina_utente_by_codicefiscale(da_eliminare.codicefiscale)
-            QMessageBox.about(self, "Eliminato", "L' utente è stato eliminato")
-            self.aggiorna_dati()
-        else:
-            return
+    # def mostra_elimina_utente(self):
+    #
+    #     try:
+    #         index = self.list_view.selectedIndexes()[0].row()
+    #         da_eliminare = self.controller.get_lista_iscritti()[index]
+    #
+    #     except:
+    #         QMessageBox.critical(self, "Errore", "Seleziona un utente da eliminare", QMessageBox.Ok, QMessageBox.Ok)
+    #         return
+    #     risposta = QMessageBox.question(self, "Conferma", "Vuoi eliminare l' utente?", QMessageBox.Yes,
+    #                                     QMessageBox.No)
+    #
+    #     if risposta == QMessageBox.Yes:
+    #
+    #         self.controller.elimina_utente_by_codicefiscale(da_eliminare.codicefiscale)
+    #         QMessageBox.about(self, "Eliminato", "L' utente è stato eliminato")
+    #         self.aggiorna_dati()
+    #     else:
+    #         return
 
     def mostra_visualizza_utente_piscina(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()
-            # lista = []
-            # for prenotazione in self.controller.get_lista_iscritti():
-            #     if self.data == prenotazione.data:
-            #         lista.append(prenotazione)
-            # da_visualizzare = lista[indice]
-            da_visualizzare = self.controller.get_lista_iscritti()[index]
+            lista_iscritti_piscina_abbonamento = []
+            # lista_iscritti_piscina_certificato = []
+            for certificato in self.controllerCertificato.get_lista_certificati():
+                for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
+                    if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":
+                        lista_iscritti_piscina_abbonamento.append(abbonamento)
+                        # lista_iscritti_piscina_certificato.append(certificato)
+
+            # da_visualizzarecertificato = lista_iscritti_piscina_certificato[index]
+            da_visualizzareabbonamento = lista_iscritti_piscina_abbonamento[index]
 
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un utente da visualizzare", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        self.vista_prenotazione = view_visualizza_utente_piscina(controller_gestione_iscritti(da_visualizzare))
+        self.vista_prenotazione = view_visualizza_utente_piscina(controller_gestione_abbonamenti(da_visualizzareabbonamento))
         self.vista_prenotazione.show()
 
-
-    def mostra_modifica_utente(self):
-
-        try:
-            index = self.list_view.selectedIndexes()[0].row()
-            da_visualizzare = self.controller.get_lista_iscritti()[index]
-
-        except:
-            QMessageBox.critical(self, "Errore", "Seleziona un utente da visualizzare", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
-
-        self.modifica_utente = view_modifica_utente(controller_gestione_iscritti(da_visualizzare),
-                                                           self.aggiorna_dati, self.controller.get_lista_iscritti())
-        self.modifica_utente.show()
+    # def mostra_modifica_utente(self):
+    #
+    #     try:
+    #         index = self.list_view.selectedIndexes()[0].row()
+    #         da_visualizzare = self.controller.get_lista_iscritti()[index]
+    #
+    #     except:
+    #         QMessageBox.critical(self, "Errore", "Seleziona un utente da visualizzare", QMessageBox.Ok,
+    #                              QMessageBox.Ok)
+    #         return
+    #
+    #     self.modifica_utente = view_modifica_utente(controller_gestione_iscritti(da_visualizzare),
+    #                                                        self.aggiorna_dati, self.controller.get_lista_iscritti())
+    #     self.modifica_utente.show()
