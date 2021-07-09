@@ -18,10 +18,10 @@ from struttura.piscina.corsi.corsiPiscina.view_corsi_piscina.view_tutti_corsi_pi
 from struttura.piscina.corsi.view_corsi.view_day_corsi_nuoto import view_day_corsi_nuoto
 
 
-class view_corsi(QWidget):
+class view_corsi_piscina(QWidget):
 
     def __init__(self, parent=None):
-        super(view_corsi, self).__init__(parent)
+        super(view_corsi_piscina, self).__init__(parent)
 
         self.g_layout = QGridLayout()
 

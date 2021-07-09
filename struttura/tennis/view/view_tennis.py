@@ -17,7 +17,6 @@ from PyQt5.QtGui import *
 from struttura.tennis.prenotazioniTennis.view_prenotazioniTennis.VistalistaprenotazioniTutte_tennis import \
     VistaListaPrenotazioniTutte
 from struttura.tennis.view.view_day_tennis import view_day_tennis
-from struttura.tennis.view.view_nuovaPrenotazioneTennis import view_nuovaPrenotazioneTennis
 
 
 class view_tennis(QWidget):
