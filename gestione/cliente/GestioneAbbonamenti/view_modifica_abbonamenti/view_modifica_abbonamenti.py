@@ -105,7 +105,7 @@ class view_modifica_abbonamenti(QWidget):
         self.v_layout.addWidget(self.campo_cellulare)
         self.h_layout = QHBoxLayout()
 
-        self.label_attivazione = QLabel("Data di nascita (gg/mm/aaaa) :")
+        self.label_attivazione = QLabel("Data di attivazione (gg/mm/aaaa) :")
         self.label_attivazione.setFont(self.font_label)
         self.v_layout.addWidget(self.label_attivazione)
 
@@ -129,8 +129,6 @@ class view_modifica_abbonamenti(QWidget):
         self.campo_struttura.setCurrentText((self.controller.get_struttura_abbonamento()))
         self.v_layout.addWidget(self.campo_struttura)
         self.h_layout = QHBoxLayout()
-
-
 
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
