@@ -3,8 +3,8 @@ class controller_gestione_abbonamenti():
     def __init__(self, abbonamento):
         self.model = abbonamento
 
-    def get_scadenza_abbonamento(self, durata):
-        return self.model.get_scadenza_abbonamento(durata)
+    def get_scadenza_abbonamento(self, durata, attivazione):
+        return self.model.get_scadenza_abbonamento(durata, attivazione)
 
     def get_nome_abbonamento(self):
         return self.model.nome
@@ -32,6 +32,9 @@ class controller_gestione_abbonamenti():
 
     def get_struttura_abbonamento(self):
         return self.model.struttura
+
+    def get_attivazione_abbonamento(self):
+        return self.model.attivazione
 
     def get_tipoabbonamento_abbonamento(self):
         return self.model.tipoabbonamento
@@ -65,4 +68,7 @@ class controller_gestione_abbonamenti():
 
     def set_tipoabbonamento_abbonamento(self, tipoabbonamento):
         self.model.tipoabbonamento = tipoabbonamento
+
+    def set_attivazione_Abbonamento(self, attivazione):
+        self.model.attivazione = attivazione
 

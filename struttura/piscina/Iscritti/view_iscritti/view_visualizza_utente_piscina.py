@@ -30,7 +30,8 @@ class view_visualizza_utente_piscina(QWidget):
         self.create_label("Struttura:            ", self.controllore_abbonamento.get_struttura_abbonamento())
         self.create_label("Abbonamento:            ", self.controllore_abbonamento.get_tipoabbonamento_abbonamento())
         self.create_label("Certificato valido fino al:            ", self.controllore_certificato.get_certificato_by_codicefiscale(self.controllore_abbonamento.get_codicefiscale_abbonamento()).datafine.strftime('%d/%m/%Y'))
-        self.create_label("Scadenza abbonamento:            ", self.controllore_abbonamento.get_scadenza_abbonamento(self.controllore_abbonamento.get_tipoabbonamento_abbonamento()).strftime('%d/%m/%Y'))
+        self.create_label("Inizio abbonamento:        ", self.controllore_abbonamento.get_attivazione_abbonamento().strftime('%d/%m/%Y') )
+        self.create_label("Scadenza abbonamento:            ", self.controllore_abbonamento.get_scadenza_abbonamento(self.controllore_abbonamento.get_tipoabbonamento_abbonamento(),self.controllore_abbonamento.get_attivazione_abbonamento()).strftime('%d/%m/%Y'))
 
 
 

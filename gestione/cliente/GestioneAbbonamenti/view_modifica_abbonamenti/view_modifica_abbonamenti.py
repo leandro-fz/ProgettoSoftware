@@ -120,7 +120,15 @@ class view_modifica_abbonamenti(QWidget):
         self.v_layout.addWidget(self.campo_struttura)
         self.h_layout = QHBoxLayout()
 
+        self.label_attivazione = QLabel("Data di nascita (gg/mm/aaaa) :")
+        self.label_attivazione.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_attivazione)
 
+        self.campo_attivazione = QLineEdit()
+        self.campo_attivazione.setFont(self.font_campi)
+        self.stringa_attivazione = str(self.controller.get_attivazione_abbonamento().strftime("%d/%m/%Y"))
+        self.campo_attivazione.setText(self.stringa_attivazione)
+        self.v_layout.addWidget(self.campo_attivazione)
 
         self.label_tipoabbonamento = QLabel("Tipo di Abbonamento :")
         self.label_tipoabbonamento.setFont(self.font_label)
@@ -194,10 +202,11 @@ class view_modifica_abbonamenti(QWidget):
         cellulare = self.campo_cellulare.text()
         struttura = str(self.campo_struttura.currentText())
         tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
+        attivazione = self.campo_attivazione.text()
 
 
 
-        if nome == "" or cognome == "" or nato == "" or data == ""  or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "":
+        if nome == "" or cognome == "" or nato == "" or data == ""  or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "" or attivazione == "":
 
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
@@ -238,7 +247,15 @@ class view_modifica_abbonamenti(QWidget):
 
         except:
 
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci il giorno di nascita nel formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        try:
+            attivazione = datetime.strptime(attivazione,"%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci il giorno di attivazione nel formato della data richiesto.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         self.controller.set_nome_abbonamento(nome)
@@ -251,6 +268,7 @@ class view_modifica_abbonamenti(QWidget):
         self.controller.set_cellulare_abbonamento(cellulare)
         self.controller.set_struttura_abbonamento(struttura)
         self.controller.set_tipoabbonamento_abbonamento(tipoabbonamento)
+        self.controller.set_attivazione_Abbonamento(attivazione)
 
         QMessageBox.about(self, "Completata", "Modifica completata\nVerificare il certificato medico")
         self.aggiorna_lista()

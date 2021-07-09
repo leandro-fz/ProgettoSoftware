@@ -111,6 +111,13 @@ class view_inserisci_abbonamenti(QWidget):
         self.campo_tipoabbonamento.addItem("annuale")
         self.v_layout.addWidget(self.campo_tipoabbonamento)
 
+        self.label_attivazione_abbonamento = QLabel("Data di attivazione abbonamento (gg/mm/aaaa) :")
+        self.label_attivazione_abbonamento.setFont(self.font_label)
+        self.v_layout.addWidget(self.label_attivazione_abbonamento)
+
+        self.campo_attivazione_abbonamento = QLineEdit()
+        self.v_layout.addWidget(self.campo_attivazione_abbonamento)
+
         self.v_layout.addSpacing(10)
         self.font_label.setBold(False)
 
@@ -136,17 +143,16 @@ class view_inserisci_abbonamenti(QWidget):
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
         self.setWindowTitle("Inserimento Abbonamento")
-        self.resize(300, 400)
 
         self.setLayout(self.v_layout)
-        self.setMinimumSize(781, 790)
-        self.setMaximumSize(781, 790)
+        self.setMinimumSize(781, 820)
+        self.setMaximumSize(781, 820)
 
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
-        sImage = oImage.scaled(QSize(791, 790))
+        sImage = oImage.scaled(QSize(791, 820))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
@@ -169,11 +175,12 @@ class view_inserisci_abbonamenti(QWidget):
         residenza = self.campo_residenza.text()
         email = self.campo_email.text()
         cellulare = self.campo_cellulare.text()
-        struttura =  str(self.campo_struttura.currentText())
+        struttura = str(self.campo_struttura.currentText())
         tipoabbonamento = str(self.campo_tipoabbonamento.currentText())
+        attivazione = self.campo_attivazione_abbonamento.text()
 
 
-        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "" :
+        if nome == "" or cognome == "" or nato == "" or data == "" or codicefiscale == "" or residenza == "" or email == "" or cellulare == "" or tipoabbonamento == "" or attivazione == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
             return
 
@@ -182,7 +189,16 @@ class view_inserisci_abbonamenti(QWidget):
 
         except:
 
-            QMessageBox.critical(self, "Errore", "Inserisci il formato della data richiesto.", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Inserisci la data di nascita nel formato richiesto.", QMessageBox.Ok,
+                                 QMessageBox.Ok)
+            return
+
+        try:
+            attivazione = datetime.strptime(attivazione, "%d/%m/%Y")
+
+        except:
+
+            QMessageBox.critical(self, "Errore", "Inserisci la data di attivazione nel formato richiesto.", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
@@ -211,7 +227,7 @@ class view_inserisci_abbonamenti(QWidget):
             return
 
 
-        self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
+        self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento, attivazione))
         self.controller.save_data()
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
         QMessageBox.about(self, "Completato", "Inserimento completato")
