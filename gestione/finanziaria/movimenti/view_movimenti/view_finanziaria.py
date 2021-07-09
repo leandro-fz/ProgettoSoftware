@@ -143,3 +143,17 @@ class view_finanziaria(QWidget):
         self.modifica_movimenti = view_modifica_movimenti(controller_gestione_movimenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_movimenti())
         self.modifica_movimenti.show()
+
+    def mostra_resoconto(self):
+
+        resoconto = 0
+        contatore = 0
+        for movimento in self.controller.get_lista_movimenti():
+            resoconto += movimento.importo
+            contatore += 1
+
+        if contatore == 0:
+            QMessageBox.critical(self, "Errore", "Nessun movimento inserito", QMessageBox.Ok, QMessageBox.Ok)
+            return
+
+        QMessageBox.about(self, "Resoconto", "Il tuo resoconto è di " + str(resoconto) + " € ")
