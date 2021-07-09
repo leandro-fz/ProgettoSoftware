@@ -95,10 +95,6 @@ class view_iscritti(QWidget):
         self.list_view.setModel(self.list_view_model)
 
 
-    def closeEvent(self, event):
-        self.controller.save_data()
-
-
     def mostra_visualizza_utente_piscina(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()

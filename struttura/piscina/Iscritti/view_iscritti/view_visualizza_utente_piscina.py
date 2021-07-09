@@ -51,17 +51,17 @@ class view_visualizza_utente_piscina(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        # oImage = QImage("images/sfondonuotosfocato2.jpeg")
-        # sImage = oImage.scaled(QSize(700, 600))
-        # palette = QPalette()
-        # palette.setBrush(10, QBrush(sImage))
-        # self.setPalette(palette)
+        oImage = QImage("images/piscina-sfondo_foto.jpg")
+        sImage = oImage.scaled(QSize(700, 600))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
 
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
         label = QLabel(testo)
-        label.setFont(QFont("Yu Gothic UI Light",15))
+        label.setFont(QFont("Arial",15))
         h_layout.addWidget(label)
 
 
