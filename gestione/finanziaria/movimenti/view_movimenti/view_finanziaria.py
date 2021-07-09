@@ -143,7 +143,3 @@ class view_finanziaria(QWidget):
         self.modifica_movimenti = view_modifica_movimenti(controller_gestione_movimenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_movimenti())
         self.modifica_movimenti.show()
-
-    def mostra_resoconto(self):
-
-

@@ -6,3 +6,7 @@ class model_gestione_movimenti():
         self.data = data
         self.causale = causale
         self.fattura = fattura
+
+    def get_resoconto(self):
+        resoconto = 10
+        return resoconto
