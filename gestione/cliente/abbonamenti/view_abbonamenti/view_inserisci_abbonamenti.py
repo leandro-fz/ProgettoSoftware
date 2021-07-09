@@ -211,16 +211,6 @@ class view_inserisci_abbonamenti(QWidget):
                                  QMessageBox.Ok)
             return
 
-        try:
-            nato = str(self.campo_nato.text())
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok,
-                                 QMessageBox.Ok)
-            return
-
-
 
         self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento))
         self.controller.save_data()
