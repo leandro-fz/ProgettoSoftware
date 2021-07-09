@@ -39,7 +39,7 @@ class view_corso_piscina_visualizzazione(QWidget):
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
         # per lo sfondo
-        oImage = QImage("images/sfondonuotosfocato2.jpeg")
+        oImage = QImage("images/piscina-sfondo_foto.jpg")
         sImage = oImage.scaled(QSize(500, 310))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
