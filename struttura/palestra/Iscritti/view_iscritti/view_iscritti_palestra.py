@@ -51,12 +51,12 @@ class view_iscritti_palestra(QWidget):
         self.indietro.clicked.connect(self.chiudi_schermata)
 
         self.visualizza_utente = QPushButton("Visualizza utente")
-        self.visualizza_utente.clicked.connect(self.mostra_visualizza_utente_piscina)
+        self.visualizza_utente.clicked.connect(self.mostra_visualizza_utente_palestra)
         self.visualizza_utente.setFont(self.font_bottoni)
         self.h_layout.addWidget(self.visualizza_utente)
         self.visualizza_utente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.shortcut_visualizza = QShortcut(QKeySequence('Return'), self)
-        self.shortcut_visualizza.activated.connect(self.mostra_visualizza_utente_piscina)
+        self.shortcut_visualizza.activated.connect(self.mostra_visualizza_utente_palestra)
 
 
         self.v_layout.addLayout(self.h_layout)
@@ -96,7 +96,7 @@ class view_iscritti_palestra(QWidget):
         self.list_view.setModel(self.list_view_model)
 
 
-    def mostra_visualizza_utente_piscina(self):
+    def mostra_visualizza_utente_palestra(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()
             lista_iscritti_palestra_abbonamento = []
