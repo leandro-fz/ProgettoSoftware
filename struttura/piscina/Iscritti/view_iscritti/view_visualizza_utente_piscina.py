@@ -57,7 +57,7 @@ class view_visualizza_utente_piscina(QWidget):
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
-
+    # dw
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
