@@ -123,9 +123,9 @@ class view_modifica_movimenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per l'importo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if importo <= 0:
+        if importo == 0:
 
-            QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo. Riprovare.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "L'importo non può essere nullo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
         try:

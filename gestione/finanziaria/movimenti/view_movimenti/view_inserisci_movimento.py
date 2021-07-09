@@ -125,9 +125,9 @@ class view_inserisci_movimento(QWidget):
             QMessageBox.critical(self, "Errore", "Importo non può avere lettere", QMessageBox.Ok, QMessageBox.Ok)
             return
 
-        if importo <= 0:
+        if importo == 0:
 
-            QMessageBox.critical(self, "Errore", "L'importo non può essere negativo o nullo", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "L'importo non può essere nullo", QMessageBox.Ok, QMessageBox.Ok)
             return
 
 

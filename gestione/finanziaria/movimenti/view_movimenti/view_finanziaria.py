@@ -49,6 +49,12 @@ class view_finanziaria(QWidget):
         self.h_layout.addWidget(self.inserisci_movimento)
         self.inserisci_movimento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        self.resoconto = QPushButton("Resoconto")
+        self.resoconto.clicked.connect(self.mostra_resoconto)
+        self.resoconto.setFont(self.font_bottoni)
+        self.h_layout.addWidget(self.resoconto)
+        self.resoconto.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
         self.elimina_movimento = QPushButton("Elimina movimento")
         self.elimina_movimento.setFont(self.font_bottoni)
         self.elimina_movimento.clicked.connect(self.mostra_elimina_movimento)
@@ -137,3 +143,7 @@ class view_finanziaria(QWidget):
         self.modifica_movimenti = view_modifica_movimenti(controller_gestione_movimenti(da_visualizzare),
                                                            self.aggiorna_dati, self.controller.get_lista_movimenti())
         self.modifica_movimenti.show()
+
+    def mostra_resoconto(self):
+
+
