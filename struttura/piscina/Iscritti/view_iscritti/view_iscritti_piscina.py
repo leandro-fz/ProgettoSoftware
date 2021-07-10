@@ -12,10 +12,10 @@ from gestione.cliente.certificati.controller_certificati.controller_certficati i
 from struttura.piscina.Iscritti.view_iscritti.view_visualizza_utente_piscina import view_visualizza_utente_piscina
 
 
-class view_iscritti(QWidget):
+class view_iscritti_piscina(QWidget):
 
     def __init__(self, parent=None):
-        super(view_iscritti, self).__init__(parent)
+        super(view_iscritti_piscina, self).__init__(parent)
 
         self.controllerAbbonamento = controller_abbonamenti()
         self.controllerCertificato = controller_certificati()
