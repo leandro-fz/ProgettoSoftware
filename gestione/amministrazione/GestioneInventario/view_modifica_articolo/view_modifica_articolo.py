@@ -52,7 +52,7 @@ class view_modifica_articolo(QWidget):
 
         self.label_prezzo = QLabel("Prezzo:")
         self.label_prezzo.setFont(self.font_label)
-        self.v_layout.addWcodiceget(self.label_prezzo)
+        self.v_layout.addWidget(self.label_prezzo)
 
         self.campo_prezzo = QLineEdit()
         self.campo_prezzo.setFont(self.font_campi)
