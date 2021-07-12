@@ -1,5 +1,3 @@
 # Gestione centro sportivo
 
-
-
-Python interpreter Python 3.9
+Progetto per l'esame di Ingegneria del Software a.a. 2020/2021
