@@ -222,7 +222,7 @@ class view_inserisci_abbonamenti(QWidget):
 
         except:
 
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il numero di cellulare", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Inserisci solo cifre per il numero di cellulare", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
