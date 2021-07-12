@@ -24,14 +24,14 @@ class view_visualizza_utente_palestra(QWidget):
         self.create_label("Codice fiscale:         ", self.controllore_abbonamento.get_codicefiscale_abbonamento())
         self.create_label("Nato a:            ", self.controllore_abbonamento.get_nato_abbonamento())
         self.create_label("Data di nascita:        ", self.controllore_abbonamento.get_data_abbonamento().strftime('%d/%m/%Y'))
-        self.create_label("Residenza:            ", self.controllore_abbonamento.get_residenza_abbonamento())
+        self.create_label("Residenza(via e città):            ", self.controllore_abbonamento.get_residenza_abbonamento())
         self.create_label("Email:            ", self.controllore_abbonamento.get_email_abbonamento())
         self.create_label("Cellulare:            ", str(self.controllore_abbonamento.get_cellulare_abbonamento()))
         self.create_label("Struttura:            ", self.controllore_abbonamento.get_struttura_abbonamento())
         self.create_label("Abbonamento:            ", self.controllore_abbonamento.get_tipoabbonamento_abbonamento())
-        self.create_label("Certificato valido fino al:            ", self.controllore_certificato.get_certificato_by_codicefiscale(self.controllore_abbonamento.get_codicefiscale_abbonamento()).datafine.strftime('%d/%m/%Y'))
-        self.create_label("Inizio abbonamento:        ", self.controllore_abbonamento.get_attivazione_abbonamento().strftime('%d/%m/%Y') )
-        self.create_label("Scadenza abbonamento:            ", self.controllore_abbonamento.get_scadenza_abbonamento(self.controllore_abbonamento.get_tipoabbonamento_abbonamento(),self.controllore_abbonamento.get_attivazione_abbonamento()).strftime('%d/%m/%Y'))
+        self.create_label("Certificato valido fino al:      ", self.controllore_certificato.get_certificato_by_codicefiscale(self.controllore_abbonamento.get_codicefiscale_abbonamento()).datafine.strftime('%d/%m/%Y'))
+        self.create_label("Inizio abbonamento:       ", self.controllore_abbonamento.get_attivazione_abbonamento().strftime('%d/%m/%Y') )
+        self.create_label("Scadenza abbonamento:       ", self.controllore_abbonamento.get_scadenza_abbonamento(self.controllore_abbonamento.get_tipoabbonamento_abbonamento(),self.controllore_abbonamento.get_attivazione_abbonamento()).strftime('%d/%m/%Y'))
 
 
 
