@@ -5,7 +5,7 @@ from struttura.palestra.Corsi.view_corsi.view_corsi_palestra import view_corsi_p
 from struttura.palestra.Iscritti.view_iscritti.view_iscritti_palestra import view_iscritti_palestra
 
 
-class Ui_gestionepalestra(object):
+class view_palestra(object):
 
     def setupUi(self, gestionepalestra):
         gestionepalestra.setObjectName("gestionepalestra")

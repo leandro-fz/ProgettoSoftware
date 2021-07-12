@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from gestione.amministrazione.view.view_amministrazione import view_amministrazione
 from gestione.cliente.view.view_cliente import view_cliente
 from gestione.finanziaria.movimenti.view_movimenti.view_finanziaria import view_finanziaria
-from struttura.palestra.view.view_palestra import Ui_gestionepalestra
+from struttura.palestra.view.view_palestra import view_palestra
 from struttura.piscina.view.view_piscina import view_piscina
 from struttura.tennis.view.view_tennis import view_tennis
 
@@ -457,7 +457,7 @@ class Ui_menu(object):
 
     def mostra_palestra(self):
         self.palestra = QtWidgets.QMainWindow()
-        self.pa = Ui_gestionepalestra()
+        self.pa = view_palestra()
         self.pa.setupUi(self.palestra)
         self.palestra.show()
 
