@@ -24,7 +24,7 @@ class view_iscritti_piscina(QWidget):
 
         self.label_iscritti_piscina = QLabel("Qui verranno visualizzati i clienti con abbonamento valido per la piscina e certificato medico inserito")
         # self.label_iscritti_piscina.setAlignment(Qt.AlignCenter)
-        self.label_iscritti_piscina.setFont(QFont("Arial", 12))
+        self.label_iscritti_piscina.setFont(QFont("Yu Gothic UI Light", 10))
         self.v_layout.addWidget(self.label_iscritti_piscina)
         self.v_layout.addSpacing(10)
 
