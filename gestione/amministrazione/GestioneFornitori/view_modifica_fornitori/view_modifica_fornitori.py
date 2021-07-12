@@ -155,7 +155,7 @@ class view_modifica_fornitori(QWidget):
             pass
 
         elif not self.controlla_iva_libero(iva):
-            QMessageBox.critical(self, "Errore", "La Partita IVA inserita è già stato utilizzata", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "La Partita IVA inserita è già stata utilizzata", QMessageBox.Ok,QMessageBox.Ok)
             return
 
         try:
