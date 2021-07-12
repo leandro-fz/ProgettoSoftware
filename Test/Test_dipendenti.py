@@ -12,19 +12,23 @@ class Test(unittest.TestCase):
         self.model_lista_dipendenti = self.controller_listadipendenti.get_lista_dipendenti()
         self.controller_listadipendenti.aggiungi_dipendente(self.dipendente)
 
+    #Dopo aver aggiunto un dipendente, verifichiamo che questo sia stato effettivamente aggiunto all'interno della lista
     def test_aggiungi_dipendente(self):
         self.assertIsNotNone(self.dipendente.id)
         self.controller_listadipendenti.aggiungi_dipendente(self.dipendente)
         self.assertTrue(self.dipendente in self.model_lista_dipendenti)
 
+    #Dopo aver eliminato un dipendente, verifichiamo che questo sia stato effettivamente eliminato all'interno della lista
     def test_elimina_dipendente_by_id(self):
         self.assertIsNotNone(self.model_lista_dipendenti)
         self.controller_listadipendenti.elimina_dipendente_by_id(self.dipendente.id)
         self.assertTrue(self.dipendente not in self.model_lista_dipendenti)
 
+    #Verifichiamo che riusciamo a filtrare un dipendente usando il suo id associato
     def test_get_dipendente_by_id(self):
         self.assertIsNone(self.controller_listadipendenti.get_dipendente_by_id("33333"))
         self.assertIsNotNone(self.controller_listadipendenti.get_dipendente_by_id("99999"))
 
+    #Verifichiamo di poter estrapolare tutti i dipendenti presenti nella lista
     def test_get_lista_dipendenti(self):
         self.assertNotEqual(self.controller_listadipendenti.get_lista_dipendenti(),[])
