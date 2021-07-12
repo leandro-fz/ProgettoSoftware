@@ -227,6 +227,7 @@ class view_inserisci_abbonamenti(QWidget):
             return
 
 
+
         self.controller.aggiungi_abbonamento(model_gestione_abbonamenti(nome, cognome, nato, data, codicefiscale,residenza, email, cellulare,struttura, tipoabbonamento, attivazione))
         self.controller.save_data()
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))

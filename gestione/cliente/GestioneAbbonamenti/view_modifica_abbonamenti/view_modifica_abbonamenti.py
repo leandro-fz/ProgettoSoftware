@@ -234,13 +234,6 @@ class view_modifica_abbonamenti(QWidget):
             QMessageBox.critical(self, "Errore", "Inserisci solo numeri per il numero di cellulare", QMessageBox.Ok,QMessageBox.Ok)
             return
 
-        try:
-            nato = str(self.campo_nato.text())
-
-        except:
-
-            QMessageBox.critical(self, "Errore", "Inserisci solo lettere per il luogo di nascita", QMessageBox.Ok, QMessageBox.Ok)
-            return
 
         try:
             data = datetime.strptime(data,"%d/%m/%Y")
