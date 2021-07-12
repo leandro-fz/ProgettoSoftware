@@ -161,7 +161,7 @@ class view_modifica_fornitori(QWidget):
         try:
             cellulare = float(self.campo_cellulare.text())
         except:
-            QMessageBox.critical(self, "Errore", "Inserisci solo numeri positivi per la cellulare", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Inserisci solo numeri positivi per il cellulare", QMessageBox.Ok,QMessageBox.Ok)
             return
 
 
