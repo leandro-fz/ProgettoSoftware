@@ -8,7 +8,7 @@ from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti 
 class Test(unittest.TestCase):
     def setUp(self):
         self.controller_lista_abbonamenti = controller_abbonamenti()
-        self.abbonamento = model_gestione_abbonamenti("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567", "Appignano","filippo@gmail.com","3348967115", "Piscina", "mensile")
+        self.abbonamento = model_gestione_abbonamenti("Filippo", "Caterbetti","Macerata", "13/04/2000", "1234567891234567", "Appignano","filippo@gmail.com","3348967115", "Piscina", "mensile", "12/12/2000")
         self.controller_lista_abbonamenti.aggiungi_abbonamento(self.abbonamento)
         self.model_lista_abbonamenti = self.controller_lista_abbonamenti.get_lista_abbonamenti()
 
