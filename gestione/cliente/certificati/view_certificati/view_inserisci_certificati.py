@@ -74,7 +74,7 @@ class view_inserisci_certificati(QWidget):
         self.campo_sportcertificato= QLineEdit()
         self.v_layout.addWidget(self.campo_sportcertificato)
 
-        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico:")
+        self.checkbox_sportcertificato = QCheckBox("Certificato agonistico")
         self.v_layout.addWidget(self.checkbox_sportcertificato)
 
         self.label_datainizio = QLabel("Data inizio validità certificato (gg/mm/aaaa):")
@@ -201,7 +201,7 @@ class view_inserisci_certificati(QWidget):
             return
 
         if datafine < datainizio:
-            QMessageBox.critical(self, "Errore", "La data di scadenza non può essere precedente alla data di inizio di valdità.", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "La data di scadenza non può essere precedente alla data di inizio di validità.", QMessageBox.Ok, QMessageBox.Ok)
             return
 
 

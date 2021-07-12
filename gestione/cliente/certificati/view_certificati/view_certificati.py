@@ -29,7 +29,7 @@ class view_certificati(QWidget):
         self.font_label = QFont("Yu Gothic UI Light", 13)
         self.font_label.setBold(True)
 
-        self.font_label2 = QFont("Yu Gothic UI Light", 15)
+        self.font_label2 = QFont("Yu Gothic UI Light", 13)
         self.label_alto = QLabel("Inserisci il certificato medico solo dopo aver inserito il cliente tra gli abbonamenti")
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
