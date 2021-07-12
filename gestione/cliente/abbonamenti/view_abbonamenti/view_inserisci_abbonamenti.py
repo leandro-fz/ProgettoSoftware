@@ -213,7 +213,7 @@ class view_inserisci_abbonamenti(QWidget):
             return
 
         if not self.controlla_codicefiscale_libero(codicefiscale):
-            QMessageBox.critical(self, "Errore", "Codice fiscale inserito è già stato utilizzato", QMessageBox.Ok,
+            QMessageBox.critical(self, "Errore", "Il codice fiscale inserito è già stato utilizzato", QMessageBox.Ok,
                                  QMessageBox.Ok)
             return
 
