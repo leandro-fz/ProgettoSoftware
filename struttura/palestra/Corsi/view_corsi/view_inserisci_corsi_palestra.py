@@ -26,7 +26,7 @@ class view_inserisci_corso_palestra(QWidget):
         self.font_label.setBold(True)
 
         self.font_label2 = QFont("Yu Gothic UI Light", 15)
-        self.label_alto = QLabel("Form di prenotazione campo tennis del "+ self.data1.strftime("%d/%m/%Y"))
+        self.label_alto = QLabel("Form di registrazione nuovo corso palestra del "+ self.data1.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
@@ -90,7 +90,7 @@ class view_inserisci_corso_palestra(QWidget):
 
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
-        self.setWindowTitle("Nuovo Corso Nuoto")
+        self.setWindowTitle("Nuovo corso palestra")
         self.resize(300, 400)
 
         self.setLayout(self.v_layout)

@@ -100,7 +100,7 @@ class view_day_corsi_palestra(QWidget):
         for corso in self.controller_gestione_palestra.get_lista_corsi_palestra():
             if self.data == corso.data:
                 item = QStandardItem()
-                item.setText("Corso nuoto del " + corso.data.strftime("%d/%m/%Y") + " delle ore " + corso.orario + ", corso: " + corso.corso)
+                item.setText("Corso palestra del " + corso.data.strftime("%d/%m/%Y") + " delle ore " + corso.orario + ", corso: " + corso.corso)
                 item.setEditable(False)
                 item.setFont(self.font)
                 self.modello_lista_corsi.appendRow(item)
@@ -130,15 +130,15 @@ class view_day_corsi_palestra(QWidget):
                     lista.append(corso)
             da_eliminare = lista[indice]
         except:
-            QMessageBox.critical(self, "Errore", "Seleziona una prenotazione da eliminare", QMessageBox.Ok,QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Seleziona un corso da eliminare", QMessageBox.Ok,QMessageBox.Ok)
             return
         if da_eliminare.data < yesterday:
-            QMessageBox.critical(self, "Errore", "Non puoi eliminare una prenotazione passata", QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "Errore", "Non puoi eliminare un corso passato", QMessageBox.Ok, QMessageBox.Ok)
             return
-        risposta = QMessageBox.question(self, "Elimina prenotazione","Eliminare la prenotazione?",QMessageBox.Yes, QMessageBox.No)
+        risposta = QMessageBox.question(self, "Elimina corso","Eliminare il corso?",QMessageBox.Yes, QMessageBox.No)
         if risposta == QMessageBox.Yes:
             self.controller_gestione_palestra.elimina_corso_palestra(da_eliminare.id)
-            QMessageBox.about(self, "Eliminato", "La prenotazione è stato eliminata")
+            QMessageBox.about(self, "Eliminato", "Il corso è stato eliminato")
             self.aggiorna_dati_corsi_palestra()
         else:
             return
