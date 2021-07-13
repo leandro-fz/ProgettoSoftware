@@ -7,8 +7,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from gestione.cliente.GestioneCertificati.controller_gestione_certificati.controller_gestione_certificati import \
-    controller_gestione_certificati
 from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
 
 
@@ -179,7 +177,7 @@ class view_modifica_abbonamenti(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-    # poermette di chiudere la finestra di modifica dell'abbonamento
+    # permette di chiudere la finestra di modifica dell'abbonamento
     def chiudi_finestra(self):
         self.close()
 
