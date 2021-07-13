@@ -14,6 +14,7 @@ from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti 
 
 class view_inserisci_abbonamenti(QWidget):
 
+    #view di inserisci abbonamenti che si occupa dell'inserimento di tutti i campi da inserire
     def __init__(self, controller, aggiorna_lista, parent=None):
 
         super(view_inserisci_abbonamenti, self).__init__(parent)
@@ -30,7 +31,6 @@ class view_inserisci_abbonamenti(QWidget):
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
-        # self.v_layout.addSpacing(10)
 
         self.label_nome = QLabel("Nome:")
         self.label_nome.setFont(self.font_label)
@@ -157,6 +157,7 @@ class view_inserisci_abbonamenti(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    # la funzione chiude la pagina senza inserire l'abbonamento
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?',QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -164,7 +165,7 @@ class view_inserisci_abbonamenti(QWidget):
         else:
             pass
 
-
+    # la funzione salva l'abbonamento inserito e controlla se tutti i campi siano stati inseriti correttamente
     def conferma_inserimento(self):
 
         nome = self.campo_nome.text()
@@ -235,7 +236,7 @@ class view_inserisci_abbonamenti(QWidget):
         self.aggiorna_lista()
         self.close()
 
-
+    #la funzione controlla se il campo "codicefiscale" inserito sia stato già utilizzato
     def controlla_codicefiscale_libero(self, codicefiscale):
 
         for abbonamento in self.controller.get_lista_abbonamenti():

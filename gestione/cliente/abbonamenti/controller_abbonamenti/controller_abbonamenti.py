@@ -1,6 +1,6 @@
 from gestione.cliente.abbonamenti.model_abbonamenti.model_abbonamenti import model_abbonamenti
 
-
+#richiama il model di abbonamenti e fa uso delle funzioni implementate di esso
 class controller_abbonamenti():
 
     def __init__(self):

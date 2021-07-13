@@ -15,6 +15,7 @@ from gestione.cliente.abbonamenti.view_abbonamenti.view_inserisci_abbonamenti im
 
 class view_abbonamenti(QWidget):
 
+    # view generale di abbonamenti collegata alle funzioni sottostanti
     def __init__(self, parent=None):
         super(view_abbonamenti, self).__init__(parent)
 
@@ -23,8 +24,6 @@ class view_abbonamenti(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
-        # self.list_view.setGeometry(40, 60, 500, 401)
-
 
         self.aggiorna_dati()
         self.v_layout.addWidget(self.list_view)
@@ -33,6 +32,7 @@ class view_abbonamenti(QWidget):
 
         self.font_bottoni = QFont("Yu Gothic UI Light", 12)
 
+        #bottone indietro
         self.indietro = QPushButton("⬅️")
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.setDefault(False)
@@ -45,18 +45,21 @@ class view_abbonamenti(QWidget):
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
 
+        #bottone inserisci abbonamento
         self.inserisci_abbonamento = QPushButton("Inserisci Abbonamento")
         self.inserisci_abbonamento.clicked.connect(self.mostra_inserisci_abbonamento)
         self.inserisci_abbonamento.setFont(self.font_bottoni)
         self.h_layout.addWidget(self.inserisci_abbonamento)
         self.inserisci_abbonamento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #bottone elimina abbonamento
         self.elimina_abbonamento = QPushButton("Elimina Abbonamento")
         self.elimina_abbonamento.setFont(self.font_bottoni)
         self.elimina_abbonamento.clicked.connect(self.mostra_elimina_abbonamento)
         self.h_layout.addWidget(self.elimina_abbonamento)
         self.elimina_abbonamento.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #bottone modifica abbonamento
         self.modifica_abbonamento = QPushButton("Modifica Abbonamento")
         self.modifica_abbonamento.setFont(self.font_bottoni)
         self.modifica_abbonamento.clicked.connect(self.mostra_modifica_abbonamento)
@@ -80,9 +83,11 @@ class view_abbonamenti(QWidget):
 
         self.show()
 
+    #funzione che chiude la finestra
     def chiudi_schermata(self):
         self.close()
 
+    #funzione che mostra all'utente i movimenti inseriti attraverso una list view
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
@@ -97,14 +102,17 @@ class view_abbonamenti(QWidget):
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
+    #funzione che richiama la view di insersci abbonamento per l'inserimento di un abbonamento
     def mostra_inserisci_abbonamento(self):
 
         self.inserisci_abbonamento = view_inserisci_abbonamenti(self.controller, self.aggiorna_dati)
         self.inserisci_abbonamento.show()
 
+    #salva su lista
     def closeEvent(self, event):
         self.controller.save_data()
 
+    #elimina dalla lista l'abbonamneto selezionato
     def mostra_elimina_abbonamento(self):
 
         try:
@@ -125,6 +133,7 @@ class view_abbonamenti(QWidget):
         else:
             return
 
+    #richiama la view di modifica abbonamento per modificare l'abbonamento
     def mostra_modifica_abbonamento(self):
 
         try:

@@ -7,6 +7,7 @@ from gestione.cliente.certificati.view_certificati.view_certificati import view_
 
 class view_cliente(object):
 
+    #view generale di clienti usata per la creazione di tre bottoni: indietro, gestione certificati e gestione abbonamenti
     def setupUi(self, gestioneclienti):
         gestioneclienti.setObjectName("gestioneclienti")
         gestioneclienti.resize(781, 500)
@@ -203,28 +204,21 @@ class view_cliente(object):
 
         self.gestionecertificato.clicked.connect(self.mostra_certificato)
 
+    #funzione che collega la view di clienti alla view di abbonamenti
     def mostra_abbonamento(self):
         self.gestioneabbonamenti = view_abbonamenti()
         self.gestioneabbonamenti.show()
 
+    # funzione che collega la view di clienti alla view di certificati
     def mostra_certificato(self):
         self.gestionecertificati = view_certificati()
         self.gestionecertificati.show()
 
+    #funzione che nomina i tre bottoni: indietro, gestione abbonamenti e gestione certificati
     def retranslateUi(self, gestioneclienti):
         _translate = QtCore.QCoreApplication.translate
         gestioneclienti.setWindowTitle(_translate("gestioneclienti", "Gestione clienti"))
-        self.gestioneabbonamento.setText(_translate("gestioneclienti", "Gestione abbonamento"))
-        self.gestionecertificato.setText(_translate("gestioneclienti", "Gestione certificato"))
+        self.gestioneabbonamento.setText(_translate("gestioneclienti", "Gestione abbonamenti"))
+        self.gestionecertificato.setText(_translate("gestioneclienti", "Gestione certificati"))
         self.indietro.setText(_translate("gestioneclienti", "⬅️"))
         self.indietro.setShortcut(_translate("gestioneclienti", "Alt+Left"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     gestioneclienti = QtWidgets.QMainWindow()
-#     ui = Ui_gestioneclienti()
-#     ui.setupUi(gestioneclienti)
-#     gestioneclienti.show()
-#     sys.exit(app.exec_())
