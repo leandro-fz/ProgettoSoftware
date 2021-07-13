@@ -5,13 +5,13 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from datetime import datetime
 
 from gestione.amministrazione.GestioneFornitori.model_gestione_fornitori.model_gestione_fornitori import model_gestione_fornitori
 
 
 class view_inserisci_fornitori(QWidget):
 
+    #view di inserisci fornitore che si occupa dell'inserimento di tutti i campi da inserire
     def __init__(self, controller, aggiorna_lista, parent=None):
 
         super(view_inserisci_fornitori, self).__init__(parent)
@@ -112,6 +112,7 @@ class view_inserisci_fornitori(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    # la funzione chiude la pagina senza inserire il fornitore
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?',QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -119,7 +120,7 @@ class view_inserisci_fornitori(QWidget):
         else:
             pass
 
-
+    # la funzione salva il fornitore inserito e controlla se tutti i campi sono stati inseriti correttamente
     def conferma_inserimento(self):
 
         nome = self.campo_nome.text()
@@ -174,7 +175,7 @@ class view_inserisci_fornitori(QWidget):
         self.aggiorna_lista()
         self.close()
 
-
+    # la funzione controlla se il campo "iva" inserito sia stato già utilizzato
     def controlla_iva_libero(self, iva):
 
         for fornitore in self.controller.get_lista_fornitori():
