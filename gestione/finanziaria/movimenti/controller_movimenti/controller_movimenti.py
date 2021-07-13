@@ -1,6 +1,6 @@
 from gestione.finanziaria.movimenti.model_movimenti.model_movimenti import model_movimenti
 
-#richiama il model di movimenti e fa uso delle funzioni implementate di esso
+#classe che al suo interno richiama il model di movimenti e fa uso delle funzioni implementate da esso
 class controller_movimenti():
 
 

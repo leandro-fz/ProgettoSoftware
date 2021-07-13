@@ -7,10 +7,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from datetime import datetime
 
-from gestione.cliente.GestioneAbbonamenti.controller_gestione_abbonamenti.controller_gestione_abbonamenti import \
-    controller_gestione_abbonamenti
-from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti import controller_abbonamenti
-
 
 class view_modifica_certificati(QWidget):
 
@@ -113,18 +109,13 @@ class view_modifica_certificati(QWidget):
         self.v_layout.addLayout(h_layout)
 
 
+    # permette di chiudere la finestra di modifica del certificato
     def chiudi_finestra(self):
         self.close()
 
-    def controlla_codicefiscale_libero(self, codicefiscale):
-
-        for certificato in self.lista_certificati:
-            if certificato.codicefiscale == codicefiscale:
-                return False
-        return True
-
+    # dopo aver compilato la modifica, l'utente preme il pulsante "modifica" e la seguente funzione controlla se tutto è stato inserito correttamente
+    # e se si, salva sul file
     def modifica_certificato(self):
-
 
         sportcertificato = self.campo_sportcertificato.text()
         booleancertificato = self.a

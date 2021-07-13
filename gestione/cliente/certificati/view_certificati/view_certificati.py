@@ -15,16 +15,15 @@ from gestione.cliente.certificati.view_certificati.view_inserisci_certificati im
 
 class view_certificati(QWidget):
 
+    # view generale di certificati collegata alle funzioni sottostanti
     def __init__(self, parent=None):
         super(view_certificati, self).__init__(parent)
 
         self.controller = controller_certificati()
 
-
         self.v_layout = QVBoxLayout()
 
         self.list_view = QListView()
-        # self.list_view.setGeometry(40, 60, 500, 401)
 
         self.font_label = QFont("Yu Gothic UI Light", 13)
         self.font_label.setBold(True)
@@ -89,35 +88,15 @@ class view_certificati(QWidget):
 
         self.show()
 
+    #funzione che chiude la finestra
     def chiudi_schermata(self):
         self.close()
-    #
-    # def aggiorna_dati(self):
-    #
-    #     self.list_view_model = QStandardItemModel(self.list_view)
-    #
-    #     self.font_item = QFont("Yu Gothic UI Light", 12)
-    #     self.controlloreabbonamento = controller_abbonamenti()
-    #
-    #     # for certificato in self.controller.get_lista_certificati():
-    #     for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
-    #         item = QStandardItem()
-    #         item.setText(abbonamento.nome + " " + abbonamento.cognome)
-    #         item.setEditable(False)
-    #         item.setFont(self.font_item)
-    #         self.list_view_model.appendRow(item)
-    #         # if abbonamento.codicefiscale == abbonamento.codicefiscale:
-    #
-    #     self.list_view.setModel(self.list_view_model)
 
+    #funzione che mostra all'utente i certificati inseriti attraverso una list view
+    #la funzione fa ausilio del get_lista_abbonamenti, infatti tutti i certificati sono collegati a un utente inserito prima da "gestione abbonamenti"
     def aggiorna_dati(self):
 
         self.controlloreabbonamento = controller_abbonamenti()
-
-        # for certificato in self.controller.get_lista_certificati():
-        #     for abbonamento in self.controlloreabbonamento.get_lista_abbonamenti():
-        #         if not certificato.codicefiscale == abbonamento.codicefiscale:
-        #             self.controller.elimina_certificato_by_codicefiscale(certificato.codicefiscale)
 
         self.list_view_model = QStandardItemModel(self.list_view)
 
@@ -134,6 +113,7 @@ class view_certificati(QWidget):
                     self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
+    #funzione che richiama la view di insersci certificato per l'inserimento di un certificato
     def mostra_inserisci_certificato(self):
 
         self.inserisci_certificato = view_inserisci_certificati(self.controller, self.aggiorna_dati)
@@ -142,6 +122,7 @@ class view_certificati(QWidget):
     def closeEvent(self, event):
         self.controller.save_data()
 
+    #elimina dalla lista il certificato selezionato in base al codice fiscale inserito in "gestione abbonamenti"
     def mostra_elimina_certificato(self):
 
         try:
@@ -169,6 +150,7 @@ class view_certificati(QWidget):
         else:
             return
 
+    #richiama la view di modifica certificato per modificare il certificato, avvalendosi dei dati inseriti in "gestione abbonamenti"
     def mostra_modifica_certificato(self):
 
         try:
@@ -179,7 +161,7 @@ class view_certificati(QWidget):
                     if certificato.codicefiscale == abbonamento.codicefiscale:
                         listacertificati.append(certificato)
             da_visualizzare = listacertificati[index]
-        #     self.controller.get_lista_certificati()[index]
+
         except:
             QMessageBox.critical(self, "Errore", "Seleziona un certificato da visualizzare", QMessageBox.Ok,
                                  QMessageBox.Ok)

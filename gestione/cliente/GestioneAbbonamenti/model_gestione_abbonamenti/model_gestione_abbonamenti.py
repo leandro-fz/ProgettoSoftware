@@ -16,6 +16,7 @@ class model_gestione_abbonamenti():
         self.tipoabbonamento = tipoabbonamento
         self.attivazione = attivazione
 
+    #calcola la scadenza dell'abbonamento in base al tipo di abbonamento inserito
     def get_scadenza_abbonamento(self, durata, attivazione):
         if durata == "settimanale":
             date_final = datetime.date(attivazione) + timedelta(7)

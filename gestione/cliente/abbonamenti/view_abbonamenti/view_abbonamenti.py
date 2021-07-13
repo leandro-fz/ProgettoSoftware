@@ -87,7 +87,7 @@ class view_abbonamenti(QWidget):
     def chiudi_schermata(self):
         self.close()
 
-    #funzione che mostra all'utente i movimenti inseriti attraverso una list view
+    #funzione che mostra all'utente gli abbonamenti inseriti attraverso una list view
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
