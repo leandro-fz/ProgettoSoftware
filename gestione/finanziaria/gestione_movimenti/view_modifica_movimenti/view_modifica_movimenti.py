@@ -86,16 +86,18 @@ class view_modifica_movimenti(QWidget):
         self.setMaximumSize(781, 500)
         self.setWindowIcon(QtGui.QIcon("images/immaginelogo1.png"))
 
+        # per lo sfondo
         oImage = QImage("images/immaginepesisfocata.jpeg")
         sImage = oImage.scaled(QSize(791, 501))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    #poermette di chiudere la finestra di modifica del movimento
     def chiudi_finestra(self):
         self.close()
 
+    #controlla se nel movimento modificato, la fattura modificata sia già esistente
     def controlla_fattura_libero(self, fattura):
 
         for movimento in self.lista_movimenti:
@@ -103,6 +105,8 @@ class view_modifica_movimenti(QWidget):
                 return False
         return True
 
+    #dopo aver compilato la modifica, l'utente preme il pulsante "modifica" e la seguente funzione controlla se tutto è stato inserito correttamente
+    # e se si, salva sul file
     def modifica_movimenti(self):
 
         importo = self.campo_importo.text()
@@ -137,13 +141,12 @@ class view_modifica_movimenti(QWidget):
             return
 
 
-
-
         self.controller.set_importo_movimenti(importo)
         self.controller.set_data_movimenti(data)
         self.controller.set_causale_movimenti(causale)
         self.controller.set_fattura_movimenti(fattura)
 
         QMessageBox.about(self, "Completata", "Modifica completata")
+        # salva sulla lista la modifica
         self.aggiorna_lista()
         self.close()

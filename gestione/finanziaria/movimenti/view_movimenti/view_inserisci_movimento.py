@@ -11,6 +11,7 @@ from gestione.finanziaria.gestione_movimenti.model_gestione_movimenti.model_gest
 
 class view_inserisci_movimento(QWidget):
 
+    #view di inserisci movimento che si occupa dell'inserimento di tutti i campi da inserire
     def __init__(self, controller, aggiorna_lista, parent=None):
 
         super(view_inserisci_movimento, self).__init__(parent)
@@ -96,6 +97,7 @@ class view_inserisci_movimento(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #la funzione chiude la pagina senza inserire il movimento
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?',QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -103,7 +105,7 @@ class view_inserisci_movimento(QWidget):
         else:
             pass
 
-
+    #la funzione salva il movimento inserito e controlla se tutti i campi siano stati inseriti correttamente
     def conferma_inserimento(self):
 
         importo = self.campo_importo.text()
@@ -162,6 +164,7 @@ class view_inserisci_movimento(QWidget):
         self.aggiorna_lista()
         self.close()
 
+    #la funzione controlla se il campo "fattura" inserito sia stato già utilizzato
     def controlla_fattura_libero(self, fattura):
 
             for movimento in self.controller.get_lista_movimenti():

@@ -1,7 +1,8 @@
 from gestione.finanziaria.movimenti.model_movimenti.model_movimenti import model_movimenti
 
-
+#richiama il model di movimenti e fa uso delle funzioni implementate di esso
 class controller_movimenti():
+
 
     def __init__(self):
         super(controller_movimenti, self).__init__()
