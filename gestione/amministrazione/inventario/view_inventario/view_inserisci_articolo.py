@@ -12,6 +12,7 @@ from gestione.amministrazione.GestioneInventario.model_gestione_articolo.model_g
 
 class view_inserisci_articolo(QWidget):
 
+    #view di inserisci articolo che si occupa dell'inserimento di tutti i campi da inserire
     def __init__(self, controller, aggiorna_lista, parent=None):
 
         super(view_inserisci_articolo, self).__init__(parent)
@@ -99,6 +100,7 @@ class view_inserisci_articolo(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    # la funzione chiude la pagina senza inserire l'articolo
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?',QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -106,7 +108,7 @@ class view_inserisci_articolo(QWidget):
         else:
             pass
 
-
+    # la funzione salva l'articolo inserito e controlla se tutti i campi sono stati inseriti correttamente
     def conferma_inserimento(self):
 
         articolo = self.campo_articolo.text()
@@ -164,7 +166,7 @@ class view_inserisci_articolo(QWidget):
         self.aggiorna_lista()
         self.close()
 
-
+    # la funzione controlla se il campo "codice" inserito sia stato già utilizzato
     def controlla_codice_libero(self, codice):
 
         for inventario in self.controller.get_lista_inventario():

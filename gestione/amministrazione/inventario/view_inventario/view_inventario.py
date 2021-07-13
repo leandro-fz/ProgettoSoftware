@@ -14,6 +14,7 @@ from gestione.amministrazione.inventario.view_inventario.view_inserisci_articolo
 
 class view_inventario(QWidget):
 
+    #view di inventario con diversi bottoni che servono all'utente per gestire l'inventario
     def __init__(self, parent=None):
         super(view_inventario, self).__init__(parent)
 
@@ -78,9 +79,11 @@ class view_inventario(QWidget):
 
         self.show()
 
+    #funzione che chiude la finestra
     def chiudi_schermata(self):
         self.close()
 
+    # funzione che mostra all'utente gli articoli inseriti attraverso una list view
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
@@ -95,6 +98,7 @@ class view_inventario(QWidget):
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
+    # funzione che richiama la view di insersci articolo per l'inserimento di un articolo
     def mostra_inserisci_inventario(self):
 
         self.inserisci_inventario = view_inserisci_articolo(self.controller, self.aggiorna_dati)
@@ -103,6 +107,7 @@ class view_inventario(QWidget):
     def closeEvent(self, event):
         self.controller.save_data()
 
+    # elimina dalla lista l'articolo selezionato
     def mostra_elimina_inventario(self):
 
         try:
@@ -123,6 +128,7 @@ class view_inventario(QWidget):
         else:
             return
 
+    #richiama la view di modifica inventario per modificare inventario
     def mostra_modifica_inventario(self):
 
         try:

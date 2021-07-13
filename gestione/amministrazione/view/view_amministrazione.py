@@ -5,8 +5,10 @@ from gestione.amministrazione.fornitori.view_fornitori.view_fornitori import vie
 from gestione.amministrazione.inventario.view_inventario.view_inventario import view_inventario
 from gestione.amministrazione.dipendenti.view_dipendenti.view_dipendenti import view_dipendenti
 
+#view generica di amministrazione
 class view_amministrazione(object):
 
+    #view che contiene tre bottoni  centrali e un indietro e che chiama altre funzioni sottostanti
     def setupUi(self, Gestioneamministrazione):
         Gestioneamministrazione.setObjectName("Gestioneamministrazione")
         Gestioneamministrazione.resize(781, 500)
@@ -291,25 +293,22 @@ class view_amministrazione(object):
 
         self.freccia.clicked.connect(Gestioneamministrazione.close)
 
+    #funzione che chiama la view di inventario
     def mostra_inventario(self):
         self.gestioneinventario = view_inventario()
         self.gestioneinventario.show()
 
+    #funzione che chiama la view di fornitori
     def mostra_fornitori(self):
         self.gestionefornitore = view_fornitori()
         self.gestionefornitore.show()
 
+    #funzione che chiama la view di dipendenti
     def mostra_dipendenti(self):
         self.gestionedipendente = view_dipendenti()
         self.gestionedipendente.show()
 
-    #
-    # def mostra_menu(self):
-    #     self.menu = QtWidgets.QMainWindow()
-    #     self.ui = Ui_menu()
-    #     self.ui.setupUi(self.menu)
-    #     self.menu.show()
-
+    #funzione che nomina i bottoni e la finestra principale
     def retranslateUi(self, Gestioneamministrazione):
         _translate = QtCore.QCoreApplication.translate
         Gestioneamministrazione.setWindowTitle(_translate("Gestioneamministrazione", "Gestione amministrazione"))
@@ -319,12 +318,3 @@ class view_amministrazione(object):
         self.freccia.setText(_translate("Gestioneamministrazione", "⬅️"))
         self.freccia.setShortcut(_translate("Gestioneamministrazione", "Alt+Left"))
 
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     Gestioneamministrazione = QtWidgets.QMainWindow()
-#     ui = Ui_Gestioneamministrazione()
-#     ui.setupUi(Gestioneamministrazione)
-#     Gestioneamministrazione.show()
-#     sys.exit(app.exec_())
