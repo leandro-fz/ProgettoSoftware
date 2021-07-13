@@ -1,9 +1,9 @@
 import os
 import pickle
 
-# cliente/
 class model_certificati():
 
+    # nella funzione c'è il collegamento con il file "lista_certificati_salvata" dove i certificati e le varie informazioni verranno salvate
     def __init__(self):
         super(model_certificati, self).__init__()
         self.lista_certificati = []
@@ -14,10 +14,11 @@ class model_certificati():
                 except EOFError:
                     return
 
-
+    # la funzione inserisce il certificato alla lista
     def aggiungi_certificato(self, certificato):
         self.lista_certificati.append(certificato)
 
+    # la funzione elimina il certificato dalla lista attraverso il campo "codicefiscale"
     def elimina_certificato_by_codicefiscale(self, codicefiscale):
         for certificato in self.lista_certificati:
             if certificato.codicefiscale == codicefiscale:
@@ -25,6 +26,7 @@ class model_certificati():
                 return True
         return False
 
+    # la funzione ridà la lista dei certificati
     def get_lista_certificati(self):
         return self.lista_certificati
 
@@ -34,6 +36,7 @@ class model_certificati():
                 return certificato
         return None
 
+    # salva i dati dei certificati inseriti
     def save_data(self):
         if os.path.isfile("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle"):
             with open("gestione/cliente/certificati/data_certificati/lista_certificati_salvata.pickle", "wb") as handle:

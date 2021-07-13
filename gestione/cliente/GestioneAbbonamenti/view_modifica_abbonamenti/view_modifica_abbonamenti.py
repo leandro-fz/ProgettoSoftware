@@ -179,10 +179,11 @@ class view_modifica_abbonamenti(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    # poermette di chiudere la finestra di modifica dell'abbonamento
     def chiudi_finestra(self):
         self.close()
 
+    #controlla se nell'abbonamento modificato, il codice fiscale modificato sia già esistente
     def controlla_codicefiscale_libero(self, codicefiscale):
 
         for abbonamento in self.lista_abbonamenti:
@@ -190,6 +191,8 @@ class view_modifica_abbonamenti(QWidget):
                 return False
         return True
 
+    # dopo aver compilato la modifica, l'utente preme il pulsante "modifica" e la seguente funzione controlla se tutto è stato inserito correttamente
+    # e se si, salva sul file
     def modifica_abbonamento(self):
 
         nome = self.campo_nome.text()
