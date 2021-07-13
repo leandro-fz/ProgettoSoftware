@@ -1,13 +1,13 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QMessageBox, QPushButton, QVBoxLayout, QHBoxLayout
-from PyQt5.QtGui import QFont, QPixmap
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QSize
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QShortcut
 
 from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
 
-
+#visualizzazione utente palestra
 class view_visualizza_utente_palestra(QWidget):
 
     def __init__(self, controllore_abbonamento, parent=None):
@@ -18,7 +18,7 @@ class view_visualizza_utente_palestra(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        # labels contenenti dati del cliente
+        # labels contenenti dati dell'utente iscritto in palestra
         self.create_label("Nome:        ", self.controllore_abbonamento.get_nome_abbonamento())
         self.create_label("Cognome:         ", self.controllore_abbonamento.get_cognome_abbonamento())
         self.create_label("Codice fiscale:         ", self.controllore_abbonamento.get_codicefiscale_abbonamento())
@@ -58,6 +58,7 @@ class view_visualizza_utente_palestra(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione per creare i vari label
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
@@ -72,6 +73,7 @@ class view_visualizza_utente_palestra(QWidget):
 
         self.v_layout.addLayout(h_layout)
 
+    #funzione per creare i vari bottoni
     def create_button(self, titolo, funzione):
         bottone = QPushButton(titolo)
         bottone.setFont(QFont("Yu Gothic UI Light", 12))
@@ -79,6 +81,6 @@ class view_visualizza_utente_palestra(QWidget):
         self.h_layout.addWidget(bottone)
         bottone.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-
+    #funzione per chiudere la pagina
     def mostra_indietro(self):
         self.close()

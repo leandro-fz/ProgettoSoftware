@@ -29,7 +29,7 @@ class view_inserisci_corso_palestra(QWidget):
         self.label_alto = QLabel("Form di registrazione nuovo corso palestra del "+ self.data1.strftime("%d/%m/%Y"))
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
-
+        #labels
         self.label_corso = QLabel("Corso:")
         self.label_corso.setFont(self.font_label)
         self.v_layout.addWidget(self.label_corso)
@@ -74,12 +74,14 @@ class view_inserisci_corso_palestra(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #tasto annulla
         self.bottone_annulla = QPushButton("Annulla")
         self.bottone_annulla.setFont(self.font_label)
         self.bottone_annulla.clicked.connect(self.mostra_annulla_ins)
         self.h_layout.addWidget(self.bottone_annulla)
         self.bottone_annulla.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #tasto conferma
         self.bottone_conferma = QPushButton("Conferma")
         self.h_layout.addWidget(self.bottone_conferma)
         self.bottone_conferma.clicked.connect(self.conferma_inserimento_corso_palestra)
@@ -91,7 +93,6 @@ class view_inserisci_corso_palestra(QWidget):
         self.v_layout.addLayout(self.h_layout)
         self.setLayout(self.v_layout)
         self.setWindowTitle("Nuovo corso palestra")
-        self.resize(300, 400)
 
         self.setLayout(self.v_layout)
         self.setMinimumSize(781, 500)
@@ -107,6 +108,7 @@ class view_inserisci_corso_palestra(QWidget):
         self.setPalette(palette)
 
 
+    #funzione per chiudere la pagina con messaggio di conferma
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -114,13 +116,14 @@ class view_inserisci_corso_palestra(QWidget):
         else:
             return
 
-
+    #funzione di conferma inserimento
     def conferma_inserimento_corso_palestra(self):
         corso = self.campo_corso.text()
         istruttore = self.campo_istruttore.text()
         orario_premuto = str(self.combo.currentText())
         dataselezionata = self.data1
         idcorso = str(dataselezionata)+str(orario_premuto)
+        #idcorso composta da data e ora che servirà per controllare la disponibilità
 
         if corso == "" or istruttore == "":
             QMessageBox.critical(self, "Errore", "Inserisci tutti i campi", QMessageBox.Ok, QMessageBox.Ok)
@@ -142,6 +145,7 @@ class view_inserisci_corso_palestra(QWidget):
         self.close()
         return True
 
+    #funzione per controllare la disponibilità
     def controlla_disponibilità(self, idcorso):
         for corso in self.controllore.get_lista_corsi_palestra():
             if corso.id == idcorso:

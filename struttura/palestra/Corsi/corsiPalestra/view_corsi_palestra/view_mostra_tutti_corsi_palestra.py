@@ -2,7 +2,7 @@ from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QShortcut
 from PyQt5.QtCore import Qt
 
-from PyQt5.QtWidgets import QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QListView, QHBoxLayout, QPushButton
 from PyQt5.QtGui import QFont, QStandardItemModel, QStandardItem
 from datetime import datetime, timedelta
 
@@ -15,6 +15,7 @@ from PyQt5.QtGui import *
 from struttura.palestra.Corsi.GestioneCorsiPalestra.controller_gestione_corsi_palestra.controller_gestione_corsi_palestra import \
     controller_gestione_corsi_palestra
 
+#visualizza tutti i corsi di palstra
 
 class view_mostra_tutti_corsi_palestra(QWidget):
 
@@ -38,7 +39,7 @@ class view_mostra_tutti_corsi_palestra(QWidget):
 
         self.h_layout = QHBoxLayout()
 
-
+        #pulsante chiudi
         self.bottone_indietro = QPushButton("Chiudi")
         self.bottone_indietro.setFont(self.font)
         self.bottone_indietro.clicked.connect(self.mostra_indietro)
@@ -64,7 +65,7 @@ class view_mostra_tutti_corsi_palestra(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    #funzione che serve a visualizzare tutti i corsi della palestra
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_corsi = QStandardItemModel()
         for corso in self.controller_gestione_corsi_palestra.get_lista_corsi_palestra():
@@ -80,6 +81,6 @@ class view_mostra_tutti_corsi_palestra(QWidget):
 
         self.lista_corsi_palestra.setModel(self.modello_lista_corsi)
 
-
+    #funzione di chiusura della pagina
     def mostra_indietro(self):
         self.close()

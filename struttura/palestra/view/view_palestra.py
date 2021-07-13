@@ -4,7 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from struttura.palestra.Corsi.view_corsi.view_corsi_palestra import view_corsi_palestra
 from struttura.palestra.Iscritti.view_iscritti.view_iscritti_palestra import view_iscritti_palestra
 
-
+#visualizzazione schermata palestra
 class view_palestra(object):
 
     def setupUi(self, gestionepalestra):
@@ -201,11 +201,12 @@ class view_palestra(object):
 
         self.iscritti.clicked.connect(self.mostra_iscritti)
 
+    #funzione per mostrare gli iscritti della palestra
     def mostra_iscritti(self):
         self.gestioneiscritti = view_iscritti_palestra()
         self.gestioneiscritti.show()
 
-
+    #funzione per mostrare i corsi della palestra
     def mostra_corsi(self):
         self.gestionecorsi = view_corsi_palestra()
         self.gestionecorsi.show()
@@ -217,13 +218,3 @@ class view_palestra(object):
         self.gestionecorsi.setText(_translate("gestionepalestra", "Gestione corsi"))
         self.freccia.setText(_translate("gestionepalestra", "⬅️"))
         self.freccia.setShortcut(_translate("gestionepalestra", "Alt+Left"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     gestionepalestra = QtWidgets.QMainWindow()
-#     ui = Ui_gestionepalestra()
-#     ui.setupUi(gestionepalestra)
-#     gestionepalestra.show()
-#     sys.exit(app.exec_())

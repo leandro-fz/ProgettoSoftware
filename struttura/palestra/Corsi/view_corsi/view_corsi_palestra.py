@@ -43,15 +43,17 @@ class view_corsi_palestra(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #tasto indietro
         self.crea_pulsante("⬅️", self.mostra_indietro_palestra)
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
         self.shortcut_indietro.activated.connect(self.mostra_indietro_palestra)
 
-
+        #tasto mostra giorno
         self.crea_pulsante("Mostra giorno", self.mostra_view_day_palestra)
         self.shortcut_mostra_giorno = QShortcut(QKeySequence('Return'), self)
         self.shortcut_mostra_giorno.activated.connect(self.mostra_view_day_palestra)
 
+        #tasto mostra tutte
         self.crea_pulsante("Mostra tutte", self.mostra_tutte_prenotazioni_palestra)
 
         self.g_layout.addLayout(self.h_layout, 2, 0)
@@ -70,6 +72,7 @@ class view_corsi_palestra(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione per creare i pulsanti
     def crea_pulsante(self, titolo, funzione):
         pulsante = QPushButton(titolo)
         pulsante.setFont(QFont("Yu Gothic UI Light", 12))
@@ -77,17 +80,18 @@ class view_corsi_palestra(QWidget):
         self.h_layout.addWidget(pulsante)
         pulsante.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+    #funzione per chiudere la pagina
     def mostra_indietro_palestra(self):
         self.close()
 
-
+    #funzione per mostrare il giorno selezionato
     def mostra_view_day_palestra(self):
         dataq = self.calendario.selectedDate()
         self.datai = datetime(dataq.year(), dataq.month(), dataq.day())
         self.lista_prenotazioni_day = view_day_corsi_palestra(self.datai)
         self.lista_prenotazioni_day.show()
 
-
+    #funzione per mostare tutti i corsi
     def mostra_tutte_prenotazioni_palestra(self):
         self.lista_prenotazioni = view_mostra_tutti_corsi_palestra()
         self.lista_prenotazioni.show()

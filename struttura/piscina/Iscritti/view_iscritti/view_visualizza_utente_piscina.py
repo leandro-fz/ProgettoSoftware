@@ -18,7 +18,7 @@ class view_visualizza_utente_piscina(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        # labels contenenti dati del cliente
+        # labels contenenti dati del cliente iscritto in piscina
         self.create_label("Nome:        ", self.controllore_abbonamento.get_nome_abbonamento())
         self.create_label("Cognome:         ", self.controllore_abbonamento.get_cognome_abbonamento())
         self.create_label("Codice fiscale:         ", self.controllore_abbonamento.get_codicefiscale_abbonamento())

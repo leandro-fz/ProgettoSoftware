@@ -43,15 +43,17 @@ class view_corsi_piscina(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #tasto indietro
         self.crea_pulsante("⬅️", self.mostra_indietro_corsonuoto)
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
         self.shortcut_indietro.activated.connect(self.mostra_indietro_corsonuoto)
 
-
+        #tasto mostra giorno
         self.crea_pulsante("Mostra giorno", self.mostra_view_day_nuoto)
         self.shortcut_mostra_giorno = QShortcut(QKeySequence('Return'), self)
         self.shortcut_mostra_giorno.activated.connect(self.mostra_view_day_nuoto)
 
+        #tasto mostra tutte
         self.crea_pulsante("Mostra tutte", self.mostra_tutte_prenotazioni_corsi_nuoto)
 
         self.g_layout.addLayout(self.h_layout, 2, 0)
@@ -78,7 +80,7 @@ class view_corsi_piscina(QWidget):
         self.h_layout.addWidget(pulsante)
         pulsante.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-    #funzione per creare la pagina
+    #funzione per chiudere la pagina
     def mostra_indietro_corsonuoto(self):
         self.close()
 

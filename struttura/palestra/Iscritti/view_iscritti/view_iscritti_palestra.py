@@ -10,9 +10,7 @@ from gestione.cliente.abbonamenti.controller_abbonamenti.controller_abbonamenti 
 from gestione.cliente.certificati.controller_certificati.controller_certficati import controller_certificati
 from struttura.palestra.Iscritti.view_iscritti.view_visualizza_utente_palestra import view_visualizza_utente_palestra
 
-from struttura.piscina.Iscritti.view_iscritti.view_visualizza_utente_piscina import view_visualizza_utente_piscina
-
-
+#visualizza tutti gli iscritti dell palestra
 class view_iscritti_palestra(QWidget):
 
     def __init__(self, parent=None):
@@ -24,7 +22,6 @@ class view_iscritti_palestra(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.label_iscritti_piscina = QLabel("Qui verranno visualizzati i clienti con abbonamento valido per la palestra e certificato medico inserito")
-        # self.label_iscritti_piscina.setAlignment(Qt.AlignCenter)
         self.label_iscritti_piscina.setFont(QFont("Yu Gothic UI Light", 10))
         self.v_layout.addWidget(self.label_iscritti_piscina)
         self.v_layout.addSpacing(10)
@@ -38,6 +35,7 @@ class view_iscritti_palestra(QWidget):
 
         self.font_bottoni = QFont("Yu Gothic UI Light", 12)
 
+        #pulsante indietro
         self.indietro = QPushButton("⬅️")
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.setDefault(False)
@@ -50,6 +48,7 @@ class view_iscritti_palestra(QWidget):
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
 
+        #pulsante visualizza utente
         self.visualizza_utente = QPushButton("Visualizza utente")
         self.visualizza_utente.clicked.connect(self.mostra_visualizza_utente_palestra)
         self.visualizza_utente.setFont(self.font_bottoni)
@@ -76,17 +75,18 @@ class view_iscritti_palestra(QWidget):
 
         self.show()
 
+    #funzione per chiudere la schermata
     def chiudi_schermata(self):
         self.close()
 
+    #funzione che serve a visualizzare tutti gli iscritti della palestra
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
         # doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
-        # e che la struttura sia piscina
-
+        # e che la struttura sia palestra
         for certificato in self.controllerCertificato.get_lista_certificati():
             for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
                 if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Palestra":
@@ -98,12 +98,13 @@ class view_iscritti_palestra(QWidget):
         self.list_view.setModel(self.list_view_model)
 
 
+    #funzione per visualizzare utente della palestra
     def mostra_visualizza_utente_palestra(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()
             lista_iscritti_palestra_abbonamento = []
             #doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
-            # e che la struttura sia piscina
+            # e che la struttura sia palestra
             for certificato in self.controllerCertificato.get_lista_certificati():
                 for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
                     if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Palestra":

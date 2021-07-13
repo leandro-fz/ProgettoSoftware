@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QShortcut
 
 
 
-
+#visualizzazione dettagli corso palestra
 class view_corso_palestra_visualizzazione(QWidget):
 
     def __init__(self, controllore_corso_palestra, parent=None):
@@ -16,7 +16,7 @@ class view_corso_palestra_visualizzazione(QWidget):
         self.controllore_corso_palestra = controllore_corso_palestra
 
         self.v_layout = QVBoxLayout()
-
+        #vari labels
         self.create_label("Giorno:        ", self.controllore_corso_palestra.get_giorno_corsiPalestra().strftime('%d/%m/%Y'))
         self.create_label("Orario:        ", self.controllore_corso_palestra.get_orario_premuto_corsiPalestra())
         self.create_label("Corso          ", self.controllore_corso_palestra.get_corso_Palestra())
@@ -24,6 +24,7 @@ class view_corso_palestra_visualizzazione(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #pulsante chiudi
         self.create_button("Chiudi", self.mostra_indietro)
 
         self.shortcut_indietro = QShortcut(QKeySequence('Return'), self)
@@ -45,6 +46,7 @@ class view_corso_palestra_visualizzazione(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione per creare i label
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
@@ -59,6 +61,7 @@ class view_corso_palestra_visualizzazione(QWidget):
 
         self.v_layout.addLayout(h_layout)
 
+    #funzione per creare bottoni
     def create_button(self, titolo, funzione):
         bottone = QPushButton(titolo)
         bottone.setFont(QFont("Yu Gothic UI Light", 12))
@@ -66,5 +69,6 @@ class view_corso_palestra_visualizzazione(QWidget):
         self.h_layout.addWidget(bottone)
         bottone.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+    #funzione per chiudere la pagina
     def mostra_indietro(self):
         self.close()
