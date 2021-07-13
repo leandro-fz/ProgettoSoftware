@@ -14,6 +14,7 @@ from gestione.amministrazione.dipendenti.view_dipendenti.view_inserisci_dipenden
 
 class view_dipendenti(QWidget):
 
+    #view di dipendenti con diversi bottoni che servono all'utente per gestire i dipendenti
     def __init__(self, parent=None):
         super(view_dipendenti, self).__init__(parent)
 
@@ -78,9 +79,11 @@ class view_dipendenti(QWidget):
 
         self.show()
 
+    #funzione che chiude la finestra
     def chiudi_schermata(self):
         self.close()
 
+    # funzione che mostra all'utente i dipendenti inseriti attraverso una list view
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
@@ -95,6 +98,7 @@ class view_dipendenti(QWidget):
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
+    # funzione che richiama la view di insersci dipendente per l'inserimento di un dipendente
     def mostra_inserisci_dipendente(self):
 
         self.inserisci_dipendente = view_inserisci_dipendenti(self.controller, self.aggiorna_dati)
@@ -103,6 +107,7 @@ class view_dipendenti(QWidget):
     def closeEvent(self, event):
         self.controller.save_data()
 
+    # elimina dalla lista il dipendente selezionato
     def mostra_elimina_dipendente(self):
 
         try:
@@ -123,6 +128,7 @@ class view_dipendenti(QWidget):
         else:
             return
 
+    #richiama la view di modifica dipendente per modificare dipendente
     def mostra_modifica_dipendente(self):
 
         try:

@@ -15,6 +15,7 @@ from gestione.amministrazione.GestioneDipendenti.model_gestione_dipendenti.model
 
 class view_inserisci_dipendenti(QWidget):
 
+    #view di inserisci dipendente che si occupa dell'inserimento di tutti i campi da inserire
     def __init__(self, controller, aggiorna_lista, parent=None):
 
         super(view_inserisci_dipendenti, self).__init__(parent)
@@ -31,7 +32,6 @@ class view_inserisci_dipendenti(QWidget):
         self.label_alto.setFont(self.font_label2)
         self.v_layout.addWidget(self.label_alto)
 
-        # self.v_layout.addSpacing(10)
 
         self.label_nome = QLabel("Nome: ")
         self.label_nome.setFont(self.font_label)
@@ -148,6 +148,7 @@ class view_inserisci_dipendenti(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    # la funzione chiude la pagina senza inserire il dipendente
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?',QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -155,7 +156,7 @@ class view_inserisci_dipendenti(QWidget):
         else:
             pass
 
-
+    # la funzione salva il dipendente inserito e controlla se tutti i campi sono stati inseriti correttamente
     def conferma_inserimento(self):
 
         nome = self.campo_nome.text()
@@ -236,7 +237,7 @@ class view_inserisci_dipendenti(QWidget):
         self.aggiorna_lista()
         self.close()
 
-
+    # la funzione controlla se il campo "id" inserito sia stato già utilizzato
     def controlla_id_libero(self, id):
         for dipendente in self.controller.get_lista_dipendenti():
             if dipendente.id == id:

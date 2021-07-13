@@ -148,10 +148,11 @@ class view_modifica_dipendenti(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    # permette di chiudere la finestra di modifica del dipendente
     def chiudi_finestra(self):
         self.close()
 
+    #controlla se nel dipendente modificato, l'id sia già pre-esistente
     def controlla_id_libero(self, id):
 
         for dipendente in self.lista_dipendenti:
@@ -159,6 +160,8 @@ class view_modifica_dipendenti(QWidget):
                 return False
         return True
 
+    # dopo aver compilato la modifica, l'utente preme il pulsante "modifica" e la seguente funzione controlla se tutto è stato inserito correttamente
+    # e se si, salva sul file
     def modifica_dipendente(self):
 
         nome = self.campo_nome.text()
