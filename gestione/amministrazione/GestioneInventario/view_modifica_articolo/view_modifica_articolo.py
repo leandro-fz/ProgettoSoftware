@@ -91,10 +91,11 @@ class view_modifica_articolo(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    # permette di chiudere la finestra di modifica dell'articolo
     def chiudi_finestra(self):
         self.close()
 
+    #controlla se nell'articolo modificato, il codice dell'articolo sia già pre-esistente
     def controlla_codice_libero(self, codice):
 
         for inventario in self.lista_inventario:
@@ -102,6 +103,8 @@ class view_modifica_articolo(QWidget):
                 return False
         return True
 
+    # dopo aver compilato la modifica, l'utente preme il pulsante "modifica" e la seguente funzione controlla se tutto è stato inserito correttamente
+    # e se si, salva sul file
     def modifica_inventario(self):
 
         articolo = self.campo_articolo.text()
