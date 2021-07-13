@@ -43,6 +43,7 @@ class view_day_tennis(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #pulsante indietro
         self.bottone_indietro= QPushButton("⬅️")
         self.bottone_indietro.setFont(self.font)
         self.bottone_indietro.clicked.connect(self.mostra_indietro_view_tennis)
@@ -51,6 +52,7 @@ class view_day_tennis(QWidget):
         self.h_layout.addWidget(self.bottone_indietro)
         self.bottone_indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante per dettaglio prenotazione
         self.bottone_prenotazioni = QPushButton("Dettagli prenotazione")
         self.bottone_prenotazioni.setFont(self.font)
         self.bottone_prenotazioni.clicked.connect(self.dettagli_prenotazione)
@@ -59,6 +61,7 @@ class view_day_tennis(QWidget):
         self.h_layout.addWidget(self.bottone_prenotazioni)
         self.bottone_prenotazioni.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante aggiungi prenotazione
         self.bottone_aggiungi= QPushButton("Aggiungi")
         self.bottone_aggiungi.setFont(self.font)
         self.bottone_aggiungi.clicked.connect(self.mostra_aggiungi)
@@ -67,6 +70,7 @@ class view_day_tennis(QWidget):
         self.h_layout.addWidget(self.bottone_aggiungi)
         self.bottone_aggiungi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante elimina prenotazione
         self.bottone_elimina= QPushButton("Elimina")
         self.bottone_elimina.setFont(self.font)
         self.bottone_elimina.clicked.connect(self.mostra_elimina)
@@ -92,6 +96,7 @@ class view_day_tennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione che serve a visualizzare le prenotazioni del giorno selezionato
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_prenotazioni = QStandardItemModel()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
@@ -103,9 +108,11 @@ class view_day_tennis(QWidget):
                 self.modello_lista_prenotazioni.appendRow(item)
         self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
 
+    #funzione per chiudere la pagina
     def mostra_indietro_view_tennis(self):
         self.close()
 
+    #funzione per aggiungere una prenotazione
     def mostra_aggiungi(self):
         today = datetime.now()
         yesterday = today - timedelta(1)
@@ -116,7 +123,7 @@ class view_day_tennis(QWidget):
         self.vista_nuova_prenotazione = view_nuovaPrenotazioneTennis(self.data, self.controllore_lista_prenotazioni, self.aggiorna_dati_prenotazioni)
         self.vista_nuova_prenotazione.show()
 
-
+    #funzione per eliminare una prenotazione
     def mostra_elimina(self):
         today = datetime.now()
         yesterday = today - timedelta(1)
@@ -141,6 +148,7 @@ class view_day_tennis(QWidget):
         else:
             return
 
+    #funzione per visualizzare i dettagli della prepnotazione
     def dettagli_prenotazione(self):
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()
@@ -156,5 +164,6 @@ class view_day_tennis(QWidget):
         self.vista_prenotazione = VistaPrenotazioneTennis(ControllorePrenotazioneTennis(da_visualizzare))
         self.vista_prenotazione.show()
 
+    #funzione per salvare le varie modifiche
     def closeEvent(self, event):
         self.controllore_lista_prenotazioni.save_data()

@@ -24,13 +24,14 @@ class view_tennis(QWidget):
     def __init__(self, parent=None):
         super(view_tennis, self).__init__(parent)
 
+        #creazione della parte grafica
         self.g_layout = QGridLayout()
-
 
         self.label_prenotazioni_by_data = QLabel("\nSeleziona una data per visualizzare i dettagli di quel giorno, cliccando Mostra giorno,\nAltrimenti clicca Mostra tutte per visualizzare tutte le prenotazioni di oggi e future: \n")
         self.label_prenotazioni_by_data.setFont(QFont("Yu Gothic UI Light", 12))
         self.g_layout.addWidget(self.label_prenotazioni_by_data, 0, 0)
 
+        #calendario
         self.calendario = QCalendarWidget()
         self.calendario.setGridVisible(True)
         self.calendario.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
@@ -72,6 +73,7 @@ class view_tennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione che serve per creare i pulsanti
     def crea_pulsante(self, titolo, funzione):
         pulsante = QPushButton(titolo)
         pulsante.setFont(QFont("Yu Gothic UI Light", 12))
@@ -79,17 +81,18 @@ class view_tennis(QWidget):
         self.h_layout.addWidget(pulsante)
         pulsante.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+    #funzione per chiudere la pagina
     def mostra_indietro_tennis(self):
         self.close()
 
-
+    #funzione per chiamare view_day_tennis() e visualizzare il giorno selezionato
     def mostra_view_day_tennis(self):
         dataq = self.calendario.selectedDate()
         self.datai = datetime(dataq.year(), dataq.month(), dataq.day())
         self.lista_prenotazioni_day = view_day_tennis(self.datai)
         self.lista_prenotazioni_day.show()
 
-
+    #funzione per chiamare VistaListaPrenotazioniTutte() e visualizzare tutte le prenotazioni
     def mostra_tutte_prenotazioni_tennis(self):
         self.lista_prenotazioni = VistaListaPrenotazioniTutte()
         self.lista_prenotazioni.show()

@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QShortcut
 
 
-
+#vede i dettagli della singola prenotazione selezionata
 class VistaPrenotazioneTennis(QWidget):
 
     def __init__(self, controllore_prenotazione, parent=None):
@@ -16,7 +16,7 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.v_layout = QVBoxLayout()
 
-        # labels contenenti dati del cliente
+        #label con i dati della prenotazione
         self.create_label("Giorno:        ", self.controllore_prenotazione.get_giorno_pre_te().strftime('%d/%m/%Y'))
         self.create_label("Orario:        ", self.controllore_prenotazione.get_orario_premuto_pre_te())
         self.create_label("Prenotante:         ", self.controllore_prenotazione.get_nome_pre_te())
@@ -24,8 +24,10 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #creazione del pulsante di chiusura
         self.create_button("Chiudi", self.mostra_indietro)
 
+        #shortcut per il tasto di chiusura
         self.shortcut_indietro = QShortcut(QKeySequence('Alt+left'), self)
         self.shortcut_indietro.activated.connect(self.mostra_indietro)
 
@@ -45,6 +47,7 @@ class VistaPrenotazioneTennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione perla creazione dei vari label
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
@@ -59,6 +62,7 @@ class VistaPrenotazioneTennis(QWidget):
 
         self.v_layout.addLayout(h_layout)
 
+    #funzione per la creazione dei vari plsanti
     def create_button(self, titolo, funzione):
         bottone = QPushButton(titolo)
         bottone.setFont(QFont("Yu Gothic UI Light", 12))
@@ -66,5 +70,6 @@ class VistaPrenotazioneTennis(QWidget):
         self.h_layout.addWidget(bottone)
         bottone.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+    #funzione per chiudere la pagina
     def mostra_indietro(self):
         self.close()

@@ -78,12 +78,14 @@ class view_nuovaPrenotazioneTennis(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #pulsante annulla
         self.bottone_annulla = QPushButton("Annulla")
         self.bottone_annulla.setFont(self.font_label)
         self.bottone_annulla.clicked.connect(self.mostra_annulla_ins)
         self.h_layout.addWidget(self.bottone_annulla)
         self.bottone_annulla.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante di conferma
         self.bottone_conferma = QPushButton("Conferma")
         self.h_layout.addWidget(self.bottone_conferma)
         self.bottone_conferma.clicked.connect(self.conferma_inserimento)
@@ -110,7 +112,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    #funzione per chiudere la pagina con pop up di conferma di chiusura
     def mostra_annulla_ins(self):
         reply = QMessageBox.question(self, 'Annullare', 'Sei sicuro di voler uscire?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -118,7 +120,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
         else:
             return
 
-
+    #funzione per confermare l'inserimento
     def conferma_inserimento(self):
         utente = self.campo_prenotatore.text()
         recapito = self.campo_recapito.text()
@@ -139,6 +141,7 @@ class view_nuovaPrenotazioneTennis(QWidget):
             return
         prenotazione = model_PrenotazioniTennis(utente, dataselezionata, orario_premuto, recapito, idtennis)
 
+        #se la data è passata temporalmente allora nonn viene mostrato l'importo da pagare
         today = datetime.now()
         yesterday = today - timedelta(1)
         if self.data1> yesterday:
@@ -152,8 +155,8 @@ class view_nuovaPrenotazioneTennis(QWidget):
         self.close()
         return True
 
+    #funzione che serve a controllare se il campo è disponibile in quella fascai oraria
     def controlla_disponibilità(self, idtennis):
-        # self.controllore_lista_prenotazioni = ControlloreListaPrenotazioniTennis()
         for prenotazione in self.controllore.get_lista_prenotazioni_tennis1():
             if prenotazione.id == idtennis:
                 return False

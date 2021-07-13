@@ -17,7 +17,7 @@ from PyQt5.QtGui import *
 from struttura.tennis.lista_prenotazioniTennis.ControlloreListaTennis.ControlloreListaTennis import \
     ControlloreListaPrenotazioniTennis
 
-
+#serve a visualizzare tutte le prenotazioni
 class VistaListaPrenotazioniTutte(QWidget):
 
     def __init__(self, data=None, parent=None):
@@ -66,11 +66,11 @@ class VistaListaPrenotazioniTutte(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    #funzione che serve a visualizzare tutte le prenotazioni
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_prenotazioni = QStandardItemModel()
         for prenotazione in self.controllore_lista_prenotazioni.get_lista_prenotazioni_tennis1():
-            #per visualizzare solo le date da oggi al futuro
+            #per visualizzare solo le prenotazioni dalla data di oggi al futuro
             today=datetime.now()
             yesterday=today - timedelta(1)
             if prenotazione.data>=yesterday:
@@ -82,6 +82,6 @@ class VistaListaPrenotazioniTutte(QWidget):
 
         self.lista_prenotazioni.setModel(self.modello_lista_prenotazioni)
 
-
+    #funzione per chiudere la pagina
     def mostra_indietro(self):
         self.close()
