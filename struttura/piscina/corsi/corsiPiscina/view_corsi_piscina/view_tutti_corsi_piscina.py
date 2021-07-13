@@ -15,7 +15,7 @@ from PyQt5.QtGui import *
 from struttura.piscina.corsi.GestioneCorsi.controller_gestione_corsi_piscina.controller_gestione_corsi_piscina import \
     controller_gestione_corsi_piscina
 
-
+#visualizza tutti i corsi di piscina
 class view_tutti_corsi_piscina(QWidget):
 
     def __init__(self, data=None, parent=None):
@@ -38,7 +38,7 @@ class view_tutti_corsi_piscina(QWidget):
 
         self.h_layout = QHBoxLayout()
 
-
+        #pulsante chiudi
         self.bottone_indietro = QPushButton("Chiudi")
         self.bottone_indietro.setFont(self.font)
         self.bottone_indietro.clicked.connect(self.mostra_indietro)
@@ -64,7 +64,7 @@ class view_tutti_corsi_piscina(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
-
+    #funzione che serve a visualizzare tutti i corsi del nuoto
     def aggiorna_dati_prenotazioni(self):
         self.modello_lista_corsi = QStandardItemModel()
         for corso in self.controllore_lista_corsi_piscina.get_lista_corsi():
@@ -80,6 +80,6 @@ class view_tutti_corsi_piscina(QWidget):
 
         self.lista_corsi_piscina.setModel(self.modello_lista_corsi)
 
-
+    #funzione di chiusura della pagina
     def mostra_indietro(self):
         self.close()

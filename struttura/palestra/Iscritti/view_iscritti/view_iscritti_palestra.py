@@ -84,6 +84,8 @@ class view_iscritti_palestra(QWidget):
         self.list_view_model = QStandardItemModel(self.list_view)
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
+        # doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
+        # e che la struttura sia piscina
 
         for certificato in self.controllerCertificato.get_lista_certificati():
             for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
@@ -100,6 +102,8 @@ class view_iscritti_palestra(QWidget):
         try:
             index = self.list_view.selectedIndexes()[0].row()
             lista_iscritti_palestra_abbonamento = []
+            #doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
+            # e che la struttura sia piscina
             for certificato in self.controllerCertificato.get_lista_certificati():
                 for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
                     if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Palestra":

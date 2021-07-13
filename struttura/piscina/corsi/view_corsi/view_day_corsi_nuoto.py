@@ -44,6 +44,7 @@ class view_day_corsi_nuoto(QWidget):
 
         self.h_layout = QHBoxLayout()
 
+        #pulsante indietro
         self.bottone_indietro= QPushButton("⬅️")
         self.bottone_indietro.setFont(self.font)
         self.bottone_indietro.clicked.connect(self.mostra_indietro_view_corsi)
@@ -52,6 +53,7 @@ class view_day_corsi_nuoto(QWidget):
         self.h_layout.addWidget(self.bottone_indietro)
         self.bottone_indietro.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante per dettaglio prenotazione
         self.bottone_prenotazioni = QPushButton("Dettagli Corso")
         self.bottone_prenotazioni.setFont(self.font)
         self.bottone_prenotazioni.clicked.connect(self.dettagli_prenotazione)
@@ -60,6 +62,7 @@ class view_day_corsi_nuoto(QWidget):
         self.h_layout.addWidget(self.bottone_prenotazioni)
         self.bottone_prenotazioni.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante aggiungi prenotazione
         self.bottone_aggiungi= QPushButton("Aggiungi Corso")
         self.bottone_aggiungi.setFont(self.font)
         self.bottone_aggiungi.clicked.connect(self.mostra_aggiungi_corso_piscina)
@@ -68,6 +71,7 @@ class view_day_corsi_nuoto(QWidget):
         self.h_layout.addWidget(self.bottone_aggiungi)
         self.bottone_aggiungi.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        #pulsante elimina prenotazione
         self.bottone_elimina= QPushButton("Elimina Corso")
         self.bottone_elimina.setFont(self.font)
         self.bottone_elimina.clicked.connect(self.mostra_elimina)
@@ -93,6 +97,7 @@ class view_day_corsi_nuoto(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione che serve a visualizzare i corsi del giorno selezionato
     def aggiorna_dati_corsi_piscina(self):
         self.modello_lista_corsi = QStandardItemModel()
         for corso in self.controllore_gestionecorsipiscina.get_lista_corsi():
@@ -104,9 +109,11 @@ class view_day_corsi_nuoto(QWidget):
                 self.modello_lista_corsi.appendRow(item)
         self.lista_corsi.setModel(self.modello_lista_corsi)
 
+    #funzione per chiudere la pagina
     def mostra_indietro_view_corsi(self):
         self.close()
 
+    #funzione per aggiungere una corso
     def mostra_aggiungi_corso_piscina(self):
         today = datetime.now()
         yesterday = today - timedelta(1)
@@ -116,7 +123,7 @@ class view_day_corsi_nuoto(QWidget):
         self.vista_nuovo_corso_piscina = view_aggiungi_corso(self.data, self.controllore_gestionecorsipiscina, self.aggiorna_dati_corsi_piscina)
         self.vista_nuovo_corso_piscina.show()
 
-
+    #funzione per eliminare un corso
     def mostra_elimina(self):
         today = datetime.now()
         yesterday = today - timedelta(1)
@@ -141,6 +148,7 @@ class view_day_corsi_nuoto(QWidget):
         else:
             return
 
+    #funzione per visualizzare i dettagli del corso
     def dettagli_prenotazione(self):
         try:
             indice = self.lista_corsi.selectedIndexes()[0].row()
@@ -156,5 +164,6 @@ class view_day_corsi_nuoto(QWidget):
         self.vista_prenotazione = view_corso_piscina_visualizzazione(controller_corsi_piscina(da_visualizzare))
         self.vista_prenotazione.show()
 
+    #funzione per salvare le varie modifiche
     def closeEvent(self, event):
         self.controllore_gestionecorsipiscina.save_data()

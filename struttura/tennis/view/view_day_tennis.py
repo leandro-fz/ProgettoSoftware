@@ -148,7 +148,7 @@ class view_day_tennis(QWidget):
         else:
             return
 
-    #funzione per visualizzare i dettagli della prepnotazione
+    #funzione per visualizzare i dettagli della prenotazione
     def dettagli_prenotazione(self):
         try:
             indice = self.lista_prenotazioni.selectedIndexes()[0].row()

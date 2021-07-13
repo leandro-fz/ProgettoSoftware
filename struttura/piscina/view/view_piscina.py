@@ -204,11 +204,12 @@ class view_piscina(object):
 
         self.gestionecorsi.clicked.connect(self.mostra_corsi)
 
-
+    #visualizza la schermata dei corsi
     def mostra_corsi(self):
         self.gestionecorsi = view_corsi_piscina()
         self.gestionecorsi.show()
 
+    #visualizza la schermata degli iscritti
     def mostra_iscritti(self):
         self.gestioneiscritti = view_iscritti_piscina()
         self.gestioneiscritti.show()
@@ -220,13 +221,3 @@ class view_piscina(object):
         self.gestionecorsi.setText(_translate("gestionepiscina", "Gestione corsi"))
         self.indietro.setText(_translate("gestionepiscina", "⬅️"))
         self.indietro.setShortcut(_translate("gestionepiscina", "Alt+Left"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     gestionepiscina = QtWidgets.QMainWindow()
-#     ui = Ui_gestionepiscina()
-#     ui.setupUi(gestionepiscina)
-#     gestionepiscina.show()
-#     sys.exit(app.exec_())

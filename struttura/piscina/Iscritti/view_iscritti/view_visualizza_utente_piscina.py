@@ -58,6 +58,7 @@ class view_visualizza_utente_piscina(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione per creare i vari label
     def create_label(self, testo, descrizione):
         h_layout = QHBoxLayout()
 
@@ -72,6 +73,7 @@ class view_visualizza_utente_piscina(QWidget):
 
         self.v_layout.addLayout(h_layout)
 
+    #funzione per creare i pulsanti
     def create_button(self, titolo, funzione):
         bottone = QPushButton(titolo)
         bottone.setFont(QFont("Yu Gothic UI Light", 12))
@@ -79,6 +81,6 @@ class view_visualizza_utente_piscina(QWidget):
         self.h_layout.addWidget(bottone)
         bottone.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-
+    #funzione per chiudere la pagina
     def mostra_indietro(self):
         self.close()

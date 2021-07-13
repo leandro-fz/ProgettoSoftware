@@ -23,7 +23,6 @@ class view_iscritti_piscina(QWidget):
         self.v_layout = QVBoxLayout()
 
         self.label_iscritti_piscina = QLabel("Qui verranno visualizzati i clienti con abbonamento valido per la piscina e certificato medico inserito")
-        # self.label_iscritti_piscina.setAlignment(Qt.AlignCenter)
         self.label_iscritti_piscina.setFont(QFont("Yu Gothic UI Light", 10))
         self.v_layout.addWidget(self.label_iscritti_piscina)
         self.v_layout.addSpacing(10)
@@ -37,6 +36,7 @@ class view_iscritti_piscina(QWidget):
 
         self.font_bottoni = QFont("Yu Gothic UI Light", 12)
 
+        #tasto indietro
         self.indietro = QPushButton("⬅️")
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.setDefault(False)
@@ -49,6 +49,7 @@ class view_iscritti_piscina(QWidget):
         self.indietro.setIconSize(QtCore.QSize(40, 40))
         self.indietro.clicked.connect(self.chiudi_schermata)
 
+        #tasto visualzza utente
         self.visualizza_utente = QPushButton("Visualizza utente")
         self.visualizza_utente.clicked.connect(self.mostra_visualizza_utente_piscina)
         self.visualizza_utente.setFont(self.font_bottoni)
@@ -75,15 +76,18 @@ class view_iscritti_piscina(QWidget):
 
         self.show()
 
+    #funzione per la chisuura della pagina
     def chiudi_schermata(self):
         self.close()
 
+    #list view in cui vengono visualizzati le persone che hanno un abbonamento per la piscina e un certificato medioc inserito
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
 
         self.font_item = QFont("Yu Gothic UI Light", 12)
-
+        # doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
+        # e che la struttura sia piscina
         for certificato in self.controllerCertificato.get_lista_certificati():
             for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
                 if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":
@@ -94,11 +98,13 @@ class view_iscritti_piscina(QWidget):
                     self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
-
+    #funzione per visualizzare l'utente della piscina selezionato
     def mostra_visualizza_utente_piscina(self):
         try:
             index = self.list_view.selectedIndexes()[0].row()
             lista_iscritti_piscina_abbonamento = []
+            #doppio ciclo for per controllare che un codice fiscale sia presente sia su certificati che su abbonamento
+            # e che la struttura sia piscina
             for certificato in self.controllerCertificato.get_lista_certificati():
                 for abbonamento in self.controllerAbbonamento.get_lista_abbonamenti():
                     if certificato.codicefiscale == abbonamento.codicefiscale and abbonamento.struttura == "Piscina":

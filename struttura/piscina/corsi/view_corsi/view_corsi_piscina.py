@@ -70,6 +70,7 @@ class view_corsi_piscina(QWidget):
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
 
+    #funzione per creare i pulsanti
     def crea_pulsante(self, titolo, funzione):
         pulsante = QPushButton(titolo)
         pulsante.setFont(QFont("Yu Gothic UI Light", 12))
@@ -77,17 +78,18 @@ class view_corsi_piscina(QWidget):
         self.h_layout.addWidget(pulsante)
         pulsante.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+    #funzione per creare la pagina
     def mostra_indietro_corsonuoto(self):
         self.close()
 
-
+    #funzione per mostrare il giorno selezionato
     def mostra_view_day_nuoto(self):
         dataq = self.calendario.selectedDate()
         self.datai = datetime(dataq.year(), dataq.month(), dataq.day())
         self.lista_prenotazioni_day = view_day_corsi_nuoto(self.datai)
         self.lista_prenotazioni_day.show()
 
-
+    #funzione per mostare tutti i corsi
     def mostra_tutte_prenotazioni_corsi_nuoto(self):
         self.lista_prenotazioni = view_tutti_corsi_piscina()
         self.lista_prenotazioni.show()
