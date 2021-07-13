@@ -16,6 +16,7 @@ from gestione.amministrazione.GestioneFornitori.view_modifica_fornitori.view_mod
 
 class view_fornitori(QWidget):
 
+    #view di fornitori con diversi bottoni che servono all'utente per la gestione dei fornitori
     def __init__(self, parent=None):
         super(view_fornitori, self).__init__(parent)
 
@@ -80,9 +81,11 @@ class view_fornitori(QWidget):
 
         self.show()
 
+    #funzione che chiude la finestra
     def chiudi_schermata(self):
         self.close()
 
+    # funzione che mostra all'utente i fornitori inseriti attraverso una list view
     def aggiorna_dati(self):
 
         self.list_view_model = QStandardItemModel(self.list_view)
@@ -97,6 +100,7 @@ class view_fornitori(QWidget):
             self.list_view_model.appendRow(item)
         self.list_view.setModel(self.list_view_model)
 
+    # funzione che richiama la view di insersci fornitore per l'inserimento di un fornitore
     def mostra_inserisci_fornitore(self):
 
         self.inserisci_fornitore = view_inserisci_fornitori(self.controller, self.aggiorna_dati)
@@ -105,6 +109,7 @@ class view_fornitori(QWidget):
     def closeEvent(self, event):
         self.controller.save_data()
 
+    # elimina dalla lista il fornitore selezionato
     def mostra_elimina_fornitore(self):
 
         try:
@@ -125,6 +130,7 @@ class view_fornitori(QWidget):
         else:
             return
 
+    #richiama la view di modifica fornitore per modificare il fornitore
     def mostra_modifica_fornitore(self):
 
         try:

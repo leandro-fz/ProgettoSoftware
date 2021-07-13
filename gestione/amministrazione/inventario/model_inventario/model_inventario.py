@@ -1,7 +1,6 @@
 import os
 import pickle
 
-# amministrazione/
 class model_inventario():
 
     # nella funzione c'è il collegamento con il file "lista_inventario_salvata" dove gli articoli e le varie informazioni verranno salvate
@@ -31,6 +30,7 @@ class model_inventario():
     def get_lista_inventario(self):
         return self.lista_inventario
 
+    # la funzione ridà la lista degli articoli in base al codice
     def get_inventario_by_codice(self, codice):
         for inventario in self.lista_inventario:
             if inventario.codice == codice:
